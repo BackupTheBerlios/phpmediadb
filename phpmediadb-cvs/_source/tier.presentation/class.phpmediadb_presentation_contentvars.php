@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.2 2004/09/26 16:07:43 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.3 2005/02/09 20:28:57 mblaschke Exp $ */
 
 class phpmediadb_presentation_contentvars
 {
@@ -30,11 +30,11 @@ class phpmediadb_presentation_contentvars
 	 * @access private
 	 * @var mixed
 	 */
-	public $nodeContainer = null;
-	/* FIXIT */
+	private $nodeContainer = null;
 
 	// --- OPERATIONS ---
-
+	
+//-----------------------------------------------------------------------------
 	/**
 	 * The constructor __construct initalizes the Class.
 	 *
@@ -52,7 +52,8 @@ class phpmediadb_presentation_contentvars
 		/* initalize */
 		$this->nodeContainer = array();
   }
-
+  
+//-----------------------------------------------------------------------------
 	/**
 	 * The destructor __destruct is responsible for closing all open files,
 	 * etc.
@@ -66,7 +67,7 @@ class phpmediadb_presentation_contentvars
 		/* nothing to do yet */
 	}
 
-
+//-----------------------------------------------------------------------------
 	/**
 	 * This function adds a new node to the nodecontainer. The nodepoint is
 	 * by the dottet-format nodeName with the value of NodeValue and a
@@ -79,19 +80,20 @@ class phpmediadb_presentation_contentvars
 	 * @param Integer
 	 * @return void
 	 */
-	public function AddNode( $nodeName, $nodeValue, $nodeFormat = PHPMEDIADB_NODEFORMAT_TEXT )
+	public function addNode( $nodeName, $nodeValue, $nodeFormat = PHPMEDIADB_NODEFORMAT_TEXT )
 	{
 		/* check */
-		if( $this->CheckNodeString( $nodeName ) == FALSE )
+		if( $this->checkNodeString( $nodeName ) == FALSE )
 			return false;
 
 		/* convert */
-		$nodeValue = $this->ConvertNodeValue( $nodeValue, $nodeFormat );
+		$nodeValue = $this->convertNodeValue( $nodeValue, $nodeFormat );
 
 		/* delegate */
-		$this->RecursiveInsertNodeIntoContainer( $nodeName, $nodeValue, $this->nodeContainer );
+		$this->recursiveInsertNodeIntoContainer( $nodeName, $nodeValue, $this->nodeContainer );
 	}
 
+//-----------------------------------------------------------------------------
 	/**
 	 * This function returns a complete node or only a value specified by
 	 *
@@ -100,13 +102,18 @@ class phpmediadb_presentation_contentvars
 	 * @param String
 	 * @return java_lang_String
 	 */
-	public function GetNode( $nodeName = NULL )
+	public function getNode( $nodeName = NULL )
 	{
-		$returnValue = null;
+		/* filter false or null entries */
 		/* TODO */
+		$returnValue = $this->nodeContainer;
+		/* TODO */
+		
+		/* return mixed */
 		return $returnValue;
 	}
 
+//-----------------------------------------------------------------------------
 	/**
 	 * This function deletes a nodevalue or a compelte nodetree from the
 	 *
@@ -118,14 +125,15 @@ class phpmediadb_presentation_contentvars
 	public function DeleteNode( $nodeName )
 	{
 		/* check */
-		if( $this->CheckNodeString( $nodeName ) == FALSE )
+		if( $this->checkNodeString( $nodeName ) == FALSE )
 			return false;
 
 		/* delegate */
-		$this->RecursiveInsertNodeIntoContainer( $nodeName, NULL, $this->nodeContainer );
+		$this->recursiveInsertNodeIntoContainer( $nodeName, NULL, $this->nodeContainer );
 		return true;
 	}
-
+	
+//-----------------------------------------------------------------------------
 	/**
 	 * This internal function will recursivly insert a node into the
 	 *
@@ -136,7 +144,7 @@ class phpmediadb_presentation_contentvars
 	 * @param mixed
 	 * @return void
 	 */
-	protected function RecursiveInsertNodeIntoContainer( $nodeName, $nodeValue = null, &$nodeArray )
+	protected function recursiveInsertNodeIntoContainer( $nodeName, $nodeValue = null, &$nodeArray )
 	{
 		/* init */
 		$nodeIndexArray		= null;
@@ -153,7 +161,11 @@ class phpmediadb_presentation_contentvars
 		if( count( $nodeIndexArray ) == 1 )
 		{
 			/* ok, it is the last item.. generate one more array and stop recursive call */
-			$nodeArray["$nodeCurrentIndex"] = $nodeValue;
+			if( NULL == $nodeValue )
+				//$nodeArray["$nodeCurrentIndex"] = $nodeValue;
+				unset( $nodeArray["$nodeCurrentIndex"] );
+			else
+				$nodeArray["$nodeCurrentIndex"] = (string) $nodeValue;
 		}
 		else
 		{
@@ -174,14 +186,15 @@ class phpmediadb_presentation_contentvars
 			if( !is_array( $nodeArray["$nodeCurrentIndex"] ) )
 				$nodeArray["$nodeCurrentIndex"] = array();
 
-			$this->RecursiveInsertNodeIntoContainer( $nodeNextIndex, $nodeValue, $nodeArray["$nodeCurrentIndex"] );
+			$this->recursiveInsertNodeIntoContainer( $nodeNextIndex, $nodeValue, $nodeArray["$nodeCurrentIndex"] );
 
 		}
 
 		/* return array */
 		return $nodeArray;
 	}
-
+	
+//-----------------------------------------------------------------------------
 	/**
 	 * This function checks the validity of nodeName and returns the
 	 * (TRUE=ok, FALSE=check failed),
@@ -191,16 +204,18 @@ class phpmediadb_presentation_contentvars
 	 * @param String
 	 * @return boolean
 	 */
-	public function CheckNodeString( $nodeName )
+	public function checkNodeString( $nodeName )
 	{
 		$returnValue = (bool) false;
 
 		$checkRegEx = "^([_a-zA-Z0-9]+\.?)+[_a-zA-Z0-9]+$";
 		$returnValue = ereg( $checkRegEx, $nodeName );
-
+		
+		/* return value */
 		return (bool) $returnValue;
 	}
-
+	
+//-----------------------------------------------------------------------------
 	/**
 	 * This function converts the nodeValue in the format of nodeFormat
 	 *
@@ -209,7 +224,7 @@ class phpmediadb_presentation_contentvars
 	 * @param String
 	 * @return String
 	 */
-	protected function ConvertNodeValue( $nodeValue, $nodeFormat )
+	protected function convertNodeValue( $nodeValue, $nodeFormat )
 	{
 		$returnValue = null;
 
@@ -231,6 +246,8 @@ class phpmediadb_presentation_contentvars
 					$returnValue = $nodeValue;
 				break;
 		}
+		
+		/* return value */
 		return $returnValue;
 	}
 
