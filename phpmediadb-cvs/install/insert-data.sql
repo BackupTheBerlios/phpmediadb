@@ -1,5 +1,5 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: insert-data.sql,v 1.3 2005/03/27 01:16:13 mblaschke Exp $
+-- $Id: insert-data.sql,v 1.4 2005/04/05 21:35:36 mblaschke Exp $
 
 --
 -- Daten für Tabelle `categories`
@@ -49,48 +49,48 @@ INSERT INTO `MediaAgeRestrictions` (`MediaAgeRestrictionID`, `MediaAgeRestrictio
 --
 
 INSERT INTO `MediaCodecs` (`MediaCodecID`, `ItemTypeID`, `MediaCodecName`) VALUES (1, 1, 'MP3'),
-(2, 1, 'OGG Vorbis'),
-(3, 1, 'WAVE'),
-(4, 1, 'WMA'),
-(5, 1, 'AC3'),
-(6, 1, 'MP3Pro'),
-(7, 1, 'MPEGPlus'),
-(8, 1, 'AAC'),
-(9, 2, 'DivX'),
-(10, 2, 'XviD'),
-(11, 2, 'MPEG4'),
-(12, 2, 'Dirac'),
-(15, 2, 'MPEG2'),
-(14, 2, 'Quicktime'),
-(16, 1, 'AIFF/AIFC'),
-(18, 1, 'PCM'),
-(19, 3, 'PDF'),
-(20, 3, 'Word (DOC)'),
-(21, 3, 'OpenOffice (SWX)'),
-(22, 3, 'RTF');
+(2, 1, 'Codec_Vorbis'),
+(3, 1, 'Codec_WAVE'),
+(4, 1, 'Codec_WMA'),
+(5, 1, 'Codec_AC3'),
+(6, 1, 'Codec_MP3Pro'),
+(7, 1, 'Codec_MPEGPlus'),
+(8, 1, 'Codec_AAC'),
+(9, 2, 'Codec_Divx'),
+(10, 2, 'Codec_Xvid'),
+(11, 2, 'Codec_MPEG4'),
+(12, 2, 'Codec_Dirac'),
+(15, 2, 'Codec_MPEG2'),
+(14, 2, 'Codec_Quicktime'),
+(16, 1, 'Codec_AIFF_AIFC'),
+(18, 1, 'Codec_PCM'),
+(19, 3, 'Codec_PDF'),
+(20, 3, 'Codec_Word'),
+(21, 3, 'Codec_OpenOffice'),
+(22, 3, 'Codec_RTF');
 
 --
 -- Daten für Tabelle `mediaformats`
 --
 
 INSERT INTO `MediaFormats` (`MediaFormatID`, `ItemTypeID`, `MediaFormatName`) VALUES (1, 1, 'Datei'),
-(2, 1, 'AudioCD'),
-(3, 1, 'AudioDVD'),
-(4, 1, 'MiniDisc'),
-(5, 1, 'Kassette'),
-(6, 2, 'DV'),
-(7, 2, 'VHS'),
-(8, 2, 'SVHS'),
-(9, 2, 'DVD'),
-(10, 2, 'Datei'),
-(11, 2, 'VCD'),
-(12, 2, 'SVCD'),
-(13, 2, 'Hi8'),
-(14, 2, 'MiniDV'),
-(15, 2, 'MiniDVD'),
-(16, 2, 'Video8'),
-(17, 3, 'Hardcover'),
-(18, 3, 'Softcover'),
-(19, 3, 'Datei');
+(2, 1, 'Format_AudioCD'),
+(3, 1, 'Format_AudioDVD'),
+(4, 1, 'Format_MiniDisc'),
+(5, 1, 'Format_Cassette'),
+(6, 2, 'Format_DV'),
+(7, 2, 'Format_VHS'),
+(8, 2, 'Format_SVHS'),
+(9, 2, 'Format_DVD'),
+(10, 2, 'Format_File'),
+(11, 2, 'Format_VCD'),
+(12, 2, 'Format_SVCD'),
+(13, 2, 'Format_Hi8'),
+(14, 2, 'Format_MiniDV'),
+(15, 2, 'Format_MiniDVD'),
+(16, 2, 'Format_Video8'),
+(17, 3, 'Format_Hardcover'),
+(18, 3, 'Format_Softcover'),
+(19, 3, 'Format_File');
 
 -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF --
