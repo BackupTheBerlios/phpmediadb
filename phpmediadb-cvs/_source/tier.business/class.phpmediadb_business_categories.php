@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_categories.php,v 1.5 2005/03/24 20:43:35 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_categories.php,v 1.6 2005/03/31 16:27:07 mblaschke Exp $ */
 
 /**
  * This is the class that manages all functions of the categories
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -176,6 +176,27 @@ class phpmediadb_business_categories
 		
 		/* delegate */
 		$returnValue = $this->BUSINESS->INSPECTOR->check( PHPMEDIADB_ITEMINFO_CATEGORIES, $data );
+		
+		/* return data */
+		return $returnValue;
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * Translates the dataitems one item from the database
+	 *
+	 * @access public
+	 * @param integer $data Data of the item (resultset)
+	 * @return bool successstatus (true/false)
+	 */
+	public function translate( $data )
+	{
+		/* init */
+		$returnValue = false;
+		
+		/* translate database data */
+		foreach( $data as $key => $value )
+			$returnValue[$key]['categoryname'] = $this->PHPMEDIADB->PRESENTATION->I18N->translate( $data[$key]['categoryname'] );
 		
 		/* return data */
 		return $returnValue;
