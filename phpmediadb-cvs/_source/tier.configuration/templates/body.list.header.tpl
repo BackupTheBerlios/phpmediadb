@@ -1,4 +1,4 @@
-<div id="phpmediadb-body-menu">
+<div class="phpmediadb-body-menu" id="phpmediadb-body-list-header">
 	<table>
 	<tr>
 		<td class="phpmediadb-body-menu-item">
