@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_codecs.php,v 1.4 2005/03/13 13:25:17 bruf Exp $ */
+/* $Id: class.phpmediadb_data_codecs.php,v 1.5 2005/03/15 10:13:06 mblaschke Exp $ */
 
 class phpmediadb_data_codecs
 {
@@ -126,7 +126,7 @@ class phpmediadb_data_codecs
 	 * @param Integer
 	 * @param Integer
 	 */
-	public function createCodec( $MediaCodecID, $MediaCodecName, $MediaCodecBitrate, $ItemTypeID )
+	public function modify( $MediaCodecID, $MediaCodecName, $MediaCodecBitrate, $ItemTypeID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'UPDATE MediaCodecs
