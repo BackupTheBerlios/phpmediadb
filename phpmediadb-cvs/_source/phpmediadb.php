@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: phpmediadb.php,v 1.4 2005/02/09 20:27:19 mblaschke Exp $ */
+/* $Id: phpmediadb.php,v 1.5 2005/02/27 21:48:19 mblaschke Exp $ */
 
 /* run preinit */
 require_once( 'tier.configuration/config.preinit.php' );
@@ -9,6 +9,10 @@ require_once( 'tier.configuration/config.preinit.php' );
 require_once( 'tier.configuration/config.data.php' );
 require_once( 'tier.configuration/config.business.php' );
 require_once( 'tier.configuration/config.presentation.php' );
+
+/* include tier.lib */
+require_once( 'tier.lib/smarty/Smarty.class.php' );
+require_once( 'tier.lib/creole/Creole.php' );
 
 /* include tier.global */
 require_once( 'tier.global/class.phpmediadb_exception.php' );
