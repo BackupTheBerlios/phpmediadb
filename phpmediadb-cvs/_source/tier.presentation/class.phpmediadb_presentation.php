@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation.php,v 1.2 2004/09/26 16:06:03 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation.php,v 1.3 2005/02/09 16:20:45 mblaschke Exp $ */
 
 class phpmediadb_presentation
 {
@@ -60,6 +60,14 @@ class phpmediadb_presentation
 	 */
 	public $XMLSERVICE = null;
 
+	/**
+	 * Configurationcontainer of this tier
+	 *
+	 * @access public
+	 * @var configuration
+	 */
+	public $configuration = null;
+
 	// --- OPERATIONS ---
 
 	/**
@@ -71,7 +79,10 @@ class phpmediadb_presentation
 	 * @return void
 	 */
 	public function __construct( $sender )
-  {
+	{
+		/* init */
+		$this->configuration = array();
+    	 
 		/* assign parent */
 		$this->PHPMEDIADB		= $sender;
 
@@ -81,9 +92,9 @@ class phpmediadb_presentation
 		$this->I18N					= new phpmediadb_presentation_i18n( $this );
 		$this->SESSION			= new phpmediadb_presentation_session( $this );
 		$this->XMLSERVICE		= new phpmediadb_presentation_xmlservice( $this );
-  }
+	}
 
-	/**
+ /**
 	 * The destructor __destruct is responsible for closing all open files,
 	 * etc.
 	 *
