@@ -9,11 +9,11 @@
 
 <body>
 <!-- PHPMEDIADB-HEADER BEGIN -->
-	<div id="phpmediadb-header">{$DOCUMENT.HEADER}</div>
+	<div id="phpmediadb-header">{include file="overall.header.tpl"}</div>
 <!-- PHPMEDIADB-HEADER END -->
 
 <!-- PHPMEDIADB-MENU BEGIN -->
-	<div id="phpmediadb-menu">{$DOCUMENT.MENU}</div>
+	<div id="phpmediadb-menu">{include file="overall.menu.tpl"}</div>
 <!-- PHPMEDIADB-MENU END -->
 
 <!-- PHPMEDIADB-BODY BEGIN -->
@@ -21,7 +21,7 @@
 <!-- PHPMEDIADB-BODY END -->
 
 <!-- PHPMEDIADB-FOOTER BEGIN -->
-	<div id="phpmediadb-footer">{$DOCUMENT.FOOTER}</div>
+	<div id="phpmediadb-footer">{include file="overall.footer.tpl"}</div>
 <!-- PHPMEDIADB-FOOTER END -->
 
 </body>
