@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_sql.php,v 1.2 2005/03/02 15:28:52 bruf Exp $ */
+/* $Id: class.phpmediadb_data_sql.php,v 1.3 2005/03/11 12:18:57 bruf Exp $ */
 
 class phpmediadb_data_sql
 {
@@ -61,8 +61,13 @@ class phpmediadb_data_sql
 	 * @param String
 	 * @return String
 	*/
-	protected function dbConnection($dns)
+	public function getConnection()
 	{
+		$dsn = array('phptype' => 'mysql',
+             'hostspec' => 'localhost',
+             'username' => 'dbuser',
+             'password' => 'dbpass',
+             'database' => 'testdb');
 		$conn = Creole::getConnection($dsn, Creole::PERSISTENT);
 		return $conn;
 	}
