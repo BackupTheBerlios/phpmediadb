@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_i18n.php,v 1.4 2005/02/27 16:05:51 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_i18n.php,v 1.5 2005/03/15 10:12:02 mblaschke Exp $ */
 
 class phpmediadb_presentation_i18n
 {
@@ -73,7 +73,7 @@ class phpmediadb_presentation_i18n
   
 //-----------------------------------------------------------------------------
 	/**
-	 * This function returns the language of the client browser
+	 * Returns the language of the client browser
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -97,7 +97,7 @@ class phpmediadb_presentation_i18n
   
 //-----------------------------------------------------------------------------
 	/**
-	 * This function returns the i18n string specified by the langID
+	 * Returns the i18n string specified by the langID
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -118,7 +118,7 @@ class phpmediadb_presentation_i18n
   
 //-----------------------------------------------------------------------------
 	/**
-	 * This function returns the whole i18n array
+	 * Returns the whole i18n array
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -136,7 +136,7 @@ class phpmediadb_presentation_i18n
   
 //-----------------------------------------------------------------------------
 	/**
-	 * This function returns a array with the available languages
+	 * Returns a array with the available languages
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -156,7 +156,7 @@ class phpmediadb_presentation_i18n
   
 //-----------------------------------------------------------------------------
 	/**
-	 * This function returns the currently used language as langcode
+	 * Returns the currently used language as langcode
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -172,7 +172,7 @@ class phpmediadb_presentation_i18n
 	 
 //-----------------------------------------------------------------------------
 	/**
-	 * This function sets the currently used language as langcode
+	 * Sets the currently used language as langcode
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -195,8 +195,8 @@ class phpmediadb_presentation_i18n
   
 //-----------------------------------------------------------------------------
 	/**
-	 * This function returns the language of the client browser
-	 * specified by the allowed languages and the default language
+	 * Returns the language of the client browser specified by the 
+	 * allowed languages and the default language
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -277,7 +277,7 @@ class phpmediadb_presentation_i18n
   
 //-----------------------------------------------------------------------------
 	/**
-	 * This function read the i18n directory and detect the available languages
+	 * Reads the i18n directory and detect the available languages
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -321,7 +321,7 @@ class phpmediadb_presentation_i18n
 	}
 //-----------------------------------------------------------------------------
 	/**
-	 * This function loads the languagefile into the languagecontainer
+	 * Loads the languagefile into the languagecontainer
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/

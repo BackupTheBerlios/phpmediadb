@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.4 2005/03/08 17:53:26 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.5 2005/03/15 10:12:02 mblaschke Exp $ */
 
 class phpmediadb_presentation_htmlservice
 {
@@ -25,11 +25,9 @@ class phpmediadb_presentation_htmlservice
 	protected $PRESENTATION = null;
 
 	/**
-	 * Reference to template engine
+	 * Reference to template engine (tier.lib)
 	 *
-	 * @access protected
-	 * @see phpmediadb_presentation
-	 * @var phpmediadb_presentation
+	 * @access private
 	 */
 	private $templateEngine = null;
 
@@ -55,6 +53,13 @@ class phpmediadb_presentation_htmlservice
 	}
 
 //-----------------------------------------------------------------------------
+	/**
+	 * Compiles one or more templates via template-engine and return it
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String
+	 */
 	public function compile( $template )
 	{
 		/* init */
@@ -95,6 +100,13 @@ class phpmediadb_presentation_htmlservice
 	 	return $returnValue;
 	}
 //-----------------------------------------------------------------------------
+	/**
+	 * Compiles one or more templates via template-engine and sends it to client
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String
+	 */	
 	public function display( $template )
 	{
 		/* init */
@@ -108,6 +120,12 @@ class phpmediadb_presentation_htmlservice
 	}
 	
 //-----------------------------------------------------------------------------
+	/**
+	 * Initalizes the template engine
+	 *
+	 * @access protected
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 */
 	protected function initTemplateEngine()
 	{
 		/* clear vars */
@@ -121,6 +139,13 @@ class phpmediadb_presentation_htmlservice
 			
 	}
 //-----------------------------------------------------------------------------
+	/**
+	 * Setup the template engine for the first time
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String
+	 */
 	protected function setupTemplateEngine()
 	{
 		/* create templateengine-object */

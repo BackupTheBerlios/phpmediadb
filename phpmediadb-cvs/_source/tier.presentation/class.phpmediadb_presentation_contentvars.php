@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.4 2005/02/27 16:04:44 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.5 2005/03/15 10:12:02 mblaschke Exp $ */
 
 class phpmediadb_presentation_contentvars
 {
@@ -25,7 +25,7 @@ class phpmediadb_presentation_contentvars
 	protected $PRESENTATION = null;
 
 	/**
-	 * This container contains all variables used by the template-engine
+	 * Contains all variables used by the template-engine
 	 *
 	 * @access private
 	 * @var mixed
@@ -94,6 +94,7 @@ class phpmediadb_presentation_contentvars
 //-----------------------------------------------------------------------------
 	/**
 	 * This function returns a complete node or only a value specified by
+	 * the parameter
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -124,6 +125,7 @@ class phpmediadb_presentation_contentvars
 //-----------------------------------------------------------------------------
 	/**
 	 * This function deletes a nodevalue or a compelte nodetree from the
+	 * container
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -143,7 +145,8 @@ class phpmediadb_presentation_contentvars
 	
 //-----------------------------------------------------------------------------
 	/**
-	 * This internal function will recursivly insert a node into the
+	 * This internal function recursivlys insert a node into the
+	 * container
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -203,7 +206,7 @@ class phpmediadb_presentation_contentvars
 	}
 //-----------------------------------------------------------------------------
 	/**
-	 * This internal function will recursivly insert a node into the
+	 * This internal function recursivly reads a node from the container
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -263,8 +266,8 @@ class phpmediadb_presentation_contentvars
 		
 //-----------------------------------------------------------------------------
 	/**
-	 * This function checks the validity of nodeName and returns the
-	 * (TRUE=ok, FALSE=check failed),
+	 * Checks the validity of nodeName and returns the status
+	 * (TRUE=ok, FALSE=check failed)
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -284,7 +287,7 @@ class phpmediadb_presentation_contentvars
 	
 //-----------------------------------------------------------------------------
 	/**
-	 * This function converts the nodeValue in the format of nodeFormat
+	 * Converts the nodeValue in the format of nodeFormat
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
