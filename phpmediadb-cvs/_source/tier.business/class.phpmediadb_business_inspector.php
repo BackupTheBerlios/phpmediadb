@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_inspector.php,v 1.5 2005/03/24 20:43:35 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_inspector.php,v 1.6 2005/03/31 16:26:36 mblaschke Exp $ */
 
 /**
  * This is the class that manages all inspector functions like datavalidation
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -169,7 +169,10 @@ class phpmediadb_business_inspector
 		$returnValue = NULL;
 		
 		/* get size */
-		$returnValue = $this->BUSINESS->configuration['input-size'][$type];
+		if( array_key_exists( $type,  $this->BUSINESS->configuration['input-size'] ) )
+			$returnValue = $this->BUSINESS->configuration['input-size'][$type];
+		else
+			$returnValue = NULL;
 		
 		/* return data */
 		return $returnValue;
@@ -190,7 +193,10 @@ class phpmediadb_business_inspector
 		$returnValue = NULL;
 		
 		/* get size */
-		$returnValue = $this->BUSINESS->configuration['input-regex'][$type];
+		if( array_key_exists( $type,  $this->BUSINESS->configuration['input-regex'] ) )
+			$returnValue = $this->BUSINESS->configuration['input-regex'][$type];
+		else
+			$returnValue = NULL;
 		
 		/* return data */
 		return $returnValue;
