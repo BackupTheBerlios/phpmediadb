@@ -1,13 +1,13 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_status.php,v 1.6 2005/03/15 17:46:33 bruf Exp $ */
+/* $Id: class.phpmediadb_data_status.php,v 1.7 2005/03/16 15:03:48 bruf Exp $ */
 
 class phpmediadb_data_status
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Short description of attribute PHPMEDIADB
+	 * Reference to class PHPMEDIADB
 	 *
 	 * @access protected
 	 * @see phpmediadb
@@ -16,7 +16,7 @@ class phpmediadb_data_status
 	protected $PHPMEDIADB = null;
 
 	/**
-	 * Short description of attribute DATA
+	 * Reference to class DATA
 	 *
 	 * @access protected
 	 * @see phpmediadb_presentation
@@ -32,11 +32,13 @@ class phpmediadb_data_status
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb_data
+	 * @param phpmediadb_data $sender Reference to parent class
 	 */
-	public function __construct()
+	public function __construct( $sender )
 	{
-		/* nothing to do yet */
+		/* assign parent */
+		$this->DATA			= $sender;
+		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
 	}
   
 //-----------------------------------------------------------------------------
@@ -57,15 +59,15 @@ class phpmediadb_data_status
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Integer
-	 * @return String
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return Mixed array $rs contains result of database query
 	 */
-	public function get( $MediaStatusID )
+	public function get( $id )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'SELECT *
-		FROM MediaStatus,
-		WHERE MediaStatus.MediaStatusID = ?' );
+		$stmt = $conn->prepareStatement(	'SELECT *
+											FROM MediaStatus,
+											WHERE MediaStatus.MediaStatusID = ?' );
 		$stmt->setString( 1, $MediaStatusID );
 		$rs = $stmt->executeQuery();
 		
@@ -78,14 +80,14 @@ class phpmediadb_data_status
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return String
+	 * @return Mixed array $rs contains result of database query
 	 */
 	public function getList()
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'SELECT *
-		FROM MediaStatus,
-		WHERE MediaStatus.MediaStatusID LIKE "%"' );
+		$stmt = $conn->prepareStatement(	'SELECT *
+											FROM MediaStatus,
+											WHERE MediaStatus.MediaStatusID LIKE "%"' );
 		$rs = $stmt->executeQuery();
 		
 		return $rs;
@@ -97,21 +99,21 @@ class phpmediadb_data_status
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @param String
-	 * @param String
+	 * @param Mixed array $data contains all required data for the sql statement
+	 * @return Integer getLastInsert() returns id from the last created record
 	 */
-	public function create( $MediaStatus, $MediaStatusOwner, $MediaStatusHolder )
+	public function create( $data )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'INSERT INTO MediaStatus
-		( MediaStatus, MediaStatusOwner, MediaStatusHolder )
-		VALUES( ?, ?, ? )' );
-		$stmt->setString( 1, $MediaStatus );
-		$stmt->setString( 2, $MediaStatusOwner );
-		$stmt->setString( 3, $MediaStatusHolder );
+		$stmt = $conn->prepareStatement(	'INSERT INTO MediaStatus
+											( MediaStatus, MediaStatusOwner, MediaStatusHolder )
+											VALUES( ?, ?, ? )' );
+		$stmt->setString( 1, $data['MediaStatus'] );
+		$stmt->setString( 2, $data['MediaStatusOwner'] );
+		$stmt->setString( 3, $data['MediaStatusHolder'] );
 		$stmt->executeUpdate();
 		
+		return $this->DATA->SQL->getLastInsert( $conn );
 	}
 
 //-----------------------------------------------------------------------------
@@ -120,25 +122,22 @@ class phpmediadb_data_status
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Integer
-	 * @param String
-	 * @param String
-	 * @param String
+	 * @param Integer $id contains specified id for the sql statement
+	 * @param Mixed array $data contains all required data for the sql statement
 	 */
-	public function modify( $MediaStatusID, $MediaStatus, $MediaStatusOwner, $MediaStatusHolder )
+	public function modify( $id, $data )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'UPDATE MediaStatus
-		SET MediaStatus.MediaStatus = ?,
-		MediaStatus.MediaStatusOwner = ?,
-		MediaStatus.MediaStatusHolder = ?
-		WHERE MediaStatus.MediaStatusID = ?' );
-		$stmt->setString( 1, $MediaStatus );
-		$stmt->setString( 2, $MediaStatusOwner );
-		$stmt->setString( 3, $MediaStatusHolder );
-		$stmt->setString( 4, $MediaStatusID );
+		$stmt = $conn->prepareStatement(	'UPDATE MediaStatus
+											SET MediaStatus.MediaStatus = ?,
+											MediaStatus.MediaStatusOwner = ?,
+											MediaStatus.MediaStatusHolder = ?
+											WHERE MediaStatus.MediaStatusID = ?' );
+		$stmt->setString( 1, $data['MediaStatus'] );
+		$stmt->setString( 2, $data['MediaStatusOwner'] );
+		$stmt->setString( 3, $data['MediaStatusHolder'] );
+		$stmt->setString( 4, $data['MediaStatusID'] );
 		$stmt->executeUpdate();
-		
 	}
 
 //-----------------------------------------------------------------------------
@@ -147,16 +146,15 @@ class phpmediadb_data_status
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Integer
+	 * @param Integer $id contains specified id for the sql statement
 	 */
-	public function delete( $MediaStatusID )
+	public function delete( $id )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'DELETE FROM MediaStatus
-		WHERE MediaStatus.MediaStatusID = ?' );
-		$stmt->setString( 1, $MediaStatusID );
+		$stmt = $conn->prepareStatement(	'DELETE FROM MediaStatus
+											WHERE MediaStatus.MediaStatusID = ?' );
+		$stmt->setString( 1, $id );
 		$stmt->executeUpdate();
-		
 	}
 
 //-----------------------------------------------------------------------------
@@ -166,29 +164,30 @@ class phpmediadb_data_status
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Integer
-	 * @return Boolean
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return Boolean $returnValue returns whether the specified record exists
 	 */
-	public function exist( $MediaStatusID )
+	public function exist( $id )
 	{
+		/* init */
+		$returnValue = false;
+		
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'SELECT COUNT(*)
-		FROM MediaStatus,
-		WHERE MediaStatus.MediaStatusID = ?' );
-		$stmt->setString( 1, $MediaStatusID );
+		$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
+											FROM MediaStatus,
+											WHERE MediaStatus.MediaStatusID = ?' );
+		$stmt->setString( 1, $id );
 		$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
 		$rs->next();
+		
+		/* check if item exists */
 		if( $rs->get(1) >= 1 )
-			{
-			return true;
-			}
-		else
-			{
-			return false;
-			}
+			$returnValue = true;
+
+		return $returnValue;
 	}
 
 //-----------------------------------------------------------------------------
-}
+} /* end of class phpmediadb_data_status */
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
 ?>

@@ -1,13 +1,13 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_codecs.php,v 1.7 2005/03/15 17:45:52 bruf Exp $ */
+/* $Id: class.phpmediadb_data_codecs.php,v 1.8 2005/03/16 15:02:39 bruf Exp $ */
 
 class phpmediadb_data_codecs
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Short description of attribute PHPMEDIADB
+	 * Reference to class PHPMEDIADB
 	 *
 	 * @access protected
 	 * @see phpmediadb
@@ -16,7 +16,7 @@ class phpmediadb_data_codecs
 	protected $PHPMEDIADB = null;
 
 	/**
-	 * Short description of attribute DATA
+	 * Reference to class DATA
 	 *
 	 * @access protected
 	 * @see phpmediadb_presentation
@@ -32,11 +32,13 @@ class phpmediadb_data_codecs
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb_data
+	 * @param phpmediadb_data $sender Reference to parent class
 	 */
-	public function __construct()
+	public function __construct( $sender )
 	{
-		/* nothing to do yet */
+		/* assign parent */
+		$this->DATA			= $sender;
+		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
 	}
   
 //-----------------------------------------------------------------------------
@@ -57,16 +59,16 @@ class phpmediadb_data_codecs
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Integer
-	 * @return String
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return Mixed array $rs contains result of database query
 	 */
-	public function get( $MediaCodecID )
+	public function get( $id )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'SELECT *
-		FROM MediaCodecs,
-		WHERE MediaCodecs.MediaCodecID = ?' );
-		$stmt->setString( 1, $MediaCodecID );
+		$stmt = $conn->prepareStatement(	'SELECT *
+											FROM MediaCodecs,
+											WHERE MediaCodecs.MediaCodecID = ?' );
+		$stmt->setString( 1, $id );
 		$rs = $stmt->executeQuery();
 		
 		return $rs;
@@ -78,14 +80,14 @@ class phpmediadb_data_codecs
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return String
+	 * @return Mixed array $rs contains result of database query
 	 */
 	public function getList()
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'SELECT *
-		FROM MediaCodecs,
-		WHERE MediaCodecs.MediaCodecID LIKE "%"' );
+		$stmt = $conn->prepareStatement(	'SELECT *
+											FROM MediaCodecs,
+											WHERE MediaCodecs.MediaCodecID LIKE "%"' );
 		$rs = $stmt->executeQuery();
 		
 		return $rs;
@@ -97,21 +99,21 @@ class phpmediadb_data_codecs
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @param Integer
-	 * @param Integer
+	 * @param Mixed array $data contains all required data for the sql statement
+	 * @param Integer getLastInsert() returns id from the last created record
 	 */
-	public function create( $MediaCodecName, $MediaCodecBitrate, $ItemTypeID )
+	public function create( $data )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'INSERT INTO MediaCodecs
-		( MediaCodecName, MediaCodecBitrate, ItemTypeID )
-		VALUES( ?, ?, ? )' );
-		$stmt->setString( 1, $MediaCodecName );
-		$stmt->setString( 2, $MediaCodecBitrate );
-		$stmt->setString( 3, $ItemTypeID );
+		$stmt = $conn->prepareStatement(	'INSERT INTO MediaCodecs
+											( MediaCodecName, MediaCodecBitrate, ItemTypeID )
+											VALUES( ?, ?, ? )' );
+		$stmt->setString( 1, $data['MediaCodecName'] );
+		$stmt->setString( 2, $data['MediaCodecBitrate'] );
+		$stmt->setString( 3, $data['ItemTypeID'] );
 		$stmt->executeUpdate();
 		
+		return $this->DATA->SQL->getLastInsert( $conn );
 	}
 
 //-----------------------------------------------------------------------------
@@ -120,25 +122,22 @@ class phpmediadb_data_codecs
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Integer
-	 * @param String
-	 * @param Integer
-	 * @param Integer
+	 * @param Integer $id contains specified id for the sql statement
+	 * @param Mixed array $data contains all required data for the sql statement
 	 */
-	public function modify( $MediaCodecID, $MediaCodecName, $MediaCodecBitrate, $ItemTypeID )
+	public function modify( $id, $data )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'UPDATE MediaCodecs
-		SET MediaCodecs.MediaCodecName = ?,
-		MediaCodecs.MediaCodecBitrate = ?,
-		MediaCodecs.ItemTypeID = ?
-		WHERE MediaCodecs.MediaCodecID = ?' );
-		$stmt->setString( 1, $MediaCodecName );
-		$stmt->setString( 2, $MediaCodecBitrate );
-		$stmt->setString( 3, $ItemTypeID );
-		$stmt->setString( 4, $MediaCodecID );
+		$stmt = $conn->prepareStatement(	'UPDATE MediaCodecs
+											SET MediaCodecs.MediaCodecName = ?,
+											MediaCodecs.MediaCodecBitrate = ?,
+											MediaCodecs.ItemTypeID = ?
+											WHERE MediaCodecs.MediaCodecID = ?' );
+		$stmt->setString( 1, $data['MediaCodecName'] );
+		$stmt->setString( 2, $data['MediaCodecBitrate'] );
+		$stmt->setString( 3, $data['ItemTypeID'] );
+		$stmt->setString( 4, $data['MediaCodecID'] );
 		$stmt->executeUpdate();
-		
 	}
 
 //-----------------------------------------------------------------------------
@@ -147,16 +146,15 @@ class phpmediadb_data_codecs
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Integer
+	 * @param Integer $id contains specified id for the sql statement
 	 */
-	public function delete( $MediaCodecID )
+	public function delete( $id )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'DELETE FROM MediaCodecs
-		WHERE MediaCodecs.MediaCodecID = ?' );
-		$stmt->setString( 1, $MediaCodecID );
+		$stmt = $conn->prepareStatement(	'DELETE FROM MediaCodecs
+											WHERE MediaCodecs.MediaCodecID = ?' );
+		$stmt->setString( 1, $id );
 		$stmt->executeUpdate();
-		
 	}
 
 //-----------------------------------------------------------------------------
@@ -166,29 +164,30 @@ class phpmediadb_data_codecs
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Integer
-	 * @return Boolean
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return Boolean $returnValue returns whether the specified record exists
 	 */
-	public function exist( $MediaCodecID )
+	public function exist( $id )
 	{
+		/* init */
+		$returnValue = false;
+		
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'SELECT COUNT(*)
-		FROM MediaCodecs,
-		WHERE MediaCodecs.MediaCodecID = ?' );
-		$stmt->setString( 1, $MediaCodecID );
+		$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
+											FROM MediaCodecs,
+											WHERE MediaCodecs.MediaCodecID = ?' );
+		$stmt->setString( 1, $id );
 		$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
 		$rs->next();
+
+		/* check if item exists */
 		if( $rs->get(1) >= 1 )
-			{
-			return true;
-			}
-		else
-			{
-			return false;
-			}
+			$returnValue = true;
+
+		return $returnValue;
 	}
 
 //-----------------------------------------------------------------------------
-}
+} /* end of class phpmediadb_data_codecs */
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
 ?>
