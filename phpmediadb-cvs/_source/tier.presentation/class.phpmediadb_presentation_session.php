@@ -1,7 +1,15 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_session.php,v 1.5 2005/03/20 17:12:28 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_session.php,v 1.6 2005/03/24 17:12:36 mblaschke Exp $ */
 
+/**
+ * This is the class that manages the session-access
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.6 $
+ * @package		phpmediadb
+ * @subpackage	presentation
+ */
 class phpmediadb_presentation_session
 {
 	// --- ATTRIBUTES ---
@@ -29,7 +37,6 @@ class phpmediadb_presentation_session
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_presentation $sender Reference to parent class
 	 */
 	public function __construct( $sender )
@@ -47,7 +54,6 @@ class phpmediadb_presentation_session
 	 * Registers a variable in session object
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $id Specifies which id should used to store the value
 	 * @param Mixed $regvar Value which should be stored
 	 */
@@ -62,7 +68,6 @@ class phpmediadb_presentation_session
 	 * Removes a variable from session object
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $id Specifies which id should removed
 	 */
 	public function unregister( $id )
@@ -76,7 +81,6 @@ class phpmediadb_presentation_session
 	 * Returns a variable from session object
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $id Specifies which id should be returned
 	 */
 	public function get( $id )
@@ -90,7 +94,6 @@ class phpmediadb_presentation_session
 	 * Starts and initalized the session
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	public function start()
 	{
@@ -103,7 +106,6 @@ class phpmediadb_presentation_session
 	 * Destroys the session
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */	
 	public function destroy()
 	{
@@ -116,7 +118,6 @@ class phpmediadb_presentation_session
 	 * Return and/or sets the global unique session id
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $newId New session id as string
 	 * @return String Currently used or old session id
 	 */	

@@ -1,7 +1,16 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-add.php,v 1.2 2005/03/20 17:16:03 mblaschke Exp $ */
-
+/* $Id: item-add.php,v 1.3 2005/03/24 17:12:17 mblaschke Exp $ */
+/**
+ * This file adds one item to the session and redirects to item-session.php
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.3 $
+ * @package		phpmediadb_html
+ * @subpackage	access_admin
+ */
+ 
+/* include main phpmediadb-project */
 require_once( '../_source/phpmediadb.php' );
 
 /* create object */
@@ -49,9 +58,6 @@ switch( @$_GET['type'] )
 			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.item.add.choice.tpl' );
 		break;
 }
-
-
-
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
 ?>

@@ -1,7 +1,14 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_xmlservice.php,v 1.4 2005/03/20 17:12:28 mblaschke Exp $ */
-
+/* $Id: class.phpmediadb_presentation_xmlservice.php,v 1.5 2005/03/24 17:12:36 mblaschke Exp $ */
+/**
+ * This is the class that manages all xml-serivces
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.5 $
+ * @package		phpmediadb
+ * @subpackage	presentation
+ */
 class phpmediadb_presentation_xmlservice
 {
 	// --- ATTRIBUTES ---
@@ -29,7 +36,6 @@ class phpmediadb_presentation_xmlservice
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_presentation $sender Reference to parent class
 	 */
 	public function __construct( $sender )

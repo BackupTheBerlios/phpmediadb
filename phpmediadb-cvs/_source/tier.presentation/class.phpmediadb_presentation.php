@@ -1,7 +1,17 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation.php,v 1.7 2005/03/20 17:12:28 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation.php,v 1.8 2005/03/24 17:12:36 mblaschke Exp $ */
 
+/**
+ * This class contains all subclasses of the TIER.PRESENTATION and the configuration
+ * for the whole TIER.PRESENTATION.
+ * The subclasses can be accessed through the public references.
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.8 $
+ * @package		phpmediadb
+ * @subpackage	presentation
+ */
 class phpmediadb_presentation
 {
 	// --- ATTRIBUTES ---
@@ -75,7 +85,6 @@ class phpmediadb_presentation
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb $sender Refernce to parentclass
 	 */
 	public function __construct( $sender )
@@ -102,7 +111,6 @@ class phpmediadb_presentation
 	 * etc.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	public function __destruct()
 	{
@@ -114,7 +122,6 @@ class phpmediadb_presentation
 	 * Loads the configuration from the global array and resets the array
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return void
 	 */
 	private function loadConfiguration()

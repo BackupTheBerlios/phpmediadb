@@ -1,7 +1,16 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_i18n.php,v 1.9 2005/03/20 17:12:28 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_i18n.php,v 1.10 2005/03/24 17:12:36 mblaschke Exp $ */
 
+/**
+ * This is the class that manages all internationalization-functions and also contains
+ * all i18n variables
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.10 $
+ * @package		phpmediadb
+ * @subpackage	presentation
+ */
 class phpmediadb_presentation_i18n
 {
 	// --- ATTRIBUTES ---
@@ -54,7 +63,6 @@ class phpmediadb_presentation_i18n
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_presentation $sender Reference to parent class
 	 */
 	public function __construct( $sender )
@@ -76,7 +84,6 @@ class phpmediadb_presentation_i18n
 	 * Returns the language of the client browser
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return string Browserlanguage as languagecode
 	 */
 	public function getBrowserLanguage()
@@ -100,7 +107,6 @@ class phpmediadb_presentation_i18n
 	 * Returns the i18n string specified by the langID
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String Internal language-i18n-stringcode
 	 * @return mixed Internationalized string
 	 */
@@ -123,7 +129,6 @@ class phpmediadb_presentation_i18n
 	 * Returns the whole i18n array
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return Array Array with all i18n strings
 	 */
 	public function getLanguageArray()
@@ -142,7 +147,6 @@ class phpmediadb_presentation_i18n
 	 * Returns a array with the available languages
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return Array Array with all available languages as langcodes
 	 */
 	public function getAvailableLanagues()
@@ -161,7 +165,6 @@ class phpmediadb_presentation_i18n
 	 * Returns the currently used language as langcode
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String Currently used language as langcode
 	 */
 	public function getLanguageCode()
@@ -177,7 +180,6 @@ class phpmediadb_presentation_i18n
 	 * Sets the currently used language as langcode
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $langCode Languagecode which should be used
 	 * @return Bool status if set was successfull
 	 */
@@ -205,7 +207,6 @@ class phpmediadb_presentation_i18n
 	 * allowed languages and the default language
 	 *
 	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Array $allowedLanguageArray Array with all allowed langcodes
 	 * @param String $defaultLanguage Default Language as langcode
 	 * @return string Prefered langcode
@@ -286,7 +287,6 @@ class phpmediadb_presentation_i18n
 	 * Reads the i18n directory and detect the available languages
 	 *
 	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	 protected function readI18nDirectory()
 	 {
@@ -312,7 +312,6 @@ class phpmediadb_presentation_i18n
 	 * loadlanguagefile function.
 	 *
 	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	protected function initalizeLanguageContainer()
 	{
@@ -331,7 +330,6 @@ class phpmediadb_presentation_i18n
 	 * Loads the languagefile into the languagecontainer
 	 *
 	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $langCode Langcode which should be loaded
 	 * @return void
 	 */

@@ -1,7 +1,17 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.9 2005/03/20 17:12:28 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.10 2005/03/24 17:12:36 mblaschke Exp $ */
 
+/**
+ * This is the class that manages all template/content-variables of the tier.presentation
+ *
+ * This class also manages the conversion to XML/XHTML style
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.10 $
+ * @package		phpmediadb
+ * @subpackage	presentation
+ */
 class phpmediadb_presentation_contentvars
 {
 	// --- ATTRIBUTES ---
@@ -39,7 +49,6 @@ class phpmediadb_presentation_contentvars
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_presentation $sender Refernece to parentclass
 	 */
 	public function __construct( $sender )
@@ -72,7 +81,6 @@ class phpmediadb_presentation_contentvars
 	 * of Nodeformat.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $nodeName Name of node (dooted format)
 	 * @param Mixed $nodeValue Value of node
 	 * @param Integer $nodeFormat Format of node, $nodeValue will be converted into this format
@@ -99,7 +107,6 @@ class phpmediadb_presentation_contentvars
 	 * the parameter
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $nodeName Name of node (dotted-format)
 	 * @return mixed Array or string of nodes
 	 */
@@ -130,7 +137,6 @@ class phpmediadb_presentation_contentvars
 	 * container
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $nodeName Name of node (dotted format)
 	 * @return bool ssuccess of nodedeletion
 	 */
@@ -151,7 +157,6 @@ class phpmediadb_presentation_contentvars
 	 * container
 	 *
 	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param mixed $nodeName Name of node (dotted format)
 	 * @param String $nodeValue Value of node
 	 * @param mixed $nodeArray Reference of a nodecontainer
@@ -209,7 +214,6 @@ class phpmediadb_presentation_contentvars
 	 * This internal function recursivly reads a node from the container
 	 *
 	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $nodeName Name of node (dotted format)
 	 * @param mixed $nodeArray Reference of a nodecontainer
 	 * @return mixed Nodecontainer
@@ -269,7 +273,6 @@ class phpmediadb_presentation_contentvars
 	 * (TRUE=ok, FALSE=check failed)
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $nodeName Name of node (dotted format)
 	 * @return boolean boolean value specifies if nodename is valid
 	 */
@@ -289,7 +292,6 @@ class phpmediadb_presentation_contentvars
 	 * Converts the nodeValue in the format of nodeFormat
 	 *
 	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $nodeValue Name of node
 	 * @param String $nodeFormat Format of node (conversion)
 	 * @return String Name of node (dotted format)

@@ -1,7 +1,16 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.5 2005/03/20 17:16:03 mblaschke Exp $ */
-
+/* $Id: item-session.php,v 1.6 2005/03/24 17:12:17 mblaschke Exp $ */
+/**
+ * This file edits the item in the session and save or creates it
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.6 $
+ * @package		phpmediadb_html
+ * @subpackage	access_admin
+ */
+ 
+/* include main phpmediadb-project */
 require_once( '../_source/phpmediadb.php' );
 
 /* create object */

@@ -1,7 +1,15 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.9 2005/03/20 17:15:12 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.10 2005/03/24 17:12:36 mblaschke Exp $ */
 
+/**
+ * This is the class that manages all html-serivces like template-compilation
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.10 $
+ * @package		phpmediadb
+ * @subpackage	presentation
+ */
 class phpmediadb_presentation_htmlservice
 {
 	// --- ATTRIBUTES ---
@@ -38,7 +46,6 @@ class phpmediadb_presentation_htmlservice
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_presentation $sender Reference to parentclass
 	 */
 	public function __construct( $sender )
@@ -56,7 +63,6 @@ class phpmediadb_presentation_htmlservice
 	 * Compiles one or more templates via template-engine and return it
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $template Filename of template
 	 * @return mixed compiled template as html or text
 	 */
@@ -90,7 +96,6 @@ class phpmediadb_presentation_htmlservice
 	 * Compiles one or more templates via template-engine and sends it to client
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $template Filename of template
 	 */	
 	public function display( $template )
@@ -110,7 +115,6 @@ class phpmediadb_presentation_htmlservice
 	 * Compiles one or more templates via template-engine and return it
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $template Filename of template
 	 * @return mixed compiled template as html or text
 	 */
@@ -150,7 +154,6 @@ class phpmediadb_presentation_htmlservice
 	 * Compiles one or more templates via template-engine and sends it to client
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $template Filename of template
 	 */	
 	public function displayMain( $template )
@@ -170,7 +173,6 @@ class phpmediadb_presentation_htmlservice
 	 * Initalizes the template engine
 	 *
 	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	protected function initTemplateEngine()
 	{
@@ -194,8 +196,6 @@ class phpmediadb_presentation_htmlservice
 	 * Setup the template engine for the first time
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
 	 */
 	protected function setupTemplateEngine()
 	{

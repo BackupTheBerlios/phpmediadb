@@ -1,17 +1,16 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb.php,v 1.4 2005/03/20 17:18:28 mblaschke Exp $ */
+/* $Id: class.phpmediadb.php,v 1.5 2005/03/24 17:12:48 mblaschke Exp $ */
 
 /**
- * Main class of the phpMediaDB Project. It contains all other classes in the
- * PRESENTATION, BUSINESS and DATA.
+ * This is the class that manages the whole tiers.
  *
- * @access public
- * @author phpMediaDB Team - http://phpmediadb.berlios.de/
- * @package phpmediadb
- * @since 0.0.0
- * @subpackage global
- * @version 1.0.0
+ * All tiers can be accessed via the refereces eg. PRESENTATION.
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.5 $
+ * @package		phpmediadb
+ * @subpackage	global
  */
 class phpmediadb
 {
@@ -52,7 +51,6 @@ class phpmediadb
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return void
 	 */
 	public function __construct()
@@ -74,7 +72,6 @@ class phpmediadb
 	 * etc.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return void
 	 */
 	public function __destruct()
