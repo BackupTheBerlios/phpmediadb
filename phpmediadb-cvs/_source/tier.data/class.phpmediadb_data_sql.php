@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_sql.php,v 1.8 2005/03/31 10:13:14 bruf Exp $ */
+/* $Id: class.phpmediadb_data_sql.php,v 1.9 2005/04/06 13:57:14 bruf Exp $ */
 
 /**
  * This is the class that provides often used sql actions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.8 $
+ * @version		$Revision: 1.9 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -65,7 +65,7 @@ class phpmediadb_data_sql
 	 * This function provides the connection to the database
 	 *
 	 * @access public
-	 * @return String $conn contains information from the connection to the database
+	 * @return String contains information from the connection to the database
 	*/
 	public function getConnection()
 	{
@@ -91,22 +91,24 @@ class phpmediadb_data_sql
 	 *
 	 * @access public
 	 * @param String $conn contains information from the connection to the database
-	 * @return Integer $rs returns the id from the last created record
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @return Integer returns the id from the last created record
 	*/
 	public function getLastInsert( $conn )
 	{
 		try
 		{
-			$this->DATA->SQL->openTransaction( $conn );
+			/*
 			$stmt = $conn->prepareStatement( 'SELECT LAST_INSERT_ID()' );
 			$rs = $stmt->executeQuery();
-			$this->DATA->SQL->commitTransaction( $conn );
 			return $rs;
+			*/
+			
+			$idGen = $conn->getIdGenerator();
+			return $idGen->getId();
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			die( $e->getMessage() );
 		}	
 	}
 	
@@ -116,7 +118,6 @@ class phpmediadb_data_sql
 	 *
 	 * @access public
 	 * @param String $conn contains information from the connection to the database
-	 * @return Mixed $error returns the error message
 	*/
 	public function openTransaction( $conn )
 	{
@@ -128,7 +129,6 @@ class phpmediadb_data_sql
 	 * This function commits a transaction
 	 * @access public
 	 * @param String $conn contains information from the connection to the database
-	 * @return Mixed $error returns the error message
 	*/
 	public function commitTransaction( $conn )
 	{
@@ -141,14 +141,17 @@ class phpmediadb_data_sql
 	 *
 	 * @access public
 	 * @param String $conn contains information from the connection to the database
-	 * @return Mixed $error returns the error message
 	*/
 	public function rollbackTransaction( $conn, $e )
 	{
-		$conn->rollback(); // abort all delete/update queries in the transaction
+		/* abort all delete/update queries in the transaction*/
+		$conn->rollback();
+		
+		/* get errormessage */
 		$error = $e->getMessage();
 		
-		return $error;
+		/* terminate script */
+		die( $error );
 	}
 	
 //-----------------------------------------------------------------------------
@@ -157,7 +160,7 @@ class phpmediadb_data_sql
 	 *
 	 * @access public
 	 * @param String $rs is the resultset from the sql query
-	 * @return Mixed $dataArray contains the results of the sql query
+	 * @return array contains the results of the sql query
 	*/
 	public function generateDataArray( $rs )
 	{

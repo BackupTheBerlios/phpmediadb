@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_categories.php,v 1.7 2005/03/31 10:12:31 bruf Exp $ */
+/* $Id: class.phpmediadb_data_categories.php,v 1.8 2005/04/06 13:54:30 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the categories
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.7 $
+ * @version		$Revision: 1.8 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -65,8 +65,7 @@ class phpmediadb_data_categories
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed array generateDataArray() returns the results of database query
-	 * @return Mixed getMessage() returns the error message
+	 * @return array returns the results of database query
 	 */
 	public function get( $id )
 	{
@@ -83,7 +82,7 @@ class phpmediadb_data_categories
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 
@@ -92,8 +91,7 @@ class phpmediadb_data_categories
 	 * This function returns all records from the table Categories
 	 *
 	 * @access public
-	 * @return Mixed array generateDataArray() returns the results of database query
-	 * @return Mixed getMessage() returns the error message
+	 * @return array returns the results of database query
 	 */
 	public function getList()
 	{
@@ -108,18 +106,43 @@ class phpmediadb_data_categories
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 
 //-----------------------------------------------------------------------------
 	/**
+	 * This function returns all records from the table Categories for a specified ItemType
+	 *
+	 * @access public
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return array returns the results of database query
+	 */
+	public function getListByItemType( $id )
+	{
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$stmt = $conn->prepareStatement(	'SELECT *
+												FROM Categories
+												WHERE ItemTypeID = ?' );
+			$stmt->setString( 1, $id );
+			$rs = $stmt->executeQuery();
+			
+			return $this->DATA->SQL->generateDataArray( $rs );
+		}
+		catch( Exception $e )
+		{
+			die( $e->getMessage() );
+		}
+	}
+//-----------------------------------------------------------------------------
+	/**
 	 * This function creates a new record in the table Categories
 	 *
 	 * @access public
-	 * @param Mixed array $data contains all required data for the sql statement
-	 * @return Integer getLastInsert() returns id from the last created record
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @param array $data contains all required data for the sql statement
+	 * @return Integer returns id from the last created record
 	 */
 	public function create( $data )
 	{
@@ -127,15 +150,16 @@ class phpmediadb_data_categories
 		{
 			$conn = $this->DATA->SQL->getConnection();
 			$stmt = $conn->prepareStatement(	'INSERT INTO Categories
-												( CategoryName ) VALUES( ? )' );
-			$stmt->setString( 1, $data['CategoryName'] );
+												( ItemTypeID, CategoryName ) VALUES( ?, ? )' );
+			$stmt->setString( 1, $data['ItemTypeID'] );
+			$stmt->setString( 2, $data['CategoryName'] );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $this->DATA->SQL->getLastInsert( $conn );
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 	}
 
@@ -145,8 +169,7 @@ class phpmediadb_data_categories
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @param Mixed array $data contains all required data for the sql statement
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @param array $data contains all required data for the sql statement
 	 */
 	public function modify( $id, $data )
 	{
@@ -164,7 +187,7 @@ class phpmediadb_data_categories
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 	}
 
@@ -174,7 +197,6 @@ class phpmediadb_data_categories
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function delete( $id )
 	{
@@ -190,7 +212,7 @@ class phpmediadb_data_categories
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 	}
 
@@ -201,8 +223,7 @@ class phpmediadb_data_categories
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Boolean $returnValue returns whether the specified record exists
-	 * @return Mixed getMessage() returns the error message
+	 * @return bool returns whether the specified record exists
 	 */
 	public function exist( $id )
 	{
@@ -227,7 +248,7 @@ class phpmediadb_data_categories
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 
@@ -237,8 +258,7 @@ class phpmediadb_data_categories
 	 * into the table Categories_has_Items
 	 *
 	 * @access public
-	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @param array $data contains specified data for the sql statement
 	 */
 	public function add( $data )
 	{
@@ -266,7 +286,6 @@ class phpmediadb_data_categories
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function remove( $id )
 	{

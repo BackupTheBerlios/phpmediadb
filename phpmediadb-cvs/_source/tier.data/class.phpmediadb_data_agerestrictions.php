@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.10 2005/03/31 10:12:10 bruf Exp $ */
+/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.11 2005/04/06 13:54:12 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the agerestrictions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.10 $
+ * @version		$Revision: 1.11 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -65,8 +65,7 @@ class phpmediadb_data_agerestrictions
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed array generateDataArray() returns the results of database query
-	 * @return Mixed getMessage() returns the error message
+	 * @return array returns the results of database query
 	 */
 	public function get( $id )
 	{
@@ -82,7 +81,7 @@ class phpmediadb_data_agerestrictions
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 
@@ -91,8 +90,7 @@ class phpmediadb_data_agerestrictions
 	 * This function returns all records from the table MediaAgeRestrictions
 	 *
 	 * @access public
-	 * @return Mixed array generateDataArray() returns the results of database query
-	 * @return Mixed getMessage() returns the error message
+	 * @return array returns the results of database query
 	 */
 	public function getList()
 	{
@@ -106,7 +104,7 @@ class phpmediadb_data_agerestrictions
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 
@@ -115,9 +113,8 @@ class phpmediadb_data_agerestrictions
 	 * This function creates a new record in the table MediaAgeRestrictions
 	 *
 	 * @access public
-	 * @param Mixed array $data contains all required data for the sql statement
-	 * @return Integer getLastInsert() returns id from the last created record
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @param array $data contains all required data for the sql statement
+	 * @return Integer returns id from the last created record
 	 */
 	public function create( $data )
 	{
@@ -134,7 +131,7 @@ class phpmediadb_data_agerestrictions
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 	}
 
@@ -144,8 +141,7 @@ class phpmediadb_data_agerestrictions
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @param Mixed array $data contains all required data for the sql statement
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @param array contains all required data for the sql statement
 	 */
 	public function modify( $id, $data )
 	{
@@ -163,7 +159,7 @@ class phpmediadb_data_agerestrictions
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 		
 	}
@@ -174,7 +170,6 @@ class phpmediadb_data_agerestrictions
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function delete( $id )
 	{
@@ -190,7 +185,7 @@ class phpmediadb_data_agerestrictions
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 	}
 
@@ -201,8 +196,7 @@ class phpmediadb_data_agerestrictions
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Boolean $returnValue returns whether the specified record exists
-	 * @return Mixed getMessage() returns the error message
+	 * @return bool returns whether the specified record exists
 	 */
 	public function exist( $id )
 	{
@@ -226,7 +220,7 @@ class phpmediadb_data_agerestrictions
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 

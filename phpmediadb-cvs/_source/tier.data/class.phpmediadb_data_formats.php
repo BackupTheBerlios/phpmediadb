@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_formats.php,v 1.13 2005/03/31 15:38:17 bruf Exp $ */
+/* $Id: class.phpmediadb_data_formats.php,v 1.14 2005/04/06 13:54:54 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the formats
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.13 $
+ * @version		$Revision: 1.14 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -65,8 +65,7 @@ class phpmediadb_data_formats
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed array generateDataArray() returns the results of database query
-	 * @return Mixed getMessage() returns the error message
+	 * @return array returns the results of database query
 	 */
 	public function get( $id )
 	{
@@ -83,7 +82,7 @@ class phpmediadb_data_formats
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 
@@ -92,8 +91,7 @@ class phpmediadb_data_formats
 	 * This function returns all records from the table MediaStatus
 	 *
 	 * @access public
-	 * @return Mixed array generateDataArray() returns the results of database query
-	 * @return Mixed getMessage() returns the error message
+	 * @return array returns the results of database query
 	 */
 	public function getList()
 	{
@@ -108,7 +106,7 @@ class phpmediadb_data_formats
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 //-----------------------------------------------------------------------------
@@ -117,8 +115,7 @@ class phpmediadb_data_formats
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed array generateDataArray() returns the results of database query
-	 * @return Mixed getMessage() returns the error message
+	 * @return array returns the results of database query
 	 */
 	public function getListByItemType( $id )
 	{
@@ -135,7 +132,7 @@ class phpmediadb_data_formats
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 	
@@ -145,8 +142,7 @@ class phpmediadb_data_formats
 	 *
 	 * @access public
 	 * @param Mixed array $data contains all required data for the sql statement
-	 * @param Integer getLastInsert() returns id from the last created record
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @return Integer returns id from the last created record
 	 */
 	public function create( $data )
 	{
@@ -165,7 +161,7 @@ class phpmediadb_data_formats
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 	}
 
@@ -175,8 +171,7 @@ class phpmediadb_data_formats
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @param Mixed array $data contains all required data for the sql statement
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @param array $data contains all required data for the sql statement
 	 */
 	public function modify( $id, $data )
 	{
@@ -196,7 +191,7 @@ class phpmediadb_data_formats
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 	}
 
@@ -206,7 +201,6 @@ class phpmediadb_data_formats
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function delete( $id )
 	{
@@ -222,7 +216,7 @@ class phpmediadb_data_formats
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackException( $conn, $e );
 		}
 	}
 
@@ -233,8 +227,7 @@ class phpmediadb_data_formats
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Boolean $returnValue returns whether the specified record exists
-	 * @return Mixed getMessage() returns the error message
+	 * @return bool returns whether the specified record exists
 	 */
 	public function exist( $id )
 	{
@@ -259,7 +252,7 @@ class phpmediadb_data_formats
 		}
 		catch( Exception $e )
 		{
-			return $e->getMessage();
+			die( $e->getMessage() );
 		}
 	}
 
