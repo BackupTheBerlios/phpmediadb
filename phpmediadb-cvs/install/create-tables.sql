@@ -1,5 +1,5 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: create-tables.sql,v 1.2 2005/03/24 21:24:11 mblaschke Exp $
+-- $Id: create-tables.sql,v 1.3 2005/04/06 13:58:25 bruf Exp $
 
 CREATE TABLE AudioDatas (
   AudioDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -21,8 +21,10 @@ CREATE TABLE BinaryDatas (
 
 CREATE TABLE Categories (
   CategoryID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemTypeID INTEGER UNSIGNED NOT NULL,
   CategoryName VARCHAR(255) NOT NULL,
-  PRIMARY KEY(CategoryID)
+  PRIMARY KEY(CategoryID),
+  INDEX Categories_FKIndex1(ItemTypeID)
 );
 
 CREATE TABLE Categories_has_Items (
