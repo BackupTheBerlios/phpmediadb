@@ -1,7 +1,17 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data.php,v 1.8 2005/03/16 15:03:08 bruf Exp $ */
+/* $Id: class.phpmediadb_data.php,v 1.9 2005/03/26 11:48:27 bruf Exp $ */
 
+/**
+ * This class contains all subclasses of the TIER.DATA and the configuration
+ * for the whole TIER.DATA.
+ * The subclasses can be accessed through the public references.
+ *
+ * @author		Boris Ruf <bruf@users.berlios.de>
+ * @version		$Revision: 1.9 $
+ * @package		phpmediadb
+ * @subpackage	data
+ */
 class phpmediadb_data
 {
 	// --- ATTRIBUTES ---
@@ -111,7 +121,6 @@ class phpmediadb_data
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_data $sender Reference to parent class
 	 */
 	public function __construct( $sender )
@@ -140,8 +149,7 @@ class phpmediadb_data
 	/**
 	 * Loads the configuration from the global array and resets the array
 	 *
-	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @access private
 	 */
 	private function loadConfiguration()
 	{
