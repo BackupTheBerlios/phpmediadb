@@ -3,6 +3,10 @@ phpMediaDB README
   phpMediaDB Copyright (c) 2004 by phpMediaDB Project
   http://phpmediadb.berlios.de/
 
+  Description:
+   phpMediaDB is a mediadatabase for audio, video and printmedias
+   written in PHP and SQL as backend.
+
   Authors:
    o Markus Blaschke (Projectleader)
    o Boris Ruf (Developer)
