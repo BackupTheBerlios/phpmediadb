@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_i18n.php,v 1.5 2005/03/15 10:12:02 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_i18n.php,v 1.6 2005/03/15 18:09:52 mblaschke Exp $ */
 
 class phpmediadb_presentation_i18n
 {
@@ -112,6 +112,8 @@ class phpmediadb_presentation_i18n
   	/* check if key exists */
   	if( array_key_exists( $langId, $this->langContainer ) )
   		$returnValue = $this->langContainer["$langId"];
+  	else
+  		$returnValue = '%'.$langId.'%';
   	
   	return $returnValue;
   }
