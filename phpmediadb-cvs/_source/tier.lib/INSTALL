@@ -1,0 +1,21 @@
+CVS Libraries Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Smarty - PHP Template
+---------------------
+1. Download Smarty
+   http://smarty.php.net/
+2. Unpack archive
+3. copy 'libs' to '_source/tier.lib'
+3. rename 'libs' to 'smarty'
+
+
+Creole - Database Access Layer
+-------------------------------
+1. Download Creole
+   http://creole.phpdb.org/wiki/
+2. Unpack archive
+3. Copy 'creole' and 'jargon' from 'classes/'
+   into '_source/tier.lib'
+
+$Id: INSTALL,v 1.1 2005/02/27 22:03:16 mblaschke Exp $
