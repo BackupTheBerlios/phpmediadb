@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_codecs.php,v 1.11 2005/03/31 10:12:42 bruf Exp $ */
+/* $Id: class.phpmediadb_data_codecs.php,v 1.12 2005/03/31 15:19:24 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the codecs
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.11 $
+ * @version		$Revision: 1.12 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -113,6 +113,34 @@ class phpmediadb_data_codecs
 	}
 
 //-----------------------------------------------------------------------------
+	/**
+	 * This function returns all records from the table MediaCodecs for a specified ItemType
+	 *
+	 * @access public
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return Mixed array generateDataArray() returns the results of database query
+	 * @return Mixed getMessage() returns the error message
+	 */
+	public function getListByItem( $id )
+	{
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$stmt = $conn->prepareStatement(	'SELECT MediaCodecs.*
+												FROM MediaCodecs, Items
+												WHERE Items.ItemTypeID = ?' );
+			$stmt->setString( 1, $id );
+			$rs = $stmt->executeQuery();
+			
+			return $this->DATA->SQL->generateDataArray( $rs );
+		}
+		catch( Exception $e )
+		{
+			return $e->getMessage();
+		}
+	}
+	
+//-----------------------------------------------------------------------------	
 	/**
 	 * This function creates a new record in the table MediaCodecs
 	 *
