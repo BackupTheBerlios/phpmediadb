@@ -8,13 +8,21 @@
 </head>
 
 <body>
+<!-- PHPMEDIADB-HEADER BEGIN -->
 	<div id="phpmediadb-header">{$DOCUMENT.HEADER}</div>
+<!-- PHPMEDIADB-HEADER END -->
 
+<!-- PHPMEDIADB-MENU BEGIN -->
 	<div id="phpmediadb-menu">{$DOCUMENT.MENU}</div>
-	
+<!-- PHPMEDIADB-MENU END -->
+
+<!-- PHPMEDIADB-BODY BEGIN -->
 	<div id="phpmediadb-body">{$DOCUMENT.BODY}</div>
-	
+<!-- PHPMEDIADB-BODY END -->
+
+<!-- PHPMEDIADB-FOOTER BEGIN -->
 	<div id="phpmediadb-footer">{$DOCUMENT.FOOTER}</div>
+<!-- PHPMEDIADB-FOOTER END -->
 
 </body>
 
