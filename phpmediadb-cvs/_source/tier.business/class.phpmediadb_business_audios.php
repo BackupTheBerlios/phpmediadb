@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_audios.php,v 1.5 2005/03/24 17:13:26 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_audios.php,v 1.6 2005/03/24 20:43:35 mblaschke Exp $ */
 
 /**
  * This is the class that manages all functions of the audios
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -49,7 +49,7 @@ class phpmediadb_business_audios
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb $sender Reference to parent class
+	 * @param phpmediadb_business $sender Reference to parent class
 	 */
 	public function __construct( $sender )
 	{
@@ -60,27 +60,6 @@ class phpmediadb_business_audios
 		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
 		$this->DATA			= $sender->PHPMEDIADB->DATA;
 	}
-
-//-----------------------------------------------------------------------------
-	/**
-	 * Checks if the data is correct
-	 *
-	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Mixed $data Data which should be checked
-	 * @return Mixed Successstatus, NULL if success, failed with error-array
-	 */
-	 public function check( $data )
-	 {
-		/* init */
-		$returnValue = NULL;
-		
-		/* delegate */
-		$returnValue = $this->BUSINESS->INSPECTOR->check( PHPMEDIADB_ITEM_AUDIO, $data );
-
-		
-		return $returnValue;
-	 }
 
 //-----------------------------------------------------------------------------
 	/**
@@ -118,11 +97,30 @@ class phpmediadb_business_audios
 
 //-----------------------------------------------------------------------------
 	/**
-	 * Returns the complete list of datasets
+	 * Returns one item from the batabase
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return Array Array with all available datasets
+	 * @param integer $id ID of item
+	 * @return array Array with itemdata
+	 */
+	public function get( $id )
+	{
+		/* init */
+		$returnValue = null;
+		
+		/* delegate */
+		$returnValue = $this->DATA->AUDIOS->get( $id );
+		
+		/* return data */
+		return $returnValue;
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * Returns the complete list of items from the database
+	 *
+	 * @access public
+	 * @return array list of items
 	 */
 	public function getList()
 	{
@@ -130,7 +128,7 @@ class phpmediadb_business_audios
 		$returnValue = null;
 		
 		/* delegate */
-		$this->DATA->AUDIOS->getList();
+		$returnValue = $this->DATA->AUDIOS->getList();
 		
 		/* return data */
 		return $returnValue;
@@ -138,59 +136,80 @@ class phpmediadb_business_audios
 	
 //-----------------------------------------------------------------------------
 	/**
-	 * Modifies one dataset specified by the id
+	 * Adds one item into the database
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String $id Primarykey/Identifier of dataset
-	 * @param Array $data New data of dataset
-	 */
-	public function modify( $id, $data )
-	{
-		/* init */
-		$returnValue = NULL;
-		
-		/* check data */
-		$returnValue = $this->check( $data );
-		
-		/* no input-error, ready to save */
-		if( $returnValue === NULL )
-		{
-			/* delegate */
-			//$this->DATA->AUDIOS->modify( $id, $data );
-			
-			$returnValue = TRUE;
-		}
-		
-		/* return data */
-		return $returnValue;
-	}
-	
-//-----------------------------------------------------------------------------
-	/**
-	 * Creates one dataset
-	 *
-	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Array $data New data of dataset
-	 * @return Primarykey/Identifier of dataset
+	 * @param array $data Data of the item
+	 * @return mixed Last inserted it as integer or false if operation failed
 	 */
 	public function create( $data )
 	{
 		/* init */
-		$returnValue = NULL;
+		$returnValue = false;
 		
-		/* check data */
-		$returnValue = $this->check( $data );
+		/* delegate */
+		$returnValue = $this->DATA->AUDIOS->create( $data );
 		
-		/* no input-error, ready to save */
-		if( $returnValue === NULL )
-		{
-			/* delegate */
-			//$this->DATA->AUDIOS->create( $id, $data );
-			
-			$returnValue = TRUE;
-		}
+		/* return data */
+		return $returnValue;
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * Modifies one item
+	 *
+	 * @access public
+	 * @param integer $id ID of item
+	 * @param array $data Data of the item
+	 * @return bool successstatus (true/false)
+	 */
+	public function modify( $id, $data )
+	{
+		/* init */
+		$returnValue = false;
+		
+		/* delegate */
+		$returnValue = $this->DATA->AUDIOS->modify( $id, $data );
+		
+		/* return data */
+		return $returnValue;
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * Removes one item from the database
+	 *
+	 * @access public
+	 * @param integer $id ID of item
+	 * @return bool successstatus (true/false)
+	 */
+	public function remove( $id )
+	{
+		/* init */
+		$returnValue = false;
+		
+		/* delegate */
+		$returnValue = $this->DATA->AUDIOS->modify( $id );
+		
+		/* return data */
+		return $returnValue;
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * Removes one item from the database
+	 *
+	 * @access public
+	 * @param integer $data Data of the item
+	 * @return bool successstatus (true/false)
+	 */
+	public function check( $data )
+	{
+		/* init */
+		$returnValue = false;
+		
+		/* delegate */
+		$returnValue = $this->BUSINESS->INSPECTOR->check( PHPMEDIADB_ITEM_AUDIO, $data );
 		
 		/* return data */
 		return $returnValue;

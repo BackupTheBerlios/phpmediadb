@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_inspector.php,v 1.4 2005/03/24 17:13:26 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_inspector.php,v 1.5 2005/03/24 20:43:35 mblaschke Exp $ */
 
 /**
  * This is the class that manages all inspector functions like datavalidation
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.4 $
+ * @version		$Revision: 1.5 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -49,7 +49,7 @@ class phpmediadb_business_inspector
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb $sender Refreence to parent class
+	 * @param phpmediadb_business $sender Refreence to parent class
 	 */
 	public function __construct( $sender )
 	{
