@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data.php,v 1.6 2005/03/02 15:36:28 bruf Exp $ */
+/* $Id: class.phpmediadb_data.php,v 1.7 2005/03/07 11:37:37 bruf Exp $ */
 
 class phpmediadb_data
 {
@@ -15,6 +15,87 @@ class phpmediadb_data
 	 */
 	public $PHPMEDIADB = null;
 
+	/**
+	 * Reference to class phpmediadb_data_agerestrictions
+	 *
+	 * @access public
+	 * @see phpmediadb_data_agerestrictions
+	 * @var phpmediadb_data_agerestrictions
+	 */
+	public $AGERESTRICTIONS = null;
+
+	/**
+	 * Reference to class phpmediadb_data_audios
+	 *
+	 * @access public
+	 * @see phpmediadb_data_audios
+	 * @var phpmediadb_data_audios
+	 */
+	public $AUDIOS = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_categories
+	 *
+	 * @access public
+	 * @see phpmediadb_data_categories
+	 * @var phpmediadb_data_categories
+	 */
+	public $CATEGORIES = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_codecs
+	 *
+	 * @access public
+	 * @see phpmediadb_data_codecs
+	 * @var phpmediadb_data_codecs
+	 */
+	public $CODECS = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_formats
+	 *
+	 * @access public
+	 * @see phpmediadb_data_formats
+	 * @var phpmediadb_data_formats
+	 */
+	public $FORMATS = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_prints
+	 *
+	 * @access public
+	 * @see phpmediadb_data_prints
+	 * @var phpmediadb_data_prints
+	 */
+	public $PPRINTS = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_sql
+	 *
+	 * @access public
+	 * @see phpmediadb_data_sql
+	 * @var phpmediadb_data_sql
+	 */
+	public $SQL = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_status
+	 *
+	 * @access public
+	 * @see phpmediadb_data_status
+	 * @var phpmediadb_data_status
+	 */
+	public $STATUS = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_videos
+	 *
+	 * @access public
+	 * @see phpmediadb_data_videos
+	 * @var phpmediadb_data_videos
+	 */
+	public $VIDEOS = null;
+	
 	/**
 	 * Container of configuration for the whole tier
 	 *
