@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.1 2005/03/15 17:37:30 mblaschke Exp $ */
+/* $Id: item-session.php,v 1.2 2005/03/15 18:15:44 mblaschke Exp $ */
 
 require_once( '../_source/phpmediadb.php' );
 
@@ -47,7 +47,16 @@ function itemGet()
 {
 	global $PHPMEDIADB;
 	/* get session data first*/
-	return $PHPMEDIADB->PRESENTATION->SESSION->get( 'sessionitem' );
+	$returnValue = $PHPMEDIADB->PRESENTATION->SESSION->get( 'sessionitem' );
+	if( NULL === $returnValue )
+	{
+		header( 'Location: item-add.php' );
+		die();
+	}
+	else
+	{
+		return $returnValue;
+	}
 }
 //-----------------------------------------------------------------------------
 function itemSave( $sessionItem )
@@ -67,6 +76,7 @@ function itemSave( $sessionItem )
 			/* happy, no error :) */
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE', $PHPMEDIADB->PRESENTATION->I18N->getLanguageString( 'MESSAGE_SUCCESS_SAVE' ) );
 			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( 'body.message.tpl' );
+			$PHPMEDIADB->PRESENTATION->SESSION->unregister( 'sessionitem' );
 			die();
 		}
 		else
@@ -76,28 +86,6 @@ function itemSave( $sessionItem )
 			itemShow( $sessionItem );
 			die();
 		}
-	
-//
-//		/* check data */
-//		$errorData = $PHPMEDIADB->BUSINESS->AUDIOS->check( $sessionItem['data'] );
-//		
-//		/* error occured? */
-//		if( $errorData !== NULL )
-//		{
-//			/* error occurred */
-//			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTERROR', $errorData );
-//
-//			/* display error-site */
-//			itemShow( $sessionItem );
-//		}
-//		else
-//		{
-//			/* ready to save */
-//			if( $sessionItem['id'] === NULL )
-//				$PHPMEDIADB->BUSINESS->AUDIOS->create( $sessionItem['data'] );
-//			else
-//				$PHPMEDIADB->BUSINESS->AUDIOS->create( $sessionItem['modify'] );
-//		}
 		break;
 	
 	
