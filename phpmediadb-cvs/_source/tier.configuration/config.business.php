@@ -5,7 +5,7 @@
  * This file stores all configurations in tier.business
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	configuration
  */
@@ -20,7 +20,7 @@ $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['ItemTitle']
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['ItemOriginalTitle']		= '^(.{1,255})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['ItemMediaName']			= '^(.{1,255})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['ItemIdentification']		= '^(.{1,255})?$';
-$phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['ItemRelease']				= '^([[:digit:]]{4})?$';
+$phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['ItemReleaseDate']				= '^([[:digit:]]{4})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['Categories']				= '^([[:digit:]]+)?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['ItemMediaSize']			= '^(([[:digit:]]+([[:punct:]]{1}[[:digit:]]+)))?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['MediaFormatID']			= '^([[:digit:]]+)?$';
@@ -33,7 +33,7 @@ $phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['ItemTitle'] 
 $phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['ItemOriginalTitle']			= 255;
 $phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['ItemMediaName']				= 255;
 $phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['ItemIdentification']		= 255;
-$phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['ItemRelease']				= 4;
+$phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['ItemReleaseDate']			= 4;
 $phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['ItemMediaSize']				= 255;
 $phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['PublisherName']				= 255;
 $phpMediaDbConfig['BUSINESS']['input-size'][PHPMEDIADB_ITEM_AUDIO]['ItemQuantity']				= 255;

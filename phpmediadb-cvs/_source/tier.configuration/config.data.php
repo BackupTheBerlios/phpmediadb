@@ -5,7 +5,7 @@
  * This file stores all configurations in tier.data
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	configuration
  */
@@ -23,8 +23,8 @@
  */
 $phpMediaDbConfig['DATA']['sqlconnection']['phptype']	= 'mysql';
 $phpMediaDbConfig['DATA']['sqlconnection']['hostspec']	= 'localhost';
-$phpMediaDbConfig['DATA']['sqlconnection']['username']	= 'dbuser';
-$phpMediaDbConfig['DATA']['sqlconnection']['password']	= 'dbpass';
+$phpMediaDbConfig['DATA']['sqlconnection']['username']	= 'root';
+$phpMediaDbConfig['DATA']['sqlconnection']['password']	= '';
 $phpMediaDbConfig['DATA']['sqlconnection']['database']	= 'phpmediadb';
 
 $phpMediaDbConfig['DATA']['sqlconnection']['conntype'] = 1;
