@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.3 2005/03/11 12:13:19 bruf Exp $ */
+/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.4 2005/03/13 13:24:49 bruf Exp $ */
 
 class phpmediadb_data_agerestrictions
 {
@@ -90,6 +90,64 @@ class phpmediadb_data_agerestrictions
 		$stmt->executeQuery();
 		
 		return $stmt;
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function creates a new record in the table MediaAgeRestrictions
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String
+	 */
+	public function createAgeRestriction( $MediaAgeRestriction )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'INSERT INTO MediaAgeRestrictions
+		( MediaAgeRestriction ) VALUES( :mar )' );
+		$stmt->setString( ':mar', $MediaAgeRestriction );
+		$stmt->executeUpdate();
+		
+		return $stmt;
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function modifies a specified record from the table MediaAgeRestrictions
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 * @param String
+	 */
+	public function modifyAgeRestriction( $MediaAgeRestrictionID, $MediaAgeRestriction )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'UPDATE MediaAgeRestrictions
+		SET MediaAgeRestrictions.MediaAgeRestriction = :mar
+		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = :marid' );
+		$stmt->setString( ':mar', $MediaAgeRestriction );
+		$stmt->setString( ':marid', $MediaAgeRestrictionID );
+		$stmt->executeUpdate();
+		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function deletes a specified record from the table MediaAgeRestrictions
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 */
+	public function deleteAgeRestriction( $MediaAgeRestrictionID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'DELETE FROM MediaAgeRestrictions
+		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = :marid' );
+		$stmt->setString( ':marid', $MediaAgeRestrictionID );
+		$stmt->executeUpdate();
+		
 	}
 
 //-----------------------------------------------------------------------------
