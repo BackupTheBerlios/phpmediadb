@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_videos.php,v 1.1 2005/02/22 15:14:09 bruf Exp $ */
+/* $Id: class.phpmediadb_data_videos.php,v 1.2 2005/03/02 15:29:33 bruf Exp $ */
 
 class phpmediadb_data_videos
 {
@@ -33,7 +33,6 @@ class phpmediadb_data_videos
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_data
-	 * @return void
 	 */
 	public function __construct()
 	{
@@ -47,7 +46,6 @@ class phpmediadb_data_videos
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return void
 	 */
 	public function __destruct()
 	{
