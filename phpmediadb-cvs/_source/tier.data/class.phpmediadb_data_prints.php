@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_prints.php,v 1.3 2005/03/11 12:17:04 bruf Exp $ */
+/* $Id: class.phpmediadb_data_prints.php,v 1.4 2005/03/15 13:29:43 bruf Exp $ */
 
 class phpmediadb_data_prints
 {
@@ -61,7 +61,7 @@ class phpmediadb_data_prints
 	 * @param Integer
 	 * @return String
 	 */
-	public function getPrint( $PrintDataID )
+	public function get( $PrintDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
@@ -98,7 +98,7 @@ class phpmediadb_data_prints
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getallPrints()
+	public function getall()
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
@@ -128,14 +128,14 @@ class phpmediadb_data_prints
 
 //-----------------------------------------------------------------------------
 	/**
-	 * This function delete a specified record from the table PrintDatas
+	 * This function deletes a specified record from the table PrintDatas
 	 * and all depending data from the other tables
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
 	 */
-	public function deletePrint( $PrintDataID )
+	public function delete( $PrintDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'DELETE PrintDatas, Items, BinaryDatas, Categories_has_Items
@@ -150,7 +150,7 @@ class phpmediadb_data_prints
 
 //-----------------------------------------------------------------------------
 /**
-	 * This function create a new record into the table PrintDatas
+	 * This function creates a new record into the table PrintDatas
 	 * and all required data into the other tables
 	 *
 	 * @access public
@@ -161,12 +161,10 @@ class phpmediadb_data_prints
 	 * @param String
 	 * @param Integer
 	 * @param String
-	 * @param Integer
-	 * @param Integer
 	 * @param Blob
 	 */
-	public function createPrint( $PrintDataMediaCount, $PrintDataISBN, $ItemTitle, $ItemOriginalTitle,
-	$ItemRelease, $ItemMediaName, $ItemCreationDate, $ItemModificationDate, $ItemComment )
+	public function create( $PrintDataMediaCount, $PrintDataISBN, $ItemTitle, $ItemOriginalTitle,
+	$ItemRelease, $ItemMediaName, $ItemComment )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'INSERT INTO PrintDatas ( PrintDataMediaCount, PrintDataISBN ) VALUES( :pdmc, :pdisbn )' );
@@ -176,13 +174,11 @@ class phpmediadb_data_prints
 		
 		$stmt = $conn->preparedStatement( 'INSERT INTO Items
 		( ItemTitle, ItemOriginalTitle, ItemRelease, ItemMediaName, ItemCreationDate, ItemModificationDate, ItemComment )
-		VALUES( :it, :iot, :ir, :imn, :icd, :imd, :ic )' );
+		VALUES( :it, :iot, :ir, :imn, now(), now(), :ic )' );
 		$stmt->setString( ':it', $ItemTitle );
 		$stmt->setString( ':iot', $ItemOriginalTitle );
 		$stmt->setString( ':ir', $ItemRelease );
 		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':icd', $ItemCreationDate );
-		$stmt->setString( ':imd', $ItemModificationDate );
 		$stmt->setString( ':ic' , $ItemComment );
 		$stmt->executeUpdate(); 
 		
@@ -190,23 +186,27 @@ class phpmediadb_data_prints
 
 //-----------------------------------------------------------------------------
 /**
-	 * This function modify a specified record from the table PrintDatas
-	 * and all required data from other tables
+	 * This function modifies a specified record from the table PrintDatas
+	 * and all required data from the other tables
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
+	 * @param Integer
 	 * @param String
 	 * @param String
 	 * @param String
 	 * @param Integer
 	 * @param String
-	 * @param Integer
 	 * @param Blob
 	 * @param Integer
+	 * @param Integer
+	 * @param Integer
+	 * @param Integer
+	 * @param Integer
 	 */
-	public function modifyPrint( $PrintDataID, $PrintDataMediaCount, $PrintDataISBN, $ItemTitle, $ItemOriginalTitle,
-	$ItemRelease, $ItemMediaName, $ItemModificationDate, $ItemComment, $MediaCodecID, $MediaFormatID,
+	public function modify( $PrintDataID, $PrintDataMediaCount, $PrintDataISBN, $ItemTitle, $ItemOriginalTitle,
+	$ItemRelease, $ItemMediaName, $ItemComment, $MediaCodecID, $MediaFormatID,
 	$MediaAgeRestrictionID, $MediaStatusID, $ItemPicturesID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
@@ -225,7 +225,7 @@ class phpmediadb_data_prints
 		Items.ItemOriginalTitle = :iot,
 		Items.ItemRelease = :ir,
 		Items.ItemMediaName = :imn,
-		Items.ItemModificationDate = :imd,
+		Items.ItemModificationDate = now(,
 		Items.ItemComment = :ic
 		Items.MediaCodecID = :mcid,
 		Items.MediaFormatID = :mfid,
@@ -247,7 +247,6 @@ class phpmediadb_data_prints
 		$stmt->setString( ':iot', $ItemOriginalTitle );
 		$stmt->setString( ':ir', $ItemRelease );
 		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':imd', $ItemModificatioDate );
 		$stmt->setString( ':ic', $ItemComment );
 		$stmt->setString( ':mcid', $MediaCodecID );
 		$stmt->setString( ':mfid', $MediaFormatID );
@@ -255,7 +254,7 @@ class phpmediadb_data_prints
 		$stmt->setString( ':msid', $MediaStatusID );
 		$stmt->setString( ':ipid', $ItemPicturesID );
 		$stmt->setString( ':pdid', $PrintDataID );
-		$stmt->executeQuery();
+		$stmt->executeUpdate();
 		
 	}
 

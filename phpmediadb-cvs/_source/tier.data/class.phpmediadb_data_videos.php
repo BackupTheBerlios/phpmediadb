@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_videos.php,v 1.3 2005/03/11 12:17:43 bruf Exp $ */
+/* $Id: class.phpmediadb_data_videos.php,v 1.4 2005/03/15 13:29:54 bruf Exp $ */
 
 class phpmediadb_data_videos
 {
@@ -61,7 +61,7 @@ class phpmediadb_data_videos
 	 * @param Integer
 	 * @return String
 	 */
-	public function getVideo( $VideoDataID )
+	public function get( $VideoDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
@@ -98,7 +98,7 @@ class phpmediadb_data_videos
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getallVideos()
+	public function getall()
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
@@ -129,14 +129,14 @@ class phpmediadb_data_videos
 
 //-----------------------------------------------------------------------------
 	/**
-	 * This function delete a specified record from the table VideoDatas
+	 * This function deletes a specified record from the table VideoDatas
 	 * and all depending data from the other tables
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
 	 */
-	public function deleteVideo( $VideoDataID )
+	public function delete( $VideoDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'DELETE VideoDatas, Items, BinaryDatas, Categories_has_Items
@@ -152,23 +152,21 @@ class phpmediadb_data_videos
 
 //-----------------------------------------------------------------------------
 /**
-	 * This function create a new record into the table VideoDatas
-	 * and all required data into the other tables
+	 * This function creates a new record in the table VideoDatas
+	 * and all required data in the other tables
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
-	 * @param String
+	 * @param Integer
 	 * @param String
 	 * @param String
 	 * @param Integer
 	 * @param String
-	 * @param Integer
-	 * @param Integer
 	 * @param Blob
 	 */
-	public function createVideo( $VideoDataMediaCount, $AudioDataImdbID, $ItemTitle, $ItemOriginalTitle,
-	$ItemRelease, $ItemMediaName, $ItemCreationDate, $ItemModificationDate, $ItemComment )
+	public function create( $VideoDataMediaCount, $AudioDataImdbID, $ItemTitle, $ItemOriginalTitle,
+	$ItemRelease, $ItemMediaName, $ItemComment )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'INSERT INTO VideoDatas ( VideoDataMediaCount, VideoDataImdbID ) VALUES( :vdmc, :vdii )' );
@@ -178,13 +176,11 @@ class phpmediadb_data_videos
 		
 		$stmt = $conn->preparedStatement( 'INSERT INTO Items
 		( ItemTitle, ItemOriginalTitle, ItemRelease, ItemMediaName, ItemCreationDate, ItemModificationDate, ItemComment )
-		VALUES( :it, :iot, :ir, :imn, :icd, :imd, :ic )' );
+		VALUES( :it, :iot, :ir, :imn, now(), now(), :ic )' );
 		$stmt->setString( ':it', $ItemTitle );
 		$stmt->setString( ':iot', $ItemOriginalTitle );
 		$stmt->setString( ':ir', $ItemRelease );
 		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':icd', $ItemCreationDate );
-		$stmt->setString( ':imd', $ItemModificationDate );
 		$stmt->setString( ':ic' , $ItemComment );
 		$stmt->executeUpdate(); 
 
@@ -192,23 +188,26 @@ class phpmediadb_data_videos
 
 //-----------------------------------------------------------------------------
 /**
-	 * This function modify a specified record from the table VideoDatas
-	 * and all required data from other tables
+	 * This function modifies a specified record from the table VideoDatas
+	 * and all required data from the other tables
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
-	 * @param String
-	 * @param String
-	 * @param String
 	 * @param Integer
+	 * @param Integer
+	 * @param String
 	 * @param String
 	 * @param Integer
 	 * @param Blob
 	 * @param Integer
+	 * @param Integer
+	 * @param Integer
+	 * @param Integer
+	 * @param Integer
 	 */
-	public function modifyVideo( $VideoDataID, $VideoDataMediaCount, $VideoDataImdbID, $ItemTitle, $ItemOriginalTitle,
-	$ItemRelease, $ItemMediaName, $ItemModificationDate, $ItemComment, $MediaCodecID, $MediaFormatID,
+	public function modify( $VideoDataID, $VideoDataMediaCount, $VideoDataImdbID, $ItemTitle, $ItemOriginalTitle,
+	$ItemRelease, $ItemMediaName, $ItemComment, $MediaCodecID, $MediaFormatID,
 	$MediaAgeRestrictionID, $MediaStatusID, $ItemPicturesID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
@@ -227,7 +226,7 @@ class phpmediadb_data_videos
 		Items.ItemOriginalTitle = :iot,
 		Items.ItemRelease = :ir,
 		Items.ItemMediaName = :imn,
-		Items.ItemModificationDate = :imd,
+		Items.ItemModificationDate = now(),
 		Items.ItemComment = :ic
 		Items.MediaCodecID = :mcid,
 		Items.MediaFormatID = :mfid,
@@ -249,7 +248,6 @@ class phpmediadb_data_videos
 		$stmt->setString( ':iot', $ItemOriginalTitle );
 		$stmt->setString( ':ir', $ItemRelease );
 		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':imd', $ItemModificatioDate );
 		$stmt->setString( ':ic', $ItemComment );
 		$stmt->setString( ':mcid', $MediaCodecID );
 		$stmt->setString( ':mfid', $MediaFormatID );
@@ -257,7 +255,7 @@ class phpmediadb_data_videos
 		$stmt->setString( ':msid', $MediaStatusID );
 		$stmt->setString( ':ipid', $ItemPicturesID );
 		$stmt->setString( ':vdid', $VideoDataID );
-		$stmt->executeQuery();
+		$stmt->executeUpdate();
 		
 	}
 

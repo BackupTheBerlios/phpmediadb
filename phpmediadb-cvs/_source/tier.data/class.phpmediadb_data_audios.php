@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_audios.php,v 1.3 2005/03/11 12:16:01 bruf Exp $ */
+/* $Id: class.phpmediadb_data_audios.php,v 1.4 2005/03/15 13:29:33 bruf Exp $ */
 
 class phpmediadb_data_audios
 {
@@ -62,7 +62,7 @@ class phpmediadb_data_audios
 	 * @param Integer
 	 * @return String
 	 */
-	public function getAudio( $ID )
+	public function get( $AudioDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
@@ -75,7 +75,7 @@ class phpmediadb_data_audios
 		MediaAgeRestrictions g,
 		MediaStatus h,
 		BinaryDatas i
-		WHERE a.AudioDataID = :id 
+		WHERE a.AudioDataID = :adid 
 		AND a.LanguageID = b.LanguageID
 		AND a.ItemID = c.ItemID
 		AND c.ItemTypeID = d.ItemTypeID
@@ -84,7 +84,7 @@ class phpmediadb_data_audios
 		AND c.MediaAgeRestrictionID = g.MediaAgeRestrictionID
 		AND c.MediaStatusID = h.MediaStatusID
 		AND c.ItemPicturesID = i.ItemPicturesID' );
-		$stmt->setString( ':id', $ID );
+		$stmt->setString( ':adid', $AudioDataID );
 		$stmt->executeQuery();
 		
 		return $stmt;
@@ -99,7 +99,7 @@ class phpmediadb_data_audios
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getallAudios()
+	public function getall()
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
@@ -129,30 +129,30 @@ class phpmediadb_data_audios
 
 //-----------------------------------------------------------------------------
 	/**
-	 * This function delete a specified record from the table AudioDatas
+	 * This function deletes a specified record from the table AudioDatas
 	 * and all depending data from the other tables
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
 	 */
-	public function deleteAudio( $ID )
+	public function delete( $AudioDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'DELETE AudioDatas, Items, BinaryDatas, Categories_has_Items
 		FROM AudioDatas, Items, BinaryDatas, Categories_has_Items
-		WHERE AudioDatas.AudioDataID = :id
+		WHERE AudioDatas.AudioDataID = :adid
 		AND AudioDatas.ItemID = Items.ItemID
 		AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID
 		AND Items.ItemID = Categories_has_Items.ItemID' );
-		$stmt->setString( ':id', $ID );
+		$stmt->setString( ':adid', $AudioDataID );
 		$stmt->executeUpdate();
 	}
 
 //-----------------------------------------------------------------------------
 /**
-	 * This function create a new record into the table AudioDatas
-	 * and all required data into the other tables
+	 * This function creates a new record in the table AudioDatas
+	 * and all required data in the other tables
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
@@ -162,12 +162,10 @@ class phpmediadb_data_audios
 	 * @param String
 	 * @param Integer
 	 * @param String
-	 * @param Integer
-	 * @param Integer
 	 * @param Blob
 	 */
-	public function createAudio( $AudioDataMediaCount, $AudioDataDiscID, $ItemTitle, $ItemOriginalTitle,
-	$ItemRelease, $ItemMediaName, $ItemCreationDate, $ItemModificationDate, $ItemComment )
+	public function create( $AudioDataMediaCount, $AudioDataDiscID, $ItemTitle, $ItemOriginalTitle,
+	$ItemRelease, $ItemMediaName, $ItemComment )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'INSERT INTO AudioDatas ( AudioDataMediaCount, AudioDataDiscID ) VALUES( :admc, :addi )' );
@@ -177,13 +175,11 @@ class phpmediadb_data_audios
 		
 		$stmt = $conn->preparedStatement( 'INSERT INTO Items
 		( ItemTitle, ItemOriginalTitle, ItemRelease, ItemMediaName, ItemCreationDate, ItemModificationDate, ItemComment )
-		VALUES( :it, :iot, :ir, :imn, :icd, :imd, :ic )' );
+		VALUES( :it, :iot, :ir, :imn, now(), now(), :ic )' );
 		$stmt->setString( ':it', $ItemTitle );
 		$stmt->setString( ':iot', $ItemOriginalTitle );
 		$stmt->setString( ':ir', $ItemRelease );
 		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':icd', $ItemCreationDate );
-		$stmt->setString( ':imd', $ItemModificationDate );
 		$stmt->setString( ':ic' , $ItemComment );
 		$stmt->executeUpdate(); 
 		
@@ -191,23 +187,27 @@ class phpmediadb_data_audios
 
 //-----------------------------------------------------------------------------
 /**
-	 * This function modify a specified record from the table AudioDatas
-	 * and all required data from other tables
+	 * This function modifies a specified record from the table AudioDatas
+	 * and all required data from the other tables
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
+	 * @param Integer
 	 * @param String
 	 * @param String
 	 * @param String
 	 * @param Integer
 	 * @param String
-	 * @param Integer
 	 * @param Blob
 	 * @param Integer
+	 * @param Integer
+	 * @param Integer
+	 * @param Integer
+	 * @param Integer
 	 */
-	public function modifyAudio( $AudioDataID, $AudioDataMediaCount, $AudioDataDiscID, $ItemTitle, $ItemOriginalTitle,
-	$ItemRelease, $ItemMediaName, $ItemModificationDate, $ItemComment, $MediaCodecID, $MediaFormatID,
+	public function modify( $AudioDataID, $AudioDataMediaCount, $AudioDataDiscID, $ItemTitle, $ItemOriginalTitle,
+	$ItemRelease, $ItemMediaName, $ItemComment, $MediaCodecID, $MediaFormatID,
 	$MediaAgeRestrictionID, $MediaStatusID, $ItemPicturesID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
@@ -226,7 +226,7 @@ class phpmediadb_data_audios
 		Items.ItemOriginalTitle = :iot,
 		Items.ItemRelease = :ir,
 		Items.ItemMediaName = :imn,
-		Items.ItemModificationDate = :imd,
+		Items.ItemModificationDate = now(),
 		Items.ItemComment = :ic,
 		Items.MediaCodecID = :mcid,
 		Items.MediaFormatID = :mfid,
@@ -248,7 +248,6 @@ class phpmediadb_data_audios
 		$stmt->setString( ':iot', $ItemOriginalTitle );
 		$stmt->setString( ':ir', $ItemRelease );
 		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':imd', $ItemModificatioDate );
 		$stmt->setString( ':ic', $ItemComment );
 		$stmt->setString( ':mcid', $MediaCodecID );
 		$stmt->setString( ':mfid', $MediaFormatID );
@@ -256,7 +255,7 @@ class phpmediadb_data_audios
 		$stmt->setString( ':msid', $MediaStatusID );
 		$stmt->setString( ':ipid', $ItemPicturesID );
 		$stmt->setString( ':adid', $AudioDataID );
-		$stmt->executeQuery();
+		$stmt->executeUpdate();
 		
 	}
 
