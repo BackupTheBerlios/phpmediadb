@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: constants.phpmediadb.php,v 1.2 2004/09/26 16:08:27 mblaschke Exp $ */
+/* $Id: constants.phpmediadb.php,v 1.3 2005/03/15 18:10:54 mblaschke Exp $ */
 
 // --- tier.presentation ---
 	/*
@@ -10,10 +10,13 @@
 	 * PHPMEDIADB_NODEFORMAT_TEXT:
 	 *   Value is Plaintext and need conversion to XML rules
 	 */
-	define("PHPMEDIADB_NODEFORMAT_HTML", 1);
-	define("PHPMEDIADB_NODEFORMAT_TEXT", 0);
+	define( 'PHPMEDIADB_NODEFORMAT_HTML', 1 );
+	define( 'PHPMEDIADB_NODEFORMAT_TEXT', 0 );
 
 // --- tier.business ---
+	define( 'PHPMEDIADB_ITEM_AUDIO', 1 );
+	define( 'PHPMEDIADB_ITEM_VIDEO', 2 );
+	define( 'PHPMEDIADB_ITEM_PRINT', 3 );
 
 // --- tier.data ---
 
