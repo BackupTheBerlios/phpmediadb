@@ -1,13 +1,13 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.3 2005/02/09 20:28:57 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.4 2005/02/27 16:04:44 mblaschke Exp $ */
 
 class phpmediadb_presentation_contentvars
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Short description of attribute PHPMEDIADB
+	 * Reference to class phpmediadb
 	 *
 	 * @access protected
 	 * @see phpmediadb
@@ -16,7 +16,7 @@ class phpmediadb_presentation_contentvars
 	protected $PHPMEDIADB = null;
 
 	/**
-	 * Short description of attribute PRESENTATION
+	 * Reference to class phpmediadb_presentation
 	 *
 	 * @access protected
 	 * @see phpmediadb_presentation
@@ -25,7 +25,7 @@ class phpmediadb_presentation_contentvars
 	protected $PRESENTATION = null;
 
 	/**
-	 * Short description of attribute nodeContainer
+	 * This container contains all variables used by the template-engine
 	 *
 	 * @access private
 	 * @var mixed
@@ -41,7 +41,6 @@ class phpmediadb_presentation_contentvars
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_presentation
-	 * @return void
 	 */
 	public function __construct( $sender )
 	{
@@ -60,7 +59,6 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return void
 	 */
 	public function __destruct()
 	{
@@ -100,14 +98,24 @@ class phpmediadb_presentation_contentvars
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String
-	 * @return java_lang_String
+	 * @return String
 	 */
 	public function getNode( $nodeName = NULL )
 	{
-		/* filter false or null entries */
-		/* TODO */
-		$returnValue = $this->nodeContainer;
-		/* TODO */
+		if( NULL == $nodeName )
+		{
+			/* return complete array */
+			$returnValue = $this->nodeContainer;
+		}
+		else
+		{
+			/* check */
+			if( $this->checkNodeString( $nodeName ) == FALSE )
+				return false;
+			
+			/* delegate */
+			$returnValue = $this->recursiveReadNodeFromContainer( $nodeName, $this->nodeContainer );
+		}
 		
 		/* return mixed */
 		return $returnValue;
@@ -142,7 +150,7 @@ class phpmediadb_presentation_contentvars
 	 * @param mixed
 	 * @param String
 	 * @param mixed
-	 * @return void
+	 * @return mixed
 	 */
 	protected function recursiveInsertNodeIntoContainer( $nodeName, $nodeValue = null, &$nodeArray )
 	{
@@ -193,7 +201,66 @@ class phpmediadb_presentation_contentvars
 		/* return array */
 		return $nodeArray;
 	}
-	
+//-----------------------------------------------------------------------------
+	/**
+	 * This internal function will recursivly insert a node into the
+	 *
+	 * @access protected
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param mixed
+	 * @param String
+	 * @param mixed
+	 * @return mixed
+	 */
+	protected function recursiveReadNodeFromContainer( $nodeName, &$nodeArray )
+	{
+		/* init */
+		$nodeIndexArray		= null;
+		$nodeCurrentIndex	= null;
+		$nodeNextIndex		= null;
+
+		/* convert to upperchars */
+		$nodeName = strtoupper( $nodeName );
+		/* split nodename to the indexes */
+		$nodeIndexArray	= explode( '.', $nodeName );
+
+		/* get current index and convert it to upper-chars */
+		$nodeCurrentIndex		= strtoupper( $nodeIndexArray[0] );
+
+		/* check if it is the last item */
+		if( count( $nodeIndexArray ) == 1 )
+		{
+			/* check if arrayitem exsits */
+			if( !key_exists( $nodeCurrentIndex, $nodeArray ) )
+				return NULL;			
+			
+			/* ok, it is the last item.. return value */
+				return $nodeArray["$nodeCurrentIndex"];
+		}
+		else
+		{
+			/* ok, more levels to go, first generate the new index */
+			for( $i=1; $i < count( $nodeIndexArray ); $i++ )
+			{
+				if( $i < count( $nodeIndexArray) - 1 )
+					$nodeNextIndex .= $nodeIndexArray[$i] . ".";
+				else
+					$nodeNextIndex .= $nodeIndexArray[$i];
+			}
+
+			/* check if key exists and add array if not */
+			if( !key_exists( $nodeCurrentIndex, $nodeArray ) )
+				return NULL;
+
+			/* check if key is array and add array if not */
+			if( !is_array( $nodeArray["$nodeCurrentIndex"] ) )
+			  return $nodeArray["$nodeCurrentIndex"];
+
+			return $this->recursiveReadNodeFromContainer( $nodeNextIndex, $nodeArray[$nodeCurrentIndex] );
+
+		}
+	}
+		
 //-----------------------------------------------------------------------------
 	/**
 	 * This function checks the validity of nodeName and returns the
