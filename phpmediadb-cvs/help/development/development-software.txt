@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------
+--- phpMediaDB - List of Development-Software
+--- http://phpmediadb.berlios.de/
+--------------------------------------------------------------------------
+
+
+--- ArgoUML (http://argouml.tigris.org/)
+-----------------------------------------------------------
+ - classdiagram.zargo
+
+
+--- DBDesigner (http://www.fabforce.net/dbdesigner4/)
+-----------------------------------------------------------
+ - erm-model.xml
+
+
+$Id: development-software.txt,v 1.1 2004/09/02 10:46:43 mblaschke Exp $
