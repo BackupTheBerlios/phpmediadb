@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_status.php,v 1.4 2005/03/13 13:26:02 bruf Exp $ */
+/* $Id: class.phpmediadb_data_status.php,v 1.5 2005/03/15 13:30:34 bruf Exp $ */
 
 class phpmediadb_data_status
 {
@@ -60,7 +60,7 @@ class phpmediadb_data_status
 	 * @param Integer
 	 * @return String
 	 */
-	public function getStatus( $MediaStatusID )
+	public function get( $MediaStatusID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -80,7 +80,7 @@ class phpmediadb_data_status
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getallStatus()
+	public function getall()
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -102,7 +102,7 @@ class phpmediadb_data_status
 	 * @param String
 	 * @param String
 	 */
-	public function createStatus( $MediaStatus, $MediaStatusOwner, $MediaStatusHolder )
+	public function create( $MediaStatus, $MediaStatusOwner, $MediaStatusHolder )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'INSERT INTO MediaStatus
@@ -126,7 +126,7 @@ class phpmediadb_data_status
 	 * @param String
 	 * @param String
 	 */
-	public function modifyStatus( $MediaStatusID, $MediaStatus, $MediaStatusOwner, $MediaStatusHolder )
+	public function modify( $MediaStatusID, $MediaStatus, $MediaStatusOwner, $MediaStatusHolder )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'UPDATE MediaStatus
@@ -150,7 +150,7 @@ class phpmediadb_data_status
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
 	 */
-	public function deleteStatus( $MediaStatusID )
+	public function delete( $MediaStatusID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'DELETE FROM MediaStatus

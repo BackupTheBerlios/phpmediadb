@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_codecs.php,v 1.5 2005/03/15 10:13:06 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_codecs.php,v 1.6 2005/03/15 13:30:13 bruf Exp $ */
 
 class phpmediadb_data_codecs
 {
@@ -60,7 +60,7 @@ class phpmediadb_data_codecs
 	 * @param Integer
 	 * @return String
 	 */
-	public function getCodec( $MediaCodecID )
+	public function get( $MediaCodecID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -80,7 +80,7 @@ class phpmediadb_data_codecs
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getallCodecs()
+	public function getall()
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -102,7 +102,7 @@ class phpmediadb_data_codecs
 	 * @param Integer
 	 * @param Integer
 	 */
-	public function createCodec( $MediaCodecName, $MediaCodecBitrate, $ItemTypeID )
+	public function create( $MediaCodecName, $MediaCodecBitrate, $ItemTypeID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'INSERT INTO MediaCodecs
@@ -150,7 +150,7 @@ class phpmediadb_data_codecs
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
 	 */
-	public function deleteCodec( $MediaCodecID )
+	public function delete( $MediaCodecID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'DELETE FROM MediaCodecs

@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.4 2005/03/13 13:24:49 bruf Exp $ */
+/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.5 2005/03/15 13:28:42 bruf Exp $ */
 
 class phpmediadb_data_agerestrictions
 {
@@ -60,7 +60,7 @@ class phpmediadb_data_agerestrictions
 	 * @param Integer
 	 * @return String
 	 */
-	public function getAgeRestriction( $MediaAgeRestrictionID )
+	public function get( $MediaAgeRestrictionID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -80,7 +80,7 @@ class phpmediadb_data_agerestrictions
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getallAgeRestrictions()
+	public function getall()
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -100,7 +100,7 @@ class phpmediadb_data_agerestrictions
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String
 	 */
-	public function createAgeRestriction( $MediaAgeRestriction )
+	public function create( $MediaAgeRestriction )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'INSERT INTO MediaAgeRestrictions
@@ -120,7 +120,7 @@ class phpmediadb_data_agerestrictions
 	 * @param Integer
 	 * @param String
 	 */
-	public function modifyAgeRestriction( $MediaAgeRestrictionID, $MediaAgeRestriction )
+	public function modify( $MediaAgeRestrictionID, $MediaAgeRestriction )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'UPDATE MediaAgeRestrictions
@@ -140,7 +140,7 @@ class phpmediadb_data_agerestrictions
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
 	 */
-	public function deleteAgeRestriction( $MediaAgeRestrictionID )
+	public function delete( $MediaAgeRestrictionID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'DELETE FROM MediaAgeRestrictions

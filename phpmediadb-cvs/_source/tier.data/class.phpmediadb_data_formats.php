@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_formats.php,v 1.5 2005/03/13 13:25:38 bruf Exp $ */
+/* $Id: class.phpmediadb_data_formats.php,v 1.6 2005/03/15 13:30:23 bruf Exp $ */
 
 class phpmediadb_data_formats
 {
@@ -60,7 +60,7 @@ class phpmediadb_data_formats
 	 * @param Integer
 	 * @return String
 	 */
-	public function getFormat( $MediaFormatID )
+	public function get( $MediaFormatID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -80,7 +80,7 @@ class phpmediadb_data_formats
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getallFormats()
+	public function getall()
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -101,7 +101,7 @@ class phpmediadb_data_formats
 	 * @param String
 	 * @param Integer
 	 */
-	public function createFormat( $MediaFormatName, $ItemTypeID )
+	public function create( $MediaFormatName, $ItemTypeID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'INSERT INTO MediaFormats
@@ -122,7 +122,7 @@ class phpmediadb_data_formats
 	 * @param String
 	 * @param Integer
 	 */
-	public function modifyFormat( $MediaFormatID, $MediaFormatName, $ItemTypeID )
+	public function modify( $MediaFormatID, $MediaFormatName, $ItemTypeID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'UPDATE MediaFormats
@@ -144,7 +144,7 @@ class phpmediadb_data_formats
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer
 	 */
-	public function deleteFormat( $MediaFormatID )
+	public function delete( $MediaFormatID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'DELETE FROM MediaFormats
