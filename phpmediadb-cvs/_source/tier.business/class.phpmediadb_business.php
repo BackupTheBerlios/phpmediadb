@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business.php,v 1.7 2005/03/15 20:59:22 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business.php,v 1.8 2005/03/20 17:03:19 mblaschke Exp $ */
 
 class phpmediadb_business
 {
@@ -117,13 +117,13 @@ class phpmediadb_business
 		
 		/* assign childs */
 		$this->AGERESTRICTIONS	= new phpmediadb_business_agerestrictions( $this );
-		$this->AUDIOS						= new phpmediadb_business_audios( $this );
-		$this->CATEGORIES				= new phpmediadb_business_categories( $this );
-		$this->CODECS						= new phpmediadb_business_codecs( $this );
-		$this->FORMATS					= new phpmediadb_business_formats( $this );
-		$this->INSPECTOR				= new phpmediadb_business_inspector( $this );
-		$this->PRINTS						= new phpmediadb_business_prints( $this );
-		$this->VIDEOS						= new phpmediadb_business_prints( $this );
+		$this->AUDIOS			= new phpmediadb_business_audios( $this );
+		$this->CATEGORIES		= new phpmediadb_business_categories( $this );
+		$this->CODECS			= new phpmediadb_business_codecs( $this );
+		$this->FORMATS			= new phpmediadb_business_formats( $this );
+		$this->INSPECTOR		= new phpmediadb_business_inspector( $this );
+		$this->PRINTS			= new phpmediadb_business_prints( $this );
+		$this->VIDEOS			= new phpmediadb_business_prints( $this );
 	}
 
 //-----------------------------------------------------------------------------
@@ -146,6 +146,7 @@ class phpmediadb_business
 		unset( $phpMediaDbConfig['BUSINESS'] );
 	}
 	
+//-----------------------------------------------------------------------------
 } /* end of class phpmediadb_business */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---

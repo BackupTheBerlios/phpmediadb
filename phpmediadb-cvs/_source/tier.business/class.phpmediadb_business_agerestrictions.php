@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_agerestrictions.php,v 1.2 2005/03/15 20:59:21 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_agerestrictions.php,v 1.3 2005/03/20 17:03:19 mblaschke Exp $ */
 
 class phpmediadb_business_agerestrictions
 {
@@ -50,7 +50,7 @@ class phpmediadb_business_agerestrictions
 		/* assign parent */
 		$this->BUSINESS		= $sender;
 		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
-		$this->DATA				= $sender->PHPMEDIADB->DATA;
+		$this->DATA			= $sender->PHPMEDIADB->DATA;
 	}
 
 //-----------------------------------------------------------------------------
@@ -71,6 +71,7 @@ class phpmediadb_business_agerestrictions
 		return $returnValue;
 	}
 	
+//-----------------------------------------------------------------------------
 } /* end of class phpmediadb_business_agerestrictions */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---

@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_inspector.php,v 1.2 2005/03/15 20:59:22 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_inspector.php,v 1.3 2005/03/20 17:03:19 mblaschke Exp $ */
 
 class phpmediadb_business_inspector
 {
@@ -68,6 +68,7 @@ class phpmediadb_business_inspector
 		$returnValue	= NULL;
 		$inputSize		= $this->getSize( $type );
 		$checkRegex		= $this->getRegex( $type );
+		
 		/*
 		$error['general'] = true;
 		$error['flag']['title'] = true;
@@ -86,8 +87,8 @@ class phpmediadb_business_inspector
 						if( @strlen( $data[$checkKey] ) > $checkValue )
 						{
 							/* set errorflags */
-							$returnValue['general']											= TRUE;
-							$returnValue['flag'][$checkKey] 						= TRUE;
+							$returnValue['general']						= TRUE;
+							$returnValue['flag'][$checkKey] 			= TRUE;
 							$returnValue['message'][$checkKey]['size']	= TRUE;
 						}
 					break;
@@ -98,15 +99,15 @@ class phpmediadb_business_inspector
 							if( @strlen( $ItemValue ) > $checkValue )
 							{
 								/* set errorflags */
-								$returnValue['general']											= TRUE;
-								$returnValue['flag'][$checkKey] 						= TRUE;
+								$returnValue['general']						= TRUE;
+								$returnValue['flag'][$checkKey] 			= TRUE;
 								$returnValue['message'][$checkKey]['size']	= TRUE;
 							}
 						}
 					break;
-				}
-			}
-		}
+				} /* end of switch */
+			} /* end of foreach */
+		} /* end of if */
 		
 		/* check input-regex */
 		if( is_array( $inputSize ) )
@@ -119,8 +120,8 @@ class phpmediadb_business_inspector
 						if( ! @ereg( $checkValue, $data[$checkKey] ) )
 						{
 							/* set errorflags */
-							$returnValue['general']											= TRUE;
-							$returnValue['flag'][$checkKey] 						= TRUE;
+							$returnValue['general']						= TRUE;
+							$returnValue['flag'][$checkKey] 			= TRUE;
 							$returnValue['message'][$checkKey]['regex']	= TRUE;
 						}
 					break;
@@ -131,15 +132,15 @@ class phpmediadb_business_inspector
 							if( ! @ereg( $checkValue, $ItemValue ) )
 							{
 								/* set errorflags */
-								$returnValue['general']											= TRUE;
-								$returnValue['flag'][$checkKey] 						= TRUE;
+								$returnValue['general']						= TRUE;
+								$returnValue['flag'][$checkKey] 			= TRUE;
 								$returnValue['message'][$checkKey]['regex']	= TRUE;
 							}
 						}
 					break;
-				}
-			}
-		}
+				} /* end of switch */
+			} /* end of foreach */
+		} /* end of if */
 		
 		/* return data */
 		return $returnValue;

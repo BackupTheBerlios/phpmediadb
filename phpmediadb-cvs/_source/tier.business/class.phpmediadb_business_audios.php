@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_audios.php,v 1.3 2005/03/15 20:59:21 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_audios.php,v 1.4 2005/03/20 17:03:19 mblaschke Exp $ */
 
 class phpmediadb_business_audios
 {
@@ -50,7 +50,7 @@ class phpmediadb_business_audios
 		/* assign parent */
 		$this->BUSINESS		= $sender;
 		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
-		$this->DATA				= $sender->PHPMEDIADB->DATA;
+		$this->DATA			= $sender->PHPMEDIADB->DATA;
 	}
 
 //-----------------------------------------------------------------------------
@@ -88,20 +88,20 @@ class phpmediadb_business_audios
 		$returnValue = array();
 	 	
 		/* create empty itemset */
-		$returnValue['ItemTitle'] 						= '';
-		$returnValue['ItemOriginalTitle']			= '';
-		$returnValue['ItemMediaName']					= '';
+		$returnValue['ItemTitle'] 				= '';
+		$returnValue['ItemOriginalTitle']		= '';
+		$returnValue['ItemMediaName']			= '';
 		$returnValue['ItemIdentification']		= '';
-		$returnValue['ItemRelease']						= '';
-		$returnValue['Categories']						= array();
-		$returnValue['ItemMediaSize']					= '';
-		$returnValue['MediaFormatID']					= '';
-		$returnValue['BinaryData']						= '';
-		$returnValue['PublisherName']					= '';
+		$returnValue['ItemRelease']				= '';
+		$returnValue['Categories']				= array();
+		$returnValue['ItemMediaSize']			= '';
+		$returnValue['MediaFormatID']			= '';
+		$returnValue['BinaryData']				= '';
+		$returnValue['PublisherName']			= '';
 		$returnValue['MediaAgeRestrictionID']	= '';
-		$returnValue['MediaCodecID']					= '';
-		$returnValue['ItemQuantity']					= '';
-		$returnValue['ItemCreationDate']			= NULL;
+		$returnValue['MediaCodecID']			= '';
+		$returnValue['ItemQuantity']			= '';
+		$returnValue['ItemCreationDate']		= NULL;
 		$returnValue['ItemModificationDate']	= NULL;
 			
 		/* return data */
@@ -157,6 +157,7 @@ class phpmediadb_business_audios
 		/* return data */
 		return $returnValue;
 	}
+	
 //-----------------------------------------------------------------------------
 	/**
 	 * Creates one dataset
