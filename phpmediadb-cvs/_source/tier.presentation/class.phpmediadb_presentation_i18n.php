@@ -1,13 +1,13 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_i18n.php,v 1.10 2005/03/24 17:12:36 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_i18n.php,v 1.11 2005/03/31 16:28:22 mblaschke Exp $ */
 
 /**
  * This is the class that manages all internationalization-functions and also contains
  * all i18n variables
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.10 $
+ * @version		$Revision: 1.11 $
  * @package		phpmediadb
  * @subpackage	presentation
  */
@@ -101,16 +101,42 @@ class phpmediadb_presentation_i18n
 
 		return $returnValue;
 	}
-  
+
+//-----------------------------------------------------------------------------
+	public function translate( $langRequest )
+	{
+		/* init */
+		$returnValue = false;
+  	
+		switch( gettype( $langRequest ) )
+		{
+			case 'array';
+				foreach( $langRequest as $key => $value )
+				{
+					$returnValue[$key] = $this->translate( $langRequest[$key] );
+				}
+			break;
+			
+			case 'string':
+				$returnValue = $this->translate_string( $langRequest );
+			break;
+			
+			default:
+				$returnValue = $langRequest;
+			break;
+		}
+		return $returnValue;
+	}
+
 //-----------------------------------------------------------------------------
 	/**
 	 * Returns the i18n string specified by the langID
 	 *
-	 * @access public
+	 * @access protected
 	 * @param String Internal language-i18n-stringcode
 	 * @return mixed Internationalized string
 	 */
-	public function getLanguageString( $langId )
+	protected function translate_string( $langId )
 	{
 		/* init */
 		$returnValue = false;
