@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data.php,v 1.7 2005/03/07 11:37:37 bruf Exp $ */
+/* $Id: class.phpmediadb_data.php,v 1.8 2005/03/16 15:03:08 bruf Exp $ */
 
 class phpmediadb_data
 {
@@ -106,12 +106,13 @@ class phpmediadb_data
 	
 	// --- OPERATIONS ---
 
+//-----------------------------------------------------------------------------
 	/**
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb
+	 * @param phpmediadb_data $sender Reference to parent class
 	 */
 	public function __construct( $sender )
 	{
@@ -135,13 +136,12 @@ class phpmediadb_data
 		$this->VIDEOS			= new phpmediadb_data_videos( $this );
 	}
 
+//-----------------------------------------------------------------------------
 	/**
 	 * Loads the configuration from the global array and resets the array
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb
-	 * @return void
 	 */
 	private function loadConfiguration()
 	{
@@ -155,8 +155,8 @@ class phpmediadb_data
 		/* unset global configuration -> security */
 		unset( $phpMediaDbConfig['DATA'] );
 	}
-	
-} /* end of class phpmediadb_data */
 
+//-----------------------------------------------------------------------------
+} /* end of class phpmediadb_data */
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
 ?>
