@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.2 2005/03/02 15:26:41 bruf Exp $ */
+/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.3 2005/03/11 12:13:19 bruf Exp $ */
 
 class phpmediadb_data_agerestrictions
 {
@@ -51,6 +51,48 @@ class phpmediadb_data_agerestrictions
 	{
 		/* nothing to do yet */
 	}
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns a specified record from the table MediaAgeRestrictions
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 * @return String
+	 */
+	public function getAgeRestriction( $MediaAgeRestrictionID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'SELECT *
+		FROM MediaAgeRestrictions,
+		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = :marid' );
+		$stmt->setString( ':marid', $MediaAgeRestrictionID );
+		$stmt->executeQuery();
+		
+		return $stmt;
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns all records from the table MediaAgeRestrictions
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @return String
+	 */
+	public function getallAgeRestrictions()
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'SELECT *
+		FROM MediaAgeRestrictions,
+		WHERE MediaAgeRestrictions.MediaRestrictionID = :marid' );
+		$stmt->setString( ':marid', '%' );
+		$stmt->executeQuery();
+		
+		return $stmt;
+	}
+
+//-----------------------------------------------------------------------------
 }
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
 ?>
