@@ -1,13 +1,13 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation.php,v 1.4 2005/02/09 20:26:39 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation.php,v 1.5 2005/02/27 16:06:24 mblaschke Exp $ */
 
 class phpmediadb_presentation
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Short description of attribute PHPMEDIADB
+	 * Reference to class phpmediadb
 	 *
 	 * @access protected
 	 * @see phpmediadb
@@ -16,7 +16,7 @@ class phpmediadb_presentation
 	public $PHPMEDIADB = null;
 
 	/**
-	 * Short description of attribute SESSION
+	 * Reference to class phpmediadb_presentation_session
 	 *
 	 * @access public
 	 * @see phpmediadb_presentation_session
@@ -25,7 +25,7 @@ class phpmediadb_presentation
 	public $SESSION = null;
 
 	/**
-	 * Short description of attribute I18N
+	 * Reference to class phpmediadb_presentation_i18n
 	 *
 	 * @access public
 	 * @see phpmediadb_presentation_i18n
@@ -34,7 +34,7 @@ class phpmediadb_presentation
 	public $I18N = null;
 
 	/**
-	 * Short description of attribute CONTENTVARS
+	 * Reference to class phpmediadb_presentation_contentvars
 	 *
 	 * @access public
 	 * @see phpmediadb_presentation_contentvars
@@ -43,7 +43,7 @@ class phpmediadb_presentation
 	public $CONTENTVARS = null;
 
 	/**
-	 * Short description of attribute HTMLSERVICE
+	 * Reference to class phpmediadb_presentation_htmlservice
 	 *
 	 * @access public
 	 * @see phpmediadb_presentation_htmlservice
@@ -52,7 +52,7 @@ class phpmediadb_presentation
 	public $HTMLSERVICE = null;
 
 	/**
-	 * Short description of attribute XMLSERVICE
+	 * Reference to class phpmediadb_presentation_xmlservice
 	 *
 	 * @access public
 	 * @see phpmediadb_presentation_xmlservice
@@ -61,7 +61,7 @@ class phpmediadb_presentation
 	public $XMLSERVICE = null;
 
 	/**
-	 * Configurationcontainer of this tier
+	 * Container of configuration for the whole tier
 	 *
 	 * @access public
 	 * @var configuration
@@ -76,16 +76,13 @@ class phpmediadb_presentation
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb
-	 * @return void
 	 */
 	public function __construct( $sender )
 	{
-		global $phpMediaDbConfig;
-		
-		/* init configuration */
-		$this->configuration = array();
-		$this->configuration = $phpMediaDbConfig['PRESENTATION'];
-		unset( $phpMediaDbConfig['PRESENTATION'] );
+		/* init */
+
+		/* load configuration */
+		$this->loadConfiguration();
     	 
 		/* assign parent */
 		$this->PHPMEDIADB		= $sender;
@@ -97,18 +94,39 @@ class phpmediadb_presentation
 		$this->SESSION			= new phpmediadb_presentation_session( $this );
 		$this->XMLSERVICE		= new phpmediadb_presentation_xmlservice( $this );
 	}
-
+	
  /**
 	 * The destructor __destruct is responsible for closing all open files,
 	 * etc.
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return void
 	 */
 	public function __destruct()
 	{
-		 /* TODO */
+		/* nothing to do yet */
+	}
+	
+	
+	/**
+	 * Loads the configuration from the global array and resets the array
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param phpmediadb
+	 * @return void
+	 */
+	private function loadConfiguration()
+	{
+		/* init */
+		global $phpMediaDbConfig;
+		$this->configuration = array();
+				
+		/* get and set config */
+		@$this->configuration = $phpMediaDbConfig['PRESENTATION'];
+		
+		/* unset global configuration -> security */
+		unset( $phpMediaDbConfig['PRESENTATION'] );
 	}
 
 } /* end of class phpmediadb_presentation */
