@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_audios.php,v 1.4 2005/03/15 13:29:33 bruf Exp $ */
+/* $Id: class.phpmediadb_data_audios.php,v 1.5 2005/03/15 17:45:13 bruf Exp $ */
 
 class phpmediadb_data_audios
 {
@@ -65,7 +65,7 @@ class phpmediadb_data_audios
 	public function get( $AudioDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
+		$stmt = $conn->prepareStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
 		FROM AudioDatas a,
 		Languages b,
 		Items c,
@@ -75,7 +75,7 @@ class phpmediadb_data_audios
 		MediaAgeRestrictions g,
 		MediaStatus h,
 		BinaryDatas i
-		WHERE a.AudioDataID = :adid 
+		WHERE a.AudioDataID = ? 
 		AND a.LanguageID = b.LanguageID
 		AND a.ItemID = c.ItemID
 		AND c.ItemTypeID = d.ItemTypeID
@@ -84,10 +84,10 @@ class phpmediadb_data_audios
 		AND c.MediaAgeRestrictionID = g.MediaAgeRestrictionID
 		AND c.MediaStatusID = h.MediaStatusID
 		AND c.ItemPicturesID = i.ItemPicturesID' );
-		$stmt->setString( ':adid', $AudioDataID );
-		$stmt->executeQuery();
+		$stmt->setString( 1, $AudioDataID );
+		$rs = $stmt->executeQuery();
 		
-		return $stmt;
+		return $rs;
 	}
 
 //-----------------------------------------------------------------------------
@@ -99,10 +99,10 @@ class phpmediadb_data_audios
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getall()
+	public function getList()
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
+		$stmt = $conn->prepareStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
 		FROM AudioDatas a,
 		Languages b,
 		Items c,
@@ -112,7 +112,7 @@ class phpmediadb_data_audios
 		MediaAgeRestrictions g,
 		MediaStatus h,
 		BinaryDatas i
-		WHERE a.AudioDataID = :id 
+		WHERE a.AudioDataID LIKE "%" 
 		AND a.LanguageID = b.LanguageID
 		AND a.ItemID = c.ItemID
 		AND c.ItemTypeID = d.ItemTypeID
@@ -121,10 +121,9 @@ class phpmediadb_data_audios
 		AND c.MediaAgeRestrictionID = g.MediaAgeRestrictionID
 		AND c.MediaStatusID = h.MediaStatusID
 		AND c.ItemPicturesID = i.ItemPicturesID' );
-		$stmt->setString( ':id', '%' );
-		$stmt->executeQuery();
+		$rs = $stmt->executeQuery();
 		
-		return $stmt;
+		return $rs;
 	}
 
 //-----------------------------------------------------------------------------
@@ -139,13 +138,13 @@ class phpmediadb_data_audios
 	public function delete( $AudioDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'DELETE AudioDatas, Items, BinaryDatas, Categories_has_Items
+		$stmt = $conn->prepareStatement( 'DELETE AudioDatas, Items, BinaryDatas, Categories_has_Items
 		FROM AudioDatas, Items, BinaryDatas, Categories_has_Items
-		WHERE AudioDatas.AudioDataID = :adid
+		WHERE AudioDatas.AudioDataID = ?
 		AND AudioDatas.ItemID = Items.ItemID
 		AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID
 		AND Items.ItemID = Categories_has_Items.ItemID' );
-		$stmt->setString( ':adid', $AudioDataID );
+		$stmt->setString( 1, $AudioDataID );
 		$stmt->executeUpdate();
 	}
 
@@ -168,20 +167,20 @@ class phpmediadb_data_audios
 	$ItemRelease, $ItemMediaName, $ItemComment )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'INSERT INTO AudioDatas ( AudioDataMediaCount, AudioDataDiscID ) VALUES( :admc, :addi )' );
-		$stmt->setString( ':admc', $AudioDataMediaCount );
-		$stmt->setString( ':addi', $AudioDataDiscID );
+		$stmt = $conn->prepareStatement( 'INSERT INTO AudioDatas ( AudioDataMediaCount, AudioDataDiscID ) VALUES( ?, ? )' );
+		$stmt->setString( 1, $AudioDataMediaCount );
+		$stmt->setString( 2, $AudioDataDiscID );
 		$stmt->executeUpdate();
 		
-		$stmt = $conn->preparedStatement( 'INSERT INTO Items
+		$stmt = $conn->prepareStatement( 'INSERT INTO Items
 		( ItemTitle, ItemOriginalTitle, ItemRelease, ItemMediaName, ItemCreationDate, ItemModificationDate, ItemComment )
-		VALUES( :it, :iot, :ir, :imn, now(), now(), :ic )' );
-		$stmt->setString( ':it', $ItemTitle );
-		$stmt->setString( ':iot', $ItemOriginalTitle );
-		$stmt->setString( ':ir', $ItemRelease );
-		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':ic' , $ItemComment );
-		$stmt->executeUpdate(); 
+		VALUES( ?, ?, ?, ?, now(), now(), ? )' );
+		$stmt->setString( 1, $ItemTitle );
+		$stmt->setString( 2, $ItemOriginalTitle );
+		$stmt->setString( 3, $ItemRelease );
+		$stmt->setString( 4, $ItemMediaName );
+		$stmt->setString( 5, $ItemComment );
+		$stmt->executeUpdate();
 		
 	}
 
@@ -211,7 +210,7 @@ class phpmediadb_data_audios
 	$MediaAgeRestrictionID, $MediaStatusID, $ItemPicturesID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'UPDATE AudioDatas,
+		$stmt = $conn->prepareStatement( 'UPDATE AudioDatas,
 		Languages,
 		Items,
 		ItemTypes,
@@ -220,20 +219,20 @@ class phpmediadb_data_audios
 		MediaAgeRestrictions,
 		MediaStatus,
 		BinaryDatas
-		SET AudioDatas.AudioDataMediaCount = :admc,
-		AudioDatas.AudioDataDiscID = :addid,
-		Items.ItemTitle = :it,
-		Items.ItemOriginalTitle = :iot,
-		Items.ItemRelease = :ir,
-		Items.ItemMediaName = :imn,
+		SET AudioDatas.AudioDataMediaCount = ?,
+		AudioDatas.AudioDataDiscID = ?,
+		Items.ItemTitle = ?,
+		Items.ItemOriginalTitle = ?,
+		Items.ItemRelease = ?,
+		Items.ItemMediaName = ?,
 		Items.ItemModificationDate = now(),
-		Items.ItemComment = :ic,
-		Items.MediaCodecID = :mcid,
-		Items.MediaFormatID = :mfid,
-		Items.MediaAgeRestrictionID = :marid,
-		Items.MediaStatusID = :msid,
-		Items.ItemPicturesID = :ipid
-		WHERE AudioDatas.AudioDataID = :adid 
+		Items.ItemComment = ?,
+		Items.MediaCodecID = ?,
+		Items.MediaFormatID = ?,
+		Items.MediaAgeRestrictionID = ?,
+		Items.MediaStatusID = ?,
+		Items.ItemPicturesID = ?
+		WHERE AudioDatas.AudioDataID = ? 
 		AND AudioDatas.LanguageID = Languages.LanguageID
 		AND AudioDatas.ItemID = Items.ItemID
 		AND Items.ItemTypeID = ItemTypes.ItemTypeID
@@ -242,21 +241,50 @@ class phpmediadb_data_audios
 		AND Items.MediaAgeRestrictionID = MediaAgeRestrictions.MediaAgeRestrictionID
 		AND Items.MediaStatusID = MediaStatus.MediaStatusID
 		AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID' );
-		$stmt->setString( ':admc', $AudioDataMediaCount );
-		$stmt->setString( ':addid', $AudioDataDiscID );
-		$stmt->setString( ':it', $ItemTitle );
-		$stmt->setString( ':iot', $ItemOriginalTitle );
-		$stmt->setString( ':ir', $ItemRelease );
-		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':ic', $ItemComment );
-		$stmt->setString( ':mcid', $MediaCodecID );
-		$stmt->setString( ':mfid', $MediaFormatID );
-		$stmt->setString( ':marid', $MediaAgeRestrictionID );
-		$stmt->setString( ':msid', $MediaStatusID );
-		$stmt->setString( ':ipid', $ItemPicturesID );
-		$stmt->setString( ':adid', $AudioDataID );
+		$stmt->setString( 1, $AudioDataMediaCount );
+		$stmt->setString( 2, $AudioDataDiscID );
+		$stmt->setString( 3, $ItemTitle );
+		$stmt->setString( 4, $ItemOriginalTitle );
+		$stmt->setString( 5, $ItemRelease );
+		$stmt->setString( 6, $ItemMediaName );
+		$stmt->setString( 7, $ItemComment );
+		$stmt->setString( 8, $MediaCodecID );
+		$stmt->setString( 9, $MediaFormatID );
+		$stmt->setString( 10, $MediaAgeRestrictionID );
+		$stmt->setString( 11, $MediaStatusID );
+		$stmt->setString( 12, $ItemPicturesID );
+		$stmt->setString( 13, $AudioDataID );
 		$stmt->executeUpdate();
 		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns true when the record exists
+	 * and false when the record doesn't exist
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 * @return Boolean
+	 */
+	public function exist( $AudioDataID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->prepareStatement( 'SELECT COUNT(*)
+		FROM AudioDatas,
+		WHERE AudioDatas.AudioDataID = ?' );
+		$stmt->setString( 1, $AudioDataID );
+		$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
+		$rs->next();
+		if( $rs->get(1) >= 1 )
+			{
+			return true;
+			}
+		else
+			{
+			return false;
+			}
 	}
 
 //-----------------------------------------------------------------------------

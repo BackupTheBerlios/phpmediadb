@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_prints.php,v 1.4 2005/03/15 13:29:43 bruf Exp $ */
+/* $Id: class.phpmediadb_data_prints.php,v 1.5 2005/03/15 17:46:19 bruf Exp $ */
 
 class phpmediadb_data_prints
 {
@@ -64,7 +64,7 @@ class phpmediadb_data_prints
 	public function get( $PrintDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
+		$stmt = $conn->prepareStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
 		FROM PrintDatas a,
 		Languages b,
 		Items c,
@@ -74,7 +74,7 @@ class phpmediadb_data_prints
 		MediaAgeRestrictions g,
 		MediaStatus h,
 		BinaryDatas i
-		WHERE a.PrintDataID = :pdid 
+		WHERE a.PrintDataID = ? 
 		AND a.LanguageID = b.LanguageID
 		AND a.ItemID = c.ItemID
 		AND c.ItemTypeID = d.ItemTypeID
@@ -83,10 +83,10 @@ class phpmediadb_data_prints
 		AND c.MediaAgeRestrictionID = g.MediaAgeRestrictionID
 		AND c.MediaStatusID = h.MediaStatusID
 		AND c.ItemPicturesID = i.ItemPicturesID' );
-		$stmt->setString( ':pdid', $PrintDataID );
-		$stmt->executeQuery();
+		$stmt->setString( 1, $PrintDataID );
+		$rs = $stmt->executeQuery();
 		
-		return $stmt;
+		return $rs;
 	}
 
 //-----------------------------------------------------------------------------
@@ -98,10 +98,10 @@ class phpmediadb_data_prints
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getall()
+	public function getList()
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
+		$stmt = $conn->prepareStatement( 'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
 		FROM PrintDatas a,
 		Languages b,
 		Items c,
@@ -111,7 +111,7 @@ class phpmediadb_data_prints
 		MediaAgeRestrictions g,
 		MediaStatus h,
 		BinaryDatas i
-		WHERE a.PrintDataID = :pdid 
+		WHERE a.PrintDataID LIKE "%"
 		AND a.LanguageID = b.LanguageID
 		AND a.ItemID = c.ItemID
 		AND c.ItemTypeID = d.ItemTypeID
@@ -120,10 +120,9 @@ class phpmediadb_data_prints
 		AND c.MediaAgeRestrictionID = g.MediaAgeRestrictionID
 		AND c.MediaStatusID = h.MediaStatusID
 		AND c.ItemPicturesID = i.ItemPicturesID' );
-		$stmt->setString( ':pdid', '%' );
-		$stmt->executeQuery();
+		$rs = $stmt->executeQuery();
 		
-		return $stmt;
+		return $rs;
 	}
 
 //-----------------------------------------------------------------------------
@@ -138,13 +137,13 @@ class phpmediadb_data_prints
 	public function delete( $PrintDataID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'DELETE PrintDatas, Items, BinaryDatas, Categories_has_Items
+		$stmt = $conn->prepareStatement( 'DELETE PrintDatas, Items, BinaryDatas, Categories_has_Items
 		FROM PrintDatas, Items, BinaryDatas, Categories_has_Items
-		WHERE PrintDatas.PrintDataID = :pdid
+		WHERE PrintDatas.PrintDataID = ?
 		AND PrintDatas.ItemID = Items.ItemID
 		AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID
 		AND Items.ItemID = Categories_has_Items.ItemID' );
-		$stmt->setString( ':pdid', $PrintDataID );
+		$stmt->setString( 1, $PrintDataID );
 		$stmt->executeUpdate();
 	}
 
@@ -167,19 +166,19 @@ class phpmediadb_data_prints
 	$ItemRelease, $ItemMediaName, $ItemComment )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'INSERT INTO PrintDatas ( PrintDataMediaCount, PrintDataISBN ) VALUES( :pdmc, :pdisbn )' );
-		$stmt->setString( ':pdmc', $PrintDataMediaCount );
-		$stmt->setString( ':pdisbn', $PrintDataISBN );
+		$stmt = $conn->prepareStatement( 'INSERT INTO PrintDatas ( PrintDataMediaCount, PrintDataISBN ) VALUES( ?, ? )' );
+		$stmt->setString( 1, $PrintDataMediaCount );
+		$stmt->setString( 2, $PrintDataISBN );
 		$stmt->executeUpdate();
 		
-		$stmt = $conn->preparedStatement( 'INSERT INTO Items
+		$stmt = $conn->prepareStatement( 'INSERT INTO Items
 		( ItemTitle, ItemOriginalTitle, ItemRelease, ItemMediaName, ItemCreationDate, ItemModificationDate, ItemComment )
-		VALUES( :it, :iot, :ir, :imn, now(), now(), :ic )' );
-		$stmt->setString( ':it', $ItemTitle );
-		$stmt->setString( ':iot', $ItemOriginalTitle );
-		$stmt->setString( ':ir', $ItemRelease );
-		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':ic' , $ItemComment );
+		VALUES( ?, ?, ?, ?, now(), now(), ? )' );
+		$stmt->setString( 1, $ItemTitle );
+		$stmt->setString( 2, $ItemOriginalTitle );
+		$stmt->setString( 3, $ItemRelease );
+		$stmt->setString( 4, $ItemMediaName );
+		$stmt->setString( 5, $ItemComment );
 		$stmt->executeUpdate(); 
 		
 	}
@@ -210,7 +209,7 @@ class phpmediadb_data_prints
 	$MediaAgeRestrictionID, $MediaStatusID, $ItemPicturesID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'UPDATE PrintDatas,
+		$stmt = $conn->prepareStatement( 'UPDATE PrintDatas,
 		Languages,
 		Items,
 		ItemTypes,
@@ -219,20 +218,20 @@ class phpmediadb_data_prints
 		MediaAgeRestrictions,
 		MediaStatus,
 		BinaryDatas
-		SET PrintDatas.PrintDataMediaCount = :pdmc,
-		PrintDatas.PrintDataISBN = :pdisbn,
-		Items.ItemTitle = :it,
-		Items.ItemOriginalTitle = :iot,
-		Items.ItemRelease = :ir,
-		Items.ItemMediaName = :imn,
-		Items.ItemModificationDate = now(,
-		Items.ItemComment = :ic
-		Items.MediaCodecID = :mcid,
-		Items.MediaFormatID = :mfid,
-		Items.MediaAgeRestrictionID = :marid,
-		Items.MediaStatusID = :msid,
-		Items.ItemPicturesID = :ipid
-		WHERE PrintDatas.PrintDataID = :pdid 
+		SET PrintDatas.PrintDataMediaCount = ?,
+		PrintDatas.PrintDataISBN = ?,
+		Items.ItemTitle = ?,
+		Items.ItemOriginalTitle = ?,
+		Items.ItemRelease = ?,
+		Items.ItemMediaName = ?,
+		Items.ItemModificationDate = now(),
+		Items.ItemComment = ?,
+		Items.MediaCodecID = ?,
+		Items.MediaFormatID = ?,
+		Items.MediaAgeRestrictionID = ?,
+		Items.MediaStatusID = ?,
+		Items.ItemPicturesID = ?
+		WHERE PrintDatas.PrintDataID = ? 
 		AND PrintDatas.LanguageID = Languages.LanguageID
 		AND PrintDatas.ItemID = Items.ItemID
 		AND Items.ItemTypeID = ItemTypes.ItemTypeID
@@ -241,21 +240,50 @@ class phpmediadb_data_prints
 		AND Items.MediaAgeRestrictionID = MediaAgeRestrictions.MediaAgeRestrictionID
 		AND Items.MediaStatusID = MediaStatus.MediaStatusID
 		AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID' );
-		$stmt->setString( ':pdmc', $PrintDataMediaCount );
-		$stmt->setString( ':pdisbn', $PrintDataISBN );
-		$stmt->setString( ':it', $ItemTitle );
-		$stmt->setString( ':iot', $ItemOriginalTitle );
-		$stmt->setString( ':ir', $ItemRelease );
-		$stmt->setString( ':imn', $ItemMediaName );
-		$stmt->setString( ':ic', $ItemComment );
-		$stmt->setString( ':mcid', $MediaCodecID );
-		$stmt->setString( ':mfid', $MediaFormatID );
-		$stmt->setString( ':marid', $MediaAgeRestrictionID );
-		$stmt->setString( ':msid', $MediaStatusID );
-		$stmt->setString( ':ipid', $ItemPicturesID );
-		$stmt->setString( ':pdid', $PrintDataID );
+		$stmt->setString( 1, $PrintDataMediaCount );
+		$stmt->setString( 2, $PrintDataISBN );
+		$stmt->setString( 3, $ItemTitle );
+		$stmt->setString( 4, $ItemOriginalTitle );
+		$stmt->setString( 5, $ItemRelease );
+		$stmt->setString( 6, $ItemMediaName );
+		$stmt->setString( 7, $ItemComment );
+		$stmt->setString( 8, $MediaCodecID );
+		$stmt->setString( 9, $MediaFormatID );
+		$stmt->setString( 10, $MediaAgeRestrictionID );
+		$stmt->setString( 11, $MediaStatusID );
+		$stmt->setString( 12, $ItemPicturesID );
+		$stmt->setString( 13, $PrintDataID );
 		$stmt->executeUpdate();
 		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns true when the record exists
+	 * and false when the record doesn't exist
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 * @return Boolean
+	 */
+	public function exist( $PrintDataID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->prepareStatement( 'SELECT COUNT(*)
+		FROM PrintDatas,
+		WHERE PrintDatas.PrintDataID = ?' );
+		$stmt->setString( 1, $PrintDataID );
+		$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
+		$rs->next();
+		if( $rs->get(1) >= 1 )
+			{
+			return true;
+			}
+		else
+			{
+			return false;
+			}
 	}
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_formats.php,v 1.6 2005/03/15 13:30:23 bruf Exp $ */
+/* $Id: class.phpmediadb_data_formats.php,v 1.7 2005/03/15 17:46:07 bruf Exp $ */
 
 class phpmediadb_data_formats
 {
@@ -63,13 +63,13 @@ class phpmediadb_data_formats
 	public function get( $MediaFormatID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'SELECT *
+		$stmt = $conn->prepareStatement( 'SELECT *
 		FROM MediaFormats,
-		WHERE MediaFormats.MediaFormatID = :mfid' );
-		$stmt->setString( ':mfid', $MediaFormatID );
-		$stmt->executeQuery();
+		WHERE MediaFormats.MediaFormatID = ?' );
+		$stmt->setString( 1, $MediaFormatID );
+		$rs = $stmt->executeQuery();
 		
-		return $stmt;
+		return $rs;
 	}
 
 //-----------------------------------------------------------------------------
@@ -80,16 +80,15 @@ class phpmediadb_data_formats
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getall()
+	public function getList()
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'SELECT *
+		$stmt = $conn->prepareStatement( 'SELECT *
 		FROM MediaFormats,
-		WHERE MediaFormats.MediaFormatID = :mfid' );
-		$stmt->setString( ':mfid', '%' );
-		$stmt->executeQuery();
+		WHERE MediaFormats.MediaFormatID LIKE "%"' );
+		$rs = $stmt->executeQuery();
 		
-		return $stmt;
+		return $rs;
 	}
 
 //-----------------------------------------------------------------------------
@@ -104,10 +103,10 @@ class phpmediadb_data_formats
 	public function create( $MediaFormatName, $ItemTypeID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'INSERT INTO MediaFormats
-		( MediaFormatName, ItemTypeID ) VALUES( :mfn, :itid )' );
-		$stmt->setString( ':mfn', $MediaFormatName );
-		$stmt->setString( ':itid', $ItemTypeID );
+		$stmt = $conn->prepareStatement( 'INSERT INTO MediaFormats
+		( MediaFormatName, ItemTypeID ) VALUES( ?, ? )' );
+		$stmt->setString( 1, $MediaFormatName );
+		$stmt->setString( 2, $ItemTypeID );
 		$stmt->executeUpdate();
 		
 	}
@@ -125,13 +124,13 @@ class phpmediadb_data_formats
 	public function modify( $MediaFormatID, $MediaFormatName, $ItemTypeID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'UPDATE MediaFormats
-		SET MediaFormats.MediaFormatName = :mfn,
-		MediaFormats.ItemTypeID = :itid
-		WHERE MediaFormats.MediaFormatID = :mfid' );
-		$stmt->setString( ':mfn', $MediaFormatName );
-		$stmt->setString( ':itid', $ItemTypeID );
-		$stmt->setString( ':mfid', $MediaFormatID );
+		$stmt = $conn->prepareStatement( 'UPDATE MediaFormats
+		SET MediaFormats.MediaFormatName = ?,
+		MediaFormats.ItemTypeID = ?
+		WHERE MediaFormats.MediaFormatID = ?' );
+		$stmt->setString( 1, $MediaFormatName );
+		$stmt->setString( 2, $ItemTypeID );
+		$stmt->setString( 3, $MediaFormatID );
 		$stmt->executeUpdate();
 		
 	}
@@ -147,11 +146,40 @@ class phpmediadb_data_formats
 	public function delete( $MediaFormatID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'DELETE FROM MediaFormats
-		WHERE MediaFormats.MediaFormatID = :mfid' );
-		$stmt->setString( ':mfid', $MediaFormatID );
+		$stmt = $conn->prepareStatement( 'DELETE FROM MediaFormats
+		WHERE MediaFormats.MediaFormatID = ?' );
+		$stmt->setString( 1, $MediaFormatID );
 		$stmt->executeUpdate();
 		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns true when the record exists
+	 * and false when the record doesn't exist
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 * @return Boolean
+	 */
+	public function exist( $MediaFormatID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->prepareStatement( 'SELECT COUNT(*)
+		FROM MediaFormats,
+		WHERE MediaFormats.MediaFormatID = ?' );
+		$stmt->setString( 1, $MediaFormatID );
+		$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
+		$rs->next();
+		if( $rs->get(1) >= 1 )
+			{
+			return true;
+			}
+		else
+			{
+			return false;
+			}
 	}
 
 //-----------------------------------------------------------------------------

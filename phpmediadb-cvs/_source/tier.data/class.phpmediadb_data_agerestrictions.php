@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.5 2005/03/15 13:28:42 bruf Exp $ */
+/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.6 2005/03/15 17:44:52 bruf Exp $ */
 
 class phpmediadb_data_agerestrictions
 {
@@ -63,13 +63,13 @@ class phpmediadb_data_agerestrictions
 	public function get( $MediaAgeRestrictionID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'SELECT *
+		$stmt = $conn->prepareStatement( 'SELECT *
 		FROM MediaAgeRestrictions,
-		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = :marid' );
-		$stmt->setString( ':marid', $MediaAgeRestrictionID );
-		$stmt->executeQuery();
+		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
+		$stmt->setString( 1, $MediaAgeRestrictionID );
+		$rs = $stmt->executeQuery();
 		
-		return $stmt;
+		return $rs;
 	}
 
 //-----------------------------------------------------------------------------
@@ -80,16 +80,15 @@ class phpmediadb_data_agerestrictions
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getall()
+	public function getList()
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'SELECT *
+		$stmt = $conn->prepareStatement( 'SELECT *
 		FROM MediaAgeRestrictions,
-		WHERE MediaAgeRestrictions.MediaRestrictionID = :marid' );
-		$stmt->setString( ':marid', '%' );
-		$stmt->executeQuery();
+		WHERE MediaAgeRestrictions.MediaRestrictionID LIKE "%"' );
+		$rs = $stmt->executeQuery();
 		
-		return $stmt;
+		return $rs;
 	}
 
 //-----------------------------------------------------------------------------
@@ -103,12 +102,11 @@ class phpmediadb_data_agerestrictions
 	public function create( $MediaAgeRestriction )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'INSERT INTO MediaAgeRestrictions
-		( MediaAgeRestriction ) VALUES( :mar )' );
-		$stmt->setString( ':mar', $MediaAgeRestriction );
+		$stmt = $conn->prepareStatement( 'INSERT INTO MediaAgeRestrictions
+		( MediaAgeRestriction ) VALUES( ? )' );
+		$stmt->setString( 1, $MediaAgeRestriction );
 		$stmt->executeUpdate();
 		
-		return $stmt;
 	}
 
 //-----------------------------------------------------------------------------
@@ -123,11 +121,11 @@ class phpmediadb_data_agerestrictions
 	public function modify( $MediaAgeRestrictionID, $MediaAgeRestriction )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'UPDATE MediaAgeRestrictions
-		SET MediaAgeRestrictions.MediaAgeRestriction = :mar
-		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = :marid' );
-		$stmt->setString( ':mar', $MediaAgeRestriction );
-		$stmt->setString( ':marid', $MediaAgeRestrictionID );
+		$stmt = $conn->prepareStatement( 'UPDATE MediaAgeRestrictions
+		SET MediaAgeRestrictions.MediaAgeRestriction = ?
+		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
+		$stmt->setString( 1, $MediaAgeRestriction );
+		$stmt->setString( 2, $MediaAgeRestrictionID );
 		$stmt->executeUpdate();
 		
 	}
@@ -143,11 +141,40 @@ class phpmediadb_data_agerestrictions
 	public function delete( $MediaAgeRestrictionID )
 	{
 		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->preparedStatement( 'DELETE FROM MediaAgeRestrictions
-		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = :marid' );
-		$stmt->setString( ':marid', $MediaAgeRestrictionID );
+		$stmt = $conn->prepareStatement( 'DELETE FROM MediaAgeRestrictions
+		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
+		$stmt->setString( 1, $MediaAgeRestrictionID );
 		$stmt->executeUpdate();
 		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns true when the record exists
+	 * and false when the record doesn't exist
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 * @return Boolean
+	 */
+	public function exist( $MediaAgeRestrictionID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->prepareStatement( 'SELECT COUNT(*)
+		FROM MediaAgeRestrictions,
+		WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
+		$stmt->setString( 1, $MediaAgeRestrictionID );
+		$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
+		$rs->next();
+		if( $rs->get(1) >= 1 )
+			{
+			return true;
+			}
+		else
+			{
+			return false;
+			}
 	}
 
 //-----------------------------------------------------------------------------
