@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_videos.php,v 1.5 2005/03/15 17:46:48 bruf Exp $ */
+/* $Id: class.phpmediadb_data_videos.php,v 1.6 2005/03/15 18:17:12 bruf Exp $ */
 
 class phpmediadb_data_videos
 {
@@ -288,5 +288,6 @@ class phpmediadb_data_videos
 	}
 
 //-----------------------------------------------------------------------------
+}
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
 ?>
