@@ -1,7 +1,182 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: create-tables.sql,v 1.1 2005/03/17 20:03:44 mblaschke Exp $
+-- $Id: create-tables.sql,v 1.2 2005/03/24 21:24:11 mblaschke Exp $
 
+CREATE TABLE AudioDatas (
+  AudioDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemID INTEGER UNSIGNED NOT NULL,
+  TrackID INTEGER UNSIGNED NOT NULL,
+  LanguageID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(AudioDataID),
+  INDEX AudioDatas_FKIndex1(LanguageID),
+  INDEX AudioDatas_FKIndex2(TrackID),
+  INDEX AudioDatas_FKIndex3(ItemID)
+);
 
+CREATE TABLE BinaryDatas (
+  ItemPicturesID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  BinaryDataMimeType VARCHAR(255) NOT NULL,
+  BinaryDataSize INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(ItemPicturesID)
+);
 
+CREATE TABLE Categories (
+  CategoryID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  CategoryName VARCHAR(255) NOT NULL,
+  PRIMARY KEY(CategoryID)
+);
+
+CREATE TABLE Categories_has_Items (
+  ItemID INTEGER UNSIGNED NOT NULL,
+  CategoryID INTEGER UNSIGNED NOT NULL,
+  INDEX Categories_has_Items_FKIndex1(CategoryID),
+  INDEX Categories_has_Items_FKIndex2(ItemID)
+);
+
+CREATE TABLE Items (
+  ItemID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  PublisherID INTEGER UNSIGNED NOT NULL,
+  MediaAgeRestrictionID INTEGER UNSIGNED NOT NULL,
+  MediaCodecID INTEGER UNSIGNED NOT NULL,
+  MediaFormatID INTEGER UNSIGNED NOT NULL,
+  ItemPicturesID INTEGER UNSIGNED NOT NULL,
+  ItemTitle VARCHAR(255) NOT NULL,
+  ItemOriginalTitle VARCHAR(255) NOT NULL,
+  ItemReleaseDate VARCHAR(255) NOT NULL,
+  ItemMediaName VARCHAR(255) NOT NULL,
+  ItemCreationDate TIMESTAMP NOT NULL,
+  ItemModificationDate TIMESTAMP NOT NULL,
+  ItemComment BLOB NOT NULL,
+  ItemQuantity VARCHAR(255) NOT NULL,
+  ItemIdentifier VARCHAR(255) NOT NULL,
+  ItemTypeID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(ItemID),
+  INDEX Items_FKIndex1(ItemTypeID),
+  INDEX Items_FKIndex2(ItemPicturesID),
+  INDEX Items_FKIndex3(MediaFormatID),
+  INDEX Items_FKIndex4(MediaCodecID),
+  INDEX Items_FKIndex5(MediaAgeRestrictionID),
+  INDEX Items_FKIndex6(PublisherID)
+);
+
+CREATE TABLE ItemTypes (
+  ItemTypeID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemTypeCode VARCHAR(255) NOT NULL,
+  PRIMARY KEY(ItemTypeID)
+);
+
+CREATE TABLE Languages (
+  LanguageID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  LanguageName VARCHAR(255) NOT NULL,
+  LanguageCode VARCHAR(255) NOT NULL,
+  PRIMARY KEY(LanguageID)
+);
+
+CREATE TABLE MediaAgeRestrictions (
+  MediaAgeRestrictionID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  MediaAgeRestriction VARCHAR(255) NOT NULL,
+  PRIMARY KEY(MediaAgeRestrictionID)
+);
+
+CREATE TABLE MediaCodecs (
+  MediaCodecID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemTypeID INTEGER UNSIGNED NOT NULL,
+  MediaCodecName VARCHAR(255) NOT NULL,
+  PRIMARY KEY(MediaCodecID),
+  INDEX MediaCodecs_FKIndex1(ItemTypeID)
+);
+
+CREATE TABLE MediaFormats (
+  MediaFormatID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemTypeID INTEGER UNSIGNED NOT NULL,
+  MediaFormatName VARCHAR(255) NOT NULL,
+  PRIMARY KEY(MediaFormatID),
+  INDEX MediaFormats_FKIndex1(ItemTypeID)
+);
+
+CREATE TABLE MediaStatus (
+  MediaStatusID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  MediaStatus VARCHAR(255) NOT NULL,
+  PRIMARY KEY(MediaStatusID)
+);
+
+CREATE TABLE PersonActors (
+  PersonActorID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemID INTEGER UNSIGNED NOT NULL,
+  PersonID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(PersonActorID),
+  INDEX PersonActors_FKIndex1(PersonID),
+  INDEX PersonActors_FKIndex2(ItemID)
+);
+
+CREATE TABLE PersonAuthors (
+  PersonAuthorID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemID INTEGER UNSIGNED NOT NULL,
+  PersonID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(PersonAuthorID),
+  INDEX PersonAuthors_FKIndex1(PersonID),
+  INDEX PersonAuthors_FKIndex2(ItemID)
+);
+
+CREATE TABLE PersonDirectors (
+  PersonDirectorID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemID INTEGER UNSIGNED NOT NULL,
+  PersonID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(PersonDirectorID),
+  INDEX PersonDirectors_FKIndex1(PersonID),
+  INDEX PersonDirectors_FKIndex2(ItemID)
+);
+
+CREATE TABLE Persons (
+  PersonID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  PersonFirstName VARCHAR(255) NOT NULL,
+  PersonLastName VARCHAR(255) NOT NULL,
+  PRIMARY KEY(PersonID)
+);
+
+CREATE TABLE PrintDatas (
+  PrintDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemID INTEGER UNSIGNED NOT NULL,
+  LanguageID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(PrintDataID),
+  INDEX PrintDatas_FKIndex1(LanguageID),
+  INDEX PrintDatas_FKIndex2(ItemID)
+);
+
+CREATE TABLE Publishers (
+  PublisherID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  PublisherName VARCHAR(255) NOT NULL,
+  PRIMARY KEY(PublisherID)
+);
+
+CREATE TABLE Tracks (
+  TrackID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  TrackName VARCHAR(255) NOT NULL,
+  TrackArtist VARCHAR(255) NOT NULL,
+  TrackLength INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(TrackID)
+);
+
+CREATE TABLE TrackSounds (
+  TrackSoundID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  LanguageID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(TrackSoundID),
+  INDEX TrackSounds_FKIndex1(LanguageID)
+);
+
+CREATE TABLE TrackSubtitles (
+  LanguageSubtitle INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  LanguageID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(LanguageSubtitle),
+  INDEX TrackSubtitles_FKIndex1(LanguageID)
+);
+
+CREATE TABLE VideoDatas (
+  VideoDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemID INTEGER UNSIGNED NOT NULL,
+  LanguageID INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(VideoDataID),
+  INDEX VideoDatas_FKIndex1(LanguageID),
+  INDEX VideoDatas_FKIndex2(ItemID)
+);
 
 -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF -- EOF --
