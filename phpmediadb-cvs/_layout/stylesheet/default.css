@@ -1,5 +1,7 @@
 /* phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/ */
-/* $Id: default.css,v 1.3 2005/03/08 17:50:47 mblaschke Exp $ */
+/* $Id: default.css,v 1.4 2005/03/08 20:45:50 mblaschke Exp $ */
+
+/*** BASIC ELEMENTS **********************************************************/
 BODY { margin:0px 0px 0px 0px;padding:0px 0px 0px 0px; font-family:Helvetica,Arial; }
 
 IMG { border:0px; vertical-align:baseline;}
@@ -7,32 +9,43 @@ IMG { border:0px; vertical-align:baseline;}
 A, A:visited  { color:#0033CC;text-decoration: none; }
 A:hover {  color:#CC0033;  text-decoration: none; }
 
-/* HEADER */
+/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------- */
+
+/*** PHPMEDIADB-HEADER *******************************************************/
 #phpmediadb-header { background-color:#EEEEEE; margin:0px 0px 0px 0px; padding:5px;height:30px;border-bottom:1px solid grey; }
 #phpmediadb-header-title { font-weight:bold; }
 #phpmediadb-header-date { text-align:right;font-size: 0.8em; }
 
-/* MENU */
+/*** PHPMEDIADB-MENU *********************************************************/
 #phpmediadb-menu A, #phpmediadb-menu A:visited { color:black;padding:3px;border:1px solid #F3F3F3;text-decoration: none; }
 #phpmediadb-menu A:hover { color:black; background-color:#CCCCCC; padding:3px; border:1px solid #666666; text-decoration: none; }
 #phpmediadb-menu A:active { color:black; background-color:#E6E6E6; padding:3px; border:1px solid #666666; text-decoration: none; }
 
 #phpmediadb-menu { background-color:#EEEEEE;position:absolute;top:50px;left:5px; margin:0px; padding:5px; border:1px solid grey; width:125px; }
 
-/* BODY */
+/*** PHPMEDIADB-BODY *********************************************************/
 #phpmediadb-body { background-color:#EEEEEE;padding: 10px;border: 0px;margin: 10px 0px 0px 150px;border:1px solid grey; }
 
-#phpmediadb-body-menu A, #phpmediadb-body-menu A:visited { color:black;padding:3px;border:1px solid #F3F3F3;text-decoration: none; }
-#phpmediadb-body-menu A:hover { color:black; background-color:#CCCCCC; padding:3px; border:1px solid #666666; text-decoration: none; }
-#phpmediadb-body-menu A:active { color:black; background-color:#E6E6E6; padding:3px; border:1px solid #666666; text-decoration: none; }
+.phpmediadb-body-menu A, .phpmediadb-body-menu A:visited { color:black;padding:3px;border:1px solid #F3F3F3;text-decoration: none; }
+.phpmediadb-body-menu A:hover { color:black; background-color:#CCCCCC; padding:3px; border:1px solid #666666; text-decoration: none; }
+.phpmediadb-body-menu A:active { color:black; background-color:#E6E6E6; padding:3px; border:1px solid #666666; text-decoration: none; }
 
-/* FOOTER */
+/*** PHPMEDIADB-FOOTER *******************************************************/
 #phpmediadb-footer { background-color:#EEEEEE; position:absolute; bottom:0px; left:0px; right:0px; text-align:center;border-top:1px solid grey; }
 
+/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------- */
 
-/* SITE SPECIFIC */
+/*** PHPMEDIADB-BODY-HOME ****************************************************/
 #phpmediadb-body-home { text-align: center; }
 
+/*** PHPMEDIADB-BODY-LIST ****************************************************/
 
+/*** PHPMEDIADB-BODY-SEARCH **************************************************/
+
+/*** PHPMEDIADB-BODY-ABOUT ***************************************************/
 #phpmediadb-body-about-copyright{ } 
 /*--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---*/
