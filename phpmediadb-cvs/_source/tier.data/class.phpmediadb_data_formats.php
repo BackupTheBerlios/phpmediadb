@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_formats.php,v 1.4 2005/03/11 12:14:09 bruf Exp $ */
+/* $Id: class.phpmediadb_data_formats.php,v 1.5 2005/03/13 13:25:38 bruf Exp $ */
 
 class phpmediadb_data_formats
 {
@@ -80,7 +80,7 @@ class phpmediadb_data_formats
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String
 	 */
-	public function getallStatus()
+	public function getallFormats()
 	{
 		$conn = $this->DATA->SQL->getConnection();
 		$stmt = $conn->preparedStatement( 'SELECT *
@@ -90,6 +90,68 @@ class phpmediadb_data_formats
 		$stmt->executeQuery();
 		
 		return $stmt;
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function creates a new records in the table MediaStatus
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String
+	 * @param Integer
+	 */
+	public function createFormat( $MediaFormatName, $ItemTypeID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'INSERT INTO MediaFormats
+		( MediaFormatName, ItemTypeID ) VALUES( :mfn, :itid )' );
+		$stmt->setString( ':mfn', $MediaFormatName );
+		$stmt->setString( ':itid', $ItemTypeID );
+		$stmt->executeUpdate();
+		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function modifies a specified record from the table MediaStatus
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 * @param String
+	 * @param Integer
+	 */
+	public function modifyFormat( $MediaFormatID, $MediaFormatName, $ItemTypeID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'UPDATE MediaFormats
+		SET MediaFormats.MediaFormatName = :mfn,
+		MediaFormats.ItemTypeID = :itid
+		WHERE MediaFormats.MediaFormatID = :mfid' );
+		$stmt->setString( ':mfn', $MediaFormatName );
+		$stmt->setString( ':itid', $ItemTypeID );
+		$stmt->setString( ':mfid', $MediaFormatID );
+		$stmt->executeUpdate();
+		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function deletes a specified record from the table MediaStatus
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 */
+	public function deleteFormat( $MediaFormatID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'DELETE FROM MediaFormats
+		WHERE MediaFormats.MediaFormatID = :mfid' );
+		$stmt->setString( ':mfid', $MediaFormatID );
+		$stmt->executeUpdate();
+		
 	}
 
 //-----------------------------------------------------------------------------
