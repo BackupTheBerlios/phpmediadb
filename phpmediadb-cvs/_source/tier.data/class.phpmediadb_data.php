@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data.php,v 1.5 2005/02/27 16:03:16 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data.php,v 1.6 2005/03/02 15:36:28 bruf Exp $ */
 
 class phpmediadb_data
 {
@@ -41,6 +41,17 @@ class phpmediadb_data
     	 
 		/* assign parent */
 		$this->PHPMEDIADB		= $sender;
+		
+		/* assign childs */
+		$this->AGERESTRICTIONS	= new phpmediadb_data_agerestrictions( $this );
+		$this->AUDIOS			= new phpmediadb_data_audios( $this );
+		$this->CATEGORIES		= new phpmediadb_data_categories( $this );
+		$this->CODECS			= new phpmediadb_data_codecs( $this );
+		$this->FORMATS			= new phpmediadb_data_formats( $this );
+		$this->PRINTS			= new phpmediadb_data_prints( $this );
+		$this->SQL				= new phpmediadb_data_sql( $this );
+		$this->STATUS			= new phpmediadb_data_status( $this );
+		$this->VIDEOS			= new phpmediadb_data_videos( $this );
 	}
 
 	/**
