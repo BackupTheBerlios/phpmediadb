@@ -1,11 +1,11 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: insert-data.sql,v 1.2 2005/03/25 13:18:15 mblaschke Exp $
+-- $Id: insert-data.sql,v 1.3 2005/03/27 01:16:13 mblaschke Exp $
 
 --
 -- Daten für Tabelle `categories`
 --
 
-INSERT INTO `categories` (`CategoryID`, `CategoryName`) VALUES (1, 'Category_Action'),
+INSERT INTO `Categories` (`CategoryID`, `CategoryName`) VALUES (1, 'Category_Action'),
 (2, 'Category_Adventure'),
 (3, 'Category_Animation'),
 (4, 'Category_Comedy'),
@@ -30,7 +30,7 @@ INSERT INTO `categories` (`CategoryID`, `CategoryName`) VALUES (1, 'Category_Act
 -- Daten für Tabelle `itemtypes`
 --
 
-INSERT INTO `itemtypes` (`ItemTypeID`, `ItemTypeCode`) VALUES (1, 'AUDIO'),
+INSERT INTO `ItemTypes` (`ItemTypeID`, `ItemTypeCode`) VALUES (1, 'AUDIO'),
 (2, 'VIDEO'),
 (3, 'PRINT');
 
@@ -38,7 +38,7 @@ INSERT INTO `itemtypes` (`ItemTypeID`, `ItemTypeCode`) VALUES (1, 'AUDIO'),
 -- Daten für Tabelle `mediaagerestrictions`
 --
 
-INSERT INTO `mediaagerestrictions` (`MediaAgeRestrictionID`, `MediaAgeRestriction`) VALUES (1, 'AgeRestriction_Free'),
+INSERT INTO `MediaAgeRestrictions` (`MediaAgeRestrictionID`, `MediaAgeRestriction`) VALUES (1, 'AgeRestriction_Free'),
 (2, 'AgeRestriction_6Years'),
 (3, 'AgeRestriction_12Years'),
 (4, 'AgeRestriction_16Years'),
@@ -48,32 +48,32 @@ INSERT INTO `mediaagerestrictions` (`MediaAgeRestrictionID`, `MediaAgeRestrictio
 -- Daten für Tabelle `mediacodecs`
 --
 
-INSERT INTO `mediacodecs` (`MediaCodecID`, `ItemTypeID`, `MediaCodecName`, `MediaCodecBitrate`) VALUES (1, 1, 'MP3', NULL),
-(2, 1, 'OGG Vorbis', NULL),
-(3, 1, 'WAVE', NULL),
-(4, 1, 'WMA', NULL),
-(5, 1, 'AC3', NULL),
-(6, 1, 'MP3Pro', NULL),
-(7, 1, 'MPEGPlus', NULL),
-(8, 1, 'AAC', NULL),
-(9, 2, 'DivX', NULL),
-(10, 2, 'XviD', NULL),
-(11, 2, 'MPEG4', NULL),
-(12, 2, 'Dirac', NULL),
-(15, 2, 'MPEG2', NULL),
-(14, 2, 'Quicktime', NULL),
-(16, 1, 'AIFF/AIFC', NULL),
-(18, 1, 'PCM', NULL),
-(19, 3, 'PDF', NULL),
-(20, 3, 'Word (DOC)', NULL),
-(21, 3, 'OpenOffice (SWX)', NULL),
-(22, 3, 'RTF', NULL);
+INSERT INTO `MediaCodecs` (`MediaCodecID`, `ItemTypeID`, `MediaCodecName`) VALUES (1, 1, 'MP3'),
+(2, 1, 'OGG Vorbis'),
+(3, 1, 'WAVE'),
+(4, 1, 'WMA'),
+(5, 1, 'AC3'),
+(6, 1, 'MP3Pro'),
+(7, 1, 'MPEGPlus'),
+(8, 1, 'AAC'),
+(9, 2, 'DivX'),
+(10, 2, 'XviD'),
+(11, 2, 'MPEG4'),
+(12, 2, 'Dirac'),
+(15, 2, 'MPEG2'),
+(14, 2, 'Quicktime'),
+(16, 1, 'AIFF/AIFC'),
+(18, 1, 'PCM'),
+(19, 3, 'PDF'),
+(20, 3, 'Word (DOC)'),
+(21, 3, 'OpenOffice (SWX)'),
+(22, 3, 'RTF');
 
 --
 -- Daten für Tabelle `mediaformats`
 --
 
-INSERT INTO `mediaformats` (`MediaFormatID`, `ItemTypeID`, `MediaFormatName`) VALUES (1, 1, 'Datei'),
+INSERT INTO `MediaFormats` (`MediaFormatID`, `ItemTypeID`, `MediaFormatName`) VALUES (1, 1, 'Datei'),
 (2, 1, 'AudioCD'),
 (3, 1, 'AudioDVD'),
 (4, 1, 'MiniDisc'),
