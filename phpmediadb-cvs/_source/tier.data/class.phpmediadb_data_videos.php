@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_videos.php,v 1.8 2005/03/26 11:52:16 bruf Exp $ */
+/* $Id: class.phpmediadb_data_videos.php,v 1.9 2005/03/30 09:51:04 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the videos
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.8 $
+ * @version		$Revision: 1.9 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -67,14 +67,13 @@ class phpmediadb_data_videos
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Mixed array $rs contains result of database query
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @return Mixed getMessage() returns the error message
 	 */
 	public function get( $id )
 	{
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.ItemPicturesID
 												FROM VideoDatas a,
 												Items b,
@@ -92,12 +91,12 @@ class phpmediadb_data_videos
 												AND b.ItemPicturesID = g.ItemPicturesID' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
-			$this->DATA->SQL->commitTransaction( $conn );
+			
 			return $rs;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 
@@ -108,14 +107,13 @@ class phpmediadb_data_videos
 	 *
 	 * @access public
 	 * @return Mixed array $rs contains result of database query
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @return Mixed getMessagen() returns the error message
 	 */
 	public function getList()
 	{
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.ItemPicturesID
 												FROM VideoDatas a,
 												Items b,
@@ -123,21 +121,14 @@ class phpmediadb_data_videos
 												MediaCodecs d,
 												MediaFormats e,
 												MediaAgeRestrictions f,
-												BinaryDatas g
-												WHERE b.ItemID LIKE "%"
-												AND a.ItemID = b.ItemID
-												AND b.ItemTypeID = c.ItemTypeID
-												AND b.MediaCodecID = d.MediaCodecID
-												AND b.MediaFormatID = e.MediaFormatID
-												AND b.MediaAgeRestrictionID = f.MediaAgeRestrictionID
-												AND b.ItemPicturesID = g.ItemPicturesID' );
+												BinaryDatas g' );
 			$rs = $stmt->executeQuery();
-			$this->DATA->SQL->commitTransaction( $conn );
+			
 			return $rs;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 
@@ -290,7 +281,7 @@ class phpmediadb_data_videos
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Boolean $returnValue returns whether the specified record exists
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @return Mixed getMessage() returns the error message
 	 */
 	public function exist( $id )
 	{
@@ -300,9 +291,8 @@ class phpmediadb_data_videos
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
-												FROM VideoDatas,
+												FROM VideoDatas
 												WHERE VideoDatas.VideoDataID = ?' );
 			$stmt->setString( 1, $videoDataId );
 			$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
@@ -311,12 +301,12 @@ class phpmediadb_data_videos
 			/* check if item exists */
 			if( $rs->get(1) >= 1 )
 				$returnValue = true;
-			$this->DATA->SQL->commitTransaction( $conn );
+			
 			return $returnValue;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 

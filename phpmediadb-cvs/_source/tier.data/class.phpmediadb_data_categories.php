@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_categories.php,v 1.5 2005/03/26 11:38:14 bruf Exp $ */
+/* $Id: class.phpmediadb_data_categories.php,v 1.6 2005/03/30 09:50:06 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the categories
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -66,25 +66,24 @@ class phpmediadb_data_categories
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Mixed array $rs contains result of database query
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @return Mixed getMessage() returns the error message
 	 */
 	public function get( $id )
 	{
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'SELECT *
-												FROM Categories,
+												FROM Categories
 												WHERE Categories.CategoryID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
-			$this->DATA->SQL->commitTransaction( $conn );
+			
 			return $rs;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 
@@ -94,24 +93,22 @@ class phpmediadb_data_categories
 	 *
 	 * @access public
 	 * @return Mixed array $rs contains result of database query
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @return Mixed getMessage() returns the error message
 	 */
 	public function getList()
 	{
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'SELECT *
-												FROM Categories,
-												WHERE Categories.CategoryID LIKE "%"' );
+												FROM Categories' );
 			$rs = $stmt->executeQuery();
-			$this->DATA->SQL->commmitTransaction( $conn );
+			
 			return $rs;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 
@@ -205,7 +202,7 @@ class phpmediadb_data_categories
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Boolean $returnValue returns whether the specified record exists
-	 * @return Mixed rollbackTransaction() returns the error message
+	 * @return Mixed getMessage() returns the error message
 	 */
 	public function exist( $id )
 	{
@@ -215,9 +212,8 @@ class phpmediadb_data_categories
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
-												FROM Categories,
+												FROM Categories
 												WHERE Categories.CategoryID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
@@ -227,12 +223,11 @@ class phpmediadb_data_categories
 			if( $rs->get(1) >= 1 )
 				$returnValue = true;
 			
-			$this->DATA->SQL->commitTransaction( $conn );
 			return $returnValue;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 
@@ -278,7 +273,6 @@ class phpmediadb_data_categories
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'DELETE FROM Categories_has_Items
 												WHERE Categories_has_Items.ItemID = ?' );
 			$stmt->setString( 1, $id );

@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.8 2005/03/26 11:25:42 bruf Exp $ */
+/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.9 2005/03/30 09:49:43 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the agerestrictions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.8 $
+ * @version		$Revision: 1.9 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -66,24 +66,23 @@ class phpmediadb_data_agerestrictions
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed getMessage() returns the error message
 	 */
 	public function get( $id )
 	{
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'SELECT *
 												FROM MediaAgeRestrictions,
 												WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
-			$this->DATA->SQL->commitTransaction( $conn );
 			return $rs;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 
@@ -93,23 +92,21 @@ class phpmediadb_data_agerestrictions
 	 *
 	 * @access public
 	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed getMessage() returns the error message
 	 */
 	public function getList()
 	{
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'SELECT *
-												FROM MediaAgeRestrictions,
-												WHERE MediaAgeRestrictions.MediaRestrictionID LIKE "%"' );
+												FROM MediaAgeRestrictions' );
 			$rs = $stmt->executeQuery();
-			$this->DATA->SQL->commitTransaction( $conn );
 			return $rs;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 
@@ -120,6 +117,7 @@ class phpmediadb_data_agerestrictions
 	 * @access public
 	 * @param Mixed array $data contains all required data for the sql statement
 	 * @return Integer getLastInsert() returns id from the last created record
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function create( $data )
 	{
@@ -147,6 +145,7 @@ class phpmediadb_data_agerestrictions
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
 	 * @param Mixed array $data contains all required data for the sql statement
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function modify( $id, $data )
 	{
@@ -175,6 +174,7 @@ class phpmediadb_data_agerestrictions
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function delete( $id )
 	{
@@ -202,6 +202,7 @@ class phpmediadb_data_agerestrictions
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Boolean $returnValue returns whether the specified record exists
+	 * @return Mixed getMessage() returns the error message
 	 */
 	public function exist( $id )
 	{
@@ -210,7 +211,6 @@ class phpmediadb_data_agerestrictions
 		try
 		{	
 			$conn = $this->DATA->SQL->getConnection();
-			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement( 	'SELECT COUNT(*)
 												FROM MediaAgeRestrictions,
 												WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
@@ -221,12 +221,12 @@ class phpmediadb_data_agerestrictions
 			/* check if item exists */
 			if( $rs->get(1) >= 1 )
 				$returnValue = true;
-			$this->DATA->SQL->commitTransaction( $conn );
+				
 			return $returnValue;
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			return $e->getMessage();
 		}
 	}
 
