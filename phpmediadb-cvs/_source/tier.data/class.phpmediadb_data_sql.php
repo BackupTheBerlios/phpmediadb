@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_sql.php,v 1.6 2005/03/26 11:51:06 bruf Exp $ */
+/* $Id: class.phpmediadb_data_sql.php,v 1.7 2005/03/27 00:30:00 mblaschke Exp $ */
 
 /**
  * This is the class that provides often used sql actions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -69,10 +69,20 @@ class phpmediadb_data_sql
 	*/
 	public function getConnection()
 	{
-		$dsn		= $this->DATA->configuration['sqlconnection'];
-		$conntype	= $this->DATA->configuration['sqlconnection']['conntype'];
-		$conn = Creole::getConnection($dsn, $conntype );
-		return $conn;
+		try
+		{
+			/* try to connect to database */
+			$dsn		= $this->DATA->configuration['sqlconnection'];
+			$conntype	= $this->DATA->configuration['sqlconnection']['conntype'];
+			$conn = Creole::getConnection($dsn, $conntype );
+			return $conn;
+		}
+		catch( Exception $ex  )
+		{
+			/* connection failed -- exception thrown.. sorry, can't do anything */
+			echo $ex->getMessage();
+			die();
+		}
 	}
 	
 //-----------------------------------------------------------------------------
