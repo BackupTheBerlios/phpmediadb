@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb.php,v 1.5 2005/03/24 17:12:48 mblaschke Exp $ */
+/* $Id: class.phpmediadb.php,v 1.6 2005/03/27 00:40:27 mblaschke Exp $ */
 
 /**
  * This is the class that manages the whole tiers.
@@ -8,7 +8,7 @@
  * All tiers can be accessed via the refereces eg. PRESENTATION.
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	global
  */
@@ -58,9 +58,9 @@ class phpmediadb
 		global $phpMediaDbConfig;
 		
 		/* assign childs */
-		$this->PRESENTATION	= new phpmediadb_presentation( $this );
-		$this->BUSINESS		= new phpmediadb_business( $this );
 		$this->DATA			= new phpmediadb_data( $this );
+		$this->BUSINESS		= new phpmediadb_business( $this );
+		$this->PRESENTATION	= new phpmediadb_presentation( $this );
 		
 		/* unset global configuration - security */
 		unset( $phpMediaDbConfig );
