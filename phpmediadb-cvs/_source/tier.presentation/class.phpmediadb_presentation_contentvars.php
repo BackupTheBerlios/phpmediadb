@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.5 2005/03/15 10:12:02 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.6 2005/03/15 18:08:28 mblaschke Exp $ */
 
 class phpmediadb_presentation_contentvars
 {
@@ -172,11 +172,10 @@ class phpmediadb_presentation_contentvars
 		if( count( $nodeIndexArray ) == 1 )
 		{
 			/* ok, it is the last item.. generate one more array and stop recursive call */
-			if( NULL == $nodeValue )
-				//$nodeArray["$nodeCurrentIndex"] = $nodeValue;
+			if( NULL === $nodeValue )
 				unset( $nodeArray["$nodeCurrentIndex"] );
 			else
-				$nodeArray["$nodeCurrentIndex"] = (string) $nodeValue;
+				$nodeArray["$nodeCurrentIndex"] = $nodeValue;
 		}
 		else
 		{
@@ -196,7 +195,6 @@ class phpmediadb_presentation_contentvars
 			/* check if key is array and add array if not */
 			if( !is_array( $nodeArray["$nodeCurrentIndex"] ) )
 				$nodeArray["$nodeCurrentIndex"] = array();
-
 			$this->recursiveInsertNodeIntoContainer( $nodeNextIndex, $nodeValue, $nodeArray["$nodeCurrentIndex"] );
 
 		}
@@ -297,26 +295,40 @@ class phpmediadb_presentation_contentvars
 	protected function convertNodeValue( $nodeValue, $nodeFormat )
 	{
 		$returnValue = null;
-
-
-		switch( $nodeFormat )
+	
+		switch( gettype( $nodeValue ) )
 		{
-			/* plaintext content */
-			case(PHPMEDIADB_NODEFORMAT_TEXT):
-					$returnValue = htmlentities( $nodeValue );
-				break;
-
-			/* html content */
-			case(PHPMEDIADB_NODEFORMAT_HTML):
-					$returnValue = $nodeValue;
-				break;
-
-			/* not supported format */
+			case 'array';
+					foreach( $nodeValue as $key => $value )
+					{
+						/* recursive call */
+						$returnValue[$key] = $this->convertNodeValue( $nodeValue[$key], $nodeFormat );
+					}
+				break;	
+			
+			/* let's convert */
 			default:
-					$returnValue = $nodeValue;
+					switch( $nodeFormat )
+					{
+							/* plaintext content */
+							case(PHPMEDIADB_NODEFORMAT_TEXT):
+									$returnValue = htmlentities( $nodeValue );
+								break;
+								
+						/* html content */
+						case(PHPMEDIADB_NODEFORMAT_HTML):
+									$returnValue = $nodeValue;
+								break;
+								
+						/* not supported format */
+						default:
+									$returnValue = $nodeValue;
+								break;	
+						
+					}
 				break;
 		}
-		
+
 		/* return value */
 		return $returnValue;
 	}
