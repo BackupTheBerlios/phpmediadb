@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.6 2005/03/24 17:12:17 mblaschke Exp $ */
+/* $Id: item-session.php,v 1.7 2005/03/24 20:43:02 mblaschke Exp $ */
 /**
  * This file edits the item in the session and save or creates it
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb_html
  * @subpackage	access_admin
  */
@@ -27,10 +27,10 @@ function itemShow( $sessionItem )
 	
 	/* get database-vars */
 	/*
-	$categories				= $PHPMEDIADB->BUSINESS->CATEGORIES->getList();
-	$formats					= $PHPMEDIADB->BUSINESS->FORMAT->getList();
+	$categories			= $PHPMEDIADB->BUSINESS->CATEGORIES->getList();
+	$formats			= $PHPMEDIADB->BUSINESS->FORMAT->getList();
 	$ageRestrictions	= $PHPMEDIADB->BUSINESS->AGERESTRICTIONS->getList();
-	$codecs						= $PHPMEDIADB->BUSINESS->CODECS->getList();
+	$codecs				= $PHPMEDIADB->BUSINESS->CODECS->getList();
 	*/
 	
 	/* assign database-vars */
@@ -88,19 +88,21 @@ function itemSave( $sessionItem )
 	switch( $sessionItem['type'] )
 	{
 		case(PHPMEDIADB_ITEM_AUDIO):
-		
-		if( $sessionItem['id'] === NULL )
-			$errorData = $PHPMEDIADB->BUSINESS->AUDIOS->create( $sessionItem['data'] );
-		else 
-			$errorData = $PHPMEDIADB->BUSINESS->AUDIOS->modify( $sessionItem['id'], $sessionItem['data'] );
+		/* check data */
+		$errorData = $PHPMEDIADB->BUSINESS->AUDIOS->check( $sessionItem['data'] );
 			
 		if( $errorData === NULL || $errorData === TRUE )
 		{
-			/* happy, no error :) */
+			/* no error occurred :) */
+			if( $sessionItem['id'] === NULL )
+				$status = $PHPMEDIADB->BUSINESS->AUDIOS->create( $sessionItem['data'] );
+			else 
+				$status = $PHPMEDIADB->BUSINESS->AUDIOS->modify( $sessionItem['id'], $sessionItem['data'] );
+				
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE', $PHPMEDIADB->PRESENTATION->I18N->getLanguageString( 'MESSAGE_SUCCESS_SAVE' ) );
 			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.message.tpl' );
 			$PHPMEDIADB->PRESENTATION->SESSION->unregister( 'sessionitem' );
-			die();
+			die();		
 		}
 		else
 		{
