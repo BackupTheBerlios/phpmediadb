@@ -1,13 +1,13 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_i18n.php,v 1.3 2005/02/09 20:29:48 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_i18n.php,v 1.4 2005/02/27 16:05:51 mblaschke Exp $ */
 
 class phpmediadb_presentation_i18n
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Short description of attribute PHPMEDIADB
+	 * Reference to class phpmediadb
 	 *
 	 * @access protected
 	 * @see phpmediadb
@@ -16,7 +16,7 @@ class phpmediadb_presentation_i18n
 	protected $PHPMEDIADB = null;
 
 	/**
-	 * Short description of attribute PRESENTATION
+	 * Reference to class phpmediadb_presentation
 	 *
 	 * @access protected
 	 * @see phpmediadb_presentation
@@ -25,7 +25,7 @@ class phpmediadb_presentation_i18n
 	protected $PRESENTATION = null;
 	
 	/**
-	 * Short description of attribute langContainer
+	 * Container with all translated languagestrings
 	 *
 	 * @access private
 	 * @var mixed
@@ -33,7 +33,7 @@ class phpmediadb_presentation_i18n
 	private $langContainer = null;
 	
 	/**
-	 * Short description of attribute availableLanguagesContainer
+	 * Container with all available languages
 	 *
 	 * @access private
 	 * @var mixed
@@ -41,7 +41,7 @@ class phpmediadb_presentation_i18n
 	private $availableLanguagesContainer = null;
 	
 	/**
-	 * Short description of attribute langCode
+	 * Currently used languagecode
 	 *
 	 * @access private
 	 * @var mixed
@@ -56,7 +56,6 @@ class phpmediadb_presentation_i18n
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_presentation
-	 * @return void
 	 */
 	public function __construct( $sender )
 	{
@@ -282,6 +281,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @return void
 	 */
 	 protected function readI18nDirectory()
 	 {
@@ -308,6 +308,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @return void
 	 */
 	protected function initalizeLanguageContainer()
 	{
@@ -324,6 +325,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @return void
 	 */
   protected function loadLanagueFile( $langCode )
   {
