@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.6 2005/03/15 18:09:05 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.7 2005/03/15 20:24:28 mblaschke Exp $ */
 
 class phpmediadb_presentation_htmlservice
 {
@@ -39,7 +39,7 @@ class phpmediadb_presentation_htmlservice
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb_presentation
+	 * @param phpmediadb_presentation $sender Reference to parentclass
 	 */
 	public function __construct( $sender )
 	{
@@ -58,7 +58,8 @@ class phpmediadb_presentation_htmlservice
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
+	 * @param String $template Filename of template
+	 * @return mixed compiled template as html or text
 	 */
 	public function compile( $template )
 	{
@@ -84,14 +85,6 @@ class phpmediadb_presentation_htmlservice
 				break;	
 		}
 		
-		/* compile header */
-		$content['DOCUMENT']['HEADER'] = $this->templateEngine->fetch( 'overall.header.tpl' );
-		/* compile menu */
-		$content['DOCUMENT']['MENU'] = $this->templateEngine->fetch( 'overall.menu.tpl' );
-		/* compile footer */
-		$content['DOCUMENT']['FOOTER'] = $this->templateEngine->fetch( 'overall.footer.tpl' );
-		
-		
 		/* compile pre-template */
 		$this->templateEngine->assign( $content );
 		$returnValue = $this->templateEngine->fetch( 'overall.body.tpl' );
@@ -105,7 +98,7 @@ class phpmediadb_presentation_htmlservice
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
+	 * @param String $template Filename of template
 	 */	
 	public function display( $template )
 	{
@@ -159,6 +152,8 @@ class phpmediadb_presentation_htmlservice
 		$this->templateEngine->template_dir	= $this->PRESENTATION->configuration['directory']['templates'];
 		$this->templateEngine->compile_dir	= $this->PRESENTATION->configuration['directory']['templates_c'];
 	}
+	
+//-----------------------------------------------------------------------------
 } /* end of class phpmediadb_presentation_htmlservice */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
