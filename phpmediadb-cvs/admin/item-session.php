@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.9 2005/03/31 16:25:22 mblaschke Exp $ */
+/* $Id: item-session.php,v 1.10 2005/04/06 13:50:12 bruf Exp $ */
 /**
  * This file edits the item in the session and save or creates it
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.9 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb_html
  * @subpackage	access_admin
  */
@@ -26,7 +26,7 @@ function itemShow( $sessionItem )
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTSIZE', $itemSize );
 	
 	/* get database-vars */
-	$categories			= $PHPMEDIADB->BUSINESS->CATEGORIES->getList();
+	$categories			= $PHPMEDIADB->BUSINESS->CATEGORIES->getListByItemType( $sessionItem['type'] );
 	$formats			= $PHPMEDIADB->BUSINESS->FORMATS->getListByItemType( $sessionItem['type'] );
 	$ageRestrictions	= $PHPMEDIADB->BUSINESS->AGERESTRICTIONS->getList();
 	$codecs				= $PHPMEDIADB->BUSINESS->CODECS->getListByItemType( $sessionItem['type'] );
@@ -36,7 +36,7 @@ function itemShow( $sessionItem )
 	$formats			= $PHPMEDIADB->BUSINESS->FORMATS->translate( $formats );
 	$ageRestrictions	= $PHPMEDIADB->BUSINESS->AGERESTRICTIONS->translate( $ageRestrictions );
 	$codecs				= $PHPMEDIADB->BUSINESS->CODECS->translate( $codecs );
-	
+
 	/* assign database-vars */
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.CATEGORIES', $categories );
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.MEDIAFORMATS', $formats );

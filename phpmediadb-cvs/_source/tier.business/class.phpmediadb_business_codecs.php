@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_codecs.php,v 1.6 2005/03/31 16:27:07 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_codecs.php,v 1.7 2005/04/06 13:51:20 bruf Exp $ */
 
 /**
  * This is the class that manages all functions of the codecs
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -118,6 +118,7 @@ class phpmediadb_business_codecs
 		/* return data */
 		return $returnValue;
 	}
+	
 //-----------------------------------------------------------------------------
 	/**
 	 * Adds one item into the database
@@ -209,15 +210,12 @@ class phpmediadb_business_codecs
 	 */
 	public function translate( $data )
 	{
-		/* init */
-		$returnValue = false;
-		
 		/* translate database data */
 		foreach( $data as $key => $value )
-			$returnValue[$key]['mediacodecname'] = $this->PHPMEDIADB->PRESENTATION->I18N->translate( $data[$key]['mediacodecname'] );
+			$data[$key]['mediacodecname'] = $this->PHPMEDIADB->PRESENTATION->I18N->translate( $data[$key]['mediacodecname'] );
 		
 		/* return data */
-		return $returnValue;
+		return $data;
 	}
 	
 //-----------------------------------------------------------------------------

@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_formats.php,v 1.6 2005/03/31 16:27:07 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_formats.php,v 1.7 2005/04/06 13:51:32 bruf Exp $ */
 
 /**
  * This is the class that manages all functions of the formats
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -210,15 +210,12 @@ class phpmediadb_business_formats
 	 */
 	public function translate( $data )
 	{
-		/* init */
-		$returnValue = false;
-		
 		/* translate database data */
 		foreach( $data as $key => $value )
-			$returnValue[$key]['mediaformatname'] = $this->PHPMEDIADB->PRESENTATION->I18N->translate( $data[$key]['mediaformatname'] );
+			$data[$key]['mediaformatname'] = $this->PHPMEDIADB->PRESENTATION->I18N->translate( $data[$key]['mediaformatname'] );
 		
 		/* return data */
-		return $returnValue;
+		return $data;
 	}
 	
 //-----------------------------------------------------------------------------

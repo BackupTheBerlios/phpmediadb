@@ -33,16 +33,16 @@
 	<tr>
 		<td>{$I18N.MEDIA_IDENTIFICATION|default:"%MEDIA_IDENTIFICATION%"}</td>
 		<td>
-			<input type="text" name="itemdata[ItemIdentification]" maxlength="{$INPUTSIZE.ItemIdentification|default:"255"}" value="{$ITEMDATA.ItemIdentification}" />
-			{if $INPUTERROR.flag.ItemIdentification eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
+			<input type="text" name="itemdata[ItemIdentifier]" maxlength="{$INPUTSIZE.ItemIdentifier|default:"255"}" value="{$ITEMDATA.ItemIdentifier}" />
+			{if $INPUTERROR.flag.ItemIdentifier eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
 
 	<tr>
 		<td>{$I18N.MEDIA_RELEASEYEAR|default:"%MEDIA_RELEASEYEAR%"}</td>
 		<td>
-			<input type="text" name="itemdata[ItemRelease]" maxlength="{$INPUTSIZE.ItemRelease|default:"4"}" value="{$ITEMDATA.ItemRelease}" />
-			{if $INPUTERROR.flag.ItemRelease eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
+			<input type="text" name="itemdata[ItemReleaseDate]" maxlength="{$INPUTSIZE.ItemReleaseDate|default:"4"}" value="{$ITEMDATA.ItemReleaseDate}" />
+			{if $INPUTERROR.flag.ItemReleaseDate eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
 	
@@ -144,6 +144,14 @@
 		<td>
 			<input type="text" name="itemdata[ItemQuantity]" maxlength="{$INPUTSIZE.ItemQuantity|default:"255"}" value="{$ITEMDATA.ItemQuantity}" />
 			{if $INPUTERROR.flag.ItemQuantity eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
+		</td>
+	</tr>
+	
+	<tr>
+		<td>{$I18N.MEDIA_COMMENT|default:"%MEDIA_COMMENT%"}</td>
+		<td>
+			<textarea name="itemdata[ItemComment]" cols="40" rows="10">{$ITEMDATA.ItemComment}</textarea>
+			{if $INPUTERROR.flag.ItemComment eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
 	
