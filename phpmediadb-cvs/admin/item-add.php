@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-add.php,v 1.1 2005/03/15 17:37:30 mblaschke Exp $ */
+/* $Id: item-add.php,v 1.2 2005/03/20 17:16:03 mblaschke Exp $ */
 
 require_once( '../_source/phpmediadb.php' );
 
@@ -46,7 +46,7 @@ switch( @$_GET['type'] )
 
 	default:
 			/* display site */
-			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( 'body.item.add.choice.tpl' );
+			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.item.add.choice.tpl' );
 		break;
 }
 

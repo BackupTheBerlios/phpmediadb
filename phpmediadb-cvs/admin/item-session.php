@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.4 2005/03/16 14:57:53 bruf Exp $ */
+/* $Id: item-session.php,v 1.5 2005/03/20 17:16:03 mblaschke Exp $ */
 
 require_once( '../_source/phpmediadb.php' );
 
@@ -36,7 +36,7 @@ function itemShow( $sessionItem )
 			/* assign data */
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'ITEMDATA', $sessionItem['data'] );
 			/* display site */
-			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( 'body.item.audio.formular.tpl' );
+			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.item.audio.formular.tpl' );
 		break;
 	
 	
@@ -44,7 +44,7 @@ function itemShow( $sessionItem )
 			/* assign data */
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'ITEMDATA', $sessionItem['data'] );
 			/* display site */
-			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( 'body.item.video.formular.tpl' );
+			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.item.video.formular.tpl' );
 		break;
 	
 	
@@ -52,7 +52,7 @@ function itemShow( $sessionItem )
 			/* assign data */
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'ITEMDATA', $sessionItem['data'] );
 			/* display site */
-			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( 'body.item.print.formular.tpl' );
+			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.item.print.formular.tpl' );
 		break;
 	}
 }
@@ -89,7 +89,7 @@ function itemSave( $sessionItem )
 		{
 			/* happy, no error :) */
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE', $PHPMEDIADB->PRESENTATION->I18N->getLanguageString( 'MESSAGE_SUCCESS_SAVE' ) );
-			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( 'body.message.tpl' );
+			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.message.tpl' );
 			$PHPMEDIADB->PRESENTATION->SESSION->unregister( 'sessionitem' );
 			die();
 		}

@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: list.php,v 1.1 2005/03/08 17:54:16 mblaschke Exp $ */
+/* $Id: list.php,v 1.2 2005/03/20 17:15:52 mblaschke Exp $ */
 
 require_once( '_source/phpmediadb.php' );
 
@@ -17,25 +17,25 @@ switch( @$_GET['list'] )
 		case 'audio':
 				/* display site */
 				$templates[] = 'body.list.audio.tpl';
-				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( $templates );
+				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( $templates );
 			break;
 			
 		case 'video':
 				/* display site */
 				$templates[] = 'body.list.video.tpl';
-				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( $templates );
+				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( $templates );
 			break;
 			
 		case 'print':
 				/* display site */
 				$templates[] = 'body.list.print.tpl';
-				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( $templates );
+				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( $templates );
 			break;
 			
 		default:
 				/* display site */
 				$templates[] = 'body.list.tpl';
-				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( $templates );
+				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( $templates );
 			break;
 }
 

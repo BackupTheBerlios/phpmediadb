@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: search.php,v 1.2 2005/03/08 20:48:49 mblaschke Exp $ */
+/* $Id: search.php,v 1.3 2005/03/20 17:15:52 mblaschke Exp $ */
 
 require_once( '_source/phpmediadb.php' );
 
@@ -16,13 +16,13 @@ switch( @$_GET['action'] )
 		case 'search':
 				/* display site */
 				/* TODO */
-				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( $templates );
+				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( $templates );
 			break;
 					
 		default:
 				/* display site */
 				/* TODO */
-				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->display( $templates );
+				$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( $templates );
 			break;
 }
 
