@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_categories.php,v 1.6 2005/03/30 09:50:06 bruf Exp $ */
+/* $Id: class.phpmediadb_data_categories.php,v 1.7 2005/03/31 10:12:31 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the categories
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -65,7 +65,7 @@ class phpmediadb_data_categories
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed array generateDataArray() returns the results of database query
 	 * @return Mixed getMessage() returns the error message
 	 */
 	public function get( $id )
@@ -79,7 +79,7 @@ class phpmediadb_data_categories
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
 			
-			return $rs;
+			return $this->DATA->SQL->generateDataArray( $rs );
 		}
 		catch( Exception $e )
 		{
@@ -92,7 +92,7 @@ class phpmediadb_data_categories
 	 * This function returns all records from the table Categories
 	 *
 	 * @access public
-	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed array generateDataArray() returns the results of database query
 	 * @return Mixed getMessage() returns the error message
 	 */
 	public function getList()
@@ -104,7 +104,7 @@ class phpmediadb_data_categories
 												FROM Categories' );
 			$rs = $stmt->executeQuery();
 			
-			return $rs;
+			return $this->DATA->SQL->generateDataArray( $rs );
 		}
 		catch( Exception $e )
 		{

@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_audios.php,v 1.8 2005/03/30 09:49:54 bruf Exp $ */
+/* $Id: class.phpmediadb_data_audios.php,v 1.9 2005/03/31 10:12:20 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the audios
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.8 $
+ * @version		$Revision: 1.9 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -67,7 +67,7 @@ class phpmediadb_data_audios
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed array generateDataArray() returns the results of database query
 	 * @return Mixed getMessage() returns the error message
 	 */
 	public function get( $id )
@@ -93,7 +93,7 @@ class phpmediadb_data_audios
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
 			
-			return $rs;
+			return $this->DATA->SQL->generateDataArray( $rs );
 		}
 		catch( Exception $e )
 		{
@@ -107,7 +107,7 @@ class phpmediadb_data_audios
 	 * and all required data from the other tables
 	 *
 	 * @access public
-	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed array generateDataArray() returns the results of database query
 	 * @return Mixed getMessage() returns the error message
 	 */
 	public function getList()
@@ -125,7 +125,7 @@ class phpmediadb_data_audios
 												BinaryDatas g' );
 			$rs = $stmt->executeQuery();
 			
-			return $rs;
+			return $this->DATA->SQL->generateDataArray( $rs );
 		}
 		catch( Exception $e )
 		{

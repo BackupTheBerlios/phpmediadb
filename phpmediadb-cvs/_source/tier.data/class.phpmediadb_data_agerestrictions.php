@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.9 2005/03/30 09:49:43 bruf Exp $ */
+/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.10 2005/03/31 10:12:10 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the agerestrictions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.9 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -65,7 +65,7 @@ class phpmediadb_data_agerestrictions
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed array generateDataArray() returns the results of database query
 	 * @return Mixed getMessage() returns the error message
 	 */
 	public function get( $id )
@@ -74,11 +74,11 @@ class phpmediadb_data_agerestrictions
 		{
 			$conn = $this->DATA->SQL->getConnection();
 			$stmt = $conn->prepareStatement(	'SELECT *
-												FROM MediaAgeRestrictions,
+												FROM MediaAgeRestrictions
 												WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
-			return $rs;
+			return $this->DATA->SQL->generateDataArray( $rs );
 		}
 		catch( Exception $e )
 		{
@@ -91,7 +91,7 @@ class phpmediadb_data_agerestrictions
 	 * This function returns all records from the table MediaAgeRestrictions
 	 *
 	 * @access public
-	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed array generateDataArray() returns the results of database query
 	 * @return Mixed getMessage() returns the error message
 	 */
 	public function getList()
@@ -102,7 +102,7 @@ class phpmediadb_data_agerestrictions
 			$stmt = $conn->prepareStatement(	'SELECT *
 												FROM MediaAgeRestrictions' );
 			$rs = $stmt->executeQuery();
-			return $rs;
+			return $this->DATA->SQL->generateDataArray( $rs );
 		}
 		catch( Exception $e )
 		{
@@ -212,7 +212,7 @@ class phpmediadb_data_agerestrictions
 		{	
 			$conn = $this->DATA->SQL->getConnection();
 			$stmt = $conn->prepareStatement( 	'SELECT COUNT(*)
-												FROM MediaAgeRestrictions,
+												FROM MediaAgeRestrictions
 												WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );

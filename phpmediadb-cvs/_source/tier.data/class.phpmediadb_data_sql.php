@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_sql.php,v 1.7 2005/03/27 00:30:00 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_sql.php,v 1.8 2005/03/31 10:13:14 bruf Exp $ */
 
 /**
  * This is the class that provides often used sql actions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.7 $
+ * @version		$Revision: 1.8 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -151,6 +151,25 @@ class phpmediadb_data_sql
 		return $error;
 	}
 	
+//-----------------------------------------------------------------------------
+	/**
+	 * This function generates an array an fill in the data from the sql query
+	 *
+	 * @access public
+	 * @param String $rs is the resultset from the sql query
+	 * @return Mixed $dataArray contains the results of the sql query
+	*/
+	public function generateDataArray( $rs )
+	{
+
+		while ($rs->next())
+		{
+			$dataArray[] = $rs->GetRow();
+		}
+
+		return $dataArray;
+	}
+		
 //-----------------------------------------------------------------------------
 } /* end of class phpmediadb_data_sql */
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
