@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_formats.php,v 1.12 2005/03/31 15:19:34 bruf Exp $ */
+/* $Id: class.phpmediadb_data_formats.php,v 1.13 2005/03/31 15:38:17 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the formats
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.12 $
+ * @version		$Revision: 1.13 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -120,14 +120,14 @@ class phpmediadb_data_formats
 	 * @return Mixed array generateDataArray() returns the results of database query
 	 * @return Mixed getMessage() returns the error message
 	 */
-	public function getListByItem( $id )
+	public function getListByItemType( $id )
 	{
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$stmt = $conn->prepareStatement(	'SELECT MediaFormats.*
-												FROM MediaFormats, Items
-												WHERE Items.ItemTypeID = ?' );
+			$stmt = $conn->prepareStatement(	'SELECT *
+												FROM MediaFormats
+												WHERE ItemTypeID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
 			
