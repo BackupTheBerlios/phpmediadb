@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation.php,v 1.3 2005/02/09 16:20:45 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation.php,v 1.4 2005/02/09 20:26:39 mblaschke Exp $ */
 
 class phpmediadb_presentation
 {
@@ -80,8 +80,12 @@ class phpmediadb_presentation
 	 */
 	public function __construct( $sender )
 	{
-		/* init */
+		global $phpMediaDbConfig;
+		
+		/* init configuration */
 		$this->configuration = array();
+		$this->configuration = $phpMediaDbConfig['PRESENTATION'];
+		unset( $phpMediaDbConfig['PRESENTATION'] );
     	 
 		/* assign parent */
 		$this->PHPMEDIADB		= $sender;
