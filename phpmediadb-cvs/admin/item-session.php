@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.7 2005/03/24 20:43:02 mblaschke Exp $ */
+/* $Id: item-session.php,v 1.8 2005/03/31 15:52:58 mblaschke Exp $ */
 /**
  * This file edits the item in the session and save or creates it
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.7 $
+ * @version		$Revision: 1.8 $
  * @package		phpmediadb_html
  * @subpackage	access_admin
  */
@@ -26,12 +26,10 @@ function itemShow( $sessionItem )
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTSIZE', $itemSize );
 	
 	/* get database-vars */
-	/*
 	$categories			= $PHPMEDIADB->BUSINESS->CATEGORIES->getList();
-	$formats			= $PHPMEDIADB->BUSINESS->FORMAT->getList();
+	$formats			= $PHPMEDIADB->BUSINESS->FORMATS->getListByItemType( $sessionItem['type'] );
 	$ageRestrictions	= $PHPMEDIADB->BUSINESS->AGERESTRICTIONS->getList();
-	$codecs				= $PHPMEDIADB->BUSINESS->CODECS->getList();
-	*/
+	$codecs				= $PHPMEDIADB->BUSINESS->CODECS->getListByItemType( $sessionItem['type'] );
 	
 	/* assign database-vars */
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.CATEGORIES', $categories );
@@ -115,10 +113,56 @@ function itemSave( $sessionItem )
 	
 	
 		case(PHPMEDIADB_ITEM_VIDEO):
+		/* check data */
+		$errorData = $PHPMEDIADB->BUSINESS->VIDEOS->check( $sessionItem['data'] );
+			
+		if( $errorData === NULL || $errorData === TRUE )
+		{
+			/* no error occurred :) */
+			if( $sessionItem['id'] === NULL )
+				$status = $PHPMEDIADB->BUSINESS->VIDEOS->create( $sessionItem['data'] );
+			else 
+				$status = $PHPMEDIADB->BUSINESS->VIDEOS->modify( $sessionItem['id'], $sessionItem['data'] );
+				
+			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE', $PHPMEDIADB->PRESENTATION->I18N->getLanguageString( 'MESSAGE_SUCCESS_SAVE' ) );
+			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.message.tpl' );
+			$PHPMEDIADB->PRESENTATION->SESSION->unregister( 'sessionitem' );
+			die();		
+		}
+		else
+		{
+			/* too bad, error occurred */
+			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTERROR', $errorData );
+			itemShow( $sessionItem );
+			die();
+		}
 		break;
 	
 	
 		case(PHPMEDIADB_ITEM_PRINT):
+		/* check data */
+		$errorData = $PHPMEDIADB->BUSINESS->PRINTS->check( $sessionItem['data'] );
+			
+		if( $errorData === NULL || $errorData === TRUE )
+		{
+			/* no error occurred :) */
+			if( $sessionItem['id'] === NULL )
+				$status = $PHPMEDIADB->BUSINESS->PRINTS->create( $sessionItem['data'] );
+			else 
+				$status = $PHPMEDIADB->BUSINESS->PRINTS->modify( $sessionItem['id'], $sessionItem['data'] );
+				
+			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE', $PHPMEDIADB->PRESENTATION->I18N->getLanguageString( 'MESSAGE_SUCCESS_SAVE' ) );
+			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.message.tpl' );
+			$PHPMEDIADB->PRESENTATION->SESSION->unregister( 'sessionitem' );
+			die();		
+		}
+		else
+		{
+			/* too bad, error occurred */
+			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTERROR', $errorData );
+			itemShow( $sessionItem );
+			die();
+		}
 		break;
 	}
 }
