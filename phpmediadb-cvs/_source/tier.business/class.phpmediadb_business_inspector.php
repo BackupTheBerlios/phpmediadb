@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_inspector.php,v 1.1 2005/03/15 17:38:08 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_inspector.php,v 1.2 2005/03/15 20:59:22 mblaschke Exp $ */
 
 class phpmediadb_business_inspector
 {
@@ -35,12 +35,13 @@ class phpmediadb_business_inspector
 	
 	// --- OPERATIONS ---
 	
+//-----------------------------------------------------------------------------
 	/**
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb
+	 * @param phpmediadb $sender Refreence to parent class
 	 */
 	public function __construct( $sender )
 	{
@@ -53,9 +54,13 @@ class phpmediadb_business_inspector
 
 //-----------------------------------------------------------------------------
 	/**
-	 * Returns the complete list
+	 * Checkengine: Checks if data is valid or generates an error-array
 	 *
-	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer $type Itemtype which should be checked
+	 * @param Array $data Data which should be checked
+	 * @return mixed Success if Null, failed if error-array
 	 */
 	public function check( $type, $data )
 	{
@@ -75,12 +80,30 @@ class phpmediadb_business_inspector
 		{
 			foreach( $inputSize as $checkKey => $checkValue )
 			{
-				if( @strlen( $data[$checkKey] ) > $checkValue )
+				switch( @gettype( $data[$checkKey] ) )
 				{
-					/* set errorflags */
-					$returnValue['general']											= TRUE;
-					$returnValue['flag'][$checkKey] 						= TRUE;
-					$returnValue['message'][$checkKey]['size']	= TRUE;
+					case('string'):
+						if( @strlen( $data[$checkKey] ) > $checkValue )
+						{
+							/* set errorflags */
+							$returnValue['general']											= TRUE;
+							$returnValue['flag'][$checkKey] 						= TRUE;
+							$returnValue['message'][$checkKey]['size']	= TRUE;
+						}
+					break;
+					
+					case('array'):
+						foreach( $data[$checkKey] as $ItemKey => $ItemValue )
+						{
+							if( @strlen( $ItemValue ) > $checkValue )
+							{
+								/* set errorflags */
+								$returnValue['general']											= TRUE;
+								$returnValue['flag'][$checkKey] 						= TRUE;
+								$returnValue['message'][$checkKey]['size']	= TRUE;
+							}
+						}
+					break;
 				}
 			}
 		}
@@ -90,12 +113,30 @@ class phpmediadb_business_inspector
 		{
 			foreach( $checkRegex as $checkKey => $checkValue )
 			{
-				if( ! @ereg( $checkValue, $data[$checkKey] ) )
+				switch( @gettype( $data[$checkKey] ) )
 				{
-					/* set errorflags */
-					$returnValue['general']											= TRUE;
-					$returnValue['flag'][$checkKey] 						= TRUE;
-					$returnValue['message'][$checkKey]['regex']	= TRUE;
+					case('string'):
+						if( ! @ereg( $checkValue, $data[$checkKey] ) )
+						{
+							/* set errorflags */
+							$returnValue['general']											= TRUE;
+							$returnValue['flag'][$checkKey] 						= TRUE;
+							$returnValue['message'][$checkKey]['regex']	= TRUE;
+						}
+					break;
+					
+					case('array'):
+						foreach( $data[$checkKey] as $ItemKey => $ItemValue )
+						{
+							if( ! @ereg( $checkValue, $ItemValue ) )
+							{
+								/* set errorflags */
+								$returnValue['general']											= TRUE;
+								$returnValue['flag'][$checkKey] 						= TRUE;
+								$returnValue['message'][$checkKey]['regex']	= TRUE;
+							}
+						}
+					break;
 				}
 			}
 		}
@@ -105,6 +146,14 @@ class phpmediadb_business_inspector
 	}
 	
 //-----------------------------------------------------------------------------
+	/**
+	 * Returns all size-specifications for variable check
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer $type Itemtype
+	 * @return mixed Specifications of variable-value sizes
+	 */
 	public function getSize( $type )
 	{
 		/* init */
@@ -118,6 +167,14 @@ class phpmediadb_business_inspector
 	}	
 
 //-----------------------------------------------------------------------------
+	/**
+	 * Returns all regex-specifications for variable check
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer $type Itemtype
+	 * @return mixed Specifications of variable-value regex
+	 */
 	public function getRegex( $type )
 	{
 		/* init */
@@ -129,8 +186,8 @@ class phpmediadb_business_inspector
 		/* return data */
 		return $returnValue;
 	}	
+	
 //-----------------------------------------------------------------------------
-
 } /* end of class phpmediadb_business_inspector */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---

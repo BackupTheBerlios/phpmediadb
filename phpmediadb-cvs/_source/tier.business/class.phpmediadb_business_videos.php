@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_videos.php,v 1.1 2005/03/15 18:06:26 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_videos.php,v 1.2 2005/03/15 20:59:22 mblaschke Exp $ */
 
 class phpmediadb_business_videos
 {
@@ -34,13 +34,13 @@ class phpmediadb_business_videos
 	protected $DATA = null;
 	
 	// --- OPERATIONS ---
-	
+//-----------------------------------------------------------------------------
 	/**
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb
+	 * @param phpmediadb $sender Reference to parent class
 	 */
 	public function __construct( $sender )
 	{
@@ -70,6 +70,7 @@ class phpmediadb_business_videos
 		return $returnValue;
 	}
 	
+//-----------------------------------------------------------------------------
 } /* end of class phpmediadb_business_videos */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---

@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_audios.php,v 1.2 2005/03/15 18:07:24 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_audios.php,v 1.3 2005/03/15 20:59:21 mblaschke Exp $ */
 
 class phpmediadb_business_audios
 {
@@ -35,12 +35,13 @@ class phpmediadb_business_audios
 	
 	// --- OPERATIONS ---
 	
+//-----------------------------------------------------------------------------
 	/**
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb
+	 * @param phpmediadb $sender Reference to parent class
 	 */
 	public function __construct( $sender )
 	{
@@ -54,10 +55,12 @@ class phpmediadb_business_audios
 
 //-----------------------------------------------------------------------------
 	/**
+	 * Checks if the data is correct
 	 *
-	 *
-	 *
-	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Mixed $data Data which should be checked
+	 * @return Mixed Successstatus, NULL if success, failed with error-array
 	 */
 	 public function check( $data )
 	 {
@@ -73,26 +76,33 @@ class phpmediadb_business_audios
 
 //-----------------------------------------------------------------------------
 	/**
+	 * Creates an empty dataset
 	 *
-	 *
-	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @return Array Empty dataset
 	 */
 	 public function createEmpty()
 	 {
 		/* init */
 		$returnValue = array();
 	 	
-		$returnValue['id'] = NULL;
-		$returnValue['title']	= '';
-		$returnValue['originaltitle']	= '';
-		$returnValue['medianame']	= '';
-		$returnValue['']	= '';
-		$returnValue['']	= '';
-		$returnValue['']	= '';
-		$returnValue['']	= '';
-		$returnValue['']	= '';
-		$returnValue['']	= '';
-		$returnValue['']	= '';
+		/* create empty itemset */
+		$returnValue['ItemTitle'] 						= '';
+		$returnValue['ItemOriginalTitle']			= '';
+		$returnValue['ItemMediaName']					= '';
+		$returnValue['ItemIdentification']		= '';
+		$returnValue['ItemRelease']						= '';
+		$returnValue['Categories']						= array();
+		$returnValue['ItemMediaSize']					= '';
+		$returnValue['MediaFormatID']					= '';
+		$returnValue['BinaryData']						= '';
+		$returnValue['PublisherName']					= '';
+		$returnValue['MediaAgeRestrictionID']	= '';
+		$returnValue['MediaCodecID']					= '';
+		$returnValue['ItemQuantity']					= '';
+		$returnValue['ItemCreationDate']			= NULL;
+		$returnValue['ItemModificationDate']	= NULL;
 			
 		/* return data */
 		return $returnValue;
@@ -100,9 +110,11 @@ class phpmediadb_business_audios
 
 //-----------------------------------------------------------------------------
 	/**
-	 * Returns the complete list
+	 * Returns the complete list of datasets
 	 *
-	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @return Array Array with all available datasets
 	 */
 	public function getList()
 	{
@@ -117,6 +129,14 @@ class phpmediadb_business_audios
 	}
 	
 //-----------------------------------------------------------------------------
+	/**
+	 * Modifies one dataset specified by the id
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String $id Primarykey/Identifier of dataset
+	 * @param Array $data New data of dataset
+	 */
 	public function modify( $id, $data )
 	{
 		/* init */
@@ -138,6 +158,14 @@ class phpmediadb_business_audios
 		return $returnValue;
 	}
 //-----------------------------------------------------------------------------
+	/**
+	 * Creates one dataset
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Array $data New data of dataset
+	 * @return Primarykey/Identifier of dataset
+	 */
 	public function create( $data )
 	{
 		/* init */
@@ -158,6 +186,7 @@ class phpmediadb_business_audios
 		/* return data */
 		return $returnValue;
 	}
+	
 //-----------------------------------------------------------------------------
 } /* end of class phpmediadb_business_audios */
 
