@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_audios.php,v 1.1 2005/03/15 17:38:08 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_audios.php,v 1.2 2005/03/15 18:07:24 mblaschke Exp $ */
 
 class phpmediadb_business_audios
 {
@@ -110,7 +110,7 @@ class phpmediadb_business_audios
 		$returnValue = null;
 		
 		/* delegate */
-		$this->DATA->AGERESTRICTIONS->getList();
+		$this->DATA->AUDIOS->getList();
 		
 		/* return data */
 		return $returnValue;
