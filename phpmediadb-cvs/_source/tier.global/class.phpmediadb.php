@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb.php,v 1.3 2005/02/09 20:26:00 mblaschke Exp $ */
+/* $Id: class.phpmediadb.php,v 1.4 2005/03/20 17:18:28 mblaschke Exp $ */
 
 /**
  * Main class of the phpMediaDB Project. It contains all other classes in the
@@ -46,7 +46,8 @@ class phpmediadb
 
 
 	// --- OPERATIONS ---
-
+	
+//-----------------------------------------------------------------------------
 	/**
 	 * The constructor __construct initalizes the Class.
 	 *
@@ -59,14 +60,15 @@ class phpmediadb
 		global $phpMediaDbConfig;
 		
 		/* assign childs */
-		$this->PRESENTATION		= new phpmediadb_presentation( $this );
-		$this->BUSINESS				= new phpmediadb_business( $this );
-		$this->DATA						= new phpmediadb_data( $this );
+		$this->PRESENTATION	= new phpmediadb_presentation( $this );
+		$this->BUSINESS		= new phpmediadb_business( $this );
+		$this->DATA			= new phpmediadb_data( $this );
 		
 		/* unset global configuration - security */
 		unset( $phpMediaDbConfig );
 	}
-
+	
+//-----------------------------------------------------------------------------
 	/**
 	 * The destructor __destruct is responsible for closing all open files,
 	 * etc.
@@ -77,9 +79,10 @@ class phpmediadb
 	 */
 	public function __destruct()
 	{
-		/* TODO */
+		/* nothing to do yet */
 	}
-
+	
+//-----------------------------------------------------------------------------
 } /* end of class phpmediadb */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
