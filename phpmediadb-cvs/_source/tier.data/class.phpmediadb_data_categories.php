@@ -1,13 +1,21 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_categories.php,v 1.4 2005/03/16 15:02:27 bruf Exp $ */
+/* $Id: class.phpmediadb_data_categories.php,v 1.5 2005/03/26 11:38:14 bruf Exp $ */
 
+/**
+ * This is the class that manages all database activities for the categories
+ *
+ * @author		Boris Ruf <bruf@users.berlios.de>
+ * @version		$Revision: 1.5 $
+ * @package		phpmediadb
+ * @subpackage	data
+ */
 class phpmediadb_data_categories
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Reference to class PHPMEDIADB
+	 * Reference to class phpmediadb
 	 *
 	 * @access protected
 	 * @see phpmediadb
@@ -16,11 +24,11 @@ class phpmediadb_data_categories
 	protected $PHPMEDIADB = null;
 
 	/**
-	 * Reference to class DATA
+	 * Reference to class phpmediadb_data
 	 *
 	 * @access protected
-	 * @see phpmediadb_presentation
-	 * @var phpmediadb_presentation
+	 * @see phpmediadb_data
+	 * @var phpmediadb_data
 	 */
 	protected $DATA = null;
 
@@ -31,7 +39,6 @@ class phpmediadb_data_categories
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_data $sender Reference to parent class
 	 */
 	public function __construct( $sender )
@@ -47,7 +54,6 @@ class phpmediadb_data_categories
 	 * etc.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	public function __destruct()
 	{
@@ -58,96 +64,137 @@ class phpmediadb_data_categories
 	 * This function returns a specified record from the table Categories
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function get( $id )
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'SELECT *
-											FROM Categories,
-											WHERE Categories.CategoryID = ?' );
-		$stmt->setString( 1, $id );
-		$rs = $stmt->executeQuery();
-		
-		return $rs;
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'SELECT *
+												FROM Categories,
+												WHERE Categories.CategoryID = ?' );
+			$stmt->setString( 1, $id );
+			$rs = $stmt->executeQuery();
+			$this->DATA->SQL->commitTransaction( $conn );
+			return $rs;
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
 	/**
-	 * This function returns all records from the table MediaAgeRestrictions
+	 * This function returns all records from the table Categories
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function getList()
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'SELECT *
-											FROM Categories,
-											WHERE Categories.CategoryID LIKE "%"' );
-		$rs = $stmt->executeQuery();
-		
-		return $rs;
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'SELECT *
+												FROM Categories,
+												WHERE Categories.CategoryID LIKE "%"' );
+			$rs = $stmt->executeQuery();
+			$this->DATA->SQL->commmitTransaction( $conn );
+			return $rs;
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
 	/**
-	 * This function creates a new record in the table MediaAgeRestrictions
+	 * This function creates a new record in the table Categories
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Mixed array $data contains all required data for the sql statement
 	 * @return Integer getLastInsert() returns id from the last created record
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function create( $data )
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'INSERT INTO Categories
-											( CategoryName ) VALUES( ? )' );
-		$stmt->setString( 1, $data['CategoryName'] );
-		$stmt->executeUpdate();
-		
-		return $this->DATA->SQL->getLastInsert( $conn );
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$stmt = $conn->prepareStatement(	'INSERT INTO Categories
+												( CategoryName ) VALUES( ? )' );
+			$stmt->setString( 1, $data['CategoryName'] );
+			$stmt->executeUpdate();
+			$this->DATA->SQL->commitTransaction( $conn );
+			return $this->DATA->SQL->getLastInsert( $conn );
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
 	/**
-	 * This function modifies a specified record from the table MediaAgeRestrictions
+	 * This function modifies a specified record from the table Categories
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $id contains specified id for the sql statement
 	 * @param Mixed array $data contains all required data for the sql statement
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function modify( $id, $data )
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'UPDATE Categories
-											SET Categories.CategoryName = ?
-											WHERE Categories.CategoryID = ?' );
-		$stmt->setString( 1, $data['CategoryName'] );
-		$stmt->setString( 2, $id );
-		$stmt->executeUpdate();
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'UPDATE Categories
+												SET Categories.CategoryName = ?
+												WHERE Categories.CategoryID = ?' );
+			$stmt->setString( 1, $data['CategoryName'] );
+			$stmt->setString( 2, $id );
+			$stmt->executeUpdate();
+			$this->DATA->SQL->commitTransaction( $conn );
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
 	/**
-	 * This function deletes a specified record from the table MediaAgeRestrictions
+	 * This function deletes a specified record from the table Categories
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $id contains specified id for the sql statement
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function delete( $id )
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'DELETE FROM Categories
-											WHERE Categories.CategoryID = ?' );
-		$stmt->setString( 1, $id );
-		$stmt->executeUpdate();
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'DELETE FROM Categories
+												WHERE Categories.CategoryID = ?' );
+			$stmt->setString( 1, $id );
+			$stmt->executeUpdate();
+			$this->DATA->SQL->commitTransaction( $conn );
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
@@ -156,28 +203,92 @@ class phpmediadb_data_categories
 	 * and false when the record doesn't exist
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Boolean $returnValue returns whether the specified record exists
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function exist( $id )
 	{
 		/* init */
 		$returnValue = false;
 		
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
-											FROM Categories,
-											WHERE Categories.CategoryID = ?' );
-		$stmt->setString( 1, $id );
-		$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
-		$rs->next();
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
+												FROM Categories,
+												WHERE Categories.CategoryID = ?' );
+			$stmt->setString( 1, $id );
+			$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
+			$rs->next();
 		
-		/* check if item exists */
-		if( $rs->get(1) >= 1 )
-			$returnValue = true;
+			/* check if item exists */
+			if( $rs->get(1) >= 1 )
+				$returnValue = true;
+			
+			$this->DATA->SQL->commitTransaction( $conn );
+			return $returnValue;
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
+	}
 
-		return $returnValue;
+//-----------------------------------------------------------------------------
+	/**
+	 * This function inserts the parameters ItemID and CategoryID
+	 * into the table Categories_has_Items
+	 *
+	 * @access public
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return Mixed rollbackTransaction() returns the error message
+	 */
+	public function add( $data )
+	{
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'INSERT INTO Categories_has_Items
+												( ItemID, CategoryID ) VALUES( ?, ? )' );
+			$stmt->setString( 1, $data['ItemID'] );
+			$stmt->setString( 2, $data['CategoryID'] );
+			$stmt->executeUpdate();
+			$this->DATA->SQL->commitTransaction( $conn );
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function deletes the parameters ItemID and CategoryID
+	 * from the table Categories_has_Items
+	 *
+	 * @access public
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return Mixed rollbackTransaction() returns the error message
+	 */
+	public function remove( $id )
+	{
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'DELETE FROM Categories_has_Items
+												WHERE Categories_has_Items.ItemID = ?' );
+			$stmt->setString( 1, $id );
+			$stmt->executeUpdate();
+			$this->DATA->SQL->commitTransaction( $conn );
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
