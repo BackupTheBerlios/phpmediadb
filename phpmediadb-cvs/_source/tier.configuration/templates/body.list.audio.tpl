@@ -12,8 +12,8 @@
 			<td></td>
 			<td></td>
 			<td>
-				<img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-modify.png" alt="{$I18N.ACTION_MODIFY|default:"%ACTION_MODIFY%"}" />
-				<img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-remove.png" alt="{$I18N.ACTION_DELETE|default:"%ACTION_DELETE%"}" />
+				<a href="admin/item-mod.php?itemid="><img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-modify.png" alt="{$I18N.ACTION_MODIFY|default:"%ACTION_MODIFY%"}" /></a>
+				<a href="admin/item-del.php?itemid="><img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-remove.png" alt="{$I18N.ACTION_DELETE|default:"%ACTION_DELETE%"}" /></a>
 			</td>
 		</td>
 		
