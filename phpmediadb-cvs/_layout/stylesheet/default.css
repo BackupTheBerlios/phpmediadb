@@ -1,8 +1,8 @@
 /* phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/ */
-/* $Id: default.css,v 1.4 2005/03/08 20:45:50 mblaschke Exp $ */
+/* $Id: default.css,v 1.5 2005/03/15 21:03:22 mblaschke Exp $ */
 
 /*** BASIC ELEMENTS **********************************************************/
-BODY { margin:0px 0px 0px 0px;padding:0px 0px 0px 0px; font-family:Helvetica,Arial; }
+BODY { margin:0px 0px 50px 0px;padding:0px 0px 0px 0px; font-family:Helvetica,Arial; }
 
 IMG { border:0px; vertical-align:baseline;}
 
@@ -32,8 +32,10 @@ A:hover {  color:#CC0033;  text-decoration: none; }
 .phpmediadb-body-menu A:hover { color:black; background-color:#CCCCCC; padding:3px; border:1px solid #666666; text-decoration: none; }
 .phpmediadb-body-menu A:active { color:black; background-color:#E6E6E6; padding:3px; border:1px solid #666666; text-decoration: none; }
 
+.phpmediadb-body-inputerror { color:red; }
+
 /*** PHPMEDIADB-FOOTER *******************************************************/
-#phpmediadb-footer { background-color:#EEEEEE; position:absolute; bottom:0px; left:0px; right:0px; text-align:center;border-top:1px solid grey; }
+#phpmediadb-footer { background-color:#EEEEEE; position:fixed; bottom:0px; left:0px; right:0px; text-align:center;border-top:1px solid grey; }
 
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
