@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_xmlservice.php,v 1.3 2005/03/15 20:25:42 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_xmlservice.php,v 1.4 2005/03/20 17:12:28 mblaschke Exp $ */
 
 class phpmediadb_presentation_xmlservice
 {
@@ -36,8 +36,8 @@ class phpmediadb_presentation_xmlservice
 	{
 		/* assign parent */
 		$this->PRESENTATION	= $sender;
-		$this->PHPMEDIADB		= $sender->PHPMEDIADB;
-  }
+		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
+	}
 
 //-----------------------------------------------------------------------------
 } /* end of class phpmediadb_presentation_xmlservice */

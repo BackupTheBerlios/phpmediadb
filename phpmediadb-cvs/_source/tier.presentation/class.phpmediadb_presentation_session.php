@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_session.php,v 1.4 2005/03/15 20:25:32 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_session.php,v 1.5 2005/03/20 17:12:28 mblaschke Exp $ */
 
 class phpmediadb_presentation_session
 {
@@ -40,7 +40,7 @@ class phpmediadb_presentation_session
 		
 		/* init session */
 		$this->start();
-  }
+	}
   
 //-----------------------------------------------------------------------------
 	/**
@@ -94,7 +94,7 @@ class phpmediadb_presentation_session
 	 */
 	public function start()
 	{
-		/* start session */
+		/* start session - delegate */
 		session_start();
 	}
 	
@@ -107,7 +107,7 @@ class phpmediadb_presentation_session
 	 */	
 	public function destroy()
 	{
-		/* destroy session */
+		/* destroy session - delegate */
 		session_destroy();
 	}
 	

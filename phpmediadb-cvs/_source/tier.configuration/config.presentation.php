@@ -14,7 +14,7 @@ $phpMediaDbConfig['PRESENTATION']['generic']['gzip-compression'] = false;
  */
 $phpMediaDbConfig['PRESENTATION']['directory']['root']			= realpath( dirname(__FILE__) . '/../../' ) ;
 $phpMediaDbConfig['PRESENTATION']['directory']['i18n']			= $phpMediaDbConfig['PRESENTATION']['directory']['root'] . '/_source/tier.configuration/i18n/';
-$phpMediaDbConfig['PRESENTATION']['directory']['templates']	= $phpMediaDbConfig['PRESENTATION']['directory']['root'] . '/_source/tier.configuration/templates';
+$phpMediaDbConfig['PRESENTATION']['directory']['templates']		= $phpMediaDbConfig['PRESENTATION']['directory']['root'] . '/_source/tier.configuration/templates';
 $phpMediaDbConfig['PRESENTATION']['directory']['templates_c']	= $phpMediaDbConfig['PRESENTATION']['directory']['root'] . '/var/templates_c';
 
 

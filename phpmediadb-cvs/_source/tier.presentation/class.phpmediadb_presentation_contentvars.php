@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.8 2005/03/16 14:56:45 bruf Exp $ */
+/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.9 2005/03/20 17:12:28 mblaschke Exp $ */
 
 class phpmediadb_presentation_contentvars
 {
@@ -46,7 +46,7 @@ class phpmediadb_presentation_contentvars
 	{
 		/* assign parent */
 		$this->PRESENTATION	= $sender;
-		$this->PHPMEDIADB		= $sender->PHPMEDIADB;
+		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
 
 		/* initalize */
 		$this->nodeContainer = array();
@@ -275,10 +275,10 @@ class phpmediadb_presentation_contentvars
 	 */
 	public function checkNodeString( $nodeName )
 	{
-		$returnValue = (bool) false;
-
-		$checkRegEx = "^([_a-zA-Z0-9]+\.?)+[_a-zA-Z0-9]+$";
-		$returnValue = ereg( $checkRegEx, $nodeName );
+		/* init */
+		$returnValue	= (bool) false;
+		$checkRegEx		= "^([_a-zA-Z0-9]+\.?)+[_a-zA-Z0-9]+$";
+		$returnValue	= ereg( $checkRegEx, $nodeName );
 		
 		/* return value */
 		return (bool) $returnValue;
@@ -309,6 +309,7 @@ class phpmediadb_presentation_contentvars
 			break;	
 			
 			case 'NULL':
+				/* fixed bug - NULL should be stay NULL! */
 				$returnValue = $nodeValue;
 			break;
 			
@@ -329,8 +330,7 @@ class phpmediadb_presentation_contentvars
 					/* not supported format */
 					default:
 						$returnValue = $nodeValue;
-					break;	
-						
+					break;			
 				}
 			break;
 		}

@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_i18n.php,v 1.8 2005/03/16 14:57:04 bruf Exp $ */
+/* $Id: class.phpmediadb_presentation_i18n.php,v 1.9 2005/03/20 17:12:28 mblaschke Exp $ */
 
 class phpmediadb_presentation_i18n
 {
@@ -61,7 +61,7 @@ class phpmediadb_presentation_i18n
 	{
 		/* assign parent */
 		$this->PRESENTATION	= $sender;
-		$this->PHPMEDIADB		= $sender->PHPMEDIADB;
+		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
 
 		/* initalize */
 		$this->langContainer = array();
@@ -69,7 +69,7 @@ class phpmediadb_presentation_i18n
 		/* initalize values */
 		$this->readI18nDirectory();
 		$this->initalizeLanguageContainer();
-  }
+	}
   
 //-----------------------------------------------------------------------------
 	/**
@@ -79,21 +79,21 @@ class phpmediadb_presentation_i18n
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return string Browserlanguage as languagecode
 	 */
-  public function getBrowserLanguage()
-  {
-  	/* init */
-  	$returnValue = "";
-  	$availableLanguages	= $this->getAvailableLanagues();
-  	$defaultLanguage		= $this->PRESENTATION->configuration['i18n']['defaultLanguage'];
+	public function getBrowserLanguage()
+	{
+		/* init */
+		$returnValue		= "";
+		$availableLanguages	= $this->getAvailableLanagues();
+		$defaultLanguage	= $this->PRESENTATION->configuration['i18n']['defaultLanguage'];
   	
-  	/* detect browser language */
-  	if( !$this->PRESENTATION->configuration['i18n']['forcedLanguage'] )
-  		$returnValue = $this->detectBrowserLanguage( $availableLanguages, $defaultLanguage );
-  	else
-  		$returnValue = $defaultLanguage;
-  	
-  	return $returnValue;
-  }
+		/* detect browser language */
+		if( !$this->PRESENTATION->configuration['i18n']['forcedLanguage'] )
+			$returnValue = $this->detectBrowserLanguage( $availableLanguages, $defaultLanguage );
+		else
+			$returnValue = $defaultLanguage;
+
+		return $returnValue;
+	}
   
 //-----------------------------------------------------------------------------
 	/**
@@ -104,19 +104,19 @@ class phpmediadb_presentation_i18n
 	 * @param String Internal language-i18n-stringcode
 	 * @return mixed Internationalized string
 	 */
-  public function getLanguageString( $langId )
-  {
-  	/* init */
-  	$returnValue = false;
+	public function getLanguageString( $langId )
+	{
+		/* init */
+		$returnValue = false;
   	
-  	/* check if key exists */
-  	if( array_key_exists( $langId, $this->langContainer ) )
-  		$returnValue = $this->langContainer["$langId"];
-  	else
-  		$returnValue = '%'.$langId.'%';
-  	
-  	return $returnValue;
-  }
+		/* check if key exists */
+		if( array_key_exists( $langId, $this->langContainer ) )
+			$returnValue = $this->langContainer["$langId"];
+		else
+			$returnValue = '%'.$langId.'%';
+
+		return $returnValue;
+	}
   
 //-----------------------------------------------------------------------------
 	/**
@@ -126,15 +126,16 @@ class phpmediadb_presentation_i18n
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return Array Array with all i18n strings
 	 */
-  public function getLanguageArray()
-  {
-  	/* init */
-  	$returnValue	= "";
-  	
+	public function getLanguageArray()
+	{
+		/* init */
+		$returnValue = "";
+
+		/* get container */
 		$returnValue = $this->langContainer;
-  	
-  	return $returnValue;
-  }
+
+		return $returnValue;
+	}
   
 //-----------------------------------------------------------------------------
 	/**
@@ -144,18 +145,17 @@ class phpmediadb_presentation_i18n
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return Array Array with all available languages as langcodes
 	 */
-  public function getAvailableLanagues()
-  {
-  	/* init */
-  	$returnValue = array();
+	public function getAvailableLanagues()
+	{
+		/* init */
+		$returnValue = array();
 		
-  	/* get lanagues */
-  	$returnValue	= array_keys( $this->availableLanguagesContainer );
+		/* get lanagues */
+		$returnValue = array_keys( $this->availableLanguagesContainer );
   	  	
-  	return $returnValue;
-  }
+		return $returnValue;
+	}
 
-  
 //-----------------------------------------------------------------------------
 	/**
 	 * Returns the currently used language as langcode
@@ -164,13 +164,13 @@ class phpmediadb_presentation_i18n
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return String Currently used language as langcode
 	 */
-	 public function getLanguageCode()
-	 {
-  	/* init */
-  	$returnValue = $this->langCode;
+	public function getLanguageCode()
+	{
+  		/* init */
+  		$returnValue = $this->langCode;
   	  	
-  	return $returnValue;
-	 }  
+  		return $returnValue;
+	}  
 	 
 //-----------------------------------------------------------------------------
 	/**
@@ -181,23 +181,23 @@ class phpmediadb_presentation_i18n
 	 * @param String $langCode Languagecode which should be used
 	 * @return Bool status if set was successfull
 	 */
-	 public function setLanguageCode( $langCode )
-	 {
-  	/* init */
-  	$returnValue = false;
+	public function setLanguageCode( $langCode )
+	{
+  		/* init */
+  		$returnValue = false;
   	
-  	if( key_exists( $this->availableLanguagesContainer, $langCode ) && !$this->PRESENTATION->configuration['i18n']['forcedLanguage'] )
-  	{
-  		$this->loadLanagueFile( $langCode );
+  		if( key_exists( $this->availableLanguagesContainer, $langCode ) && !$this->PRESENTATION->configuration['i18n']['forcedLanguage'] )
+  		{
+  			$this->loadLanagueFile( $langCode );
   		
-  		/* save i18n-vars to contentvars */
-  		$this->PRESENTATION->CONTENTVARS->addNode( 'I18N', $this->getLanguageArray() );
+  			/* save i18n-vars to contentvars */
+  			$this->PRESENTATION->CONTENTVARS->addNode( 'I18N', $this->getLanguageArray() );
   		
-  		$returnValue = true;
-  	}
+  			$returnValue = true;
+  		}
   	  	
-  	return $returnValue;
-	 }  	 
+  		return $returnValue;
+	}  	 
   
 //-----------------------------------------------------------------------------
 	/**
@@ -210,19 +210,18 @@ class phpmediadb_presentation_i18n
 	 * @param String $defaultLanguage Default Language as langcode
 	 * @return string Prefered langcode
 	 */
-  protected function detectBrowserLanguage( $allowedLanguageArray, $defaultLanguage )
-  {
-  	/* init */
-  	$returnValue = $defaultLanguage;
-  	
+	protected function detectBrowserLanguage( $allowedLanguageArray, $defaultLanguage )
+	{
+		/* init */
+		$returnValue = $defaultLanguage;
+
 		/* get browserlanguage */
 		$HTTP_Language	= $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 
 		/* check if browserlanguage is empty -> return default language */
 		if( empty( $HTTP_Language ) )
 		{
-			$returnValue = $defaultLanguage;
-			
+			$returnValue = $defaultLanguage;			
 			return $returnValue;
 		}
 
@@ -276,10 +275,11 @@ class phpmediadb_presentation_i18n
 			}
 		}
 
-			$returnValue = $CurrentLanguage['code'];
+		$returnValue = $CurrentLanguage['code'];
 			
-			return $returnValue;
-  }
+		/* return value */
+		return $returnValue;
+	}
   
 //-----------------------------------------------------------------------------
 	/**
@@ -290,20 +290,20 @@ class phpmediadb_presentation_i18n
 	 */
 	 protected function readI18nDirectory()
 	 {
-	 		/* get files in i18n directory */
-	 		foreach( glob( $this->PRESENTATION->configuration['directory']['i18n'] . "/i18n.*.php" ) as $filename )
-	 		{
-	 			/* double check with regex */
-	 			if( eregi( '^i18n.([a-z]+).php$', basename( $filename ), $regArray ) )
-	 			{			
-	 				/* set values like filename and langcode */
-	 				$filename	= trim( $filename );
-	 				$langcode	= trim( $regArray[1] );
-	 			
-	 				/* set values to the contaienr */
-		 			$this->availableLanguagesContainer[$langcode] = $filename;
-	 			}
+		/* get files in i18n directory */
+	 	foreach( glob( $this->PRESENTATION->configuration['directory']['i18n'] . "/i18n.*.php" ) as $filename )
+	 	{
+	 		/* double check with regex */
+	 		if( eregi( '^i18n.([a-z]+).php$', basename( $filename ), $regArray ) )
+	 		{			
+	 			/* set values like filename and langcode */
+	 			$filename	= trim( $filename );
+	 			$langcode	= trim( $regArray[1] );
+	 		
+	 			/* set values to the contaienr */
+					$this->availableLanguagesContainer[$langcode] = $filename;
 	 		}
+	 	}
 	 }
   
 //-----------------------------------------------------------------------------
@@ -324,8 +324,8 @@ class phpmediadb_presentation_i18n
 		
 		/* save i18n-vars to contentvars */
 		$this->PRESENTATION->CONTENTVARS->addNode( 'I18N', $this->getLanguageArray() );
-		
 	}
+	
 //-----------------------------------------------------------------------------
 	/**
 	 * Loads the languagefile into the languagecontainer
@@ -335,19 +335,24 @@ class phpmediadb_presentation_i18n
 	 * @param String $langCode Langcode which should be loaded
 	 * @return void
 	 */
-  protected function loadLanagueFile( $langCode )
-  {
-  	if( eregi( '^[a-z]+$', $langCode ) )
-  	{
-  		include( $this->PRESENTATION->configuration['directory']['i18n'] . "/i18n.$langCode.php" );
-  		$this->langContainer	= $i18n;
-  		$this->langCode				= $langCode;
-  	}
-  	else
-  	{
-  		throw new phpmediadb_exception( "ERR_LANGCODE_CHECK_FAILED" );
-  	}
-  }
+	protected function loadLanagueFile( $langCode )
+	{
+		/* security check - langcode*/
+		if( eregi( '^[a-z]+$', $langCode ) )
+		{
+			/* load langcode-file */
+			include( $this->PRESENTATION->configuration['directory']['i18n'] . "/i18n.$langCode.php" );
+			
+			/* set langcodes */
+			$this->langContainer	= $i18n;
+			$this->langCode			= $langCode;
+		}
+		else
+		{
+			/* security exception */
+			throw new phpmediadb_exception( "ERR_LANGCODE_CHECK_FAILED" );
+		}
+	}
 
 //-----------------------------------------------------------------------------
 } /* end of class phpmediadb_presentation_i18n */
