@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.8 2005/03/16 14:56:54 bruf Exp $ */
+/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.9 2005/03/20 17:15:12 mblaschke Exp $ */
 
 class phpmediadb_presentation_htmlservice
 {
@@ -45,11 +45,10 @@ class phpmediadb_presentation_htmlservice
 	{
 		/* assign parent */
 		$this->PRESENTATION	= $sender;
-		$this->PHPMEDIADB		= $sender->PHPMEDIADB;
+		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
 			
 		/* setup smarty object */
 		$this->setupTemplateEngine();
-		
 	}
 
 //-----------------------------------------------------------------------------
@@ -65,8 +64,61 @@ class phpmediadb_presentation_htmlservice
 	{
 		/* init */
 		$returnValue = null;
-		$content		= array();
 		
+		/* set up template engine */
+		$this->initTemplateEngine();
+		
+		/* compile specified templates */
+		switch( gettype( $template ) )
+		{
+			case 'string':
+					$returnValue = $this->templateEngine->fetch( $template );
+				break;
+			
+			case 'array';
+					foreach( $template as $value )
+						$returnValue .= $this->templateEngine->fetch( $value );
+				break;	
+		}
+				
+ 		/* return compiled template */
+	 	return $returnValue;
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * Compiles one or more templates via template-engine and sends it to client
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String $template Filename of template
+	 */	
+	public function display( $template )
+	{
+		/* init */
+		$returnValue = null;
+		
+		/* delegate */
+		$returnValue = $this->compile( $template );
+		
+		/* output */
+		echo $returnValue;
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * Compiles one or more templates via template-engine and return it
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String $template Filename of template
+	 * @return mixed compiled template as html or text
+	 */
+	public function compileMain( $template )
+	{
+		/* init */
+		$returnValue = null;
+		$content	= array();
 		
 		/* set up template engine */
 		$this->initTemplateEngine();
@@ -92,6 +144,7 @@ class phpmediadb_presentation_htmlservice
  		/* return compiled template */
 	 	return $returnValue;
 	}
+	
 //-----------------------------------------------------------------------------
 	/**
 	 * Compiles one or more templates via template-engine and sends it to client
@@ -100,13 +153,13 @@ class phpmediadb_presentation_htmlservice
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param String $template Filename of template
 	 */	
-	public function display( $template )
+	public function displayMain( $template )
 	{
 		/* init */
 		$returnValue = null;
 		
 		/* delegate */
-		$returnValue = $this->compile( $template );
+		$returnValue = $this->compileMain( $template );
 		
 		/* output */
 		echo $returnValue;
@@ -135,6 +188,7 @@ class phpmediadb_presentation_htmlservice
 		
 		$this->templateEngine->assign( 'CONFIGURATION', $configuration );
 	}
+	
 //-----------------------------------------------------------------------------
 	/**
 	 * Setup the template engine for the first time
