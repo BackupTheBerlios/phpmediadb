@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_i18n.php,v 1.7 2005/03/15 20:24:50 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_i18n.php,v 1.8 2005/03/16 14:57:04 bruf Exp $ */
 
 class phpmediadb_presentation_i18n
 {
@@ -189,6 +189,10 @@ class phpmediadb_presentation_i18n
   	if( key_exists( $this->availableLanguagesContainer, $langCode ) && !$this->PRESENTATION->configuration['i18n']['forcedLanguage'] )
   	{
   		$this->loadLanagueFile( $langCode );
+  		
+  		/* save i18n-vars to contentvars */
+  		$this->PRESENTATION->CONTENTVARS->addNode( 'I18N', $this->getLanguageArray() );
+  		
   		$returnValue = true;
   	}
   	  	
@@ -317,6 +321,9 @@ class phpmediadb_presentation_i18n
 		
 		/* load language file */
 		$this->loadLanagueFile( $this->langCode );
+		
+		/* save i18n-vars to contentvars */
+		$this->PRESENTATION->CONTENTVARS->addNode( 'I18N', $this->getLanguageArray() );
 		
 	}
 //-----------------------------------------------------------------------------

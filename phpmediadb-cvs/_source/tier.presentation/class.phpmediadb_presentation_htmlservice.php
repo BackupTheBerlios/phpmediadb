@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.7 2005/03/15 20:24:28 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_htmlservice.php,v 1.8 2005/03/16 14:56:54 bruf Exp $ */
 
 class phpmediadb_presentation_htmlservice
 {
@@ -124,11 +124,11 @@ class phpmediadb_presentation_htmlservice
 		/* clear vars */
 		$this->templateEngine->clear_all_assign();
 		
+		/* set i18n-vars to contentvars*/
+		//$this->PRESENTATION->CONTENTVARS->addNode( 'I18N', $this->PRESENTATION->I18N->getLanguageArray() );
+		
 		/* set contentvars */
 		$this->templateEngine->assign( $this->PRESENTATION->CONTENTVARS->getNode() );
-		
-		/* set i18n-vars */
-		$this->templateEngine->assign( 'I18N', $this->PRESENTATION->I18N->getLanguageArray() );
 		
 		/* set CONFIGURATION */
 		$configuration['ROOTPATH'] = $this->PRESENTATION->configuration['webpath']['root-path'];

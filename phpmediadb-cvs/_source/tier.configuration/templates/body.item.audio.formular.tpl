@@ -55,12 +55,11 @@
 	{foreach from=$ITEMDATA.Categories item=currentItemItem key=currentItemKey}
 			{if $currentItemItem eq $currentDataKey }
 				{assign var="TEMP" value="1"}
-				<option selected="true" value="{$currentDataKey}">{$currentDataItem} {$foo}</option>
+				<option selected="true" value="{$currentDataKey}">{$currentDataItem}</option>
 			{/if}
 	{/foreach}
-	{$TEMP}
 			{if $TEMP eq "0" }
-				<option value="{$currentDataKey}">{$currentDataItem} {$foo}</option>
+				<option value="{$currentDataKey}">{$currentDataItem}</option>
 			{/if}
 {/foreach}
 			</select>

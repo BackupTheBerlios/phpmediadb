@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.3 2005/03/15 21:06:50 mblaschke Exp $ */
+/* $Id: item-session.php,v 1.4 2005/03/16 14:57:53 bruf Exp $ */
 
 require_once( '../_source/phpmediadb.php' );
 
@@ -29,7 +29,6 @@ function itemShow( $sessionItem )
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.MEDIAFORMATS', $formats );
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.AGERESTRICTIONS', $ageRestrictions );
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.CODECS', $codecs );
-	
 	
 	switch( $sessionItem['type'] )
 	{
@@ -121,7 +120,7 @@ if( isset( $_POST['buttonsave'] ) )
 	/* set itemdata to sessionItem */
 	$sessionItem['data'] = $_POST['itemdata'];
 	$PHPMEDIADB->PRESENTATION->SESSION->register( 'sessionitem' ,$sessionItem );
-	
+
 	/* try to save */
 	itemSave( $sessionItem );
 }

@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.7 2005/03/15 20:23:41 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.8 2005/03/16 14:56:45 bruf Exp $ */
 
 class phpmediadb_presentation_contentvars
 {
@@ -297,40 +297,44 @@ class phpmediadb_presentation_contentvars
 	protected function convertNodeValue( $nodeValue, $nodeFormat )
 	{
 		$returnValue = null;
-	
+
 		switch( gettype( $nodeValue ) )
 		{
 			case 'array';
-					foreach( $nodeValue as $key => $value )
-					{
-						/* recursive call */
-						$returnValue[$key] = $this->convertNodeValue( $nodeValue[$key], $nodeFormat );
-					}
-				break;	
+				foreach( $nodeValue as $key => $value )
+				{
+					/* recursive call */
+					$returnValue[$key] = $this->convertNodeValue( $nodeValue[$key], $nodeFormat );
+				}
+			break;	
+			
+			case 'NULL':
+				$returnValue = $nodeValue;
+			break;
 			
 			/* let's convert */
 			default:
-					switch( $nodeFormat )
-					{
-							/* plaintext content */
-							case(PHPMEDIADB_NODEFORMAT_TEXT):
-									$returnValue = htmlentities( $nodeValue );
-								break;
+				switch( $nodeFormat )
+				{
+					/* plaintext content */
+					case(PHPMEDIADB_NODEFORMAT_TEXT):
+						$returnValue = htmlentities( $nodeValue );
+					break;
 								
-						/* html content */
-						case(PHPMEDIADB_NODEFORMAT_HTML):
-									$returnValue = $nodeValue;
-								break;
+					/* html content */
+			 		case(PHPMEDIADB_NODEFORMAT_HTML):
+						$returnValue = $nodeValue;
+					break;
 								
-						/* not supported format */
-						default:
-									$returnValue = $nodeValue;
-								break;	
+					/* not supported format */
+					default:
+						$returnValue = $nodeValue;
+					break;	
 						
-					}
-				break;
+				}
+			break;
 		}
-
+	
 		/* return value */
 		return $returnValue;
 	}
