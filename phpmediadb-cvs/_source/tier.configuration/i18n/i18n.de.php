@@ -1,7 +1,14 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
 /* $Id $ */
-
+/**
+ * This file stores all i18n strings (GERMAN)
+ *
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.4 $
+ * @package		phpmediadb
+ * @subpackage	configuration
+ */
 // $i18n['STRING-ID'] = "";
 
 /* default i18ns */

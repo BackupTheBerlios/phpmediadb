@@ -1,6 +1,14 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: phpmediadb.php,v 1.8 2005/03/20 17:18:01 mblaschke Exp $ */
+/* $Id: phpmediadb.php,v 1.9 2005/03/24 17:12:26 mblaschke Exp $ */
+/**
+ * This file includes all required files for phpMediaDB to work
+ * 
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.9 $
+ * @package		phpmediadb
+ * @subpackage	global
+ */
 /* let's begin */
 
 /* run preinit */

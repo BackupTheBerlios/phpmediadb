@@ -1,7 +1,14 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
 /* $Id $ */
-
+/**
+ * This file stores all configurations in tier.data
+ *
+ * @author		Markus Blaschke <mblaschke@users.berlios.de>
+ * @version		$Revision: 1.5 $
+ * @package		phpmediadb
+ * @subpackage	configuration
+ */
 // $phpMediaDbConfig['DATA']['example-config'] = "abc";
 
 /**
