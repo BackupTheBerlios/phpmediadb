@@ -1,19 +1,28 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_formats.php,v 1.1 2005/02/22 14:38:48 bruf Exp $ */
+/* $Id: class.phpmediadb_data_formats.php,v 1.2 2005/02/22 15:15:35 bruf Exp $ */
 
 class phpmediadb_data_formats
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Short description of attribute
+	 * Short description of attribute PHPMEDIADB
 	 *
 	 * @access protected
 	 * @see phpmediadb
 	 * @var phpmediadb
 	 */
+	protected $PHPMEDIADB = null;
 
+	/**
+	 * Short description of attribute DATA
+	 *
+	 * @access protected
+	 * @see phpmediadb_presentation
+	 * @var phpmediadb_presentation
+	 */
+	protected $DATA = null;
 
 	// --- OPERATIONS ---
 	
@@ -23,7 +32,7 @@ class phpmediadb_data_formats
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb_presentation
+	 * @param phpmediadb_data
 	 * @return void
 	 */
 	public function __construct()
