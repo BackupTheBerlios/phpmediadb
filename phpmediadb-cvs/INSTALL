@@ -2,7 +2,7 @@ phpMediaDB Requirements:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
  - Apache (http://www.apache.org)
- - PHP    (http://www.php.net)
+ - PHP 5.x or higher (http://www.php.net)
  - MySQL  (http://www.mysql.com)
 
 
