@@ -9,7 +9,20 @@
 	$i18n['CANCEL'] = 'Abbrechen';
 	$i18n['DELETE'] = 'Löschen';
 	$i18n['DELETE'] = 'Löschen';
+	$i18n['INPUT_FIELD'] = 'Eingabefeld';
 	
+/* messages */
+	$i18n['MESSAGE_SUCCESS_SAVE']	= 'Element erfolgreich gespeichert!';
+	
+/* errors */
+	$i18n['ERROR_INPUTSIZE']	= 'Eingabe zu groß.';
+	$i18n['ERROR_INPUTREGEX']	= 'Eingabe nicht korrekt.';
+	$i18n['ERROR_OCCURRED']		= 'Es sind Eingabefehler auftreten.';
+	$i18n['ERROR_LISTLINK']		= '[Fehlerliste]';
+	
+/* formular */
+	$i18n['FORM_RESET'] = 'Zurücksetzen';
+	$i18n['FORM_SUBMIT'] = 'Absenden';
 	
 /* media data */
 	$i18n['MEDIA_TITLE'] = 'Medientitel';
