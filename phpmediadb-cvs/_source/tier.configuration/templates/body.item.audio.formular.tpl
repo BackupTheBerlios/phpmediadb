@@ -1,6 +1,6 @@
 <form method="post">
 <div>
-<h1>{$I18N.MEDIA_DATA|default:"%MEDIA_DATA%"}</h1>
+<h1>{$I18N.MEDIA_DATA_AUDIO|default:"%MEDIA_DATA_AUDIO%"}</h1>
 {if $INPUTERROR.general eq "1"}<span class="phpmediadb-body-inputerror">{$I18N.ERROR_OCCURRED|default:"%ERROR_OCCURRED%"} <a href="#errorlist">{$I18N.ERROR_LISTLINK|default:"%ERROR_LISTLINK%"}</a></span><br />{/if}
 <table>
 	<colgroup>
@@ -50,16 +50,16 @@
 		<td>{$I18N.MEDIA_CATEGORY|default:"%MEDIA_CATEGORY%"}</td>
 		<td>
 			<select name="itemdata[Categories][]" size="5" multiple="true">
-{foreach from=$DATA.CATEGORIES item=currentDataItem key=currentDataKey}
+{foreach from=$DATA.CATEGORIES item=currentDataItem}
 {assign var="TEMP" value="0"}
-	{foreach from=$ITEMDATA.Categories item=currentItemItem key=currentItemKey}
-			{if $currentItemItem eq $currentDataKey }
+	{foreach from=$ITEMDATA.Categories item=currentItemItem}
+			{if $currentItemItem eq $currentDataItem.categoryid }
 				{assign var="TEMP" value="1"}
-				<option selected="true" value="{$currentDataKey}">{$currentDataItem}</option>
+				<option selected="true" value="{$currentDataItem.categoryid}">{$currentDataItem.categoryname}</option>
 			{/if}
 	{/foreach}
 			{if $TEMP eq "0" }
-				<option value="{$currentDataKey}">{$currentDataItem}</option>
+				<option value="{$currentDataItem.categoryid}">{$currentDataItem.categoryname}</option>
 			{/if}
 {/foreach}
 			</select>
@@ -80,10 +80,10 @@
 		<td>
 			<select name="itemdata[MediaFormatID]">
 {foreach from=$DATA.MEDIAFORMATS item=currentDataItem key=currentDataKey}
-	{if $currentDataKey eq $ITEMDATA.MediaFormat }
-				<option selected="true" value="{$currentDataKey}">{$currentDataItem}</option>
+	{if $currentDataItem.mediaformatid eq $ITEMDATA.MediaFormatID }
+				<option selected="true" value="{$currentDataItem.mediaformatid}">{$currentDataItem.mediaformatname}</option>
 	{else}
-				<option value="{$currentDataKey}">{$currentDataItem}</option>
+				<option value="{$currentDataItem.mediaformatid}">{$currentDataItem.mediaformatname}</option>
 	{/if}
 {/foreach}
 			</select>
@@ -111,11 +111,11 @@
 		<td>{$I18N.MEDIA_AGERESTRICTION|default:"%MEDIA_AGERESTRICTION%"}</td>
 		<td>
 			<select name="itemdata[MediaAgeRestrictionID]">
-{foreach from=$DATA.AGERESTRICTIONS item=currentDataItem key=currentDataKey}
-	{if $currentDataKey eq $ITEMDATA.AGERESTRICTION }
-				<option selected="true" value="{$currentDataKey}">{$currentDataItem}</option>
+{foreach from=$DATA.AGERESTRICTIONS item=currentDataItem}
+	{if $currentDataItem.mediaagerestrictionid eq $ITEMDATA.MediaAgeRestrictionID }
+				<option selected="true" value="{$currentDataItem.mediaagerestrictionid}">{$currentDataItem.mediaagerestriction}</option>
 	{else}
-				<option value="{$currentDataKey}">{$currentDataItem}</option>
+				<option value="{$currentDataItem.mediaagerestrictionid}">{$currentDataItem.mediaagerestriction}</option>
 	{/if}
 {/foreach}
 			</select>
@@ -126,12 +126,12 @@
 	<tr>
 		<td>{$I18N.MEDIA_CODEC|default:"%MEDIA_CODEC%"}</td>
 		<td>
-			<select name="itemdata[MediaCodecID ]">
-{foreach from=$DATA.CODECS item=currentDataItem key=currentDataKey}
-	{if $currentDataKey eq $ITEMDATA.CODEC }
-				<option selected="true" value="{$currentDataKey}">{$currentDataItem}</option>
+			<select name="itemdata[MediaCodecID]">
+{foreach from=$DATA.CODECS item=currentDataItem}
+	{if $currentDataItem.mediacodecid eq $ITEMDATA.MediaCodecID }
+				<option selected="true" value="{$currentDataItem.mediacodecid}">{$currentDataItem.mediacodecname}</option>
 	{else}
-				<option value="{$currentDataKey}">{$currentDataItem}</option>
+				<option value="{$currentDataItem.mediacodecid}">{$currentDataItem.mediacodecname}</option>
 	{/if}
 {/foreach}
 			</select>
