@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.2 2005/03/15 18:15:44 mblaschke Exp $ */
+/* $Id: item-session.php,v 1.3 2005/03/15 21:06:50 mblaschke Exp $ */
 
 require_once( '../_source/phpmediadb.php' );
 
@@ -15,6 +15,21 @@ function itemShow( $sessionItem )
 	/* get and set input-size */
 	$itemSize = $PHPMEDIADB->BUSINESS->INSPECTOR->getSize( $sessionItem['type'] );
 	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTSIZE', $itemSize );
+	
+	/* get database-vars */
+	/*
+	$categories				= $PHPMEDIADB->BUSINESS->CATEGORIES->getList();
+	$formats					= $PHPMEDIADB->BUSINESS->FORMAT->getList();
+	$ageRestrictions	= $PHPMEDIADB->BUSINESS->AGERESTRICTIONS->getList();
+	$codecs						= $PHPMEDIADB->BUSINESS->CODECS->getList();
+	*/
+	
+	/* assign database-vars */
+	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.CATEGORIES', $categories );
+	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.MEDIAFORMATS', $formats );
+	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.AGERESTRICTIONS', $ageRestrictions );
+	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'DATA.CODECS', $codecs );
+	
 	
 	switch( $sessionItem['type'] )
 	{
@@ -100,14 +115,12 @@ function itemSave( $sessionItem )
 
 //-----------------------------------------------------------------------------
 
-
 $sessionItem = itemGet();
 if( isset( $_POST['buttonsave'] ) )
 {
 	/* set itemdata to sessionItem */
 	$sessionItem['data'] = $_POST['itemdata'];
 	$PHPMEDIADB->PRESENTATION->SESSION->register( 'sessionitem' ,$sessionItem );
-	
 	
 	/* try to save */
 	itemSave( $sessionItem );
