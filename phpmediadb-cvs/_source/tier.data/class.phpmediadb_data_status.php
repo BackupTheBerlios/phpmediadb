@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_status.php,v 1.3 2005/03/11 12:14:35 bruf Exp $ */
+/* $Id: class.phpmediadb_data_status.php,v 1.4 2005/03/13 13:26:02 bruf Exp $ */
 
 class phpmediadb_data_status
 {
@@ -90,6 +90,74 @@ class phpmediadb_data_status
 		$stmt->executeQuery();
 		
 		return $stmt;
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function creates a new record in the table MediaStatus
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String
+	 * @param String
+	 * @param String
+	 */
+	public function createStatus( $MediaStatus, $MediaStatusOwner, $MediaStatusHolder )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'INSERT INTO MediaStatus
+		( MediaStatus, MediaStatusOwner, MediaStatusHolder )
+		VALUES( :ms, :mso, :msh )' );
+		$stmt->setString( ':ms', $MediaStatus );
+		$stmt->setString( ':mso', $MediaStatusOwner );
+		$stmt->setString( ':msh', $MediaStatusHolder );
+		$stmt->executeUpdate();
+		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function modifies a specified record from the table MediaStatus
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 * @param String
+	 * @param String
+	 * @param String
+	 */
+	public function modifyStatus( $MediaStatusID, $MediaStatus, $MediaStatusOwner, $MediaStatusHolder )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'UPDATE MediaStatus
+		SET MediaStatus.MediaStatus = :ms,
+		MediaStatus.MediaStatusOwner = :mso,
+		MediaStatus.MediaStatusHolder = :msh
+		WHERE MediaStatus.MediaStatusID = :msid' );
+		$stmt->setString( ':ms', $MediaStatus );
+		$stmt->setString( ':mso', $MediaStatusOwner );
+		$stmt->setString( ':msh', $MediaStatusHolder );
+		$stmt->setString( ':msid', $MediaStatusID );
+		$stmt->executeUpdate();
+		
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function deletes a specified record from the table MediaStatus
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param Integer
+	 */
+	public function deleteStatus( $MediaStatusID )
+	{
+		$conn = $this->DATA->SQL->getConnection();
+		$stmt = $conn->preparedStatement( 'DELETE FROM MediaStatus
+		WHERE MediaStatus.MediaStatusID = :msid' );
+		$stmt->setString( ':msid', $MediaStatusID );
+		$stmt->executeUpdate();
+		
 	}
 
 //-----------------------------------------------------------------------------
