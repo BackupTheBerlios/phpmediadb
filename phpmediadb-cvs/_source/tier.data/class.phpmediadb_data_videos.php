@@ -1,13 +1,21 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_videos.php,v 1.7 2005/03/16 15:03:58 bruf Exp $ */
+/* $Id: class.phpmediadb_data_videos.php,v 1.8 2005/03/26 11:52:16 bruf Exp $ */
 
+/**
+ * This is the class that manages all database activities for the videos
+ *
+ * @author		Boris Ruf <bruf@users.berlios.de>
+ * @version		$Revision: 1.8 $
+ * @package		phpmediadb
+ * @subpackage	data
+ */
 class phpmediadb_data_videos
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Reference to class PHPMEDIADB
+	 * Reference to class phpmediadb
 	 *
 	 * @access protected
 	 * @see phpmediadb
@@ -16,11 +24,11 @@ class phpmediadb_data_videos
 	protected $PHPMEDIADB = null;
 
 	/**
-	 * Reference to class DATA
+	 * Reference to class phpmediadb_data
 	 *
 	 * @access protected
-	 * @see phpmediadb_presentation
-	 * @var phpmediadb_presentation
+	 * @see phpmediadb_data
+	 * @var phpmediadb_data
 	 */
 	protected $DATA = null;
 
@@ -31,7 +39,6 @@ class phpmediadb_data_videos
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_data $sender Reference to parent class
 	 */
 	public function __construct( $sender )
@@ -47,7 +54,6 @@ class phpmediadb_data_videos
 	 * etc.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	public function __destruct()
 	{
@@ -59,36 +65,40 @@ class phpmediadb_data_videos
 	 * and all required data from the other tables
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function get( $id )
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
-											FROM VideoDatas a,
-											Languages b,
-											Items c,
-											ItemTypes d,
-											MediaCodecs e,
-											MediaFormats f,
-											MediaAgeRestrictions g,
-											MediaStatus h,
-											BinaryDatas i
-											WHERE c.ItemID = ? 
-											AND a.LanguageID = b.LanguageID
-											AND a.ItemID = c.ItemID
-											AND c.ItemTypeID = d.ItemTypeID
-											AND c.MediaCodecID = e.MediaCodecID
-											AND c.MediaFormatID = f.MediaFormatID
-											AND c.MediaAgeRestrictionID = g.MediaAgeRestrictionID
-											AND c.MediaStatusID = h.MediaStatusID
-											AND c.ItemPicturesID = i.ItemPicturesID' );
-		$stmt->setString( 1, $id );
-		$rs = $stmt->executeQuery();
-		
-		return $rs;
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.ItemPicturesID
+												FROM VideoDatas a,
+												Items b,
+												ItemTypes c,
+												MediaCodecs d,
+												MediaFormats e,
+												MediaAgeRestrictions f,
+												BinaryDatas g
+												WHERE b.ItemID = ?
+												AND a.ItemID = b.ItemID
+												AND b.ItemTypeID = c.ItemTypeID
+												AND b.MediaCodecID = d.MediaCodecID
+												AND b.MediaFormatID = e.MediaFormatID
+												AND b.MediaAgeRestrictionID = f.MediaAgeRestrictionID
+												AND b.ItemPicturesID = g.ItemPicturesID' );
+			$stmt->setString( 1, $id );
+			$rs = $stmt->executeQuery();
+			$this->DATA->SQL->commitTransaction( $conn );
+			return $rs;
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
@@ -97,35 +107,38 @@ class phpmediadb_data_videos
 	 * and all required data from the other tables
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return Mixed array $rs contains result of database query
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function getList()
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.ItemPicturesID
-											FROM VideoDatas a,
-											Languages b,
-											Items c,
-											ItemTypes d,
-											MediaCodecs e,
-											MediaFormats f,
-											MediaAgeRestrictions g,
-											MediaStatus h,
-											BinaryDatas i
-											WHERE c.ItemID LIKE "%" 
-											AND a.LanguageID = b.LanguageID
-											AND a.ItemID = c.ItemID
-											AND c.ItemTypeID = d.ItemTypeID
-											AND c.MediaCodecID = e.MediaCodecID
-											AND c.MediaFormatID = f.MediaFormatID
-											AND c.MediaAgeRestrictionID = g.MediaAgeRestrictionID
-											AND c.MediaStatusID = h.MediaStatusID
-											AND c.ItemPicturesID = i.ItemPicturesID' );
-		$rs = $stmt->executeQuery();
-		
-		return $rs;
-		
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.ItemPicturesID
+												FROM VideoDatas a,
+												Items b,
+												ItemTypes c,
+												MediaCodecs d,
+												MediaFormats e,
+												MediaAgeRestrictions f,
+												BinaryDatas g
+												WHERE b.ItemID LIKE "%"
+												AND a.ItemID = b.ItemID
+												AND b.ItemTypeID = c.ItemTypeID
+												AND b.MediaCodecID = d.MediaCodecID
+												AND b.MediaFormatID = e.MediaFormatID
+												AND b.MediaAgeRestrictionID = f.MediaAgeRestrictionID
+												AND b.ItemPicturesID = g.ItemPicturesID' );
+			$rs = $stmt->executeQuery();
+			$this->DATA->SQL->commitTransaction( $conn );
+			return $rs;
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
@@ -134,30 +147,42 @@ class phpmediadb_data_videos
 	 * and all required data in the other tables
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Mixed array $data contains all required data for the sql statement
-	 * @return Integer getLastInsert() returns id from the last created record
+	 * @return Integer $id returns id from the last created record
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function create( $data )
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement( 'INSERT INTO VideoDatas ( VideoDataMediaCount, VideoDataImdbID ) VALUES( ?, ? )' );
-		$stmt->setString( 1, $data['VideoDataMediaCount'] );
-		$stmt->setString( 2, $data['VideoDataImdbID'] );
-		$stmt->executeUpdate();
-		
-		$stmt = $conn->prepareStatement(	'INSERT INTO Items
-											( ItemTitle, ItemOriginalTitle, ItemRelease, ItemMediaName,
-											ItemCreationDate, ItemModificationDate, ItemComment )
-											VALUES( ?, ?, ?, ?, now(), now(), ? )' );
-		$stmt->setString( 1, $data['ItemTitle'] );
-		$stmt->setString( 2, $data['ItemOriginalTitle'] );
-		$stmt->setString( 3, $data['ItemRelease'] );
-		$stmt->setString( 4, $data['ItemMediaName'] );
-		$stmt->setString( 5, $data['ItemComment'] );
-		$stmt->executeUpdate(); 
-
-		return $this->DATA->SQL->getLastInsert( $conn );
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'INSERT INTO Items
+												( ItemTitle, ItemOriginalTitle, ItemRelease, ItemMediaName, ItemCreationDate,
+												ItemModificationDate, ItemComment, ItemQuantity, ItemIdentifier, ItemTypeID )
+												VALUES( ?, ?, ?, ?, now(), now(), ?, ?, ?, ? )' );
+			$stmt->setString( 1, $data['ItemTitle'] );
+			$stmt->setString( 2, $data['ItemOriginalTitle'] );
+			$stmt->setString( 3, $data['ItemRelease'] );
+			$stmt->setString( 4, $data['ItemMediaName'] );
+			$stmt->setString( 5, $data['ItemComment'] );
+			$stmt->setString( 6, $data['ItemQuantity'] );
+			$stmt->setString( 7, $data['ItemIdentifier'] );
+			$stmt->setString( 8, $data['ItemTypeID'] );
+			$stmt->executeUpdate();
+			
+			$id = $this->DATA->SQL->getLastInsert( $conn );
+			
+			$stmt = $conn->prepareStatement( 'INSERT INTO VideoDatas ( ItemID ) VALUES( ? )' );
+			$stmt->setString( 1, $id );
+			$stmt->executeUpdate();	
+			$this->DATA->SQL->commitTransaction( $conn );
+			return $id;
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
@@ -166,58 +191,64 @@ class phpmediadb_data_videos
 	 * and all required data from the other tables
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $id contains specified id for the sql statement
 	 * @param Mixed array $data contains all required data for the sql statement
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function modify( $id, $data )
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'UPDATE VideoDatas,
-											Languages,
-											Items,
-											ItemTypes,
-											MediaCodecs,
-											MediaFormats,
-											MediaAgeRestrictions,
-											MediaStatus,
-											BinaryDatas
-											SET VideoDatas.VideoDataMediaCount = ?,
-											VideoDatas.VideoDataImdbID = ?,
-											Items.ItemTitle = ?,
-											Items.ItemOriginalTitle = ?,
-											Items.ItemRelease = ?,
-											Items.ItemMediaName = ?,
-											Items.ItemModificationDate = now(),
-											Items.ItemComment = ?,
-											Items.MediaCodecID = ?,
-											Items.MediaFormatID = ?,
-											Items.MediaAgeRestrictionID = ?,
-											Items.MediaStatusID = ?,
-											Items.ItemPicturesID = ?
-											WHERE Items.ItemID = ?
-											AND VideoDatas.LanguageID = Languages.LanguageID
-											AND VideoDatas.ItemID = Items.ItemID
-											AND Items.ItemTypeID = ItemTypes.ItemTypeID
-											AND Items.MediaCodecID = MediaCodecs.MediaCodecID
-											AND Items.MediaFormatID = MediaFormats.MediaFormatID
-											AND Items.MediaAgeRestrictionID = MediaAgeRestrictions.MediaAgeRestrictionID
-											AND Items.MediaStatusID = MediaStatus.MediaStatusID
-											AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID' );
-		$stmt->setString( 1, $data['VideoDataMediaCount'] );
-		$stmt->setString( 2, $data['VideoDataImdbID'] );
-		$stmt->setString( 3, $data['ItemTitle'] );
-		$stmt->setString( 4, $data['ItemOriginalTitle'] );
-		$stmt->setString( 5, $data['ItemRelease'] );
-		$stmt->setString( 6, $data['ItemMediaName'] );
-		$stmt->setString( 7, $data['ItemComment'] );
-		$stmt->setString( 8, $data['MediaCodecID'] );
-		$stmt->setString( 9, $data['MediaFormatID'] );
-		$stmt->setString( 10, $data['MediaAgeRestrictionID'] );
-		$stmt->setString( 11, $data['MediaStatusID'] );
-		$stmt->setString( 12, $data['ItemPicturesID'] );
-		$stmt->setString( 13, $id );
-		$stmt->executeUpdate();
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'UPDATE VideoDatas,
+												Items,
+												ItemTypes,
+												MediaCodecs,
+												MediaFormats,
+												MediaAgeRestrictions,
+												BinaryDatas
+												SET Items.ItemTitle = ?,
+												Items.ItemOriginalTitle = ?,
+												Items.ItemRelease = ?,
+												Items.ItemMediaName = ?,
+												Items.ItemModificationDate = now(),
+												Items.ItemComment = ?,
+												Items.ItemQuantity = ?,
+												Items.ItemIdentifier = ?,
+												Items.ItemTypeID = ?,
+												Items.MediaCodecID = ?,
+												Items.MediaFormatID = ?,
+												Items.MediaAgeRestrictionID = ?,
+												Items.MediaStatusID = ?,
+												Items.ItemPicturesID = ?
+												WHERE Items.ItemID = ?
+												AND VideoDatas.ItemID = Items.ItemID
+												AND Items.ItemTypeID = ItemTypes.ItemTypeID
+												AND Items.MediaCodecID = MediaCodecs.MediaCodecID
+												AND Items.MediaFormatID = MediaFormats.MediaFormatID
+												AND Items.MediaAgeRestrictionID = MediaAgeRestrictions.MediaAgeRestrictionID
+												AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID' );
+			$stmt->setString( 1, $data['ItemTitle'] );
+			$stmt->setString( 2, $data['ItemOriginalTitle'] );
+			$stmt->setString( 3, $data['ItemRelease'] );
+			$stmt->setString( 4, $data['ItemMediaName'] );
+			$stmt->setString( 5, $data['ItemComment'] );
+			$stmt->setString( 6, $data['ItemQuantity'] );
+			$stmt->setString( 7, $data['ItemIdentifier'] );
+			$stmt->setString( 8, $data['ItemTypeID'] );
+			$stmt->setString( 9, $data['MediaCodecID'] );
+			$stmt->setString( 10, $data['MediaFormatID'] );
+			$stmt->setString( 11, $data['MediaAgeRestrictionID'] );
+			$stmt->setString( 12, $data['ItemPicturesID'] );
+			$stmt->setString( 13, $id );
+			$stmt->executeUpdate();
+			$this->DATA->SQL->commitTransaction( $conn );
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 	
 //-----------------------------------------------------------------------------
@@ -226,20 +257,29 @@ class phpmediadb_data_videos
 	 * and all depending data from the other tables
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $id contains specified id for the sql statement
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function delete( $id )
 	{
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'DELETE VideoDatas, Items, BinaryDatas, Categories_has_Items
-											FROM AudioDatas, Items, BinaryDatas, Categories_has_Items
-											WHERE Items.ItemID = ?
-											AND VideoDatas.ItemID = Items.ItemID
-											AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID
-											AND Items.ItemID = Categories_has_Items.ItemID' );
-		$stmt->setString( 1, $id );
-		$stmt->executeUpdate();
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'DELETE VideoDatas, Items, BinaryDatas, Categories_has_Items
+												FROM AudioDatas, Items, BinaryDatas, Categories_has_Items
+												WHERE Items.ItemID = ?
+												AND VideoDatas.ItemID = Items.ItemID
+												AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID
+												AND Items.ItemID = Categories_has_Items.ItemID' );
+			$stmt->setString( 1, $id );
+			$stmt->executeUpdate();
+			$this->DATA->SQL->commitTransaction( $conn );
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackException( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------
@@ -248,28 +288,36 @@ class phpmediadb_data_videos
 	 * and false when the record doesn't exist
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $id contains specified id for the sql statement
 	 * @return Boolean $returnValue returns whether the specified record exists
+	 * @return Mixed rollbackTransaction() returns the error message
 	 */
 	public function exist( $id )
 	{
 		/* init */
 		$returnValue = false;
 		
-		$conn = $this->DATA->SQL->getConnection();
-		$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
-											FROM VideoDatas,
-											WHERE VideoDatas.VideoDataID = ?' );
-		$stmt->setString( 1, $videoDataId );
-		$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
-		$rs->next();
-
-		/* check if item exists */
-		if( $rs->get(1) >= 1 )
-			$returnValue = true;
-
-		return $returnValue;
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
+												FROM VideoDatas,
+												WHERE VideoDatas.VideoDataID = ?' );
+			$stmt->setString( 1, $videoDataId );
+			$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
+			$rs->next();
+			
+			/* check if item exists */
+			if( $rs->get(1) >= 1 )
+				$returnValue = true;
+			$this->DATA->SQL->commitTransaction( $conn );
+			return $returnValue;
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}
 	}
 
 //-----------------------------------------------------------------------------

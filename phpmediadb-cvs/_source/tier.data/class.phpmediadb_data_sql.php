@@ -1,13 +1,21 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_sql.php,v 1.5 2005/03/16 15:04:17 bruf Exp $ */
+/* $Id: class.phpmediadb_data_sql.php,v 1.6 2005/03/26 11:51:06 bruf Exp $ */
 
+/**
+ * This is the class that provides often used sql actions
+ *
+ * @author		Boris Ruf <bruf@users.berlios.de>
+ * @version		$Revision: 1.6 $
+ * @package		phpmediadb
+ * @subpackage	data
+ */
 class phpmediadb_data_sql
 {
 	// --- ATTRIBUTES ---
 
 	/**
-	 * Reference to class PHPMEDIADB
+	 * Reference to class phpmediadb
 	 *
 	 * @access protected
 	 * @see phpmediadb
@@ -16,7 +24,7 @@ class phpmediadb_data_sql
 	protected $PHPMEDIADB = null;
 
 	/**
-	 * Reference to class DATA
+	 * Reference to class phpmediadb_data
 	 *
 	 * @access protected
 	 * @see phpmediadb_presentation
@@ -31,7 +39,6 @@ class phpmediadb_data_sql
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_data $sender Reference to parent class
 	 */
 	public function __construct( $sender )
@@ -47,7 +54,6 @@ class phpmediadb_data_sql
 	 * etc.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	public function __destruct()
 	{
@@ -58,8 +64,7 @@ class phpmediadb_data_sql
 	/**
 	 * This function provides the connection to the database
 	 *
-	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @access public
 	 * @return String $conn contains information from the connection to the database
 	*/
 	public function getConnection()
@@ -74,18 +79,68 @@ class phpmediadb_data_sql
 	/**
 	 * This function returns the id of the last created record in a table
 	 *
-	 * @access protected
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @access public
 	 * @param String $conn contains information from the connection to the database
 	 * @return Integer $rs returns the id from the last created record
+	 * @return Mixed rollbackTransaction() returns the error message
 	*/
 	public function getLastInsert( $conn )
 	{
-		$stmt = $conn->prepareStatement( 'SELECT LAST_INSERT_ID()' );
-		$rs = $stmt->executeQuery();
-		
-		return $rs;	
+		try
+		{
+			$this->DATA->SQL->openTransaction( $conn );
+			$stmt = $conn->prepareStatement( 'SELECT LAST_INSERT_ID()' );
+			$rs = $stmt->executeQuery();
+			$this->DATA->SQL->commitTransaction( $conn );
+			return $rs;
+		}
+		catch( Exception $e )
+		{
+			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+		}	
 	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * This function opens a transaction
+	 *
+	 * @access public
+	 * @param String $conn contains information from the connection to the database
+	 * @return Mixed $error returns the error message
+	*/
+	public function openTransaction( $conn )
+	{
+		$conn->setAutoCommit(false);
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * This function commits a transaction
+	 * @access public
+	 * @param String $conn contains information from the connection to the database
+	 * @return Mixed $error returns the error message
+	*/
+	public function commitTransaction( $conn )
+	{
+		$conn->commit();
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * This function makes a rollback from a transaction
+	 *
+	 * @access public
+	 * @param String $conn contains information from the connection to the database
+	 * @return Mixed $error returns the error message
+	*/
+	public function rollbackTransaction( $conn, $e )
+	{
+		$conn->rollback(); // abort all delete/update queries in the transaction
+		$error = $e->getMessage();
+		
+		return $error;
+	}
+	
 //-----------------------------------------------------------------------------
 } /* end of class phpmediadb_data_sql */
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
