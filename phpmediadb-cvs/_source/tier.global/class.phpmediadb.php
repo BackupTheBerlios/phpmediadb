@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb.php,v 1.2 2004/09/26 16:09:34 mblaschke Exp $ */
+/* $Id: class.phpmediadb.php,v 1.3 2005/02/09 20:26:00 mblaschke Exp $ */
 
 /**
  * Main class of the phpMediaDB Project. It contains all other classes in the
@@ -56,10 +56,15 @@ class phpmediadb
 	 */
 	public function __construct()
 	{
+		global $phpMediaDbConfig;
+		
 		/* assign childs */
 		$this->PRESENTATION		= new phpmediadb_presentation( $this );
 		$this->BUSINESS				= new phpmediadb_business( $this );
 		$this->DATA						= new phpmediadb_data( $this );
+		
+		/* unset global configuration - security */
+		unset( $phpMediaDbConfig );
 	}
 
 	/**
