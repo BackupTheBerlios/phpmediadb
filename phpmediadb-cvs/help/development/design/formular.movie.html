@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+
+$Id: formular.movie.html,v 1.1 2004/09/09 10:55:11 mblaschke Exp $
+
+-->
+<html>
+<head>
+<title>Formular New Movie</title>
+</head>
+<body>
+<div>
+<h2>General</h2>
+<table>
+  <tbody>
+    <tr>
+      <td>Title</td>
+      <td><input type="text" name="text[general][title]" /></td>
+    </tr>
+    <tr>
+      <td>Original Title</td>
+      <td><input type="text" name="text[general][original_title]" /></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td>
+         <select name="select[general][category]" size="5" multiple="true">
+	   <option value="1">SiFi</option>
+	   <option value="2">Documentation</option>
+	   <option value="3">XYZ</option>
+	   <option value="4">ABC</option>
+	 </select>
+      </td>
+    </tr>    
+    <tr>
+      <td>Release Year</td>
+      <td><input type="text" name="text[general][release_year]" /></td>
+    </tr>
+    <tr>
+      <td>ImDB Identification</td>
+      <td><input type="text" name="text[general][imdbid]" /></td>
+    </tr>
+    <tr>
+      <td>Directors</td>
+      <td><input type="text" name="text[general][publisher]" /> <input type="button" value="Choose" /></td>
+    </tr>  
+    <tr>
+      <td>Publisher</td>
+      <td><input type="text" name="text[general][publisher]" /> <input type="button" value="Choose" /></td>
+    </tr> 
+    <tr>
+      <td>Director</td>
+      <td><input type="text" name="text[general][director]" /> <input type="button" value="Choose" /></td>
+    </tr> 
+    <tr>
+      <td>Age Restriction</td>
+      <td>
+         <select name="select[general][agerestriction]">
+	   <option value="NULL">Not Set</option>
+	   <option value="1">None</option>
+	   <option value="2">6+ Years</option>
+	   <option value="3">12+ Years</option>
+	   <option value="4">16+ Years</option>
+	 </select>
+      </td>
+    </tr> 
+    <tr>
+      <td>Comment</td>
+      <td><textarea name="text[general][comment]" cols="50" rows="20"></textarea></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<div>
+<h2>Mediainformation</h2>
+<table>
+  <tbody>
+    <tr>
+      <td>Number of Medias</td>
+      <td><input type="text" name="text[media][count]" /></td>
+    </tr>
+    <tr>
+      <td>Format</td>
+      <td>
+         <select name="select[media][format]">
+	   <option value="NULL">Not Set</option>
+	   <option value="1">CD</option>
+	   <option value="2">DVD</option>
+	 </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Codec</td>
+      <td>
+         <select name="select[media][codec]">
+	   <option value="NULL">Not Set</option>
+	   <option value="1">DivX</option>
+	   <option value="2"></option>
+	 </select>
+      </td>
+    </tr> 
+  </tbody>
+</table>
+</div>
+
+
+
+<div>
+<h2>Picture</h2>
+<table>
+  <tbody>
+    <tr>
+      <td>XXXXXXXX<br />XXXXXXXX<br />XXXXXXXX<br />XXXXXXXX<br /></td>
+    </tr>
+    <tr>
+      <td><input type="file" /><input type="button" name="AddPicture" value="Upload" /></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<h2>Actors</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>In-Movie-Name</th>
+      <th>Original Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.</td>
+      <td><input type="text" name="name[actors][1][inmovie]" /></td>
+      <td><input type="text" name="name[actors][1][original]" /></td>
+    </tr>
+    <tr>
+      <td>2.</td>
+      <td><input type="text" name="name[actors][2][inmovie]" /></td>
+      <td><input type="text" name="name[actors][2][original]" /></td>
+    </tr>
+    <tr>
+      <td>3.</td>
+      <td><input type="text" name="name[actors][3][inmovie]" /></td>
+      <td><input type="text" name="name[actors][3][original]" /></td>
+    </tr>
+    <tr>
+      <td>4.</td>
+      <td><input type="text" name="name[actors][4][inmovie]" /></td>
+      <td><input type="text" name="name[actors][4][original]" /></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="addactor" value="Add 5 more actors" /></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<h2>Soundtrack & Subtitles</h2>
+<table>
+<table>
+  <tbody>
+    <tr>
+      <td>Soundtracks</td>
+      <td>
+         <select name="select[sountrack][languages]" size="5" multiple="true">
+	   <option value="1">German</option>
+	   <option value="2">English</option>
+	 </select>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <td>Subtitles</td>
+      <td>
+         <select name="select[subtitles][languages]" size="5" multiple="true">
+	   <option value="1">German</option>
+	   <option value="2">English</option>
+	 </select>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<div>
+<h2>Misc</h2>
+<table>
+  <tbody>
+    <tr>
+      <td>Status</td>
+      <td>
+         <select name="select[misc][codec]">
+	   <option value="1">available</option>
+	   <option value="2">n/a</option>
+	 </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Owner</td>
+      <td><input type="text" name="text[misc][owner]" /></td>
+    </tr>
+    <tr>
+      <td>Holder</td>
+      <td><input type="text" name="text[misc][holder]" /></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+Created ....
+Modificated ....
+</div>
+
+</body>
+</html>

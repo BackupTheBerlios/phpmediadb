@@ -1,0 +1,10 @@
+phpMediaDB Software
+~~~~~~~~~~~~~~~~~~~
+
+ *** ArgoUML - http://argouml.tigris.org/
+   - classdiagram.zargo
+
+ *** DBDesigner - http://www.fabforce.net/dbdesigner4/
+   - erm-model.xml
+
+$Id: DEVELOPMENT,v 1.1 2004/09/09 10:54:21 mblaschke Exp $
