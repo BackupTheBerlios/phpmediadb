@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.6 2005/03/15 18:08:28 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_contentvars.php,v 1.7 2005/03/15 20:23:41 mblaschke Exp $ */
 
 class phpmediadb_presentation_contentvars
 {
@@ -40,7 +40,7 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb_presentation
+	 * @param phpmediadb_presentation $sender Refernece to parentclass
 	 */
 	public function __construct( $sender )
 	{
@@ -73,10 +73,10 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @param String
-	 * @param Integer
-	 * @return void
+	 * @param String $nodeName Name of node (dooted format)
+	 * @param Mixed $nodeValue Value of node
+	 * @param Integer $nodeFormat Format of node, $nodeValue will be converted into this format
+	 * @return bool success of nodeintegration
 	 */
 	public function addNode( $nodeName, $nodeValue, $nodeFormat = PHPMEDIADB_NODEFORMAT_TEXT )
 	{
@@ -89,6 +89,8 @@ class phpmediadb_presentation_contentvars
 
 		/* delegate */
 		$this->recursiveInsertNodeIntoContainer( $nodeName, $nodeValue, $this->nodeContainer );
+		
+		return true;
 	}
 
 //-----------------------------------------------------------------------------
@@ -98,8 +100,8 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @return String
+	 * @param String $nodeName Name of node (dotted-format)
+	 * @return mixed Array or string of nodes
 	 */
 	public function getNode( $nodeName = NULL )
 	{
@@ -129,8 +131,8 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @return void
+	 * @param String $nodeName Name of node (dotted format)
+	 * @return bool ssuccess of nodedeletion
 	 */
 	public function DeleteNode( $nodeName )
 	{
@@ -150,10 +152,10 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param mixed
-	 * @param String
-	 * @param mixed
-	 * @return mixed
+	 * @param mixed $nodeName Name of node (dotted format)
+	 * @param String $nodeValue Value of node
+	 * @param mixed $nodeArray Reference of a nodecontainer
+	 * @return mixed Nodecontainer
 	 */
 	protected function recursiveInsertNodeIntoContainer( $nodeName, $nodeValue = null, &$nodeArray )
 	{
@@ -208,10 +210,9 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param mixed
-	 * @param String
-	 * @param mixed
-	 * @return mixed
+	 * @param String $nodeName Name of node (dotted format)
+	 * @param mixed $nodeArray Reference of a nodecontainer
+	 * @return mixed Nodecontainer
 	 */
 	protected function recursiveReadNodeFromContainer( $nodeName, &$nodeArray )
 	{
@@ -269,8 +270,8 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @return boolean
+	 * @param String $nodeName Name of node (dotted format)
+	 * @return boolean boolean value specifies if nodename is valid
 	 */
 	public function checkNodeString( $nodeName )
 	{
@@ -289,8 +290,9 @@ class phpmediadb_presentation_contentvars
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @return String
+	 * @param String $nodeValue Name of node
+	 * @param String $nodeFormat Format of node (conversion)
+	 * @return String Name of node (dotted format)
 	 */
 	protected function convertNodeValue( $nodeValue, $nodeFormat )
 	{
@@ -332,7 +334,8 @@ class phpmediadb_presentation_contentvars
 		/* return value */
 		return $returnValue;
 	}
-
+	
+//-----------------------------------------------------------------------------
 } /* end of class phpmediadb_presentation_contentvars */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---

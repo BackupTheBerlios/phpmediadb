@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation.php,v 1.5 2005/02/27 16:06:24 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation.php,v 1.6 2005/03/15 20:25:05 mblaschke Exp $ */
 
 class phpmediadb_presentation
 {
@@ -70,12 +70,13 @@ class phpmediadb_presentation
 
 	// --- OPERATIONS ---
 
+//-----------------------------------------------------------------------------
 	/**
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb
+	 * @param phpmediadb $sender Refernce to parentclass
 	 */
 	public function __construct( $sender )
 	{
@@ -95,6 +96,7 @@ class phpmediadb_presentation
 		$this->XMLSERVICE		= new phpmediadb_presentation_xmlservice( $this );
 	}
 	
+//-----------------------------------------------------------------------------
  /**
 	 * The destructor __destruct is responsible for closing all open files,
 	 * etc.
@@ -107,13 +109,12 @@ class phpmediadb_presentation
 		/* nothing to do yet */
 	}
 	
-	
+//-----------------------------------------------------------------------------
 	/**
 	 * Loads the configuration from the global array and resets the array
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb
 	 * @return void
 	 */
 	private function loadConfiguration()
@@ -128,7 +129,8 @@ class phpmediadb_presentation
 		/* unset global configuration -> security */
 		unset( $phpMediaDbConfig['PRESENTATION'] );
 	}
-
+	
+//-----------------------------------------------------------------------------
 } /* end of class phpmediadb_presentation */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---

@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_presentation_i18n.php,v 1.6 2005/03/15 18:09:52 mblaschke Exp $ */
+/* $Id: class.phpmediadb_presentation_i18n.php,v 1.7 2005/03/15 20:24:50 mblaschke Exp $ */
 
 class phpmediadb_presentation_i18n
 {
@@ -55,7 +55,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param phpmediadb_presentation
+	 * @param phpmediadb_presentation $sender Reference to parent class
 	 */
 	public function __construct( $sender )
 	{
@@ -77,7 +77,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return string
+	 * @return string Browserlanguage as languagecode
 	 */
   public function getBrowserLanguage()
   {
@@ -101,8 +101,8 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @return mixed
+	 * @param String Internal language-i18n-stringcode
+	 * @return mixed Internationalized string
 	 */
   public function getLanguageString( $langId )
   {
@@ -124,7 +124,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return Array
+	 * @return Array Array with all i18n strings
 	 */
   public function getLanguageArray()
   {
@@ -142,7 +142,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return Array
+	 * @return Array Array with all available languages as langcodes
 	 */
   public function getAvailableLanagues()
   {
@@ -162,7 +162,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return String
+	 * @return String Currently used language as langcode
 	 */
 	 public function getLanguageCode()
 	 {
@@ -178,8 +178,8 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access public
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param String
-	 * @return Bool
+	 * @param String $langCode Languagecode which should be used
+	 * @return Bool status if set was successfull
 	 */
 	 public function setLanguageCode( $langCode )
 	 {
@@ -202,9 +202,9 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @param Array
-	 * @param String
-	 * @return string
+	 * @param Array $allowedLanguageArray Array with all allowed langcodes
+	 * @param String $defaultLanguage Default Language as langcode
+	 * @return string Prefered langcode
 	 */
   protected function detectBrowserLanguage( $allowedLanguageArray, $defaultLanguage )
   {
@@ -283,7 +283,6 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return void
 	 */
 	 protected function readI18nDirectory()
 	 {
@@ -310,7 +309,6 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
-	 * @return void
 	 */
 	protected function initalizeLanguageContainer()
 	{
@@ -327,6 +325,7 @@ class phpmediadb_presentation_i18n
 	 *
 	 * @access protected
 	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @param String $langCode Langcode which should be loaded
 	 * @return void
 	 */
   protected function loadLanagueFile( $langCode )
@@ -343,6 +342,7 @@ class phpmediadb_presentation_i18n
   	}
   }
 
+//-----------------------------------------------------------------------------
 } /* end of class phpmediadb_presentation_i18n */
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
