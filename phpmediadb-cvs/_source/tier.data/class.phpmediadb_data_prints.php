@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_prints.php,v 1.11 2005/04/06 13:56:50 bruf Exp $ */
+/* $Id: class.phpmediadb_data_prints.php,v 1.10 2005/04/06 13:55:03 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the prints
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.11 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -156,7 +156,7 @@ class phpmediadb_data_prints
 			$stmt->setString( 5, $data['ItemComment'] );
 			$stmt->setString( 6, $data['ItemQuantity'] );
 			$stmt->setString( 7, $data['ItemIdentifier'] );
-			$stmt->setString( 8, PHPMEDIAD_ITEM_PRINT );
+			$stmt->setString( 8, 3 );
 			$stmt->executeUpdate();
 			
 			$id = $this->DATA->SQL->getLastInsert( $conn );
