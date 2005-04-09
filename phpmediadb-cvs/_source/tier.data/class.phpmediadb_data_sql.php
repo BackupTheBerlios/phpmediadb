@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_sql.php,v 1.9 2005/04/06 13:57:14 bruf Exp $ */
+/* $Id: class.phpmediadb_data_sql.php,v 1.10 2005/04/09 15:44:54 mblaschke Exp $ */
 
 /**
  * This is the class that provides often used sql actions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.9 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -75,13 +75,14 @@ class phpmediadb_data_sql
 			$dsn		= $this->DATA->configuration['sqlconnection'];
 			$conntype	= $this->DATA->configuration['sqlconnection']['conntype'];
 			$conn = Creole::getConnection($dsn, $conntype );
+			
+			/* return connection */
 			return $conn;
 		}
 		catch( Exception $ex  )
 		{
-			/* connection failed -- exception thrown.. sorry, can't do anything */
-			echo $ex->getMessage();
-			die();
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $ex );
 		}
 	}
 	
@@ -97,18 +98,16 @@ class phpmediadb_data_sql
 	{
 		try
 		{
-			/*
-			$stmt = $conn->prepareStatement( 'SELECT LAST_INSERT_ID()' );
-			$rs = $stmt->executeQuery();
-			return $rs;
-			*/
-			
+			/* get ID-generator */
 			$idGen = $conn->getIdGenerator();
+			
+			/* return last inserted id */
 			return $idGen->getId();
 		}
 		catch( Exception $e )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $ex );
 		}	
 	}
 	
@@ -121,6 +120,7 @@ class phpmediadb_data_sql
 	*/
 	public function openTransaction( $conn )
 	{
+		/* delegate */
 		$conn->setAutoCommit(false);
 	}
 	
@@ -132,6 +132,7 @@ class phpmediadb_data_sql
 	*/
 	public function commitTransaction( $conn )
 	{
+		/* delegate */
 		$conn->commit();
 	}
 	
@@ -141,17 +142,16 @@ class phpmediadb_data_sql
 	 *
 	 * @access public
 	 * @param String $conn contains information from the connection to the database
+	 * @param exception $exception exception of error
 	*/
-	public function rollbackTransaction( $conn, $e )
+	public function rollbackTransaction( $conn, $exception )
 	{
 		/* abort all delete/update queries in the transaction*/
 		$conn->rollback();
 		
-		/* get errormessage */
-		$error = $e->getMessage();
-		
-		/* terminate script */
-		die( $error );
+		/* handle exception and terminate script */
+		phpmediadb_exception::handleException( $exception );
+		die();
 	}
 	
 //-----------------------------------------------------------------------------
@@ -164,12 +164,11 @@ class phpmediadb_data_sql
 	*/
 	public function generateDataArray( $rs )
 	{
-
+		/* copy all rows to an dataarray */
 		while ($rs->next())
-		{
 			$dataArray[] = $rs->GetRow();
-		}
 
+		/* return dataarray */
 		return $dataArray;
 	}
 		
