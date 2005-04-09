@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_prints.php,v 1.10 2005/04/06 13:55:03 bruf Exp $ */
+/* $Id: class.phpmediadb_data_prints.php,v 1.12 2005/04/09 23:56:01 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the prints
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.10 $
+ * @version		$Revision: 1.12 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -93,9 +93,10 @@ class phpmediadb_data_prints
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch ( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -124,9 +125,10 @@ class phpmediadb_data_prints
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -156,7 +158,7 @@ class phpmediadb_data_prints
 			$stmt->setString( 5, $data['ItemComment'] );
 			$stmt->setString( 6, $data['ItemQuantity'] );
 			$stmt->setString( 7, $data['ItemIdentifier'] );
-			$stmt->setString( 8, 3 );
+			$stmt->setString( 8, PHPMEDIAD_ITEM_PRINT );
 			$stmt->executeUpdate();
 			
 			$id = $this->DATA->SQL->getLastInsert( $conn );
@@ -167,9 +169,13 @@ class phpmediadb_data_prints
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $id;		
 		}
-		catch( Excpetion $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -232,9 +238,13 @@ class phpmediadb_data_prints
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 	
@@ -262,9 +272,13 @@ class phpmediadb_data_prints
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -298,9 +312,10 @@ class phpmediadb_data_prints
 			
 			return $returnValue;
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 

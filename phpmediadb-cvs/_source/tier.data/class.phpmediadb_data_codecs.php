@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_codecs.php,v 1.14 2005/04/06 13:54:42 bruf Exp $ */
+/* $Id: class.phpmediadb_data_codecs.php,v 1.15 2005/04/09 23:56:01 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the codecs
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.14 $
+ * @version		$Revision: 1.15 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -80,9 +80,10 @@ class phpmediadb_data_codecs
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -104,9 +105,10 @@ class phpmediadb_data_codecs
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -131,9 +133,10 @@ class phpmediadb_data_codecs
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 	
@@ -161,9 +164,13 @@ class phpmediadb_data_codecs
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $this->DATA->SQL->getLastInsert( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -193,9 +200,13 @@ class phpmediadb_data_codecs
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -218,9 +229,13 @@ class phpmediadb_data_codecs
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -254,9 +269,10 @@ class phpmediadb_data_codecs
 				
 			return $returnValue;
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
