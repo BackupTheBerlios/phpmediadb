@@ -1,14 +1,29 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: constants.phpmediadb.php,v 1.5 2005/03/24 20:44:31 mblaschke Exp $ */
+/* $Id: constants.phpmediadb.php,v 1.6 2005/04/09 15:43:24 mblaschke Exp $ */
 /**
  * This files handels all contants
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	global
  */
+ 
+// --- tier.global ---
+	/**
+	 * Constant that indicates the phpmediadb-version
+	 */
+	define( 'PHPMEDIADB_SYSTEM_VERSION', '0.0.0-prealpha' ); 
+	
+	/**
+	 * Constant that indicates the debuglevel of phpmediadb
+	 *
+	 * 0 - no debug
+	 * 1 - debug with exception-message
+	 * 2 - debug with stacktrace
+	 */
+	define( 'PHPMEDIADB_SYSTEM_DEBUGLEVEL' , 2);
  
 // --- tier.presentation ---
 
