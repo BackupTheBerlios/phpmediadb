@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_sql.php,v 1.10 2005/04/09 15:44:54 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_sql.php,v 1.11 2005/04/09 23:59:35 mblaschke Exp $ */
 
 /**
  * This is the class that provides often used sql actions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.10 $
+ * @version		$Revision: 1.11 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -142,16 +142,11 @@ class phpmediadb_data_sql
 	 *
 	 * @access public
 	 * @param String $conn contains information from the connection to the database
-	 * @param exception $exception exception of error
 	*/
-	public function rollbackTransaction( $conn, $exception )
+	public function rollbackTransaction( $conn )
 	{
 		/* abort all delete/update queries in the transaction*/
 		$conn->rollback();
-		
-		/* handle exception and terminate script */
-		phpmediadb_exception::handleException( $exception );
-		die();
 	}
 	
 //-----------------------------------------------------------------------------
@@ -164,6 +159,9 @@ class phpmediadb_data_sql
 	*/
 	public function generateDataArray( $rs )
 	{
+		/* init */
+		$dataArray = NULL;
+		
 		/* copy all rows to an dataarray */
 		while ($rs->next())
 			$dataArray[] = $rs->GetRow();
