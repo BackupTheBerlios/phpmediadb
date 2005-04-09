@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_categories.php,v 1.8 2005/04/06 13:54:30 bruf Exp $ */
+/* $Id: class.phpmediadb_data_categories.php,v 1.9 2005/04/09 15:47:10 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the categories
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.8 $
+ * @version		$Revision: 1.9 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -80,9 +80,10 @@ class phpmediadb_data_categories
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $ex )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $ex );
 		}
 	}
 
@@ -104,9 +105,10 @@ class phpmediadb_data_categories
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $ex )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $ex );
 		}
 	}
 
@@ -131,9 +133,10 @@ class phpmediadb_data_categories
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $ex )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $ex );
 		}
 	}
 //-----------------------------------------------------------------------------
@@ -246,9 +249,10 @@ class phpmediadb_data_categories
 			
 			return $returnValue;
 		}
-		catch( Exception $e )
+		catch( Exception $ex )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $ex );
 		}
 	}
 
@@ -258,9 +262,10 @@ class phpmediadb_data_categories
 	 * into the table Categories_has_Items
 	 *
 	 * @access public
-	 * @param array $data contains specified data for the sql statement
+	 * @param integer $itemId ID of the item
+	 * @param integer $categoryId ID of the category
 	 */
-	public function add( $data )
+	public function addLink( $itemId, $categoryId )
 	{
 		try
 		{
@@ -275,7 +280,7 @@ class phpmediadb_data_categories
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackTransaction( $conn, $e );
 		}
 	}
 
@@ -287,20 +292,20 @@ class phpmediadb_data_categories
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
 	 */
-	public function remove( $id )
+	public function removeAllLinks( $itemId )
 	{
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
 			$stmt = $conn->prepareStatement(	'DELETE FROM Categories_has_Items
 												WHERE Categories_has_Items.ItemID = ?' );
-			$stmt->setString( 1, $id );
+			$stmt->setString( 1, $itemId );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
 		catch( Exception $e )
 		{
-			return $this->DATA->SQL->rollbackTransaction( $conn, $e );
+			$this->DATA->SQL->rollbackTransaction( $conn, $e );
 		}
 	}
 
