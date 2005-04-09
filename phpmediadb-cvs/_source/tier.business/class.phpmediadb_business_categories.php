@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_categories.php,v 1.7 2005/04/06 13:51:55 bruf Exp $ */
+/* $Id: class.phpmediadb_business_categories.php,v 1.8 2005/04/09 19:13:10 mblaschke Exp $ */
 
 /**
  * This is the class that manages all functions of the categories
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.7 $
+ * @version		$Revision: 1.8 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -218,6 +218,33 @@ class phpmediadb_business_categories
 		
 		/* return data */
 		return $data;
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function links a item with a category
+	 *
+	 * @access public
+	 * @param integer $itemId ID of the item
+	 * @param integer $categoryId ID of the category
+	 */
+	public function addLink( $itemId, $categoryId )
+	{
+		/* delegate */
+		$returnValue = $this->DATA->CATEGORIES->addLink( $itemId, $categoryId );
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function removes all links from an item
+	 *
+	 * @access public
+	 * @param Integer $itemId ID of the item
+	 */
+	public function removeAllLinks( $itemId )
+	{
+		/* delegate */
+		$returnValue = $this->DATA->CATEGORIES->removeAllLinks( $itemId );
 	}
 	
 //-----------------------------------------------------------------------------
