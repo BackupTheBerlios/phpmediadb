@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_categories.php,v 1.9 2005/04/09 15:47:10 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_categories.php,v 1.10 2005/04/09 19:09:38 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the categories
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.9 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -290,7 +290,7 @@ class phpmediadb_data_categories
 	 * from the table Categories_has_Items
 	 *
 	 * @access public
-	 * @param Integer $id contains specified id for the sql statement
+	 * @param Integer $itemId contains specified id for the sql statement
 	 */
 	public function removeAllLinks( $itemId )
 	{
