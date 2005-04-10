@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_audios.php,v 1.6 2005/03/24 20:43:35 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_audios.php,v 1.7 2005/04/10 01:34:45 mblaschke Exp $ */
 
 /**
  * This is the class that manages all functions of the audios
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -147,8 +147,16 @@ class phpmediadb_business_audios
 		/* init */
 		$returnValue = false;
 		
-		/* delegate */
-		$returnValue = $this->DATA->AUDIOS->create( $data );
+		/* create itemdata */
+		$itemId = $this->DATA->AUDIOS->create( $data );
+		
+		/* link item with categories */
+		if( is_array( $data['Categories'] ) )
+		{
+			foreach( $data['Categories'] as $categoryId )
+				$this->BUSINESS->CATEGORIES->addLink( $itemId, $categoryId );
+		}
+
 		
 		/* return data */
 		return $returnValue;
