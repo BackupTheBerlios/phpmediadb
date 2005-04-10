@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_audios.php,v 1.10 2005/04/06 13:54:21 bruf Exp $ */
+/* $Id: class.phpmediadb_data_audios.php,v 1.11 2005/04/10 01:31:05 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the audios
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.10 $
+ * @version		$Revision: 1.11 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -74,29 +74,23 @@ class phpmediadb_data_audios
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$stmt = $conn->prepareStatement(	'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.ItemPicturesID
-												FROM AudioDatas a,
-												Items b,
-												ItemTypes c,
-												MediaCodecs d,
-												MediaFormats e,
-												MediaAgeRestrictions f,
-												BinaryDatas g
-												WHERE b.ItemID = ? 
-												AND a.ItemID = b.ItemID
-												AND b.ItemTypeID = c.ItemTypeID
-												AND b.MediaCodecID = d.MediaCodecID
-												AND b.MediaFormatID = e.MediaFormatID
-												AND b.MediaAgeRestrictionID = f.MediaAgeRestrictionID
-												AND b.ItemPicturesID = g.ItemPicturesID' );
+			$stmt = $conn->prepareStatement(	'SELECT Items.*, ItemTypes.*, MediaCodecs.*, MediaFormats.*, MediaAgeRestrictions.* ,BinaryDatas.ItemPicturesID
+													FROM Items
+													LEFT JOIN ItemTypes ON ItemTypes.ItemTypeID=Items.ItemTypeID
+													LEFT JOIN MediaCodecs ON MediaCodecs.MediaCodecID=Items.MediaCodecID
+													LEFT JOIN MediaFormats ON MediaFormats.MediaFormatID=Items.MediaFormatID
+													LEFT JOIN MediaAgeRestrictions ON MediaAgeRestrictions.MediaAgeRestrictionID=Items.MediaAgeRestrictionID
+													LEFT JOIN BinaryDatas ON  BinaryDatas.ItemPicturesID=Items.ItemPicturesID
+													WHERE Items.ItemID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -113,21 +107,21 @@ class phpmediadb_data_audios
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$stmt = $conn->prepareStatement(	'SELECT a.*, b.*, c.*, d.*, e.*, f.*, g.ItemPicturesID
-												FROM AudioDatas a,
-												Items b,
-												ItemTypes c,
-												MediaCodecs d,
-												MediaFormats e,
-												MediaAgeRestrictions f,
-												BinaryDatas g' );
+			$stmt = $conn->prepareStatement(	'SELECT Items.*, ItemTypes.*, MediaCodecs.*, MediaFormats.*, MediaAgeRestrictions.* ,BinaryDatas.ItemPicturesID
+													FROM Items
+													LEFT JOIN ItemTypes ON ItemTypes.ItemTypeID=Items.ItemTypeID
+													LEFT JOIN MediaCodecs ON MediaCodecs.MediaCodecID=Items.MediaCodecID
+													LEFT JOIN MediaFormats ON MediaFormats.MediaFormatID=Items.MediaFormatID
+													LEFT JOIN MediaAgeRestrictions ON MediaAgeRestrictions.MediaAgeRestrictionID=Items.MediaAgeRestrictionID
+													LEFT JOIN BinaryDatas ON  BinaryDatas.ItemPicturesID=Items.ItemPicturesID' );
 			$rs = $stmt->executeQuery();
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -168,9 +162,13 @@ class phpmediadb_data_audios
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $id;
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackTransaction( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -232,9 +230,13 @@ class phpmediadb_data_audios
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackTransaction( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 		
 		return true;
@@ -265,9 +267,13 @@ class phpmediadb_data_audios
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackTransaction( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 		
 		return true;
@@ -303,9 +309,10 @@ class phpmediadb_data_audios
 				
 			return $returnValue;
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			die( $e->getMessage() );
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
