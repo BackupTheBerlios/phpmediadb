@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_categories.php,v 1.10 2005/04/09 19:09:38 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_categories.php,v 1.11 2005/04/10 00:01:32 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the categories
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.10 $
+ * @version		$Revision: 1.11 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -160,9 +160,13 @@ class phpmediadb_data_categories
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $this->DATA->SQL->getLastInsert( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -188,9 +192,13 @@ class phpmediadb_data_categories
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -213,9 +221,13 @@ class phpmediadb_data_categories
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackException( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -273,14 +285,18 @@ class phpmediadb_data_categories
 			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'INSERT INTO Categories_has_Items
 												( ItemID, CategoryID ) VALUES( ?, ? )' );
-			$stmt->setString( 1, $data['ItemID'] );
-			$stmt->setString( 2, $data['CategoryID'] );
+			$stmt->setString( 1, $itemId );
+			$stmt->setString( 2, $categoryId );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackTransaction( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
@@ -303,9 +319,13 @@ class phpmediadb_data_categories
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
-		catch( Exception $e )
+		catch( Exception $exception )
 		{
-			$this->DATA->SQL->rollbackTransaction( $conn, $e );
+			/* rollback transaction */
+			$this->DATA->SQL->rollbackTransaction( $conn );
+			
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
 		}
 	}
 
