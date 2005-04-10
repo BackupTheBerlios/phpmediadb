@@ -1,21 +1,19 @@
 <div id="phpmediadb-body-list-audio" class="phpmediadb-body-list">
 	<table width="100%" border="0">
 		<tr>
-			<th>{$I18N.MEDIA_TITLE|default:"%MEDIA_TITLE%"}</th>
-			<th>{$I18N.MEDIA_ARTIST|default:"%MEDIA_ARTIST%"}</th>
-			<th>{$I18N.LIST_TITLE_TITLE|default:"%LIST_TITLE_TITLE%"}</th>
+			<th>{$I18N.LIST_COLUMN_TITLE_MEDIATITLE|default:"%LIST_COLUMN_TITLE_MEDIATITLE%"}</th>
+			<th>{$I18N.LIST_COLUMN_TITLE_RELEASEDATE|default:"%LIST_COLUMN_TITLE_RELEASEDATE%"}</th>
 			<th></th>
 		</tr>
-		
-		<td>
-			<td></td>
-			<td></td>
-			<td></td>
+{foreach from=$ITEMDATA item=currentDataItem}
+		<tr>
+			<td>{$currentDataItem.itemtitle}</td>
+			<td>{$currentDataItem.itemreleasedate|default:$I18N.NOT_SET|default:"%NOT_SET%"}</td>
 			<td>
-				<a href="admin/item-mod.php?itemid="><img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-modify.png" alt="{$I18N.ACTION_MODIFY|default:"%ACTION_MODIFY%"}" /></a>
-				<a href="admin/item-del.php?itemid="><img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-remove.png" alt="{$I18N.ACTION_DELETE|default:"%ACTION_DELETE%"}" /></a>
+				<a href="admin/item-mod.php?itemid={$currentDataItem.itemid}"><img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-modify.png" alt="{$I18N.ACTION_MODIFY|default:"%ACTION_MODIFY%"}" /></a>
+				<a href="admin/item-del.php?itemid={$currentDataItem.itemid}"><img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-remove.png" alt="{$I18N.ACTION_DELETE|default:"%ACTION_DELETE%"}" /></a>
 			</td>
-		</td>
-		
+		</tr>
+{/foreach}
 	</table>
-</div> 
+</div>
