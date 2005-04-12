@@ -1,5 +1,5 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: create-tables.sql,v 1.4 2005/04/12 20:16:27 mblaschke Exp $
+-- $Id: create-tables.sql,v 1.5 2005/04/12 20:48:46 mblaschke Exp $
 
 CREATE TABLE AudioDatas (
   AudioDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -36,17 +36,17 @@ CREATE TABLE Items (
   MediaCodecID INTEGER UNSIGNED,
   MediaFormatID INTEGER UNSIGNED,
   ItemPicturesID INTEGER UNSIGNED,
-  ItemTitle VARCHAR(255) NOT NULL,
-  ItemOriginalTitle VARCHAR(255) NOT NULL,
-  ItemReleaseDate VARCHAR(255) NOT NULL,
-  ItemMediaName VARCHAR(255) NOT NULL,
-  ItemCreationDate TIMESTAMP NOT NULL,
-  ItemModificationDate TIMESTAMP NOT NULL,
-  ItemComment BLOB NOT NULL,
-  ItemQuantity VARCHAR(255) NOT NULL,
-  ItemIdentifier VARCHAR(255) NOT NULL,
+  ItemTitle VARCHAR(255),
+  ItemOriginalTitle VARCHAR(255),
+  ItemReleaseDate VARCHAR(255),
+  ItemMediaName VARCHAR(255),
+  ItemCreationDate TIMESTAMP,
+  ItemModificationDate TIMESTAMP,
+  ItemComment BLOB,
+  ItemQuantity VARCHAR(255),
+  ItemIdentifier VARCHAR(255),
   ItemTypeID INTEGER UNSIGNED NOT NULL,
-  ItemPublisher VARCHAR(255) NOT NULL, 
+  ItemPublisher VARCHAR(255), 
   PRIMARY KEY(ItemID),
   INDEX Items_FKIndex1(ItemTypeID),
   INDEX Items_FKIndex2(ItemPicturesID),
