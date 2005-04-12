@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data.php,v 1.9 2005/03/26 11:48:27 bruf Exp $ */
+/* $Id: class.phpmediadb_data.php,v 1.10 2005/04/12 17:58:05 mblaschke Exp $ */
 
 /**
  * This class contains all subclasses of the TIER.DATA and the configuration
@@ -8,7 +8,7 @@
  * The subclasses can be accessed through the public references.
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.9 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -69,6 +69,15 @@ class phpmediadb_data
 	 * @var phpmediadb_data_formats
 	 */
 	public $FORMATS = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_items
+	 *
+	 * @access public
+	 * @see phpmediadb_data_formats
+	 * @var phpmediadb_data_formats
+	 */
+	public $ITEMS = null;
 	
 	/**
 	 * Reference to class phpmediadb_data_prints
@@ -139,6 +148,7 @@ class phpmediadb_data
 		$this->CATEGORIES		= new phpmediadb_data_categories( $this );
 		$this->CODECS			= new phpmediadb_data_codecs( $this );
 		$this->FORMATS			= new phpmediadb_data_formats( $this );
+		$this->ITEMS			= new phpmediadb_data_items( $this );
 		$this->PRINTS			= new phpmediadb_data_prints( $this );
 		$this->SQL				= new phpmediadb_data_sql( $this );
 		$this->STATUS			= new phpmediadb_data_status( $this );
