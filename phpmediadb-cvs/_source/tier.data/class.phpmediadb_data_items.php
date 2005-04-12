@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_items.php,v 1.2 2005/04/12 17:59:17 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_items.php,v 1.3 2005/04/12 17:59:54 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the items
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.2 $
+ * @version		$Revision: 1.3 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -138,7 +138,7 @@ class phpmediadb_data_items
 	 *
 	 * @access public
 	 * @param Integer $id contains specified id for the sql statement
-	 * @return array returns the results of database query
+	 * @return integer returns the results of database query
 	 */
 	public function getItemType( $id )
 	{
