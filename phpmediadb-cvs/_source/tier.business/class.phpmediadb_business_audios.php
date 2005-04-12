@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_audios.php,v 1.7 2005/04/10 01:34:45 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_audios.php,v 1.8 2005/04/12 20:53:51 mblaschke Exp $ */
 
 /**
  * This is the class that manages all functions of the audios
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.7 $
+ * @version		$Revision: 1.8 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -88,6 +88,7 @@ class phpmediadb_business_audios
 		$returnValue['MediaAgeRestrictionID']	= '';
 		$returnValue['MediaCodecID']			= '';
 		$returnValue['ItemQuantity']			= '';
+		$returnValue['ItemPublisher']			= '';
 		$returnValue['ItemCreationDate']		= NULL;
 		$returnValue['ItemModificationDate']	= NULL;
 			
