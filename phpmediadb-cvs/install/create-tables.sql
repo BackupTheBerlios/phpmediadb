@@ -1,14 +1,10 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: create-tables.sql,v 1.3 2005/04/06 13:58:25 bruf Exp $
+-- $Id: create-tables.sql,v 1.4 2005/04/12 20:16:27 mblaschke Exp $
 
 CREATE TABLE AudioDatas (
   AudioDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   ItemID INTEGER UNSIGNED NOT NULL,
-  TrackID INTEGER UNSIGNED NOT NULL,
-  LanguageID INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(AudioDataID),
-  INDEX AudioDatas_FKIndex1(LanguageID),
-  INDEX AudioDatas_FKIndex2(TrackID),
   INDEX AudioDatas_FKIndex3(ItemID)
 );
 
@@ -36,11 +32,10 @@ CREATE TABLE Categories_has_Items (
 
 CREATE TABLE Items (
   ItemID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  PublisherID INTEGER UNSIGNED NOT NULL,
-  MediaAgeRestrictionID INTEGER UNSIGNED NOT NULL,
-  MediaCodecID INTEGER UNSIGNED NOT NULL,
-  MediaFormatID INTEGER UNSIGNED NOT NULL,
-  ItemPicturesID INTEGER UNSIGNED NOT NULL,
+  MediaAgeRestrictionID INTEGER UNSIGNED,
+  MediaCodecID INTEGER UNSIGNED,
+  MediaFormatID INTEGER UNSIGNED,
+  ItemPicturesID INTEGER UNSIGNED,
   ItemTitle VARCHAR(255) NOT NULL,
   ItemOriginalTitle VARCHAR(255) NOT NULL,
   ItemReleaseDate VARCHAR(255) NOT NULL,
@@ -51,26 +46,19 @@ CREATE TABLE Items (
   ItemQuantity VARCHAR(255) NOT NULL,
   ItemIdentifier VARCHAR(255) NOT NULL,
   ItemTypeID INTEGER UNSIGNED NOT NULL,
+  ItemPublisher VARCHAR(255) NOT NULL, 
   PRIMARY KEY(ItemID),
   INDEX Items_FKIndex1(ItemTypeID),
   INDEX Items_FKIndex2(ItemPicturesID),
   INDEX Items_FKIndex3(MediaFormatID),
   INDEX Items_FKIndex4(MediaCodecID),
-  INDEX Items_FKIndex5(MediaAgeRestrictionID),
-  INDEX Items_FKIndex6(PublisherID)
+  INDEX Items_FKIndex5(MediaAgeRestrictionID)
 );
 
 CREATE TABLE ItemTypes (
   ItemTypeID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   ItemTypeCode VARCHAR(255) NOT NULL,
   PRIMARY KEY(ItemTypeID)
-);
-
-CREATE TABLE Languages (
-  LanguageID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  LanguageName VARCHAR(255) NOT NULL,
-  LanguageCode VARCHAR(255) NOT NULL,
-  PRIMARY KEY(LanguageID)
 );
 
 CREATE TABLE MediaAgeRestrictions (
@@ -95,89 +83,17 @@ CREATE TABLE MediaFormats (
   INDEX MediaFormats_FKIndex1(ItemTypeID)
 );
 
-CREATE TABLE MediaStatus (
-  MediaStatusID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  MediaStatus VARCHAR(255) NOT NULL,
-  PRIMARY KEY(MediaStatusID)
-);
-
-CREATE TABLE PersonActors (
-  PersonActorID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  ItemID INTEGER UNSIGNED NOT NULL,
-  PersonID INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(PersonActorID),
-  INDEX PersonActors_FKIndex1(PersonID),
-  INDEX PersonActors_FKIndex2(ItemID)
-);
-
-CREATE TABLE PersonAuthors (
-  PersonAuthorID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  ItemID INTEGER UNSIGNED NOT NULL,
-  PersonID INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(PersonAuthorID),
-  INDEX PersonAuthors_FKIndex1(PersonID),
-  INDEX PersonAuthors_FKIndex2(ItemID)
-);
-
-CREATE TABLE PersonDirectors (
-  PersonDirectorID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  ItemID INTEGER UNSIGNED NOT NULL,
-  PersonID INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(PersonDirectorID),
-  INDEX PersonDirectors_FKIndex1(PersonID),
-  INDEX PersonDirectors_FKIndex2(ItemID)
-);
-
-CREATE TABLE Persons (
-  PersonID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  PersonFirstName VARCHAR(255) NOT NULL,
-  PersonLastName VARCHAR(255) NOT NULL,
-  PRIMARY KEY(PersonID)
-);
-
 CREATE TABLE PrintDatas (
   PrintDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   ItemID INTEGER UNSIGNED NOT NULL,
-  LanguageID INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(PrintDataID),
-  INDEX PrintDatas_FKIndex1(LanguageID),
   INDEX PrintDatas_FKIndex2(ItemID)
-);
-
-CREATE TABLE Publishers (
-  PublisherID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  PublisherName VARCHAR(255) NOT NULL,
-  PRIMARY KEY(PublisherID)
-);
-
-CREATE TABLE Tracks (
-  TrackID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  TrackName VARCHAR(255) NOT NULL,
-  TrackArtist VARCHAR(255) NOT NULL,
-  TrackLength INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(TrackID)
-);
-
-CREATE TABLE TrackSounds (
-  TrackSoundID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  LanguageID INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(TrackSoundID),
-  INDEX TrackSounds_FKIndex1(LanguageID)
-);
-
-CREATE TABLE TrackSubtitles (
-  LanguageSubtitle INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  LanguageID INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(LanguageSubtitle),
-  INDEX TrackSubtitles_FKIndex1(LanguageID)
 );
 
 CREATE TABLE VideoDatas (
   VideoDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   ItemID INTEGER UNSIGNED NOT NULL,
-  LanguageID INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(VideoDataID),
-  INDEX VideoDatas_FKIndex1(LanguageID),
   INDEX VideoDatas_FKIndex2(ItemID)
 );
 
