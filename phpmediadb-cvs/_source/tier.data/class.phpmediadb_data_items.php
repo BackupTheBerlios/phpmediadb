@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_items.php,v 1.3 2005/04/12 17:59:54 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_items.php,v 1.4 2005/04/12 19:12:17 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the items
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.3 $
+ * @version		$Revision: 1.4 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -59,6 +59,152 @@ class phpmediadb_data_items
 	{
 		/* nothing to do yet */
 	}
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns a specified record from the table AudioDatas
+	 * and all required data from the other tables
+	 *
+	 * @access public
+	 * @param Integer $id contains specified id for the sql statement
+	 * @return array returns the results of database query
+	 */
+	public function get( $id )
+	{
+		/* init */
+		$returnValue = NULL;
+		
+		switch( $this->getItemType( $id ) )
+		{
+		case(PHPMEDIADB_ITEM_AUDIO):
+			/* delegate */
+			$returnValue = $this->DATA->AUDIOS->get( $id );
+		break;
+	
+		case(PHPMEDIADB_ITEM_VIDEO):
+			/* delegate */
+			$returnValue = $this->DATA->VIDEOS->get( $id );
+		break;
+	
+		case(PHPMEDIADB_ITEM_PRINT):
+			/* delegate */
+			$returnValue = $this->DATA->PRINTS->get( $id );
+		break;
+		}
+		
+		/* return value */
+		return $returnValue;
+	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns all records from the table AudioDatas
+	 * and all required data from the other tables
+	 *
+	 * @access public
+	 * @param integer $itemType Type of item
+	 * @return array returns the results of database query
+	 */
+	public function getList( $itemType )
+	{
+		/* init */
+		$returnValue = NULL;
+		
+		switch( $itemType )
+		{
+		case(PHPMEDIADB_ITEM_AUDIO):
+			/* delegate */
+			$returnValue = $this->DATA->AUDIOS->getList();
+		break;
+	
+		case(PHPMEDIADB_ITEM_VIDEO):
+			/* delegate */
+			$returnValue = $this->DATA->VIDEOS->getList();
+		break;
+	
+		case(PHPMEDIADB_ITEM_PRINT):
+			/* delegate */
+			$returnValue = $this->DATA->PRINTS->getList();
+		break;
+		}
+		
+		/* return value */
+		return $returnValue;
+	}
+	
+//-----------------------------------------------------------------------------
+/**
+	 * This function creates a new record in the table AudioDatas
+	 * and all required data in the other tables
+	 *
+	 * @access public
+	 * @param array $data contains all required data for the sql statement
+	 * @param integer $itemType Type of item
+	 * @return Integer returns id from the last created record
+	 */
+	public function create( $data, $itemType )
+	{
+		/* init */
+		$returnValue = NULL;
+		
+		switch( $itemType )
+		{
+		case(PHPMEDIADB_ITEM_AUDIO):
+			/* delegate */
+			$returnValue = $this->DATA->AUDIOS->create( $data );
+		break;
+	
+		case(PHPMEDIADB_ITEM_VIDEO):
+			/* delegate */
+			$returnValue = $this->DATA->VIDEOS->create( $data );
+		break;
+	
+		case(PHPMEDIADB_ITEM_PRINT):
+			/* delegate */
+			$returnValue = $this->DATA->PRINTS->create( $data );
+		break;
+		}
+		
+		/* return value */
+		return $returnValue;
+	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * This function modifies a specified record from the table AudioDatas
+	 * and all required data from the other tables
+	 *
+	 * @access public
+	 * @param Integer $id contains specified id for the sql statement
+	 * @param array $data contains all required data for the sql statement
+	 * @return bool Status of transaction
+	 */
+	public function modify( $id, $data )
+	{
+		/* init */
+		$returnValue = NULL;
+		
+		switch( $itemType )
+		{
+		case(PHPMEDIADB_ITEM_AUDIO):
+			/* delegate */
+			$returnValue = $this->DATA->AUDIOS->modify( $id, $data );
+		break;
+	
+		case(PHPMEDIADB_ITEM_VIDEO):
+			/* delegate */
+			$returnValue = $this->DATA->VIDEOS->modify( $id, $data );
+		break;
+	
+		case(PHPMEDIADB_ITEM_PRINT):
+			/* delegate */
+			$returnValue = $this->DATA->PRINTS->modify( $id, $data );
+		break;
+		}
+		
+		/* return value */
+		return $returnValue;
+	}
+	
 //-----------------------------------------------------------------------------
 	/**
 	 * This function deletes a specified record from the table AudioDatas
