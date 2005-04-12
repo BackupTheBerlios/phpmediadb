@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_exception.php,v 1.5 2005/04/12 18:53:12 mblaschke Exp $ */
+/* $Id: class.phpmediadb_exception.php,v 1.6 2005/04/12 20:49:19 mblaschke Exp $ */
 
 /**
  * This is the class that manages the exceptions.
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	global
  */
@@ -66,8 +66,8 @@ class phpmediadb_exception extends Exception
 <!--
 	body { font-size:12px; font-family:monospace; }
 	h1 { font-size:18px; color:red; }
-	.phpmediadb-body-exception { background-color:#EEEEEE; border:1px dashed grey; margin-bottom:10px; padding:5px; }
-	.phpmediadb-body-exception-code { background-color:#FFFFCC; border:1px dotted grey; margin:10px; padding:5px; }
+	.phpmediadb-body-exception { background-color:#FFFFCC; border:1px dashed grey; margin-bottom:10px; padding:5px; }
+	.phpmediadb-body-exception-code { background-color:#FAFAFA; border:1px dotted grey; margin:10px; padding:5px; }
 	.phpmediadb-body-exception-copyright { text-align:right; }
 -->
 	</style>
