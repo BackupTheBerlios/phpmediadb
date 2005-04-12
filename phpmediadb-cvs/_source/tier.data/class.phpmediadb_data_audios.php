@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_audios.php,v 1.11 2005/04/10 01:31:05 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_audios.php,v 1.12 2005/04/12 10:17:57 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the audios
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.11 $
+ * @version		$Revision: 1.12 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -142,8 +142,9 @@ class phpmediadb_data_audios
 			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'INSERT INTO Items
 												( ItemTitle, ItemOriginalTitle, ItemReleaseDate, ItemMediaName, ItemCreationDate,
-												ItemModificationDate, ItemComment, ItemQuantity, ItemIdentifier, ItemTypeID )
-												VALUES( ?, ?, ?, ?, now(), now(), ?, ?, ?, ? )' );
+												ItemModificationDate, ItemComment, ItemQuantity, ItemIdentifier, ItemTypeID,
+												ItemPublisher )
+												VALUES( ?, ?, ?, ?, now(), now(), ?, ?, ?, ?, ? )' );
 			$stmt->setString( 1, $data['ItemTitle'] );
 			$stmt->setString( 2, $data['ItemOriginalTitle'] );
 			$stmt->setString( 3, $data['ItemReleaseDate'] );
@@ -152,6 +153,7 @@ class phpmediadb_data_audios
 			$stmt->setString( 6, $data['ItemQuantity'] );
 			$stmt->setString( 7, $data['ItemIdentifier'] );
 			$stmt->setString( 8, PHPMEDIADB_ITEM_AUDIO );
+			$stmt->setString( 9, $data['ItemPublisher'] );
 			$stmt->executeUpdate();
 		
 			$id = $this->DATA->SQL->getLastInsert( $conn );
@@ -207,7 +209,8 @@ class phpmediadb_data_audios
 												Items.MediaFormatID = ?,
 												Items.MediaAgeRestrictionID = ?,
 												Items.MediaStatusID = ?,
-												Items.ItemPicturesID = ?
+												Items.ItemPicturesID = ?;
+												Items.ItemPublisher = ?
 												WHERE Items.ItemID = ?
 												AND AudioDatas.ItemID = Items.ItemID
 												AND Items.ItemTypeID = ItemTypes.ItemTypeID
@@ -226,7 +229,8 @@ class phpmediadb_data_audios
 			$stmt->setString( 10, $data['MediaFormatID'] );
 			$stmt->setString( 11, $data['MediaAgeRestrictionID'] );
 			$stmt->setString( 12, $data['ItemPicturesID'] );
-			$stmt->setString( 13, $id );
+			$stmt->setString( 13, $data['ItemPublisher'] );
+			$stmt->setString( 14, $id );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
