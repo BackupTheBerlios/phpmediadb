@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: phpmediadb.php,v 1.9 2005/03/24 17:12:26 mblaschke Exp $ */
+/* $Id: phpmediadb.php,v 1.10 2005/04/12 18:52:48 mblaschke Exp $ */
 /**
  * This file includes all required files for phpMediaDB to work
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.9 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb
  * @subpackage	global
  */
@@ -54,6 +54,7 @@
 	require_once( 'tier.data/class.phpmediadb_data_categories.php' );
 	require_once( 'tier.data/class.phpmediadb_data_codecs.php' );
 	require_once( 'tier.data/class.phpmediadb_data_formats.php' );
+	require_once( 'tier.data/class.phpmediadb_data_items.php' );
 	require_once( 'tier.data/class.phpmediadb_data_prints.php' );
 	require_once( 'tier.data/class.phpmediadb_data_sql.php' );
 	require_once( 'tier.data/class.phpmediadb_data_status.php' );
