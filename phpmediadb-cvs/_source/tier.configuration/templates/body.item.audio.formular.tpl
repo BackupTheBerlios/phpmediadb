@@ -29,7 +29,7 @@
 			{if $INPUTERROR.flag.ItemMediaName eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td>{$I18N.MEDIA_IDENTIFICATION|default:"%MEDIA_IDENTIFICATION%"}</td>
 		<td>
@@ -45,7 +45,7 @@
 			{if $INPUTERROR.flag.ItemReleaseDate eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td>{$I18N.MEDIA_CATEGORY|default:"%MEDIA_CATEGORY%"}</td>
 		<td>
@@ -66,7 +66,7 @@
 			{if $INPUTERROR.flag.Categories eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td>{$I18N.MEDIA_MEDIASIZE|default:"%MEDIA_MEDIASIZE%"}</td>
 		<td>
@@ -74,11 +74,12 @@
 			{if $INPUTERROR.flag.ItemMediaSize eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td>{$I18N.MEDIA_FORMAT|default:"%MEDIA_FORMAT%"}</td>
 		<td>
 			<select name="itemdata[MediaFormatID]">
+				<option value="0">{$I18N.OPTION_EMPTY|default:"%OPTION_EMPTY%"}</option>
 {foreach from=$DATA.MEDIAFORMATS item=currentDataItem key=currentDataKey}
 	{if $currentDataItem.mediaformatid eq $ITEMDATA.MediaFormatID }
 				<option selected="true" value="{$currentDataItem.mediaformatid}">{$currentDataItem.mediaformatname}</option>
@@ -111,6 +112,7 @@
 		<td>{$I18N.MEDIA_AGERESTRICTION|default:"%MEDIA_AGERESTRICTION%"}</td>
 		<td>
 			<select name="itemdata[MediaAgeRestrictionID]">
+				<option value="0">{$I18N.OPTION_EMPTY|default:"%OPTION_EMPTY%"}</option>
 {foreach from=$DATA.AGERESTRICTIONS item=currentDataItem}
 	{if $currentDataItem.mediaagerestrictionid eq $ITEMDATA.MediaAgeRestrictionID }
 				<option selected="true" value="{$currentDataItem.mediaagerestrictionid}">{$currentDataItem.mediaagerestriction}</option>
@@ -127,6 +129,7 @@
 		<td>{$I18N.MEDIA_CODEC|default:"%MEDIA_CODEC%"}</td>
 		<td>
 			<select name="itemdata[MediaCodecID]">
+				<option value="0">{$I18N.OPTION_EMPTY|default:"%OPTION_EMPTY%"}</option>
 {foreach from=$DATA.CODECS item=currentDataItem}
 	{if $currentDataItem.mediacodecid eq $ITEMDATA.MediaCodecID }
 				<option selected="true" value="{$currentDataItem.mediacodecid}">{$currentDataItem.mediacodecname}</option>
@@ -146,7 +149,7 @@
 			{if $INPUTERROR.flag.ItemQuantity eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td>{$I18N.MEDIA_COMMENT|default:"%MEDIA_COMMENT%"}</td>
 		<td>
@@ -154,16 +157,16 @@
 			{if $INPUTERROR.flag.ItemComment eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td></td>
 		<td><input type="reset" value="{$I18N.FORM_RESET|default:"%FORM_RESET%"}" /> <input type="submit" name="buttonsave" value="{$I18N.FORM_SUBMIT|default:"%FORM_SUBMIT%"}"/></td>
 	</tr>
-	
+
 	<tr>
 		<td></td>
 	</tr>
-	
+
 	<tr>
 		<td></td>
 		<td>
@@ -171,7 +174,7 @@
 			{$I18N.MEDIA_CREATIONDATE|default:"%MEDIA_MODIFICATIONDATE%"}: {$ITEMDATA.ItemModificationDate|date_format:"%A, %B %e, %Y %H:%M:%S"|default:$I18N.NOT_SET|default:"%NOT_SET%"}
 		</td>
 	</tr>
-	
+
 {if $INPUTERROR.general eq "1"}
 	<tr>
 		<td colspan="2">
