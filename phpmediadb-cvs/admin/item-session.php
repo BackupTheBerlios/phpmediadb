@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-session.php,v 1.10 2005/04/06 13:50:12 bruf Exp $ */
+/* $Id: item-session.php,v 1.11 2005/04/12 18:58:13 mblaschke Exp $ */
 /**
  * This file edits the item in the session and save or creates it
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.10 $
+ * @version		$Revision: 1.11 $
  * @package		phpmediadb_html
  * @subpackage	access_admin
  */
@@ -17,7 +17,7 @@ require_once( '../_source/phpmediadb.php' );
 $PHPMEDIADB	= new phpmediadb();
 
 //-----------------------------------------------------------------------------
-function itemShow( $sessionItem )
+function itemsession_itemShow( $sessionItem )
 {
 	global $PHPMEDIADB;
 	
@@ -70,7 +70,7 @@ function itemShow( $sessionItem )
 	}
 }
 //-----------------------------------------------------------------------------
-function itemGet()
+function itemsession_itemGet()
 {
 	global $PHPMEDIADB;
 	/* get session data first*/
@@ -86,7 +86,7 @@ function itemGet()
 	}
 }
 //-----------------------------------------------------------------------------
-function itemSave( $sessionItem )
+function itemsession_itemSave( $sessionItem )
 {
 	global $PHPMEDIADB;
 	switch( $sessionItem['type'] )
@@ -103,7 +103,8 @@ function itemSave( $sessionItem )
 			else 
 				$status = $PHPMEDIADB->BUSINESS->AUDIOS->modify( $sessionItem['id'], $sessionItem['data'] );
 				
-			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE', $PHPMEDIADB->PRESENTATION->I18N->translate( 'MESSAGE_SUCCESS_SAVE' ) );
+			/* %MESSAGE_SAVE_SUCCESS% */
+			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE.BODY', $PHPMEDIADB->PRESENTATION->I18N->translate( 'MESSAGE_SAVE_SUCCESS' ) );
 			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.message.tpl' );
 			$PHPMEDIADB->PRESENTATION->SESSION->unregister( 'sessionitem' );
 			die();		
@@ -112,7 +113,7 @@ function itemSave( $sessionItem )
 		{
 			/* too bad, error occurred */
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTERROR', $errorData );
-			itemShow( $sessionItem );
+			itemsession_itemShow( $sessionItem );
 			die();
 		}
 		break;
@@ -130,7 +131,8 @@ function itemSave( $sessionItem )
 			else 
 				$status = $PHPMEDIADB->BUSINESS->VIDEOS->modify( $sessionItem['id'], $sessionItem['data'] );
 				
-			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE', $PHPMEDIADB->PRESENTATION->I18N->translate( 'MESSAGE_SUCCESS_SAVE' ) );
+			/* %MESSAGE_SAVE_SUCCESS% */
+			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE.BODY', $PHPMEDIADB->PRESENTATION->I18N->translate( 'MESSAGE_SAVE_SUCCESS' ) );
 			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.message.tpl' );
 			$PHPMEDIADB->PRESENTATION->SESSION->unregister( 'sessionitem' );
 			die();		
@@ -139,7 +141,7 @@ function itemSave( $sessionItem )
 		{
 			/* too bad, error occurred */
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTERROR', $errorData );
-			itemShow( $sessionItem );
+			itemsession_itemShow( $sessionItem );
 			die();
 		}
 		break;
@@ -156,8 +158,9 @@ function itemSave( $sessionItem )
 				$status = $PHPMEDIADB->BUSINESS->PRINTS->create( $sessionItem['data'] );
 			else 
 				$status = $PHPMEDIADB->BUSINESS->PRINTS->modify( $sessionItem['id'], $sessionItem['data'] );
-				
-			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE', $PHPMEDIADB->PRESENTATION->I18N->translate( 'MESSAGE_SUCCESS_SAVE' ) );
+			
+			/* %MESSAGE_SAVE_SUCCESS% */
+			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE.BODY', $PHPMEDIADB->PRESENTATION->I18N->translate( 'MESSAGE_SAVE_SUCCESS' ) );
 			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.message.tpl' );
 			$PHPMEDIADB->PRESENTATION->SESSION->unregister( 'sessionitem' );
 			die();		
@@ -166,7 +169,7 @@ function itemSave( $sessionItem )
 		{
 			/* too bad, error occurred */
 			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'INPUTERROR', $errorData );
-			itemShow( $sessionItem );
+			itemsession_itemShow( $sessionItem );
 			die();
 		}
 		break;
@@ -175,7 +178,7 @@ function itemSave( $sessionItem )
 
 //-----------------------------------------------------------------------------
 
-$sessionItem = itemGet();
+$sessionItem = itemsession_itemGet();
 if( isset( $_POST['buttonsave'] ) )
 {
 	/* set itemdata to sessionItem */
@@ -183,12 +186,12 @@ if( isset( $_POST['buttonsave'] ) )
 	$PHPMEDIADB->PRESENTATION->SESSION->register( 'sessionitem' ,$sessionItem );
 
 	/* try to save */
-	itemSave( $sessionItem );
+	itemsession_itemSave( $sessionItem );
 }
 else
 {
 	/* only show */
-	itemShow( $sessionItem );
+	itemsession_itemShow( $sessionItem );
 }
 
 //--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---
