@@ -648,7 +648,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1852" ColName="PublisherID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<COLUMN ID="1585" ColName="ItemTypeID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -720,9 +720,8 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1585" ColName="ItemTypeID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<COLUMN ID="1859" ColName="ItemPublisher" PrevColName="" Pos="15" idDatatype="20" DatatypeParams="(255)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
@@ -742,7 +741,6 @@
 <RELATION_END ID="1789" />
 <RELATION_END ID="1792" />
 <RELATION_END ID="1795" />
-<RELATION_END ID="1851" />
 </RELATIONS_END>
 <INDICES>
 <INDEX ID="1568" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
@@ -775,11 +773,6 @@
 <INDEXCOLUMN idColumn="1796" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1853" IndexName="Items_FKIndex6" IndexKind="1" FKRefDef_Obj_id="1851">
-<INDEXCOLUMNS>
-<INDEXCOLUMN idColumn="1852" LengthParam="0" />
-</INDEXCOLUMNS>
-</INDEX>
 </INDICES>
 </TABLE>
 <TABLE ID="1593" Tablename="Publishers" PrevTableName="Table_12" XPos="692" YPos="780" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="25" >
@@ -796,9 +789,6 @@
 </OPTIONSELECTED>
 </COLUMN>
 </COLUMNS>
-<RELATIONS_START>
-<RELATION_START ID="1851" />
-</RELATIONS_START>
 <INDICES>
 <INDEX ID="1596" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
@@ -1150,11 +1140,10 @@
 <RELATION ID="1795" RelationName="Rel_26" Kind="2" SrcTable="1643" DestTable="1565" FKFields="MediaAgeRestrictionID=MediaAgeRestrictionID\n" FKFieldsComments="\n" relDirection="4" MidOffset="109" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1797" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" />
 <RELATION ID="1801" RelationName="Rel_28" Kind="2" SrcTable="1553" DestTable="1638" FKFields="ItemTypeID=ItemTypeID\n" FKFieldsComments="\n" relDirection="2" MidOffset="23" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1803" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="56" />
 <RELATION ID="1804" RelationName="Rel_29" Kind="2" SrcTable="1553" DestTable="1655" FKFields="ItemTypeID=ItemTypeID\n" FKFieldsComments="\n" relDirection="2" MidOffset="51" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="3" CaptionOffsetY="1" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1806" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="57" />
-<RELATION ID="1851" RelationName="Rel_28" Kind="2" SrcTable="1593" DestTable="1565" FKFields="PublisherID=PublisherID\n" FKFieldsComments="\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1853" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="56" />
 <RELATION ID="1855" RelationName="Rel_26" Kind="2" SrcTable="1553" DestTable="1558" FKFields="ItemTypeID=ItemTypeID\n" FKFieldsComments="\n" relDirection="3" MidOffset="13" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1857" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="57" />
 </RELATIONS>
 <NOTES>
-<NOTE ID="1745" NoteName="Note_01" XPos="40" YPos="1100" NoteText="phpMediaDB\n$Id: erm-model.xml,v 1.17 2005/04/06 14:01:59 bruf Exp $\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="55" />
+<NOTE ID="1745" NoteName="Note_01" XPos="40" YPos="1100" NoteText="phpMediaDB\n$Id: erm-model.xml,v 1.18 2005/04/12 10:16:49 bruf Exp $\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="55" />
 </NOTES>
 <IMAGES>
 </IMAGES>
