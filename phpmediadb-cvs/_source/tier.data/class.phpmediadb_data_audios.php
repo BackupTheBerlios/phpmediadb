@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_audios.php,v 1.12 2005/04/12 10:17:57 bruf Exp $ */
+/* $Id: class.phpmediadb_data_audios.php,v 1.13 2005/04/12 18:00:35 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the audios
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.12 $
+ * @version		$Revision: 1.13 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -289,35 +289,19 @@ class phpmediadb_data_audios
 	 * and false when the record doesn't exist
 	 *
 	 * @access public
-	 * @param Integer $id contains specified id for the sql statement
+	 * @param Integer $itemId contains specified id for the sql statement
 	 * @return Bool returns whether the specified record exists
 	 */
-	public function exist( $id )
+	public function exists( $itemId )
 	{
 		/* init */
 		$returnValue = false;
 		
-		try
-		{
-			$conn = $this->DATA->SQL->getConnection();
-			$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
-												FROM Items
-												WHERE Items.ItemID = ?' );
-			$stmt->setString( 1, $id );
-			$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
-			$rs->next();
-			
-			/* check if item exists */
-			if( $rs->get(1) >= 1 )
-				$returnValue = true;
-				
-			return $returnValue;
-		}
-		catch( Exception $exception )
-		{
-			/* handle exception and terminate script */
-			phpmediadb_exception::handleException( $exception );
-		}
+		/* delegate */
+		$returnValue = $this->DATA->ITEMS->exist( $itemId );
+
+		/* return value */
+		return $returnValue;
 	}
 
 //-----------------------------------------------------------------------------
