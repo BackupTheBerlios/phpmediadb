@@ -7,7 +7,7 @@
 		</tr>
 {foreach from=$ITEMDATA item=currentDataItem}
 		<tr>
-			<td>{$currentDataItem.itemtitle}</td>
+			<td><a href="item-detail?itemid={$currentDataItem.itemid}">{$currentDataItem.itemtitle}</a></td>
 			<td>{$currentDataItem.itemreleasedate|default:$I18N.NOT_SET|default:"%NOT_SET%"}</td>
 			<td>
 				<a href="admin/item-mod.php?itemid={$currentDataItem.itemid}"><img src="{$CONFIGURATION.ROOTPATH}_layout/images/icons/action-modify.png" alt="{$I18N.ACTION_MODIFY|default:"%ACTION_MODIFY%"}" /></a>
