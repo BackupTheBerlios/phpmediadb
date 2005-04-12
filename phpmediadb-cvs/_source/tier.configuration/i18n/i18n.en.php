@@ -5,7 +5,7 @@
  * This file stores all i18n strings (ENGLISH)
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.3 $
+ * @version		$Revision: 1.4 $
  * @package		phpmediadb
  * @subpackage	configuration
  */
@@ -60,6 +60,41 @@
 
 /* Site: HOME */
 	$i18n['HOME_WELCOME'] = 'Welcome to phpMediaDB';
+	
+/*----------------------------------------------------------*/	
+	$i18n['ACTION_DELETE'] = 'Delete';
+	$i18n['ACTION_MODIFY'] = 'Modify';
+	$i18n['ERROR_TITLE'] = 'Errortitle';
+	$i18n['ITEM_AUDIO'] = 'Audio';
+	$i18n['ITEM_PRINT'] = 'Print';
+	$i18n['ITEM_VIDEO'] = 'Video';
+	$i18n['LIST_COLUMN_TITLE_MEDIATITLE'] = '';
+	$i18n['LIST_COLUMN_TITLE_RELEASEDATE'] = '';
+	$i18n['MEDIA_AGERESTRICTION'] = 'Age Restriction';
+	$i18n['MEDIA_CATEGORY'] = 'Category';
+	$i18n['MEDIA_CODEC'] = 'Codec';
+	$i18n['MEDIA_COMMENT'] = 'Comment';
+	$i18n['MEDIA_CREATIONDATE'] = 'Creation Date';
+	$i18n['MEDIA_DATA_AUDIO'] = 'Audiodata';
+	$i18n['MEDIA_DATA_PRINT'] = 'Printdata';
+	$i18n['MEDIA_DATA_VIDEO'] = 'Videodata';
+	$i18n['MEDIA_FORMAT'] = 'Format';
+	$i18n['MEDIA_IDENTIFICATION'] = 'Identifiactionnumber';
+	$i18n['MEDIA_IMAGE'] = 'Bild';
+	$i18n['MEDIA_MEDIANAME'] = 'Medianame';
+	$i18n['MEDIA_MEDIASIZE'] = 'Mediasize';
+	$i18n['MEDIA_MODIFICATIONDATE'] = 'Modification Date';
+	$i18n['MEDIA_ORIGINALTITLE'] = 'Original Title';
+	$i18n['MEDIA_PUBLISHER'] = 'Publisher';
+	$i18n['MEDIA_QUANTITY'] = 'Quantity';
+	$i18n['MEDIA_RELEASEYEAR'] = 'Release Year';
+	$i18n['MEDIA_TITLE'] = 'Title';
+	$i18n['MENU_ADDITEM'] = 'Add Item';
+	$i18n['MENU_ADMINISTRATION_TITLE'] = 'Administration Mode';
+	$i18n['MESSAGE'] = 'Message';
+	$i18n['NOT_SET'] = 'Not set';
+	//$i18n['SMARTY_END'] = '';
+	//$i18n['SMARTY_START'] = '';
 	
 
 /******************************************************************************

@@ -5,7 +5,7 @@
  * This file stores all i18n strings (GERMAN)
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	configuration
  */
@@ -18,7 +18,6 @@
 /* default i18ns */
 	$i18n['OK'] = 'Akzeptieren';
 	$i18n['CANCEL'] = 'Abbrechen';
-	$i18n['DELETE'] = 'Löschen';
 	$i18n['DELETE'] = 'Löschen';
 	$i18n['INPUT_FIELD'] = 'Eingabefeld';
 	
@@ -60,6 +59,41 @@
 
 /* Site: HOME */
 	$i18n['HOME_WELCOME'] = 'Willkommen zu phpMediaDB';
+	
+/*----------------------------------------------------------*/	
+	$i18n['ACTION_DELETE'] = 'Löschen';
+	$i18n['ACTION_MODIFY'] = 'Ändern';
+	$i18n['ERROR_TITLE'] = 'Fehlertitel';
+	$i18n['ITEM_AUDIO'] = 'Audio';
+	$i18n['ITEM_PRINT'] = 'Print';
+	$i18n['ITEM_VIDEO'] = 'Video';
+	$i18n['LIST_COLUMN_TITLE_MEDIATITLE'] = '';
+	$i18n['LIST_COLUMN_TITLE_RELEASEDATE'] = '';
+	$i18n['MEDIA_AGERESTRICTION'] = 'Altersbeschränkung';
+	$i18n['MEDIA_CATEGORY'] = 'Kategorie';
+	$i18n['MEDIA_CODEC'] = 'Codec';
+	$i18n['MEDIA_COMMENT'] = 'Kommentar';
+	$i18n['MEDIA_CREATIONDATE'] = 'Erstellt am';
+	$i18n['MEDIA_DATA_AUDIO'] = 'Audiodaten';
+	$i18n['MEDIA_DATA_PRINT'] = 'Printdaten';
+	$i18n['MEDIA_DATA_VIDEO'] = 'Videodaten';
+	$i18n['MEDIA_FORMAT'] = 'Format';
+	$i18n['MEDIA_IDENTIFICATION'] = 'Identifiactionsnummer';
+	$i18n['MEDIA_IMAGE'] = 'Bild';
+	$i18n['MEDIA_MEDIANAME'] = 'Medienname';
+	$i18n['MEDIA_MEDIASIZE'] = 'Mediengröße';
+	$i18n['MEDIA_MODIFICATIONDATE'] = 'Geändert am';
+	$i18n['MEDIA_ORIGINALTITLE'] = 'Original Titel';
+	$i18n['MEDIA_PUBLISHER'] = 'Veröffentlicher';
+	$i18n['MEDIA_QUANTITY'] = 'Anzahl';
+	$i18n['MEDIA_RELEASEYEAR'] = 'Erscheinungsjahr';
+	$i18n['MEDIA_TITLE'] = 'Titel';
+	$i18n['MENU_ADDITEM'] = 'Item hinzufügen';
+	$i18n['MENU_ADMINISTRATION_TITLE'] = 'Administrationsmodus';
+	$i18n['MESSAGE'] = 'Nachricht';
+	$i18n['NOT_SET'] = 'Nicht gesetzt';
+	//$i18n['SMARTY_END'] = '';
+	//$i18n['SMARTY_START'] = '';
 	
 
 /******************************************************************************
