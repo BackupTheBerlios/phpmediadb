@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_exception.php,v 1.4 2005/04/09 15:44:09 mblaschke Exp $ */
+/* $Id: class.phpmediadb_exception.php,v 1.5 2005/04/12 18:53:12 mblaschke Exp $ */
 
 /**
  * This is the class that manages the exceptions.
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.4 $
+ * @version		$Revision: 1.5 $
  * @package		phpmediadb
  * @subpackage	global
  */
@@ -32,6 +32,7 @@ class phpmediadb_exception extends Exception
 	 * Handles a normal/general exception and terminate the script
 	 *
 	 * @access public
+	 * @static
 	 * @param exception $generalException Instanz of an exception
 	 */
 	public function handleException( $generalException )
@@ -47,6 +48,7 @@ class phpmediadb_exception extends Exception
 	 * Sends an errormessage (html) to the user
 	 *
 	 * @access public
+	 * @static
 	 * @param exception $exception Instanz of an exception
 	 */
 	public function showError( $exception )
