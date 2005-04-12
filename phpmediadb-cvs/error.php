@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: error.php,v 1.1 2005/04/12 18:59:14 mblaschke Exp $ */
+/* $Id: error.php,v 1.2 2005/04/12 19:05:40 mblaschke Exp $ */
 /**
  * This file displays an error-message
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.1 $
+ * @version		$Revision: 1.2 $
  * @package		phpmediadb_html
  * @subpackage	access_anonymous
  */
@@ -15,7 +15,6 @@ require_once( '_source/phpmediadb.php' );
 
 /* create object and init */
 $PHPMEDIADB	= new phpmediadb();
-$message	= NULL;
  
  /* HTTP Errors */
 switch( $_GET['http'] )
