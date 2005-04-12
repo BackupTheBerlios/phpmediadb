@@ -103,7 +103,7 @@
 	<tr>
 		<td>{$I18N.MEDIA_PUBLISHER|default:"%MEDIA_PUBLISHER%"}</td>
 		<td>
-			<input type="text" name="itemdata[PublisherName]" maxlength="{$INPUTSIZE.PublisherName|default:"255"}" value="{$ITEMDATA.PublisherName}" />
+			<input type="text" name="itemdata[ItemPublisher]" maxlength="{$INPUTSIZE.ItemPublisher|default:"255"}" value="{$ITEMDATA.ItemPublisher}" />
 			{if $INPUTERROR.flag.PublisherName eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
