@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_prints.php,v 1.14 2005/04/13 11:53:40 bruf Exp $ */
+/* $Id: class.phpmediadb_data_prints.php,v 1.15 2005/04/13 14:58:19 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the prints
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.14 $
+ * @version		$Revision: 1.15 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -162,7 +162,7 @@ class phpmediadb_data_prints
 			
 			$id = $this->DATA->SQL->getLastInsert( $conn );
 			
-			$stmt = $conn->prepareStatement( 'INSERT INTO VideoDatas ( ItemID ) VALUES( ? )' );
+			$stmt = $conn->prepareStatement( 'INSERT INTO PrintDatas ( ItemID ) VALUES( ? )' );
 			$stmt->setString( 1, $id );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
