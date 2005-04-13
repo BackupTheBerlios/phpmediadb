@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_items.php,v 1.1 2005/04/13 11:49:51 bruf Exp $ */
+/* $Id: class.phpmediadb_business_items.php,v 1.2 2005/04/13 15:02:24 mblaschke Exp $ */
 
 /**
  * This is the class that manages all database activities for the items
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.1 $
+ * @version		$Revision: 1.2 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -97,9 +97,18 @@ class phpmediadb_business_items
 		/* assign category-ids */
 		if( is_array( $categories ) )
 		{
-			foreach( $categories as $key => $value )
-				$returnValue['categories'][] = $value['categoryid'];
+			foreach( $categories as $value )
+			{
+				$returnValue['categories'][]		= $value['categoryid'];
+				$specialValue['categoryid']		= $value['categoryid'];
+				$specialValue['categoryname']	= $value['categoryname'];
+				
+				$returnValue['__special']['categories'][] = $specialValue;
+			}
 		}
+		
+		/* translate categoryByNames */
+		$returnValue['__special']['categories'] = $this->BUSINESS->CATEGORIES->translate( $returnValue['__special']['categories'] );
 
 			
 		/* return value */
