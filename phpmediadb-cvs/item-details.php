@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-details.php,v 1.2 2005/04/13 11:56:26 bruf Exp $ */
+/* $Id: item-details.php,v 1.3 2005/04/13 14:59:30 mblaschke Exp $ */
 /**
  * This file displays all details of an item
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.2 $
+ * @version		$Revision: 1.3 $
  * @package		phpmediadb_html
  * @subpackage	access_anonymous
  */
@@ -69,9 +69,17 @@ function itemdetails_showDetails( $itemId )
 		case(PHPMEDIADB_ITEM_PRINT):
 			$template = 'body.item.print.show.tpl';
 		break;
+		
+		default:
+			/* %MESSAGE_ITEM_LOADERROR% */
+			$message = $PHPMEDIADB->PRESENTATION->I18N->translate( 'MESSAGE_ITEM_LOADERROR' );
+			@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'MESSAGE.BODY', $message  );
+			$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( 'body.message.tpl' );
+			die();	
+		break;
 	}
 	
-	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'ITEM', $data );
+	@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'ITEMDATA', $data );
 	$PHPMEDIADB->PRESENTATION->HTMLSERVICE->displayMain( $template );
 }
 
