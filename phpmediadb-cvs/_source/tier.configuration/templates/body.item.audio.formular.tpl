@@ -1,13 +1,13 @@
 <form method="post">
-<div>
-<h1>{$I18N.MEDIA_DATA_AUDIO|default:"%MEDIA_DATA_AUDIO%"}</h1>
+<div id="phpmediadb-body-formular-audio" class="phpmediadb-body-formular">
+<h1>{$I18N.MEDIA_AUDIO_TITLE|default:"%MEDIA_AUDIO_TITLE%"}</h1>
 {if $INPUTERROR.general eq "1"}<span class="phpmediadb-body-inputerror">{$I18N.ERROR_OCCURRED|default:"%ERROR_OCCURRED%"} <a href="#errorlist">{$I18N.ERROR_LISTLINK|default:"%ERROR_LISTLINK%"}</a></span><br />{/if}
 <table>
 	<colgroup>
 		<col/>
 	</colgroup>
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_TITLE|default:"%MEDIA_AUDIO_TITLE%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_TITLE|default:"%MEDIA_AUDIO_ITEM_TITLE%"}</td>
 		<td>
 			<input type="text" name="itemdata[itemtitle]" maxlength="{$INPUTSIZE.itemtitle|default:"255"}" value="{$ITEMDATA.itemtitle}" />
 			{if $INPUTERROR.flag.itemtitle eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -15,7 +15,7 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_ORIGINALTITLE|default:"%MEDIA_AUDIO_ORIGINALTITLE%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_ORIGINALTITLE|default:"%MEDIA_AUDIO_ITEM_ORIGINALTITLE%"}</td>
 		<td>
 			<input type="text" name="itemdata[itemoriginaltitle]" maxlength="{$INPUTSIZE.itemoriginaltitle|default:"255"}" value="{$ITEMDATA.itemoriginaltitle}" />
 			{if $INPUTERROR.flag.itemoriginaltitle eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -23,7 +23,7 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_MEDIANAME|default:"%MEDIA_AUDIO_MEDIANAME%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_MEDIANAME|default:"%MEDIA_AUDIO_ITEM_MEDIANAME%"}</td>
 		<td>
 			<input type="text" name="itemdata[itemmedianame]" maxlength="{$INPUTSIZE.itemmedianame|default:"255"}" value="{$ITEMDATA.itemmedianame}" />
 			{if $INPUTERROR.flag.itemmedianame eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -31,7 +31,7 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_IDENTIFICATION|default:"%MEDIA_AUDIO_IDENTIFICATION%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_IDENTIFICATION|default:"%MEDIA_AUDIO_ITEM_IDENTIFICATION%"}</td>
 		<td>
 			<input type="text" name="itemdata[itemidentifier]" maxlength="{$INPUTSIZE.itemidentifier|default:"255"}" value="{$ITEMDATA.itemidentifier}" />
 			{if $INPUTERROR.flag.itemidentifier eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -39,7 +39,7 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_RELEASEYEAR|default:"%MEDIA_AUDIO_RELEASEYEAR%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_RELEASEYEAR|default:"%MEDIA_AUDIO_ITEM_RELEASEYEAR%"}</td>
 		<td>
 			<input type="text" name="itemdata[itemreleasedate]" maxlength="{$INPUTSIZE.itemreleasedate|default:"4"}" value="{$ITEMDATA.itemreleasedate}" />
 			{if $INPUTERROR.flag.itemreleasedate eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -47,7 +47,7 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_CATEGORY|default:"%MEDIA_AUDIO_CATEGORY%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_CATEGORY|default:"%MEDIA_AUDIO_ITEM_CATEGORY%"}</td>
 		<td>
 			<select name="itemdata[categories][]" size="5" multiple="true">
 {foreach from=$DATA.CATEGORIES item=currentDataItem}
@@ -68,7 +68,7 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_MEDIASIZE|default:"%MEDIA_AUDIO_MEDIASIZE%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_MEDIASIZE|default:"%MEDIA_AUDIO_ITEM_MEDIASIZE%"}</td>
 		<td>
 			<input type="text" name="itemdata[itemmediasize]" maxlength="{$INPUTSIZE.itemmediasize|default:"255"}" value="{$ITEMDATA.itemmediasize}" />
 			{if $INPUTERROR.flag.itemmediasize eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -76,10 +76,10 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_FORMAT|default:"%MEDIA_AUDIO_FORMAT%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_FORMAT|default:"%MEDIA_AUDIO_ITEM_FORMAT%"}</td>
 		<td>
 			<select name="itemdata[mediaformatid]">
-				<option value="0">{$I18N.OPTION_EMPTY|default:"%OPTION_EMPTY%"}</option>
+				<option value="0">{$I18N.FORMULAR_OPTION_ITEM_EMPTY|default:"%FORMULAR_OPTION_ITEM_EMPTY%"}</option>
 {foreach from=$DATA.MEDIAFORMATS item=currentDataItem key=currentDataKey}
 	{if $currentDataItem.mediaformatid eq $ITEMDATA.mediaformatid }
 				<option selected="true" value="{$currentDataItem.mediaformatid}">{$currentDataItem.mediaformatname}</option>
@@ -93,15 +93,16 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_IMAGE|default:"%MEDIA_AUDIO_IMAGE%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_IMAGE|default:"%MEDIA_AUDIO_ITEM_IMAGE%"}</td>
 		<td>
 			<img src="getbinary.php?itemid={$ITEMDATA.ID}" /><br />
-			<input type="file" name="itemdata[binarydata]" />
+			<input type="file" name="itemdata[picturedata]" />
+			{if $ITEMDATA.itemid gt '0'}<br /><input type="checkbox" name="itemdata[picturedelete]" value="1" />{$I18N.MEDIA_AUDIO_IMAGEDELETE|default:"%MEDIA_AUDIO_IMAGEDELETE%"}{/if}
 		</td>
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_PUBLISHER|default:"%MEDIA_AUDIO_PUBLISHER%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_PUBLISHER|default:"%MEDIA_AUDIO_ITEM_PUBLISHER%"}</td>
 		<td>
 			<input type="text" name="itemdata[itempublisher]" maxlength="{$INPUTSIZE.itempublisher|default:"255"}" value="{$ITEMDATA.itempublisher}" />
 			{if $INPUTERROR.flag.itempublisher eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -109,10 +110,10 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_AGERESTRICTION|default:"%MEDIA_AUDIO_AGERESTRICTION%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_AGERESTRICTION|default:"%MEDIA_AUDIO_ITEM_AGERESTRICTION%"}</td>
 		<td>
 			<select name="itemdata[mediaagerestrictionid]">
-				<option value="0">{$I18N.OPTION_EMPTY|default:"%OPTION_EMPTY%"}</option>
+				<option value="0">{$I18N.FORMULAR_OPTION_ITEM_EMPTY|default:"%FORMULAR_OPTION_ITEM_EMPTY%"}</option>
 {foreach from=$DATA.AGERESTRICTIONS item=currentDataItem}
 	{if $currentDataItem.mediaagerestrictionid eq $ITEMDATA.mediaagerestrictionid }
 				<option selected="true" value="{$currentDataItem.mediaagerestrictionid}">{$currentDataItem.mediaagerestriction}</option>
@@ -126,10 +127,10 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_CODEC|default:"%MEDIA_AUDIO_CODEC%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_CODEC|default:"%MEDIA_AUDIO_ITEM_CODEC%"}</td>
 		<td>
 			<select name="itemdata[mediacodecid]">
-				<option value="0">{$I18N.OPTION_EMPTY|default:"%OPTION_EMPTY%"}</option>
+				<option value="0">{$I18N.FORMULAR_OPTION_ITEM_EMPTY|default:"%FORMULAR_OPTION_ITEM_EMPTY%"}</option>
 {foreach from=$DATA.CODECS item=currentDataItem}
 	{if $currentDataItem.mediacodecid eq $ITEMDATA.mediacodecid }
 				<option selected="true" value="{$currentDataItem.mediacodecid}">{$currentDataItem.mediacodecname}</option>
@@ -143,7 +144,7 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_QUANTITY|default:"%MEDIA_AUDIO_QUANTITY%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_QUANTITY|default:"%MEDIA_AUDIO_ITEM_QUANTITY%"}</td>
 		<td>
 			<input type="text" name="itemdata[itemquantity]" maxlength="{$INPUTSIZE.itemquantity|default:"255"}" value="{$ITEMDATA.itemquantity}" />
 			{if $INPUTERROR.flag.itemquantity eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -151,7 +152,7 @@
 	</tr>
 
 	<tr>
-		<td>{$I18N.MEDIA_AUDIO_COMMENT|default:"%MEDIA_AUDIO_COMMENT%"}</td>
+		<td>{$I18N.MEDIA_AUDIO_ITEM_COMMENT|default:"%MEDIA_AUDIO_ITEM_COMMENT%"}</td>
 		<td>
 			<textarea name="itemdata[itemcomment]" cols="40" rows="10">{$ITEMDATA.itemcomment}</textarea>
 			{if $INPUTERROR.flag.itemcomment eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
@@ -170,8 +171,8 @@
 	<tr>
 		<td></td>
 		<td>
-			{$I18N.MEDIA_CREATIONDATE|default:"%MEDIA_CREATIONDATE%"}: {$ITEMDATA.ItemCreationDate|date_format:"%A, %B %e, %Y %H:%M:%S"|default:$I18N.NOT_SET|default:"%NOT_SET%"} <br />
-			{$I18N.MEDIA_MODIFICATIONDATE|default:"%MEDIA_MODIFICATIONDATE%"}: {$ITEMDATA.ItemModificationDate|date_format:"%A, %B %e, %Y %H:%M:%S"|default:$I18N.NOT_SET|default:"%NOT_SET%"}
+			{if $ITEMDATA.itemcreationdate gt '0'}{$I18N.MEDIA_ITEM_CREATIONDATE|default:"%MEDIA_ITEM_CREATIONDATE%"}: {$ITEMDATA.itemcreationdate|date_format:"%A, %B %e, %Y %H:%M:%S"|default:$I18N.NOT_SET|default:"%NOT_SET%"} <br />{/if}
+			{if $ITEMDATA.itemmodificationdate gt '0'}{$I18N.MEDIA_ITEM_MODIFICATIONDATE|default:"%MEDIA_ITEM_MODIFICATIONDATE%"}: {$ITEMDATA.itemmodificationdate|date_format:"%A, %B %e, %Y %H:%M:%S"|default:$I18N.NOT_SET|default:"%NOT_SET%"}{/if}
 		</td>
 	</tr>
 

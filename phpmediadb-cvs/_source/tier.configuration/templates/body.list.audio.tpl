@@ -1,8 +1,8 @@
 <div id="phpmediadb-body-list-audio" class="phpmediadb-body-list">
 	<table width="100%" border="0">
 		<tr>
-			<th>{$I18N.LIST_COLUMN_TITLE_MEDIATITLE|default:"%LIST_COLUMN_TITLE_MEDIATITLE%"}</th>
-			<th>{$I18N.LIST_COLUMN_TITLE_RELEASEDATE|default:"%LIST_COLUMN_TITLE_RELEASEDATE%"}</th>
+			<th>{$I18N.LIST_COLUMN_AUDIO_MEDIATITLE|default:"%LIST_COLUMN_AUDIO_MEDIATITLE%"}</th>
+			<th>{$I18N.LIST_COLUMN_AUDIO_RELEASEDATE|default:"%LIST_COLUMN_AUDIO_RELEASEDATE%"}</th>
 			<th></th>
 		</tr>
 {foreach from=$ITEMDATA item=currentDataItem}
