@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_formats.php,v 1.15 2005/04/09 23:56:01 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_formats.php,v 1.16 2005/04/13 11:53:31 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the formats
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.15 $
+ * @version		$Revision: 1.16 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -156,8 +156,8 @@ class phpmediadb_data_formats
 			$stmt = $conn->prepareStatement(	'INSERT INTO MediaFormats
 												( MediaFormatName, ItemTypeID )
 												VALUES( ?, ? )' );
-			$stmt->setString( 1, $data['MediaFormatName'] );
-			$stmt->setString( 2, $data['ItemTypeID'] );
+			$stmt->setString( 1, $data['mediaformatname'] );
+			$stmt->setString( 2, $data['itemtypeid'] );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $this->DATA->SQL->getLastInsert( $conn );
@@ -190,9 +190,9 @@ class phpmediadb_data_formats
 												SET MediaFormats.MediaFormatName = ?,
 												MediaFormats.ItemTypeID = ?
 												WHERE MediaFormats.MediaFormatID = ?' );
-			$stmt->setString( 1, $data['MediaFormatName'] );
-			$stmt->setString( 2, $data['ItemTypeID'] );
-			$stmt->setString( 3, $data['MediaFormatID'] );
+			$stmt->setString( 1, $data['mediaformatname'] );
+			$stmt->setString( 2, $data['itemtypeid'] );
+			$stmt->setString( 3, $id );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}

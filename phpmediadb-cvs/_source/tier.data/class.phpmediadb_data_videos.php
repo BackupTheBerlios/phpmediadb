@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_videos.php,v 1.13 2005/04/12 10:18:52 bruf Exp $ */
+/* $Id: class.phpmediadb_data_videos.php,v 1.14 2005/04/13 11:54:36 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the videos
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.13 $
+ * @version		$Revision: 1.14 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -112,7 +112,9 @@ class phpmediadb_data_videos
 													LEFT JOIN MediaCodecs ON MediaCodecs.MediaCodecID=Items.MediaCodecID
 													LEFT JOIN MediaFormats ON MediaFormats.MediaFormatID=Items.MediaFormatID
 													LEFT JOIN MediaAgeRestrictions ON MediaAgeRestrictions.MediaAgeRestrictionID=Items.MediaAgeRestrictionID
-													LEFT JOIN BinaryDatas ON  BinaryDatas.ItemPicturesID=Items.ItemPicturesID' );
+													LEFT JOIN BinaryDatas ON  BinaryDatas.ItemPicturesID=Items.ItemPicturesID
+													WHERE Items.ItemTypeID = ?' );
+			$stmt->setString( 1, PHPMEDIADB_ITEM_VIDEO );
 			$rs = $stmt->executeQuery();
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
@@ -142,17 +144,20 @@ class phpmediadb_data_videos
 			$stmt = $conn->prepareStatement(	'INSERT INTO Items
 												( ItemTitle, ItemOriginalTitle, ItemReleaseDate, ItemMediaName, ItemCreationDate,
 												ItemModificationDate, ItemComment, ItemQuantity, ItemIdentifier, ItemTypeID,
-												ItemPublisher )
-												VALUES( ?, ?, ?, ?, now(), now(), ?, ?, ?, ?, ? )' );
-			$stmt->setString( 1, $data['ItemTitle'] );
-			$stmt->setString( 2, $data['ItemOriginalTitle'] );
-			$stmt->setString( 3, $data['ItemReleaseDate'] );
-			$stmt->setString( 4, $data['ItemMediaName'] );
-			$stmt->setString( 5, $data['ItemComment'] );
-			$stmt->setString( 6, $data['ItemQuantity'] );
-			$stmt->setString( 7, $data['ItemIdentifier'] );
+												ItemPublisher, MediaCodecID,MediaFormatID,MediaAgeRestrictionID )
+												VALUES( ?, ?, ?, ?, now(), now(), ?, ?, ?, ?, ?, ?, ?, ? )' );
+			$stmt->setString( 1, $data['itemtitle'] );
+			$stmt->setString( 2, $data['itemoriginaltitle'] );
+			$stmt->setString( 3, $data['itemreleasedate'] );
+			$stmt->setString( 4, $data['itemmedianame'] );
+			$stmt->setString( 5, $data['itemcomment'] );
+			$stmt->setString( 6, $data['itemquantity'] );
+			$stmt->setString( 7, $data['itemidentifier'] );
 			$stmt->setString( 8, PHPMEDIADB_ITEM_VIDEO );
-			$stmt->setString( 9, $data['ItemPublisher'] );
+			$stmt->setString( 9, $data['itempublisher'] );
+			$stmt->setString( 10, $data['mediacodecid'] );
+			$stmt->setString( 11, $data['mediaformatid'] );
+			$stmt->setString( 12, $data['mediaagerestrictionid'] );
 			$stmt->executeUpdate();
 			
 			$id = $this->DATA->SQL->getLastInsert( $conn );
@@ -188,49 +193,33 @@ class phpmediadb_data_videos
 		{
 			$conn = $this->DATA->SQL->getConnection();
 			$this->DATA->SQL->openTransaction( $conn );
-			$stmt = $conn->prepareStatement(	'UPDATE VideoDatas,
-												Items,
-												ItemTypes,
-												MediaCodecs,
-												MediaFormats,
-												MediaAgeRestrictions,
-												BinaryDatas
-												SET Items.ItemTitle = ?,
-												Items.ItemOriginalTitle = ?,
-												Items.ItemReleaseDate = ?,
-												Items.ItemMediaName = ?,
-												Items.ItemModificationDate = now(),
-												Items.ItemComment = ?,
-												Items.ItemQuantity = ?,
-												Items.ItemIdentifier = ?,
-												Items.ItemTypeID = ?,
-												Items.MediaCodecID = ?,
-												Items.MediaFormatID = ?,
-												Items.MediaAgeRestrictionID = ?,
-												Items.MediaStatusID = ?,
-												Items.ItemPicturesID = ?,
-												Items.ItemPublisher = ?
-												WHERE Items.ItemID = ?
-												AND VideoDatas.ItemID = Items.ItemID
-												AND Items.ItemTypeID = ItemTypes.ItemTypeID
-												AND Items.MediaCodecID = MediaCodecs.MediaCodecID
-												AND Items.MediaFormatID = MediaFormats.MediaFormatID
-												AND Items.MediaAgeRestrictionID = MediaAgeRestrictions.MediaAgeRestrictionID
-												AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID' );
-			$stmt->setString( 1, $data['ItemTitle'] );
-			$stmt->setString( 2, $data['ItemOriginalTitle'] );
-			$stmt->setString( 3, $data['ItemReleaseDate'] );
-			$stmt->setString( 4, $data['ItemMediaName'] );
-			$stmt->setString( 5, $data['ItemComment'] );
-			$stmt->setString( 6, $data['ItemQuantity'] );
-			$stmt->setString( 7, $data['ItemIdentifier'] );
-			$stmt->setString( 8, $data['ItemTypeID'] );
-			$stmt->setString( 9, $data['MediaCodecID'] );
-			$stmt->setString( 10, $data['MediaFormatID'] );
-			$stmt->setString( 11, $data['MediaAgeRestrictionID'] );
-			$stmt->setString( 12, $data['ItemPicturesID'] );
-			$stmt->setString( 13, $data['ItemPublisher'] );
-			$stmt->setString( 14, $id );
+			$stmt = $conn->prepareStatement(	'Update Items
+													LEFT JOIN VideoDatas ON VideoDatas.ItemID=Items.ItemID
+													SET Items.ItemTitle = ?,
+													Items.ItemOriginalTitle = ?,
+													Items.ItemReleaseDate = ?,
+													Items.ItemMediaName = ?,
+													Items.ItemModificationDate = now(),
+													Items.ItemComment = ?,
+													Items.ItemQuantity = ?,
+													Items.ItemIdentifier = ?,
+													Items.MediaCodecID = ?,
+													Items.MediaFormatID = ?,
+													Items.MediaAgeRestrictionID = ?,
+													Items.ItemPublisher = ?
+													WHERE Items.ItemID = ?' );
+			$stmt->setString( 1, $data['itemtitle'] );
+			$stmt->setString( 2, $data['itemoriginaltitle'] );
+			$stmt->setString( 3, $data['itemreleasedate'] );
+			$stmt->setString( 4, $data['itemmedianame'] );
+			$stmt->setString( 5, $data['itemcomment'] );
+			$stmt->setString( 6, $data['itemquantity'] );
+			$stmt->setString( 7, $data['itemidentifier'] );
+			$stmt->setString( 8, $data['mediacodecid'] );
+			$stmt->setString( 9, $data['mediaformatid'] );
+			$stmt->setString( 10, $data['mediaagerestrictionid'] );
+			$stmt->setString( 11, $data['itempublisher'] );
+			$stmt->setString( 12, $id );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}
@@ -259,11 +248,11 @@ class phpmediadb_data_videos
 			$conn = $this->DATA->SQL->getConnection();
 			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'DELETE VideoDatas, Items, BinaryDatas, Categories_has_Items
-												FROM AudioDatas, Items, BinaryDatas, Categories_has_Items
-												WHERE Items.ItemID = ?
-												AND VideoDatas.ItemID = Items.ItemID
-												AND Items.ItemPicturesID = BinaryDatas.ItemPicturesID
-												AND Items.ItemID = Categories_has_Items.ItemID' );
+													FROM Items
+													LEFT JOIN VideoDatas ON VideoDatas.ItemID=Items.ItemID
+													LEFT JOIN Categories_has_Items ON Categories_has_Items.ItemID=Items.ItemID
+													LEFT JOIN BinaryDatas ON  BinaryDatas.ItemPicturesID=Items.ItemPicturesID
+													WHERE Items.ItemID = ?' );
 			$stmt->setString( 1, $id );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );

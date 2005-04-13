@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_status.php,v 1.12 2005/04/09 23:56:01 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_status.php,v 1.13 2005/04/13 11:54:01 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the status
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.12 $
+ * @version		$Revision: 1.13 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -75,7 +75,7 @@ class phpmediadb_data_status
 			$stmt = $conn->prepareStatement(	'SELECT *
 												FROM MediaStatus
 												WHERE MediaStatus.MediaStatusID = ?' );
-			$stmt->setString( 1, $MediaStatusID );
+			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
 			
 			return $this->DATA->SQL->generateDataArray( $rs );
@@ -129,9 +129,9 @@ class phpmediadb_data_status
 			$stmt = $conn->prepareStatement(	'INSERT INTO MediaStatus
 												( MediaStatus, MediaStatusOwner, MediaStatusHolder )
 												VALUES( ?, ?, ? )' );
-			$stmt->setString( 1, $data['MediaStatus'] );
-			$stmt->setString( 2, $data['MediaStatusOwner'] );
-			$stmt->setString( 3, $data['MediaStatusHolder'] );
+			$stmt->setString( 1, $data['mediastatus'] );
+			$stmt->setString( 2, $data['mediastatusowner'] );
+			$stmt->setString( 3, $data['mediastatusholder'] );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $this->DATA->SQL->getLastInsert( $conn );
@@ -165,10 +165,10 @@ class phpmediadb_data_status
 												MediaStatus.MediaStatusOwner = ?,
 												MediaStatus.MediaStatusHolder = ?
 												WHERE MediaStatus.MediaStatusID = ?' );
-			$stmt->setString( 1, $data['MediaStatus'] );
-			$stmt->setString( 2, $data['MediaStatusOwner'] );
-			$stmt->setString( 3, $data['MediaStatusHolder'] );
-			$stmt->setString( 4, $data['MediaStatusID'] );
+			$stmt->setString( 1, $data['mediastatus'] );
+			$stmt->setString( 2, $data['mediastatusowner'] );
+			$stmt->setString( 3, $data['mediastatusholder'] );
+			$stmt->setString( 4, $id );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 		}

@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_categories.php,v 1.11 2005/04/10 00:01:32 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_categories.php,v 1.12 2005/04/13 11:53:10 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the categories
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.11 $
+ * @version		$Revision: 1.12 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -154,8 +154,8 @@ class phpmediadb_data_categories
 			$conn = $this->DATA->SQL->getConnection();
 			$stmt = $conn->prepareStatement(	'INSERT INTO Categories
 												( ItemTypeID, CategoryName ) VALUES( ?, ? )' );
-			$stmt->setString( 1, $data['ItemTypeID'] );
-			$stmt->setString( 2, $data['CategoryName'] );
+			$stmt->setString( 1, $data['itemtypeid'] );
+			$stmt->setString( 2, $data['categoryname'] );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $this->DATA->SQL->getLastInsert( $conn );
@@ -187,7 +187,7 @@ class phpmediadb_data_categories
 			$stmt = $conn->prepareStatement(	'UPDATE Categories
 												SET Categories.CategoryName = ?
 												WHERE Categories.CategoryID = ?' );
-			$stmt->setString( 1, $data['CategoryName'] );
+			$stmt->setString( 1, $data['categoryname'] );
 			$stmt->setString( 2, $id );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
@@ -328,6 +328,35 @@ class phpmediadb_data_categories
 			phpmediadb_exception::handleException( $exception );
 		}
 	}
+	
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns the list of  the parameters ItemID and CategoryID
+	 * from the table Categories_has_Items
+	 *
+	 * @access public
+	 * @param Integer $itemId contains specified id for the sql statement
+	 */
+	public function getLinkList( $itemId )
+	{
+		try
+		{
+			$conn = $this->DATA->SQL->getConnection();
+			$stmt = $conn->prepareStatement(	'SELECT Categories_has_Items.*, Categories.* FROM Categories_has_Items
+													LEFT JOIN Categories ON Categories.CategoryID=Categories_has_Items.CategoryID
+													WHERE Categories_has_Items.ItemID = ?' );
+			$stmt->setString( 1, $itemId );
+			$rs = $stmt->executeQuery();
+			
+			return $this->DATA->SQL->generateDataArray( $rs );
+		}
+		catch( Exception $exception )
+		{
+			/* handle exception and terminate script */
+			phpmediadb_exception::handleException( $exception );
+		}
+	}
+	
 
 //-----------------------------------------------------------------------------
 } /* end of class phpmediadb_data_categories */

@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.12 2005/04/09 23:56:00 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data_agerestrictions.php,v 1.13 2005/04/13 11:52:08 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the agerestrictions
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.12 $
+ * @version		$Revision: 1.13 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -126,7 +126,7 @@ class phpmediadb_data_agerestrictions
 			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'INSERT INTO MediaAgeRestrictions
 												( MediaAgeRestriction ) VALUES( ? )' );
-			$stmt->setString( 1, $data['MediaAgeRestriction'] );
+			$stmt->setString( 1, $data['mediaagerestriction'] );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
 			return $this->DATA->SQL->getLastInsert();
@@ -158,7 +158,7 @@ class phpmediadb_data_agerestrictions
 			$stmt = $conn->prepareStatement(	'UPDATE MediaAgeRestrictions
 												SET MediaAgeRestrictions.MediaAgeRestriction = ?
 												WHERE MediaAgeRestrictions.MediaAgeRestrictionID = ?' );
-			$stmt->setString( 1, $data['MediaAgeRestriction'] );
+			$stmt->setString( 1, $data['mediaagerestriction'] );
 			$stmt->setString( 2, $id );
 			$stmt->executeUpdate();
 			$this->DATA->SQL->commitTransaction( $conn );
