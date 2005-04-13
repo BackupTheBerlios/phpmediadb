@@ -1,5 +1,5 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: insert-data.sql,v 1.6 2005/04/12 20:16:58 mblaschke Exp $
+-- $Id: insert-data.sql,v 1.7 2005/04/13 11:43:17 bruf Exp $
 
 --
 -- Daten für Tabelle `categories`
@@ -44,7 +44,7 @@ INSERT INTO `Categories` (`CategoryID`, `ItemTypeID`, `CategoryName`) VALUES
 (35, 1, 'Category_Acid'),
 (36, 1, 'Category_House'),
 (37, 1, 'Category_Game'),
-(38, 1, 'Category_Sound_Clip'),
+(38, 1, 'Category_Sound-Clip'),
 (39, 1, 'Category_Gospel'),
 (40, 1, 'Category_Noise'),
 (41, 1, 'Category_AlternRock'),
@@ -63,7 +63,7 @@ INSERT INTO `Categories` (`CategoryID`, `ItemTypeID`, `CategoryName`) VALUES
 (54, 1, 'Category_Pop-Folk'),
 (55, 1, 'Category_Eurodance'),
 (56, 1, 'Category_Dream'),
-(57, 1, 'Category_Southern_Rock'),
+(57, 1, 'Category_Southern-Rock'),
 (58, 1, 'Category_Comedy'),
 (59, 1, 'Category_Cult'),
 (60, 1, 'Category_Gangsta'),
