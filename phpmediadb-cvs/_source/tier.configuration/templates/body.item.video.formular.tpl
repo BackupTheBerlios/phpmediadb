@@ -9,7 +9,7 @@
 	<tr>
 		<td>{$I18N.MEDIA_TITLE|default:"%MEDIA_TITLE%"}</td>
 		<td>
-			<input type="text" name="itemdata[ItemTitle]" maxlength="{$INPUTSIZE.ItemTitle|default:"255"}" value="{$ITEMDATA.ItemTitle}" />
+			<input type="text" name="itemdata[itemtitle]" maxlength="{$INPUTSIZE.itemtitle|default:"255"}" value="{$ITEMDATA.itemtitle}" />
 			{if $INPUTERROR.flag.ItemTitle eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
@@ -17,16 +17,16 @@
 	<tr>
 		<td>{$I18N.MEDIA_ORIGINALTITLE|default:"%MEDIA_ORIGINALTITLE%"}</td>
 		<td>
-			<input type="text" name="itemdata[ItemOriginalTitle]" maxlength="{$INPUTSIZE.ItemOriginalTitle|default:"255"}" value="{$ITEMDATA.ItemOriginalTitle}" />
-			{if $INPUTERROR.flag.ItemOriginalTitle eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
+			<input type="text" name="itemdata[itemoriginaltitle]" maxlength="{$INPUTSIZE.itemoriginaltitle|default:"255"}" value="{$ITEMDATA.itemoriginaltitle}" />
+			{if $INPUTERROR.flag.Itemoriginaltitle eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
 
 	<tr>
 		<td>{$I18N.MEDIA_MEDIANAME|default:"%MEDIA_MEDIANAME%"}</td>
 		<td>
-			<input type="text" name="itemdata[ItemMediaName]" maxlength="{$INPUTSIZE.ItemMediaName|default:"255"}" value="{$ITEMDATA.ItemMediaName}" />
-			{if $INPUTERROR.flag.ItemMediaName eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
+			<input type="text" name="itemdata[ItemMediaName]" maxlength="{$INPUTSIZE.itemmedianame|default:"255"}" value="{$ITEMDATA.itemmedianame}" />
+			{if $INPUTERROR.flag.itemmedianame eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
 		</td>
 	</tr>
 	
