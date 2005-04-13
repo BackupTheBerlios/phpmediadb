@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: item-del.php,v 1.3 2005/04/12 18:57:40 mblaschke Exp $ */
+/* $Id: item-del.php,v 1.4 2005/04/13 11:46:19 bruf Exp $ */
 /**
  * This file deletes one item
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.3 $
+ * @version		$Revision: 1.4 $
  * @package		phpmediadb_html
  * @subpackage	access_admin
  */
@@ -20,7 +20,7 @@ $PHPMEDIADB	= new phpmediadb();
 function itemdel_deleteItem( $itemId )
 {
 	global $PHPMEDIADB;
-	$status = $PHPMEDIADB->DATA->ITEMS->delete( $itemId );
+	$status = $PHPMEDIADB->BUSINESS->ITEMS->delete( $itemId );
 	
 	if( true === $status )
 	{
@@ -88,7 +88,7 @@ function itemdel_getItemId()
 	}
 	
 	/* check if item exists */
-	if( !$PHPMEDIADB->DATA->ITEMS->exists( $returnValue ) )
+	if( !$PHPMEDIADB->BUSINESS->ITEMS->exists( $returnValue ) )
 	{
 		/* %MESSAGE_ITEM_NOTEXISTENT% */
 		$message = $PHPMEDIADB->PRESENTATION->I18N->translate( 'MESSAGE_ITEM_NOTEXISTENT' );
