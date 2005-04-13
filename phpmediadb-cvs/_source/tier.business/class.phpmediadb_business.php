@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business.php,v 1.9 2005/03/24 17:13:26 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business.php,v 1.10 2005/04/13 11:48:41 bruf Exp $ */
 
 /**
  * This class contains all subclasses of the TIER.BUSINESS and the configuration
@@ -8,7 +8,7 @@
  * The subclasses can be accessed through the public references.
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.9 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -71,6 +71,15 @@ class phpmediadb_business
 	public $FORMATS = null;
 	
 	/**
+	 * Reference to class phpmediadb_data_items
+	 *
+	 * @access public
+	 * @see phpmediadb_data_formats
+	 * @var phpmediadb_data_formats
+	 */
+	public $ITEMS = null;
+	
+	/**
 	 * Reference to class phpmediadb_business_inspector
 	 *
 	 * @access public
@@ -131,6 +140,7 @@ class phpmediadb_business
 		$this->CATEGORIES		= new phpmediadb_business_categories( $this );
 		$this->CODECS			= new phpmediadb_business_codecs( $this );
 		$this->FORMATS			= new phpmediadb_business_formats( $this );
+		$this->ITEMS			= new phpmediadb_business_items( $this );
 		$this->INSPECTOR		= new phpmediadb_business_inspector( $this );
 		$this->PRINTS			= new phpmediadb_business_prints( $this );
 		$this->VIDEOS			= new phpmediadb_business_prints( $this );

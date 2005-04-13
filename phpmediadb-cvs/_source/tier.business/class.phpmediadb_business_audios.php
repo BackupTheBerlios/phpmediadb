@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_audios.php,v 1.8 2005/04/12 20:53:51 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_audios.php,v 1.9 2005/04/13 11:48:11 bruf Exp $ */
 
 /**
  * This is the class that manages all functions of the audios
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.8 $
+ * @version		$Revision: 1.9 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -152,9 +152,9 @@ class phpmediadb_business_audios
 		$itemId = $this->DATA->AUDIOS->create( $data );
 		
 		/* link item with categories */
-		if( is_array( $data['Categories'] ) )
+		if( is_array( $data['categories'] ) )
 		{
-			foreach( $data['Categories'] as $categoryId )
+			foreach( $data['categories'] as $categoryId )
 				$this->BUSINESS->CATEGORIES->addLink( $itemId, $categoryId );
 		}
 
@@ -179,6 +179,17 @@ class phpmediadb_business_audios
 		
 		/* delegate */
 		$returnValue = $this->DATA->AUDIOS->modify( $id, $data );
+		
+		/* delete categorylinks */
+		$this->BUSINESS->CATEGORIES->removeAllLinks( $id );
+		
+		/* reassign new categories */
+		if( is_array( $data['categories'] ) )
+		{
+			foreach( $data['categories'] as $categoryId )
+				$this->BUSINESS->CATEGORIES->addLink( $id, $categoryId );
+		}
+
 		
 		/* return data */
 		return $returnValue;

@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_categories.php,v 1.8 2005/04/09 19:13:10 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_categories.php,v 1.9 2005/04/13 11:48:29 bruf Exp $ */
 
 /**
  * This is the class that manages all functions of the categories
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.8 $
+ * @version		$Revision: 1.9 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -212,9 +212,13 @@ class phpmediadb_business_categories
 	 */
 	public function translate( $data )
 	{	
+
 		/* translate database data */
-		foreach( $data as $key => $value )
-			$data[$key]['categoryname'] = $this->PHPMEDIADB->PRESENTATION->I18N->translate( $data[$key]['categoryname'] );
+		if( is_array( $data ) )
+		{
+			foreach( $data as $key => $value )
+				$data[$key]['categoryname'] = $this->PHPMEDIADB->PRESENTATION->I18N->translate( $data[$key]['categoryname'] );
+		}
 		
 		/* return data */
 		return $data;
@@ -230,8 +234,14 @@ class phpmediadb_business_categories
 	 */
 	public function addLink( $itemId, $categoryId )
 	{
+		/* init */
+		$returnValue = false;
+		
 		/* delegate */
 		$returnValue = $this->DATA->CATEGORIES->addLink( $itemId, $categoryId );
+		
+		/* return data */
+		return $returnValue;
 	}
 
 //-----------------------------------------------------------------------------
@@ -243,8 +253,33 @@ class phpmediadb_business_categories
 	 */
 	public function removeAllLinks( $itemId )
 	{
+		/* init */
+		$returnValue = false;
+		
 		/* delegate */
 		$returnValue = $this->DATA->CATEGORIES->removeAllLinks( $itemId );
+		
+		/* return data */
+		return $returnValue;
+	}
+//-----------------------------------------------------------------------------
+	/**
+	 * This function returns the list of  the parameters ItemID and CategoryID
+	 * from the table Categories_has_Items
+	 *
+	 * @access public
+	 * @param Integer $itemId contains specified id for the sql statement
+	 */
+	public function getLinkList( $itemId )
+	{
+		/* init */
+		$returnValue = false;
+		
+		/* delegate */
+		$returnValue = $this->DATA->CATEGORIES->getLinkList( $itemId );
+		
+		/* return data */
+		return $returnValue;		
 	}
 	
 //-----------------------------------------------------------------------------
