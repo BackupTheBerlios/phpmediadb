@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_videos.php,v 1.5 2005/03/24 20:43:35 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_videos.php,v 1.6 2005/04/13 15:03:33 mblaschke Exp $ */
 
 /**
  * This is the class that manages all functions of the videos
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -42,6 +42,7 @@ class phpmediadb_business_videos
 	protected $DATA = null;
 	
 	// --- OPERATIONS ---
+	
 //-----------------------------------------------------------------------------
 	/**
 	 * The constructor __construct initalizes the Class.
@@ -59,6 +60,41 @@ class phpmediadb_business_videos
 		$this->PHPMEDIADB	= $sender->PHPMEDIADB;
 		$this->DATA			= $sender->PHPMEDIADB->DATA;
 	}
+
+//-----------------------------------------------------------------------------
+	/**
+	 * Creates an empty dataset
+	 *
+	 * @access public
+	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
+	 * @return Array Empty dataset
+	 */
+	 public function createEmpty()
+	 {
+		/* init */
+		$returnValue = array();
+	 	
+		/* create empty itemset */
+		$returnValue['ItemTitle'] 				= '';
+		$returnValue['ItemOriginalTitle']		= '';
+		$returnValue['ItemMediaName']			= '';
+		$returnValue['ItemIdentification']		= '';
+		$returnValue['ItemRelease']				= '';
+		$returnValue['Categories']				= array();
+		$returnValue['ItemMediaSize']			= '';
+		$returnValue['MediaFormatID']			= '';
+		$returnValue['BinaryData']				= '';
+		$returnValue['PublisherName']			= '';
+		$returnValue['MediaAgeRestrictionID']	= '';
+		$returnValue['MediaCodecID']			= '';
+		$returnValue['ItemQuantity']			= '';
+		$returnValue['ItemPublisher']			= '';
+		$returnValue['ItemCreationDate']		= NULL;
+		$returnValue['ItemModificationDate']	= NULL;
+			
+		/* return data */
+		return $returnValue;
+	 }
 
 //-----------------------------------------------------------------------------
 	/**
@@ -112,8 +148,16 @@ class phpmediadb_business_videos
 		/* init */
 		$returnValue = false;
 		
-		/* delegate */
-		$returnValue = $this->DATA->VIDEOS->create( $data );
+		/* create itemdata */
+		$itemId = $this->DATA->VIDEOS->create( $data );
+		
+		/* link item with categories */
+		if( is_array( $data['categories'] ) )
+		{
+			foreach( $data['categories'] as $categoryId )
+				$this->BUSINESS->CATEGORIES->addLink( $itemId, $categoryId );
+		}
+
 		
 		/* return data */
 		return $returnValue;
@@ -135,6 +179,17 @@ class phpmediadb_business_videos
 		
 		/* delegate */
 		$returnValue = $this->DATA->VIDEOS->modify( $id, $data );
+		
+		/* delete categorylinks */
+		$this->BUSINESS->CATEGORIES->removeAllLinks( $id );
+		
+		/* reassign new categories */
+		if( is_array( $data['categories'] ) )
+		{
+			foreach( $data['categories'] as $categoryId )
+				$this->BUSINESS->CATEGORIES->addLink( $id, $categoryId );
+		}
+
 		
 		/* return data */
 		return $returnValue;
