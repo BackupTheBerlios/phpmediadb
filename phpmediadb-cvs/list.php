@@ -1,11 +1,11 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: list.php,v 1.4 2005/04/10 01:35:18 mblaschke Exp $ */
+/* $Id: list.php,v 1.5 2005/04/13 15:00:18 mblaschke Exp $ */
 /**
  * This file displays the itemlist
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.4 $
+ * @version		$Revision: 1.5 $
  * @package		phpmediadb_html
  * @subpackage	access_anonymous
  */
@@ -34,6 +34,7 @@ switch( @$_GET['list'] )
 			
 		case 'video':
 				/* get data list */
+				
 				$dataList = $PHPMEDIADB->BUSINESS->VIDEOS->getList();		
 				@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'ITEMDATA', $dataList );
 
@@ -43,7 +44,7 @@ switch( @$_GET['list'] )
 			
 		case 'print':
 				/* get data list */
-				$dataList[] = $PHPMEDIADB->BUSINESS->PRINTS->getList();		
+				$dataList = $PHPMEDIADB->BUSINESS->PRINTS->getList();		
 				@$PHPMEDIADB->PRESENTATION->CONTENTVARS->addNode( 'ITEMDATA', $dataList );
 
 				/* set template */
