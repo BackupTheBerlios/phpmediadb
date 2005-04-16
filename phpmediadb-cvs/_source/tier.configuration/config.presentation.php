@@ -5,7 +5,7 @@
  * This file stores all configurations in tier.presentation
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	configuration
  */
@@ -34,7 +34,7 @@ $phpMediaDbConfig['PRESENTATION']['webpath']['root-path']	= '/phpmediadb-cvs/';
 /**
   * i18n - Configuration
   */
-$phpMediaDbConfig['PRESENTATION']['i18n']['defaultLanguage']	= "de";
+$phpMediaDbConfig['PRESENTATION']['i18n']['defaultLanguage']	= 'de';
 $phpMediaDbConfig['PRESENTATION']['i18n']['forcedLanguage']		= true;
 
 
