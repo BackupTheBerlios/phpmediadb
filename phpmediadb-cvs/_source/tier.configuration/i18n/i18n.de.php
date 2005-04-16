@@ -5,7 +5,7 @@
  * This file stores all i18n strings (GERMAN)
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.7 $
+ * @version		$Revision: 1.8 $
  * @package		phpmediadb
  * @subpackage	configuration
  */
@@ -15,6 +15,8 @@
 *** HTML-Translations
 ******************************************************************************/
 
+	$i18n['MEDIA_VIDEO_TITLE'] = 'audio-visuelles Medium';
+	
 /* default i18ns */
 	$i18n['OK'] = 'Akzeptieren';
 	$i18n['CANCEL'] = 'Abbrechen';
