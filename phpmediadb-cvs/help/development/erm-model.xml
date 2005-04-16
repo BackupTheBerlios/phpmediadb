@@ -258,14 +258,14 @@
 </SETTINGS>
 <METADATA>
 <REGIONS>
-<REGION ID="1809" RegionName="Language Information" XPos="356" YPos="603" Width="320" Height="440" RegionColor="3" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="57" />
-<REGION ID="1808" RegionName="Track Information" XPos="14" YPos="604" Width="340" Height="440" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="56" />
-<REGION ID="1744" RegionName="File Information" XPos="13" YPos="1054" Width="660" Height="150" RegionColor="5" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" />
-<REGION ID="1686" RegionName="Media Information" XPos="1489" YPos="16" Width="460" Height="480" RegionColor="1" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="51" />
-<REGION ID="1670" RegionName="Item Specific Information" XPos="15" YPos="14" Width="660" Height="580" RegionColor="0" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
-<REGION ID="1671" RegionName="General Item Information" XPos="682" YPos="15" Width="800" Height="700" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="45" />
-<REGION ID="1672" RegionName="Person Information" XPos="682" YPos="721" Width="1000" Height="480" RegionColor="4" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="46" />
 <REGION ID="1690" RegionName="Binary Data Information" XPos="1489" YPos="512" Width="460" Height="200" RegionColor="0" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="53" />
+<REGION ID="1672" RegionName="Person Information" XPos="682" YPos="721" Width="1000" Height="480" RegionColor="4" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="46" />
+<REGION ID="1671" RegionName="General Item Information" XPos="682" YPos="15" Width="800" Height="700" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="45" />
+<REGION ID="1670" RegionName="Item Specific Information" XPos="15" YPos="14" Width="660" Height="580" RegionColor="0" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
+<REGION ID="1686" RegionName="Media Information" XPos="1489" YPos="16" Width="460" Height="480" RegionColor="1" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="51" />
+<REGION ID="1744" RegionName="File Information" XPos="13" YPos="1054" Width="660" Height="150" RegionColor="5" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" />
+<REGION ID="1808" RegionName="Track Information" XPos="14" YPos="604" Width="340" Height="440" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="56" />
+<REGION ID="1809" RegionName="Language Information" XPos="356" YPos="603" Width="320" Height="440" RegionColor="3" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="57" />
 </REGIONS>
 <TABLES>
 <TABLE ID="1491" Tablename="Languages" PrevTableName="Table_01" XPos="416" YPos="823" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="3" >
@@ -706,7 +706,7 @@
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1747" ColName="ItemComment" PrevColName="" Pos="13" idDatatype="24" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="1747" ColName="ItemComment" PrevColName="" Pos="13" idDatatype="28" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -1143,7 +1143,7 @@
 <RELATION ID="1855" RelationName="Rel_26" Kind="2" SrcTable="1553" DestTable="1558" FKFields="ItemTypeID=ItemTypeID\n" FKFieldsComments="\n" relDirection="3" MidOffset="13" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1857" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="57" />
 </RELATIONS>
 <NOTES>
-<NOTE ID="1745" NoteName="Note_01" XPos="40" YPos="1100" NoteText="phpMediaDB\n$Id: erm-model.xml,v 1.18 2005/04/12 10:16:49 bruf Exp $\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="55" />
+<NOTE ID="1745" NoteName="Note_01" XPos="40" YPos="1100" NoteText="phpMediaDB\n$Id: erm-model.xml,v 1.19 2005/04/16 16:34:00 bruf Exp $\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="55" />
 </NOTES>
 <IMAGES>
 </IMAGES>
