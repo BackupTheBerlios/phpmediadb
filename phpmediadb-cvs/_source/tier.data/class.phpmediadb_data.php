@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data.php,v 1.10 2005/04/12 17:58:05 mblaschke Exp $ */
+/* $Id: class.phpmediadb_data.php,v 1.11 2005/04/17 10:25:07 bruf Exp $ */
 
 /**
  * This class contains all subclasses of the TIER.DATA and the configuration
@@ -8,7 +8,7 @@
  * The subclasses can be accessed through the public references.
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.10 $
+ * @version		$Revision: 1.11 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -42,6 +42,15 @@ class phpmediadb_data
 	 * @var phpmediadb_data_audios
 	 */
 	public $AUDIOS = null;
+	
+	/**
+	 * Reference to class phpmediadb_data_binarydatas
+	 *
+	 * @access public
+	 * @see phpmediadb_data_audios
+	 * @var phpmediadb_data_audios
+	 */
+	public $BINARYDATAS = null;
 	
 	/**
 	 * Reference to class phpmediadb_data_categories
@@ -145,6 +154,7 @@ class phpmediadb_data
 		/* assign childs */
 		$this->AGERESTRICTIONS	= new phpmediadb_data_agerestrictions( $this );
 		$this->AUDIOS			= new phpmediadb_data_audios( $this );
+		$this->BINARYDATAS		= new phpmediadb_data_binarydatas( $this );
 		$this->CATEGORIES		= new phpmediadb_data_categories( $this );
 		$this->CODECS			= new phpmediadb_data_codecs( $this );
 		$this->FORMATS			= new phpmediadb_data_formats( $this );
