@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_agerestrictions.php,v 1.7 2005/04/06 13:51:02 bruf Exp $ */
+/* $Id: class.phpmediadb_business_agerestrictions.php,v 1.8 2005/04/20 20:07:29 bruf Exp $ */
 
 /**
  * This is the class that manages all functions of the agerestrictions
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.7 $
+ * @version		$Revision: 1.8 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -148,13 +148,13 @@ class phpmediadb_business_agerestrictions
 	 * @param integer $id ID of item
 	 * @return bool successstatus (true/false)
 	 */
-	public function remove( $id )
+	public function delete( $id )
 	{
 		/* init */
 		$returnValue = false;
 		
 		/* delegate */
-		$returnValue = $this->DATA->AGERESTRICTIONS->modify( $id );
+		$returnValue = $this->DATA->AGERESTRICTIONS->delete( $id );
 		
 		/* return data */
 		return $returnValue;
