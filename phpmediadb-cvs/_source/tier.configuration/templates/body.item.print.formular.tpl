@@ -31,6 +31,14 @@
 	</tr>
 
 	<tr>
+		<td>{$I18N.MEDIA_PRINT_ITEM_LOCATION|default:"%MEDIA_PRINT_ITEM_LOCATION%"}</td>
+		<td>
+			<input type="text" name="itemdata[itemlocation]" maxlength="{$INPUTSIZE.itemlocation|default:"255"}" value="{$ITEMDATA.itemlocation}" />
+			{if $INPUTERROR.flag.itemlocation eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
+		</td>
+	</tr>
+	
+	<tr>
 		<td>{$I18N.MEDIA_PRINT_ITEM_IDENTIFICATION|default:"%MEDIA_PRINT_ITEM_IDENTIFICATION%"}</td>
 		<td>
 			<input type="text" name="itemdata[itemidentifier]" maxlength="{$INPUTSIZE.itemidentifier|default:"255"}" value="{$ITEMDATA.itemidentifier}" />
@@ -92,6 +100,7 @@
 		</td>
 	</tr>
 
+<!--
 	<tr>
 		<td>{$I18N.MEDIA_PRINT_ITEM_IMAGE|default:"%MEDIA_PRINT_ITEM_IMAGE%"}</td>
 		<td>
@@ -100,7 +109,16 @@
 			{if $ITEMDATA.itemid gt '0'}<br /><input type="checkbox" name="itemdata[picturedelete]" value="1" />{$I18N.MEDIA_PRINT_IMAGEDELETE|default:"%MEDIA_PRINT_IMAGEDELETE%"}{/if}
 		</td>
 	</tr>
+-->
 
+	<tr>
+		<td>{$I18N.MEDIA_PRINT_ITEM_IMAGEURL|default:"%MEDIA_PRINT_ITEM_IMAGEURL%"}</td>
+		<td>
+			<input type="text" name="itemdata[itempictureurl]" maxlength="{$INPUTSIZE.itempictureurl|default:"255"}" value="{$ITEMDATA.itempictureurl}" />
+			{if $INPUTERROR.flag.itempictureurl eq "1" }<span class="phpmediadb-body-inputerror">{$I18N.ERROR_FLAG|default:"*"}</span>{/if}
+		</td>
+	</tr>
+	
 	<tr>
 		<td>{$I18N.MEDIA_PRINT_ITEM_PUBLISHER|default:"%MEDIA_PRINT_ITEM_PUBLISHER%"}</td>
 		<td>
