@@ -1,6 +1,6 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business.php,v 1.11 2005/04/13 15:01:37 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business.php,v 1.12 2005/04/20 20:12:27 bruf Exp $ */
 
 /**
  * This class contains all subclasses of the TIER.BUSINESS and the configuration
@@ -8,7 +8,7 @@
  * The subclasses can be accessed through the public references.
  * 
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.11 $
+ * @version		$Revision: 1.12 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -44,6 +44,15 @@ class phpmediadb_business
 	public $AUDIOS = null;
 	
 	/**
+	 * Reference to class phpmediadb_busness_binarydatas
+	 *
+	 * @access public
+	 * @see phpmediadb_busness_binarydatas
+	 * @var phpmediadb_busness_binarydatas
+	 */
+	public $BINARYDATAS = null;
+	
+	/**
 	 * Reference to class phpmediadb_business_categories
 	 *
 	 * @access public
@@ -71,11 +80,11 @@ class phpmediadb_business
 	public $FORMATS = null;
 	
 	/**
-	 * Reference to class phpmediadb_data_items
+	 * Reference to class phpmediadb_business_items
 	 *
 	 * @access public
-	 * @see phpmediadb_data_formats
-	 * @var phpmediadb_data_formats
+	 * @see phpmediadb_business_items
+	 * @var phpmediadb_business_items
 	 */
 	public $ITEMS = null;
 	
@@ -137,6 +146,7 @@ class phpmediadb_business
 		/* assign childs */
 		$this->AGERESTRICTIONS	= new phpmediadb_business_agerestrictions( $this );
 		$this->AUDIOS			= new phpmediadb_business_audios( $this );
+		$this->BINARYDATAS		= new phpmediadb_business_binarydatas( $this );
 		$this->CATEGORIES		= new phpmediadb_business_categories( $this );
 		$this->CODECS			= new phpmediadb_business_codecs( $this );
 		$this->FORMATS			= new phpmediadb_business_formats( $this );
