@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_videos.php,v 1.6 2005/04/13 15:03:33 mblaschke Exp $ */
+/* $Id: class.phpmediadb_business_videos.php,v 1.7 2005/04/20 20:09:50 bruf Exp $ */
 
 /**
  * This is the class that manages all functions of the videos
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
+ * @version		$Revision: 1.7 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -190,26 +190,6 @@ class phpmediadb_business_videos
 				$this->BUSINESS->CATEGORIES->addLink( $id, $categoryId );
 		}
 
-		
-		/* return data */
-		return $returnValue;
-	}
-	
-//-----------------------------------------------------------------------------
-	/**
-	 * Removes one item from the database
-	 *
-	 * @access public
-	 * @param integer $id ID of item
-	 * @return bool successstatus (true/false)
-	 */
-	public function remove( $id )
-	{
-		/* init */
-		$returnValue = false;
-		
-		/* delegate */
-		$returnValue = $this->DATA->VIDEOS->modify( $id );
 		
 		/* return data */
 		return $returnValue;

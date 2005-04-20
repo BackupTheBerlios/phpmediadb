@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_data_binarydatas.php,v 1.1 2005/04/17 10:25:33 bruf Exp $ */
+/* $Id: class.phpmediadb_data_binarydatas.php,v 1.2 2005/04/20 20:18:24 bruf Exp $ */
 
 /**
  * This is the class that manages all database activities for the binarydatas
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.1 $
+ * @version		$Revision: 1.2 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -76,7 +76,7 @@ class phpmediadb_data_binarydatas
 			$conn = $this->DATA->SQL->getConnection();
 			$stmt = $conn->prepareStatement(	'SELECT BinaryDatas.*
 													FROM BinaryDatas
-													WHERE BinaryDatas.ItemPicturesID = ?' );
+													WHERE BinaryDatas.ItemID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery();
 			
@@ -131,8 +131,9 @@ class phpmediadb_data_binarydatas
 			$conn = $this->DATA->SQL->getConnection();
 			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'INSERT INTO BinaryDatas
-												( BinaryDataMimeType, BinaryDataSize )
-												VALUES( ?, ? )' );
+												( ItemID, BinaryDataMimeType, BinaryDataSize )
+												VALUES( ?, ?, ? )' );
+			$stmt->setString( 1, $data['itemid'] );
 			$stmt->setString( 1, $data['binarydatamimetype'] );
 			$stmt->setString( 2, $data['binarydatasize'] );
 			$stmt->executeUpdate();
@@ -169,7 +170,7 @@ class phpmediadb_data_binarydatas
 			$stmt = $conn->prepareStatement(	'Update BinaryDatas
 													SET BinaryDatas.BinaryDataMimeType = ?,
 													BinaryDatas.BinaryDataSize = ?
-													WHERE BinaryDatas.ItemPicturesID = ?' );
+													WHERE BinaryDatas.ItemID = ?' );
 			$stmt->setString( 1, $data['binarydatamimetype'] );
 			$stmt->setString( 2, $data['binarydatasize'] );
 			$stmt->setString( 12, $id );
@@ -204,7 +205,7 @@ class phpmediadb_data_binarydatas
 			$conn = $this->DATA->SQL->getConnection();
 			$this->DATA->SQL->openTransaction( $conn );
 			$stmt = $conn->prepareStatement(	'DELETE FROM BinaryDatas
-													WHERE BinaryDatas.ItemPicturesID = ?' );
+													WHERE BinaryDatas.ItemID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeUpdate();
 			
@@ -241,7 +242,7 @@ class phpmediadb_data_binarydatas
 			$conn = $this->DATA->SQL->getConnection();
 			$stmt = $conn->prepareStatement(	'SELECT COUNT(*)
 												FROM BinaryDatas
-												WHERE BinaryDatas.ItemPicturesID = ?' );
+												WHERE BinaryDatas.ItemID = ?' );
 			$stmt->setString( 1, $id );
 			$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
 			$rs->next();

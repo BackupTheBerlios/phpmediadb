@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_audios.php,v 1.9 2005/04/13 11:48:11 bruf Exp $ */
+/* $Id: class.phpmediadb_business_audios.php,v 1.10 2005/04/20 20:08:00 bruf Exp $ */
 
 /**
  * This is the class that manages all functions of the audios
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.9 $
+ * @version		$Revision: 1.10 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -197,27 +197,7 @@ class phpmediadb_business_audios
 	
 //-----------------------------------------------------------------------------
 	/**
-	 * Removes one item from the database
-	 *
-	 * @access public
-	 * @param integer $id ID of item
-	 * @return bool successstatus (true/false)
-	 */
-	public function remove( $id )
-	{
-		/* init */
-		$returnValue = false;
-		
-		/* delegate */
-		$returnValue = $this->DATA->AUDIOS->modify( $id );
-		
-		/* return data */
-		return $returnValue;
-	}
-	
-//-----------------------------------------------------------------------------
-	/**
-	 * Removes one item from the database
+	 * Checks dataset
 	 *
 	 * @access public
 	 * @param integer $data Data of the item
