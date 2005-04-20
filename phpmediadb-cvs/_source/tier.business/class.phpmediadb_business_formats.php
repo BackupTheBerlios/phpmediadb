@@ -1,12 +1,12 @@
 <?php
 // phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
-/* $Id: class.phpmediadb_business_formats.php,v 1.7 2005/04/06 13:51:32 bruf Exp $ */
+/* $Id: class.phpmediadb_business_formats.php,v 1.8 2005/04/20 20:09:31 bruf Exp $ */
 
 /**
  * This is the class that manages all functions of the formats
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.7 $
+ * @version		$Revision: 1.8 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -168,13 +168,13 @@ class phpmediadb_business_formats
 	 * @param integer $id ID of item
 	 * @return bool successstatus (true/false)
 	 */
-	public function remove( $id )
+	public function delete( $id )
 	{
 		/* init */
 		$returnValue = false;
 		
 		/* delegate */
-		$returnValue = $this->DATA->FORMATS->modify( $id );
+		$returnValue = $this->DATA->FORMATS->delete( $id );
 		
 		/* return data */
 		return $returnValue;
