@@ -1,5 +1,5 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: create-tables.sql,v 1.6 2005/04/13 11:42:33 bruf Exp $
+-- $Id: create-tables.sql,v 1.7 2005/04/20 20:06:41 bruf Exp $
 
 CREATE TABLE AudioDatas (
   AudioDataID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -10,9 +10,11 @@ CREATE TABLE AudioDatas (
 
 CREATE TABLE BinaryDatas (
   ItemPicturesID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  ItemID INTEGER UNSIGNED NOT NULL,
   BinaryDataMimeType VARCHAR(255) NOT NULL,
   BinaryDataSize INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(ItemPicturesID)
+  PRIMARY KEY(ItemPicturesID),
+  INDEX BinaryDatas_FKIndex1(ItemID)
 );
 
 CREATE TABLE Categories (
@@ -35,7 +37,6 @@ CREATE TABLE Items (
   MediaAgeRestrictionID INTEGER UNSIGNED,
   MediaCodecID INTEGER UNSIGNED,
   MediaFormatID INTEGER UNSIGNED,
-  ItemPicturesID INTEGER UNSIGNED,
   ItemTitle VARCHAR(255),
   ItemOriginalTitle VARCHAR(255) NOT NULL,
   ItemReleaseDate VARCHAR(255) NOT NULL,
@@ -47,9 +48,10 @@ CREATE TABLE Items (
   ItemIdentifier VARCHAR(255) NOT NULL,
   ItemTypeID INTEGER UNSIGNED NOT NULL,
   ItemPublisher VARCHAR(255) NOT NULL, 
+  ItemLocation VARCHAR(255) NOT NULL, 
+  ItemPictureURL VARCHAR(255) NOT NULL, 
   PRIMARY KEY(ItemID),
   INDEX Items_FKIndex1(ItemTypeID),
-  INDEX Items_FKIndex2(ItemPicturesID),
   INDEX Items_FKIndex3(MediaFormatID),
   INDEX Items_FKIndex4(MediaCodecID),
   INDEX Items_FKIndex5(MediaAgeRestrictionID)
