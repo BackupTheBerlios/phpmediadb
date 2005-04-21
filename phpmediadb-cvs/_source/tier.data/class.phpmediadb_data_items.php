@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_data_items.php,v 1.5 2005/04/20 21:45:59 mblaschke Exp $
+ * $Id: class.phpmediadb_data_items.php,v 1.6 2005/04/21 20:34:53 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_data_items.php
@@ -33,14 +33,14 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	data
- * @version     $Revision: 1.5 $
+ * @version     $Revision: 1.6 $
  */
 
 /**
  * This is the class that manages all database activities for the items
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.5 $
+ * @version		$Revision: 1.6 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -298,11 +298,11 @@ class phpmediadb_data_items
 			$stmt->setString( 1, $itemId );
 			$rs = $stmt->executeQuery( ResultSet::FETCHMODE_NUM );
 			$rs->next();
-			
+
 			/* check if item exists */
 			if( $rs->get(1) >= 1 )
 				$returnValue = true;
-				
+
 			return $returnValue;
 		}
 		catch( Exception $exception )

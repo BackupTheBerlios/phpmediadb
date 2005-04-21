@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_data_videos.php,v 1.16 2005/04/20 21:45:59 mblaschke Exp $
+ * $Id: class.phpmediadb_data_videos.php,v 1.17 2005/04/21 20:34:53 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_data_videos.php
@@ -33,14 +33,14 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	data
- * @version     $Revision: 1.16 $
+ * @version     $Revision: 1.17 $
  */
 
 /**
  * This is the class that manages all database activities for the videos
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.16 $
+ * @version		$Revision: 1.17 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -107,7 +107,7 @@ class phpmediadb_data_videos
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$stmt = $conn->prepareStatement(	'SELECT Items.*, ItemTypes.*, MediaCodecs.*, MediaFormats.*, MediaAgeRestrictions.*
+			$stmt = $conn->prepareStatement(	'SELECT ItemTypes.*, MediaCodecs.*, MediaFormats.*, MediaAgeRestrictions.*, Items.*
 													FROM Items
 													LEFT JOIN ItemTypes ON ItemTypes.ItemTypeID=Items.ItemTypeID
 													LEFT JOIN MediaCodecs ON MediaCodecs.MediaCodecID=Items.MediaCodecID

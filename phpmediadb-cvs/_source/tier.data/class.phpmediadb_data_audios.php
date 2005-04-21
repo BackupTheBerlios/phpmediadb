@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_data_audios.php,v 1.16 2005/04/20 21:45:59 mblaschke Exp $
+ * $Id: class.phpmediadb_data_audios.php,v 1.17 2005/04/21 20:34:53 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_data_audios.php
@@ -33,13 +33,13 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	data
- * @version     $Revision: 1.16 $
+ * @version     $Revision: 1.17 $
  */
 /**
  * This is the class that manages all database activities for the audios
  *
  * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.16 $
+ * @version		$Revision: 1.17 $
  * @package		phpmediadb
  * @subpackage	data
  */
@@ -107,7 +107,7 @@ class phpmediadb_data_audios
 		try
 		{
 			$conn = $this->DATA->SQL->getConnection();
-			$stmt = $conn->prepareStatement(	'SELECT Items.*, AudioDatas.*, ItemTypes.*, MediaCodecs.MediaCodecName, MediaFormats.MediaFormatName, MediaAgeRestrictions.MediaAgeRestriction
+			$stmt = $conn->prepareStatement(	'SELECT AudioDatas.*, ItemTypes.*, MediaCodecs.MediaCodecName, MediaFormats.MediaFormatName, MediaAgeRestrictions.MediaAgeRestriction, Items.*
 													FROM Items
 													LEFT JOIN AudioDatas ON AudioDatas.ItemID=Items.ItemID
 													LEFT JOIN ItemTypes ON ItemTypes.ItemTypeID=Items.ItemTypeID
@@ -247,6 +247,7 @@ class phpmediadb_data_audios
 													Items.MediaAgeRestrictionID = ?,
 													Items.ItemPublisher = ?
 													WHERE Items.ItemID = ?' );
+
 			$stmt->setString( 1, $data['itemtitle'] );
 			$stmt->setString( 2, $data['itemoriginaltitle'] );
 			$stmt->setString( 3, $data['itemreleasedate'] );
