@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_items.php,v 1.3 2005/04/20 21:45:25 mblaschke Exp $
+ * $Id: class.phpmediadb_business_items.php,v 1.4 2005/04/21 20:32:11 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_items.php
@@ -33,14 +33,14 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.3 $
+ * @version     $Revision: 1.4 $
  */
 
 /**
  * This is the class that manages all database activities for the items
  *
  * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.3 $
+ * @version		$Revision: 1.4 $
  * @package		phpmediadb
  * @subpackage	business
  */
@@ -133,7 +133,7 @@ class phpmediadb_business_items
 		{
 			foreach( $categories as $value )
 			{
-				$returnValue['categories'][]		= $value['categoryid'];
+				$returnValue['categories'][]	= $value['categoryid'];
 				$specialValue['categoryid']		= $value['categoryid'];
 				$specialValue['categoryname']	= $value['categoryname'];
 				
