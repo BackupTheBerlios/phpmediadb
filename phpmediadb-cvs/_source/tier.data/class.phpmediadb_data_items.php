@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_data_items.php,v 1.6 2005/04/21 20:34:53 mblaschke Exp $
+ * $Id: class.phpmediadb_data_items.php,v 1.7 2005/04/22 21:54:59 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_data_items.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	data
- * @version     $Revision: 1.6 $
+ * @version     $Revision: 1.7 $
  */
 
 /**
  * This is the class that manages all database activities for the items
- *
- * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.6 $
- * @package		phpmediadb
- * @subpackage	data
  */
 class phpmediadb_data_items
 {

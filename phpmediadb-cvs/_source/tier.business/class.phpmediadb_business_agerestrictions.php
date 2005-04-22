@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_agerestrictions.php,v 1.9 2005/04/20 21:45:25 mblaschke Exp $
+ * $Id: class.phpmediadb_business_agerestrictions.php,v 1.10 2005/04/22 21:54:44 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_agerestrictions.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.9 $
+ * @version     $Revision: 1.10 $
  */
 
 /**
  * This is the class that manages all functions of the agerestrictions
- *
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.9 $
- * @package		phpmediadb
- * @subpackage	business
  */
 class phpmediadb_business_agerestrictions
 {

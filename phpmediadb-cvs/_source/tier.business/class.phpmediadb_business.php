@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business.php,v 1.13 2005/04/20 21:45:25 mblaschke Exp $
+ * $Id: class.phpmediadb_business.php,v 1.14 2005/04/22 21:54:45 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business.php
@@ -33,18 +33,13 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.13 $
+ * @version     $Revision: 1.14 $
  */
 
 /**
  * This class contains all subclasses of the TIER.BUSINESS and the configuration
  * for the whole TIER.BUSINESS.
  * The subclasses can be accessed through the public references.
- * 
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.13 $
- * @package		phpmediadb
- * @subpackage	business
  */
 class phpmediadb_business
 {
@@ -164,7 +159,6 @@ class phpmediadb_business
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb $sender Reference to parent class
 	 */
 	public function __construct( $sender )
@@ -195,7 +189,6 @@ class phpmediadb_business
 	 * Loads the configuration from the global array and resets the array
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	private function loadConfiguration()
 	{

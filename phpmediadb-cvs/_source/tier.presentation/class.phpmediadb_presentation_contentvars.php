@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_presentation_contentvars.php,v 1.11 2005/04/20 21:46:16 mblaschke Exp $
+ * $Id: class.phpmediadb_presentation_contentvars.php,v 1.12 2005/04/22 21:55:18 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_presentation_contentvars.php
@@ -33,18 +33,13 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	presentation
- * @version     $Revision: 1.11 $
+ * @version     $Revision: 1.12 $
  */
 
 /**
  * This is the class that manages all template/content-variables of the tier.presentation
  *
  * This class also manages the conversion to XML/XHTML style
- * 
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.11 $
- * @package		phpmediadb
- * @subpackage	presentation
  */
 class phpmediadb_presentation_contentvars
 {
@@ -101,7 +96,6 @@ class phpmediadb_presentation_contentvars
 	 * etc.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 */
 	public function __destruct()
 	{

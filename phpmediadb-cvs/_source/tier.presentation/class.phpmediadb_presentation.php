@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_presentation.php,v 1.9 2005/04/20 21:46:16 mblaschke Exp $
+ * $Id: class.phpmediadb_presentation.php,v 1.10 2005/04/22 21:55:18 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_presentation.php
@@ -33,18 +33,13 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	presentation
- * @version     $Revision: 1.9 $
+ * @version     $Revision: 1.10 $
  */
 
 /**
  * This class contains all subclasses of the TIER.PRESENTATION and the configuration
  * for the whole TIER.PRESENTATION.
  * The subclasses can be accessed through the public references.
- * 
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.9 $
- * @package		phpmediadb
- * @subpackage	presentation
  */
 class phpmediadb_presentation
 {

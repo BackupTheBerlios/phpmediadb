@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_presentation_xmlservice.php,v 1.6 2005/04/20 21:46:16 mblaschke Exp $
+ * $Id: class.phpmediadb_presentation_xmlservice.php,v 1.7 2005/04/22 21:55:18 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_presentation_xmlservice.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	presentation
- * @version     $Revision: 1.6 $
+ * @version     $Revision: 1.7 $
  */
  
 /**
  * This is the class that manages all xml-serivces
- * 
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.6 $
- * @package		phpmediadb
- * @subpackage	presentation
  */
 class phpmediadb_presentation_xmlservice
 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_formats.php,v 1.9 2005/04/20 21:45:25 mblaschke Exp $
+ * $Id: class.phpmediadb_business_formats.php,v 1.10 2005/04/22 21:54:45 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_formats.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.9 $
+ * @version     $Revision: 1.10 $
  */
 
 /**
  * This is the class that manages all functions of the formats
- *
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.9 $
- * @package		phpmediadb
- * @subpackage	business
  */
 class phpmediadb_business_formats
 {
@@ -81,7 +76,6 @@ class phpmediadb_business_formats
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_business $sender Reference to parent class
 	 */
 	public function __construct( $sender )

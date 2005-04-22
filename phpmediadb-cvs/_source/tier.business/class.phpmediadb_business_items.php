@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_items.php,v 1.4 2005/04/21 20:32:11 mblaschke Exp $
+ * $Id: class.phpmediadb_business_items.php,v 1.5 2005/04/22 21:54:45 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_items.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.4 $
+ * @version     $Revision: 1.5 $
  */
 
 /**
  * This is the class that manages all database activities for the items
- *
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.4 $
- * @package		phpmediadb
- * @subpackage	business
  */
 class phpmediadb_business_items
 {
@@ -81,7 +76,6 @@ class phpmediadb_business_items
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_business $sender Reference to parent class
 	 */
 	public function __construct( $sender )

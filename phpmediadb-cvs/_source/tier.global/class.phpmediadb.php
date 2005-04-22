@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb.php,v 1.7 2005/04/20 21:46:07 mblaschke Exp $
+ * $Id: class.phpmediadb.php,v 1.8 2005/04/22 21:55:08 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb.php
@@ -33,18 +33,13 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	global
- * @version     $Revision: 1.7 $
+ * @version     $Revision: 1.8 $
  */
 
 /**
  * This is the class that manages the whole tiers.
  *
  * All tiers can be accessed via the refereces eg. PRESENTATION.
- * 
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.7 $
- * @package		phpmediadb
- * @subpackage	global
  */
 class phpmediadb
 {

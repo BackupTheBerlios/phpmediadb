@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_presentation_i18n.php,v 1.12 2005/04/20 21:46:16 mblaschke Exp $
+ * $Id: class.phpmediadb_presentation_i18n.php,v 1.13 2005/04/22 21:55:18 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_presentation_i18n.php
@@ -33,17 +33,12 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	presentation
- * @version     $Revision: 1.12 $
+ * @version     $Revision: 1.13 $
  */
 
 /**
  * This is the class that manages all internationalization-functions and also contains
  * all i18n variables
- * 
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.12 $
- * @package		phpmediadb
- * @subpackage	presentation
  */
 class phpmediadb_presentation_i18n
 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_data_prints.php,v 1.18 2005/04/21 20:34:53 mblaschke Exp $
+ * $Id: class.phpmediadb_data_prints.php,v 1.19 2005/04/22 21:54:59 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_data_prints.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	data
- * @version     $Revision: 1.18 $
+ * @version     $Revision: 1.19 $
  */
 
 /**
  * This is the class that manages all database activities for the prints
- *
- * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.18 $
- * @package		phpmediadb
- * @subpackage	data
  */
 class phpmediadb_data_prints
 {

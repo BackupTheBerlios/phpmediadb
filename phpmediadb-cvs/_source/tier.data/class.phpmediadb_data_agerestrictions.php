@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_data_agerestrictions.php,v 1.14 2005/04/20 21:45:59 mblaschke Exp $
+ * $Id: class.phpmediadb_data_agerestrictions.php,v 1.15 2005/04/22 21:54:59 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_data_agerestrictions.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	data
- * @version     $Revision: 1.14 $
+ * @version     $Revision: 1.15 $
  */
 
 /**
  * This is the class that manages all database activities for the agerestrictions
- *
- * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.14 $
- * @package		phpmediadb
- * @subpackage	data
  */
 class phpmediadb_data_agerestrictions
 {

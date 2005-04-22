@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_data_sql.php,v 1.12 2005/04/20 21:45:59 mblaschke Exp $
+ * $Id: class.phpmediadb_data_sql.php,v 1.13 2005/04/22 21:54:59 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_data_sql.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	data
- * @version     $Revision: 1.12 $
+ * @version     $Revision: 1.13 $
  */
 
 /**
  * This is the class that provides often used sql actions
- *
- * @author		Boris Ruf <bruf@users.berlios.de>
- * @version		$Revision: 1.12 $
- * @package		phpmediadb
- * @subpackage	data
  */
 class phpmediadb_data_sql
 {

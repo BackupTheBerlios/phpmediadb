@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_inspector.php,v 1.7 2005/04/20 21:45:25 mblaschke Exp $
+ * $Id: class.phpmediadb_business_inspector.php,v 1.8 2005/04/22 21:54:45 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_inspector.php
@@ -33,15 +33,10 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.7 $
+ * @version     $Revision: 1.8 $
  */
 /**
  * This is the class that manages all inspector functions like datavalidation
- *
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.7 $
- * @package		phpmediadb
- * @subpackage	business
  */
 class phpmediadb_business_inspector
 {
@@ -81,7 +76,6 @@ class phpmediadb_business_inspector
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_business $sender Refreence to parent class
 	 */
 	public function __construct( $sender )
@@ -98,7 +92,6 @@ class phpmediadb_business_inspector
 	 * Checkengine: Checks if data is valid or generates an error-array
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $type Itemtype which should be checked
 	 * @param Array $data Data which should be checked
 	 * @return mixed Success if Null, failed if error-array
@@ -192,7 +185,6 @@ class phpmediadb_business_inspector
 	 * Returns all size-specifications for variable check
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $type Itemtype
 	 * @return mixed Specifications of variable-value sizes
 	 */
@@ -216,7 +208,6 @@ class phpmediadb_business_inspector
 	 * Returns all regex-specifications for variable check
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param Integer $type Itemtype
 	 * @return mixed Specifications of variable-value regex
 	 */

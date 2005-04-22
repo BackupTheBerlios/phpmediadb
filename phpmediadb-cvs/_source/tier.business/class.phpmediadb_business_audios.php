@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_audios.php,v 1.11 2005/04/20 21:45:25 mblaschke Exp $
+ * $Id: class.phpmediadb_business_audios.php,v 1.12 2005/04/22 21:54:44 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_audios.php
@@ -33,16 +33,11 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.11 $
+ * @version     $Revision: 1.12 $
  */
 
 /**
  * This is the class that manages all functions of the audios
- *
- * @author		Markus Blaschke <mblaschke@users.berlios.de>
- * @version		$Revision: 1.11 $
- * @package		phpmediadb
- * @subpackage	business
  */
 class phpmediadb_business_audios
 {
@@ -82,7 +77,6 @@ class phpmediadb_business_audios
 	 * The constructor __construct initalizes the Class.
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @param phpmediadb_business $sender Reference to parent class
 	 */
 	public function __construct( $sender )
@@ -100,7 +94,6 @@ class phpmediadb_business_audios
 	 * Creates an empty dataset
 	 *
 	 * @access public
-	 * @author phpMediaDB Team - http://phpmediadb.berlios.de/
 	 * @return Array Empty dataset
 	 */
 	 public function createEmpty()
