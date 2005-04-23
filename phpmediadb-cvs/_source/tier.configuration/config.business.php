@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: config.business.php,v 1.11 2005/04/20 21:45:38 mblaschke Exp $
+ * $Id: config.business.php,v 1.12 2005/04/23 13:29:33 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        config.business.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.11 $
+ * @version     $Revision: 1.12 $
  */
  
 // $phpMediaDbConfig['BUSINESS']['example-config'] = "abc";
@@ -51,7 +51,7 @@ $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['itemlocatio
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['itemidentification']		= '^(.{1,255})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['itemreleasedate']				= '^([[:digit:]]{4})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['categories']				= '^([[:digit:]]+)?$';
-$phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['itemmediasize']			= '^(([[:digit:]]+([[:punct:]]{1}[[:digit:]]+)))?$';
+$phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['itemmediasize']			= '^(([[:digit:]]+([,.][[:digit:]]+)?))?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['mediaformatid']			= '^([[:digit:]]+)?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['itempublisher']			= '^(.{1,255})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_AUDIO]['mediaagerestrictionid']	= '^([[:digit:]]+)?$';
@@ -77,7 +77,7 @@ $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['itemlocatio
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['itemidentification']		= '^(.{1,255})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['itemreleasedate']				= '^([[:digit:]]{4})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['categories']				= '^([[:digit:]]+)?$';
-$phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['itemmediasize']			= '^(([[:digit:]]+([[:punct:]]{1}[[:digit:]]+)))?$';
+$phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['itemmediasize']			= '^(([[:digit:]]+([,.][[:digit:]]+)?))?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['mediaformatid']			= '^([[:digit:]]+)?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['itempublisher']			= '^(.{1,255})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_VIDEO]['mediaagerestrictionid']	= '^([[:digit:]]+)?$';
@@ -103,7 +103,7 @@ $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['itemlocatio
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['itemidentification']		= '^(.{1,255})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['itemreleasedate']				= '^([[:digit:]]{4})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['categories']				= '^([[:digit:]]+)?$';
-$phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['itemmediasize']			= '^(([[:digit:]]+([[:punct:]]{1}[[:digit:]]+)))?$';
+$phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['itemmediasize']			= '^(([[:digit:]]+([,.][[:digit:]]+)?))?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['mediaformatid']			= '^([[:digit:]]+)?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['itempublisher']			= '^(.{1,255})?$';
 $phpMediaDbConfig['BUSINESS']['input-regex'][PHPMEDIADB_ITEM_PRINT]['mediaagerestrictionid']	= '^([[:digit:]]+)?$';
