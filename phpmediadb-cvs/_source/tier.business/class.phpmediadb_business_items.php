@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_items.php,v 1.5 2005/04/22 21:54:45 mblaschke Exp $
+ * $Id: class.phpmediadb_business_items.php,v 1.6 2005/04/25 21:37:59 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_items.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.5 $
+ * @version     $Revision: 1.6 $
  */
 
 /**
@@ -134,11 +134,37 @@ class phpmediadb_business_items
 				$returnValue['__special']['categories'][] = $specialValue;
 			}
 		}
-		
-		/* translate categoryByNames */
-		$returnValue['__special']['categories'] = $this->BUSINESS->CATEGORIES->translate( $returnValue['__special']['categories'] );
+			
+		/* assign mediacodec */
+		if( $returnValue['mediacodecid'] > 0 )
+		{
+			$mediacodec = $this->BUSINESS->CODECS->get( $returnValue['mediacodecid'] );
+			@$mediacodec = $this->BUSINESS->CODECS->translate( $mediacodec );
+			$returnValue['__special']['mediacodec'] = $mediacodec[0];
+		}
+
+		/* assign mediaagerestrictions */
+		if( $returnValue['mediaagerestrictionid'] > 0 )
+		{
+			$mediaagerestrictions = $this->BUSINESS->AGERESTRICTIONS->get( $returnValue['mediaagerestrictionid'] );
+			
+			@$mediaagerestrictions = $this->BUSINESS->AGERESTRICTIONS->translate( $mediaagerestrictions );
+			$returnValue['__special']['mediaagerestriction'] = $mediaagerestrictions[0];
+		}
 
 			
+		/* assign mediaformats */
+		if( $returnValue['mediaformatid'] > 0 )
+		{
+			$mediaformats = $this->BUSINESS->FORMATS->get( $returnValue['mediaformatid'] );
+			@$mediaformats = $this->BUSINESS->FORMATS->translate( $mediaformats );
+			$returnValue['__special']['mediaformat'] = $mediaformats[0];
+		}
+	
+		/* translate values */
+		@$returnValue['__special']['categories']			= $this->BUSINESS->CATEGORIES->translate( $returnValue['__special']['categories'] );
+
+
 		/* return value */
 		return $returnValue;
 	}

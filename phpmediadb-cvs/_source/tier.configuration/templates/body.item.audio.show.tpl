@@ -32,10 +32,10 @@
 	</tr>
 {/if}
 
-{if $ITEMDATA.mediaformatid neq ''}
+{if $ITEMDATA.mediaformatid neq '' and $ITEMDATA.mediaformatid gt 0}
 	<tr>
 		<th>{$I18N.MEDIA_AUDIO_ITEM_FORMAT|default:"%MEDIA_AUDIO_ITEM_FORMAT%"}</th>
-		<td>{$ITEMDATA.mediaformatid}</td>
+		<td>{$ITEMDATA.__special.mediaformat.mediaformatname}</td>
 	</tr>
 {/if}
 
@@ -47,18 +47,17 @@
 {/if}
 
 
-{if $ITEMDATA.mediaagerestrictionid neq ''}
+{if $ITEMDATA.mediaagerestrictionid neq '' and $ITEMDATA.mediaagerestrictionid gt 0}
 	<tr>
 		<th>{$I18N.MEDIA_AUDIO_ITEM_AGERESTRICTION|default:"%MEDIA_AUDIO_ITEM_AGERESTRICTION%"}</th>
-		<td>{$ITEMDATA.mediaagerestrictionid}</td>
+		<td>{$ITEMDATA.__special.mediaagerestriction.mediaagerestriction}</td>
 	</tr>
 {/if}
 
-
-{if $ITEMDATA.mediacodecid neq ''}
+{if $ITEMDATA.mediacodecid neq '' and $ITEMDATA.mediacodecid gt 0}
 	<tr>
 		<th>{$I18N.MEDIA_AUDIO_ITEM_CODEC|default:"%MEDIA_AUDIO_ITEM_CODEC%"}</th>
-		<td>{$ITEMDATA.mediacodecid}</td>
+		<td>{$ITEMDATA.__special.mediacodec.mediacodecname}</td>
 	</tr>
 {/if}
 
