@@ -1,5 +1,5 @@
 /* phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/ */
-/* $Id: default.css,v 1.5 2005/03/15 21:03:22 mblaschke Exp $ */
+/* $Id: default.css,v 1.6 2005/04/25 19:57:38 mblaschke Exp $ */
 
 /*** BASIC ELEMENTS **********************************************************/
 BODY { margin:0px 0px 50px 0px;padding:0px 0px 0px 0px; font-family:Helvetica,Arial; }
@@ -23,10 +23,10 @@ A:hover {  color:#CC0033;  text-decoration: none; }
 #phpmediadb-menu A:hover { color:black; background-color:#CCCCCC; padding:3px; border:1px solid #666666; text-decoration: none; }
 #phpmediadb-menu A:active { color:black; background-color:#E6E6E6; padding:3px; border:1px solid #666666; text-decoration: none; }
 
-#phpmediadb-menu { background-color:#EEEEEE;position:absolute;top:50px;left:5px; margin:0px; padding:5px; border:1px solid grey; width:125px; }
+#phpmediadb-menu { background-color:#EEEEEE;position:absolute;top:50px;left:5px; margin:0px; padding:5px; border:1px solid grey; width:150px; }
 
 /*** PHPMEDIADB-BODY *********************************************************/
-#phpmediadb-body { background-color:#EEEEEE;padding: 10px;border: 0px;margin: 10px 0px 0px 150px;border:1px solid grey; }
+#phpmediadb-body { background-color:#EEEEEE;padding: 10px;border: 0px;margin: 10px 10px 0px 175px;border:1px solid grey; }
 
 .phpmediadb-body-menu A, .phpmediadb-body-menu A:visited { color:black;padding:3px;border:1px solid #F3F3F3;text-decoration: none; }
 .phpmediadb-body-menu A:hover { color:black; background-color:#CCCCCC; padding:3px; border:1px solid #666666; text-decoration: none; }
@@ -45,9 +45,12 @@ A:hover {  color:#CC0033;  text-decoration: none; }
 #phpmediadb-body-home { text-align: center; }
 
 /*** PHPMEDIADB-BODY-LIST ****************************************************/
+/*** PHPMEDIADB-BODY-DETAILS ****************************************************/
+.phpmediadb-body-details { }
+.phpmediadb-body-details th { text-align:left; vertical-align:top; }
 
 /*** PHPMEDIADB-BODY-SEARCH **************************************************/
 
 /*** PHPMEDIADB-BODY-ABOUT ***************************************************/
-#phpmediadb-body-about-copyright{ } 
+#phpmediadb-body-about-copyright{ }
 /*--- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF --- EOF ---*/
