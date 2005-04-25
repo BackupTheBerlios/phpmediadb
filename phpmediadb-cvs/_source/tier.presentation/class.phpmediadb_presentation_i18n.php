@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_presentation_i18n.php,v 1.13 2005/04/22 21:55:18 mblaschke Exp $
+ * $Id: class.phpmediadb_presentation_i18n.php,v 1.14 2005/04/25 19:55:28 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_presentation_i18n.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	presentation
- * @version     $Revision: 1.13 $
+ * @version     $Revision: 1.14 $
  */
 
 /**
@@ -272,7 +272,10 @@ class phpmediadb_presentation_i18n
 		$returnValue = $defaultLanguage;
 
 		/* get browserlanguage */
-		$HTTP_Language	= $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+		if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) )
+			$HTTP_Language	= $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+		else 
+			return $defaultLanguage;
 
 		/* check if browserlanguage is empty -> return default language */
 		if( empty( $HTTP_Language ) )
