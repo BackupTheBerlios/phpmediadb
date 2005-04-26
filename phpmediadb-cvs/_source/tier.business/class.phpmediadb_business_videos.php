@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_videos.php,v 1.9 2005/04/22 21:54:45 mblaschke Exp $
+ * $Id: class.phpmediadb_business_videos.php,v 1.10 2005/04/26 21:24:42 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_videos.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.9 $
+ * @version     $Revision: 1.10 $
  */
 
 /**
@@ -179,7 +179,7 @@ class phpmediadb_business_videos
 		$itemId = $this->DATA->VIDEOS->create( $data );
 		
 		/* link item with categories */
-		if( is_array( $data['categories'] ) )
+		if( array_key_exists( 'categories', $data ) && is_array( $data['categories'] ) )
 		{
 			foreach( $data['categories'] as $categoryId )
 				$this->BUSINESS->CATEGORIES->addLink( $itemId, $categoryId );
@@ -211,7 +211,7 @@ class phpmediadb_business_videos
 		$this->BUSINESS->CATEGORIES->removeAllLinks( $id );
 		
 		/* reassign new categories */
-		if( is_array( $data['categories'] ) )
+		if( array_key_exists( 'categories', $data ) && is_array( $data['categories'] ) )
 		{
 			foreach( $data['categories'] as $categoryId )
 				$this->BUSINESS->CATEGORIES->addLink( $id, $categoryId );

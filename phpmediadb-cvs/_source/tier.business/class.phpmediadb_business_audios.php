@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_business_audios.php,v 1.12 2005/04/22 21:54:44 mblaschke Exp $
+ * $Id: class.phpmediadb_business_audios.php,v 1.13 2005/04/26 21:24:42 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_business_audios.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	business
- * @version     $Revision: 1.12 $
+ * @version     $Revision: 1.13 $
  */
 
 /**
@@ -179,7 +179,7 @@ class phpmediadb_business_audios
 		$itemId = $this->DATA->AUDIOS->create( $data );
 		
 		/* link item with categories */
-		if( is_array( $data['categories'] ) )
+		if( array_key_exists( 'categories', $data ) && is_array( $data['categories'] ) )
 		{
 			foreach( $data['categories'] as $categoryId )
 				$this->BUSINESS->CATEGORIES->addLink( $itemId, $categoryId );
@@ -211,7 +211,7 @@ class phpmediadb_business_audios
 		$this->BUSINESS->CATEGORIES->removeAllLinks( $id );
 		
 		/* reassign new categories */
-		if( is_array( $data['categories'] ) )
+		if( array_key_exists( 'categories', $data ) && is_array( $data['categories'] ) )
 		{
 			foreach( $data['categories'] as $categoryId )
 				$this->BUSINESS->CATEGORIES->addLink( $id, $categoryId );
