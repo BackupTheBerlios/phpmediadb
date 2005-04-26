@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.de.php,v 1.10 2005/04/26 14:09:53 bruf Exp $
+ * $Id: i18n.de.php,v 1.11 2005/04/26 20:36:26 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.de.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.10 $
+ * @version     $Revision: 1.11 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -83,7 +83,7 @@
 	$i18n['MEDIA_Category']	= 'Kategorie';
 	
 /* projectdata */
-	$i18n['PROJECT_SUBTITLE']		= 'Die Mediendatenbank';
+	$i18n['PROJECT_SUBTITLE']		= 'OpenSource Mediendatenbank';
 	$i18n['PROJECT_LICENSED_UNDER']	= 'Lizenziert unter';
 	$i18n['PROJECT_DESCRIPTION']	= 'Dieses Projekt dient zur Erfassung von auditiven, visuellen und Printmedien. Initiert wurde dieses Projekt von Boris Ruf und Markus Blaschke im Rahmen eines Technikerprojekts an der Werner-Siemens-Schule in Stuttgart.';
 	
