@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_data_videos.php,v 1.19 2005/04/25 19:54:20 mblaschke Exp $
+ * $Id: class.phpmediadb_data_videos.php,v 1.20 2005/04/26 21:37:09 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_data_videos.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	data
- * @version     $Revision: 1.19 $
+ * @version     $Revision: 1.20 $
  */
 
 /**
@@ -298,6 +298,8 @@ class phpmediadb_data_videos
 			/* handle exception and terminate script */
 			phpmediadb_exception::handleException( $exception );
 		}
+		
+		return true;
 	}
 
 //-----------------------------------------------------------------------------
