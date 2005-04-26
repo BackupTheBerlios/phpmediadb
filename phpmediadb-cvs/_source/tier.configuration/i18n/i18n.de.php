@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.de.php,v 1.9 2005/04/20 21:45:46 mblaschke Exp $
+ * $Id: i18n.de.php,v 1.10 2005/04/26 14:09:53 bruf Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.de.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.9 $
+ * @version     $Revision: 1.10 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -44,40 +44,57 @@
 	$i18n['MEDIA_VIDEO_TITLE'] = 'audio-visuelles Medium';
 	
 /* default i18ns */
-	$i18n['OK'] = 'Akzeptieren';
-	$i18n['CANCEL'] = 'Abbrechen';
-	$i18n['DELETE'] = 'Löschen';
-	$i18n['INPUT_FIELD'] = 'Eingabefeld';
+	$i18n['OK']				= 'Akzeptieren';
+	$i18n['CANCEL']			= 'Abbrechen';
+	$i18n['DELETE']			= 'Löschen';
+	$i18n['INPUT_FIELD']	= 'Eingabefeld';
 	
 /* messages */
 	$i18n['MESSAGE_SUCCESS_SAVE']	= 'Element erfolgreich gespeichert!';
 	
 /* errors */
-	$i18n['ERROR_INPUTSIZE']	= 'Eingabe zu groß.';
-	$i18n['ERROR_INPUTREGEX']	= 'Eingabe nicht korrekt.';
-	$i18n['ERROR_OCCURRED']		= 'Es sind Eingabefehler auftreten.';
-	$i18n['ERROR_LISTLINK']		= '[Fehlerliste]';
+	$i18n['ERROR_TITLE']						= 'Fehlertitel';
+	$i18n['ERROR_INPUTSIZE']					= 'Eingabe zu groß.';
+	$i18n['ERROR_INPUTREGEX']					= 'Eingabe nicht korrekt.';
+	$i18n['ERROR_OCCURRED']						= 'Es sind Eingabefehler auftreten.';
+	$i18n['ERROR_LISTLINK']						= '[Fehlerliste]';
+	$i18n['HTTP_ERROR_401_BODY']				= '';
+	$i18n['HTTP_ERROR_401_TITLE']				= '';
+	$i18n['HTTP_ERROR_403_BODY']				= '';
+	$i18n['HTTP_ERROR_403_TITLE']				= '';
+	$i18n['HTTP_ERROR_404_BODY']				= '';
+	$i18n['HTTP_ERROR_404_TITLE']				= '';
+	$i18n['HTTP_ERROR_500_BODY']				= '';
+	$i18n['HTTP_ERROR_500_TITLE']				= '';
+	$i18n['HTTP_ERROR_UNKNOWN_BODY']			= '';
+	$i18n['HTTP_ERROR_UNKNOWN_TITLE']			= '';
+	$i18n['MESSAGE_ITEMID_NOTNUMERICAL']		= '';
+	$i18n['MESSAGE_ITEM_LOADERROR']				= '';
+	$i18n['MESSAGE_ITEM_NOTEXISTENT']			= '';
 	
 /* formular */
-	$i18n['FORM_RESET'] = 'Zurücksetzen';
-	$i18n['FORM_SUBMIT'] = 'Absenden';
+	$i18n['FORM_RESET']					= 'Zurücksetzen';
+	$i18n['FORM_SUBMIT']				= 'Absenden';
+	$i18n['FORMULAR_OPTION_ITEM_EMPTY']	= ' ';
 	
 /* media data */
-	$i18n['MEDIA_TITLE'] = 'Medientitel';
-	$i18n['MEDIA_ARTIST'] = 'Artist';
-	$i18n['MEDIA_Category'] = 'Kategorie';
+	$i18n['MEDIA_TITLE']	= 'Medientitel';
+	$i18n['MEDIA_ARTIST']	= 'Artist';
+	$i18n['MEDIA_Category']	= 'Kategorie';
 	
 /* projectdata */
-	$i18n['PROJECT_SUBTITLE'] = 'Die Mediendatenbank';
-	$i18n['PROJECT_LICENSED_UNDER'] = 'Lizenziert unter';
-	$i18n['PROJECT_DESCRIPTION'] = 'Dieses Projekt dient zur Erfassung von auditiven, visuellen und Printmedien. Initiert wurde dieses Projekt von Boris Ruf und Markus Blaschke im Rahmen eines Technikerprojekts an der Werner-Siemens-Schule in Stuttgart.';
+	$i18n['PROJECT_SUBTITLE']		= 'Die Mediendatenbank';
+	$i18n['PROJECT_LICENSED_UNDER']	= 'Lizenziert unter';
+	$i18n['PROJECT_DESCRIPTION']	= 'Dieses Projekt dient zur Erfassung von auditiven, visuellen und Printmedien. Initiert wurde dieses Projekt von Boris Ruf und Markus Blaschke im Rahmen eines Technikerprojekts an der Werner-Siemens-Schule in Stuttgart.';
 	
 /* Menu items */
-	$i18n['MENU_TITLE'] = 'Navigation';
-	$i18n['MENU_HOME'] = 'Startseite';
-	$i18n['MENU_SEARCH'] = 'Suche';
-	$i18n['MENU_LIST'] = 'Liste';
-	$i18n['MENU_ABOUT'] = 'Über uns';
+	$i18n['MENU_TITLE']					= 'Navigation';
+	$i18n['MENU_HOME']					= 'Startseite';
+	$i18n['MENU_SEARCH']				= 'Suche';
+	$i18n['MENU_LIST']					= 'Liste';
+	$i18n['MENU_ABOUT']					= 'Über uns';
+	$i18n['MENU_ADDITEM']				= 'Item hinzufügen';
+	$i18n['MENU_ADMINISTRATION_TITLE']	= 'Administration';
 
 
 /* Itemtypes */
@@ -87,41 +104,121 @@
 
 /* Site: HOME */
 	$i18n['HOME_WELCOME'] = 'Willkommen zu phpMediaDB';
+
+/* */
+	$i18n['MEDIA_ITEM_CREATIONDATE']			= 'Erstellt am';
+	$i18n['MEDIA_ITEM_MODIFICATIONDATE']		= 'Geändert am';
+	
+/**/
+	$i18n['LIST_COLUMN_TITLE_MEDIATITLE']		= 'Titel';
+	$i18n['LIST_COLUMN_TITLE_RELEASEDATE']		= 'Veröffentlichungsjahr';
+	$i18n['LIST_COLUMN_AUDIO_MEDIATITLE']		= 'Titel';
+	$i18n['LIST_COLUMN_AUDIO_RELEASEDATE']		= 'Veröffentlichungsjahr';
+	$i18n['LIST_COLUMN_PRINT_MEDIATITLE']		= 'Titel';
+	$i18n['LIST_COLUMN_PRINT_RELEASEDATE']		= 'Veröffentlichungsjahr';
+	$i18n['LIST_COLUMN_VIDEO_MEDIATITLE']		= 'Titel';
+	$i18n['LIST_COLUMN_VIDEO_RELEASEDATE']		= 'Veröffentlichungsjahr';
 	
 /*----------------------------------------------------------*/	
-	$i18n['ACTION_DELETE'] = 'Löschen';
-	$i18n['ACTION_MODIFY'] = 'Ändern';
-	$i18n['ERROR_TITLE'] = 'Fehlertitel';
-	$i18n['ITEM_AUDIO'] = 'Audio';
-	$i18n['ITEM_PRINT'] = 'Print';
-	$i18n['ITEM_VIDEO'] = 'Video';
-	$i18n['LIST_COLUMN_TITLE_MEDIATITLE'] = '';
-	$i18n['LIST_COLUMN_TITLE_RELEASEDATE'] = '';
-	$i18n['MEDIA_AGERESTRICTION'] = 'Altersbeschränkung';
-	$i18n['MEDIA_CATEGORY'] = 'Kategorie';
-	$i18n['MEDIA_CODEC'] = 'Codec';
-	$i18n['MEDIA_COMMENT'] = 'Kommentar';
-	$i18n['MEDIA_CREATIONDATE'] = 'Erstellt am';
-	$i18n['MEDIA_DATA_AUDIO'] = 'Audiodaten';
-	$i18n['MEDIA_DATA_PRINT'] = 'Printdaten';
-	$i18n['MEDIA_DATA_VIDEO'] = 'Videodaten';
-	$i18n['MEDIA_FORMAT'] = 'Format';
-	$i18n['MEDIA_IDENTIFICATION'] = 'Identifiactionsnummer';
-	$i18n['MEDIA_IMAGE'] = 'Bild';
-	$i18n['MEDIA_MEDIANAME'] = 'Medienname';
-	$i18n['MEDIA_MEDIASIZE'] = 'Mediengröße';
-	$i18n['MEDIA_MODIFICATIONDATE'] = 'Geändert am';
-	$i18n['MEDIA_ORIGINALTITLE'] = 'Original Titel';
-	$i18n['MEDIA_PUBLISHER'] = 'Veröffentlicher';
-	$i18n['MEDIA_QUANTITY'] = 'Anzahl';
-	$i18n['MEDIA_RELEASEYEAR'] = 'Erscheinungsjahr';
-	$i18n['MEDIA_TITLE'] = 'Titel';
-	$i18n['MENU_ADDITEM'] = 'Item hinzufügen';
-	$i18n['MENU_ADMINISTRATION_TITLE'] = 'Administrationsmodus';
-	$i18n['MESSAGE'] = 'Nachricht';
-	$i18n['NOT_SET'] = 'Nicht gesetzt';
+	$i18n['ACTION_DELETE']					= 'Löschen';
+	$i18n['ACTION_MODIFY']					= 'Ändern';
+
+
+
+	$i18n['MEDIA_AGERESTRICTION']			= 'Altersbeschränkung';
+	$i18n['MEDIA_CATEGORY']					= 'Kategorie';
+	$i18n['MEDIA_CODEC']					= 'Codec';
+	$i18n['MEDIA_COMMENT']					= 'Kommentar';
+	$i18n['MEDIA_CREATIONDATE']				= 'Erstellt am';
+	$i18n['MEDIA_DATA_AUDIO']				= 'Audiodaten';
+	$i18n['MEDIA_DATA_PRINT']				= 'Printdaten';
+	$i18n['MEDIA_DATA_VIDEO']				= 'Videodaten';
+	$i18n['MEDIA_FORMAT']					= 'Format';
+	$i18n['MEDIA_IDENTIFICATION']			= 'Identifiactionsnummer';
+	$i18n['MEDIA_IMAGE']					= 'Bild';
+	$i18n['MEDIA_MEDIANAME']				= 'Medienname';
+	$i18n['MEDIA_MEDIASIZE']				= 'Mediengröße';
+	$i18n['MEDIA_MODIFICATIONDATE']			= 'Geändert am';
+	$i18n['MEDIA_ORIGINALTITLE']			= 'Original Titel';
+	$i18n['MEDIA_PUBLISHER']				= 'Veröffentlicher';
+	$i18n['MEDIA_QUANTITY']					= 'Anzahl';
+	$i18n['MEDIA_RELEASEYEAR']				= 'Erscheinungsjahr';
+	$i18n['MEDIA_TITLE']					= 'Titel';
+
+	$i18n['MESSAGE']						= 'Nachricht';
+	$i18n['NOT_SET']						= 'Nicht gesetzt';
 	//$i18n['SMARTY_END'] = '';
 	//$i18n['SMARTY_START'] = '';
+	 
+	$i18n['BUTTON_ABORT']						= 'Abbrechen';
+	$i18n['BUTTON_ITEMDELETE']					= 'Löschen';
+	
+/* audio */
+	$i18n['MEDIA_AUDIO_IMAGEDELETE']			= 'Bild löschen';
+	$i18n['MEDIA_AUDIO_ITEM_AGERESTRICTION']	= 'Altersbeschränkung';
+	$i18n['MEDIA_AUDIO_ITEM_CATEGORY']			= 'Kategorie';
+	$i18n['MEDIA_AUDIO_ITEM_CODEC']				= 'Codec';
+	$i18n['MEDIA_AUDIO_ITEM_COMMENT']			= 'Kommentar';
+	$i18n['MEDIA_AUDIO_ITEM_FORMAT']			= 'Format';
+	$i18n['MEDIA_AUDIO_ITEM_IDENTIFICATION']	= 'Identifikation';
+	$i18n['MEDIA_AUDIO_ITEM_IMAGE']				= 'Bild';
+	$i18n['MEDIA_AUDIO_ITEM_IMAGEURL']			= 'Bildadresse';
+	$i18n['MEDIA_AUDIO_ITEM_LOCATION']			= 'Standort';
+	$i18n['MEDIA_AUDIO_ITEM_MEDIANAME']			= 'Medienname';
+	$i18n['MEDIA_AUDIO_ITEM_MEDIASIZE']			= 'Größe';
+	$i18n['MEDIA_AUDIO_ITEM_ORIGINALTITLE']		= 'Original Titel';
+	$i18n['MEDIA_AUDIO_ITEM_PUBLISHER']			= 'Veröffentlicher';
+	$i18n['MEDIA_AUDIO_ITEM_QUANTITY']			= 'Anzahl';
+	$i18n['MEDIA_AUDIO_ITEM_RELEASEYEAR']		= 'Veröffentlichungsjahr';
+	$i18n['MEDIA_AUDIO_ITEM_TITLE']				= 'Titel';
+	$i18n['MEDIA_AUDIO_TITLE']					= 'Audio';
+	
+/* print */
+	$i18n['MEDIA_PRINT_IMAGEDELETE']			= 'Bild löschen';
+	$i18n['MEDIA_PRINT_ITEM_AGERESTRICTION']	= 'Altersbeschränkung';
+	$i18n['MEDIA_PRINT_ITEM_CATEGORY']			= 'Kategorie';
+	$i18n['MEDIA_PRINT_ITEM_CODEC']				= 'Codec';
+	$i18n['MEDIA_PRINT_ITEM_COMMENT']			= 'Kommentar';
+	$i18n['MEDIA_PRINT_ITEM_FORMAT']			= 'Format';
+	$i18n['MEDIA_PRINT_ITEM_IDENTIFICATION']	= 'ISBN';
+	$i18n['MEDIA_PRINT_ITEM_IMAGE']				= 'Bild';
+	$i18n['MEDIA_PRINT_ITEM_IMAGEURL']			= 'Bildadresse';
+	$i18n['MEDIA_PRINT_ITEM_LOCATION']			= 'Standort';
+	$i18n['MEDIA_PRINT_ITEM_MEDIANAME']			= 'Medienname';
+	$i18n['MEDIA_PRINT_ITEM_MEDIASIZE']			= 'Größe';
+	$i18n['MEDIA_PRINT_ITEM_ORIGINALTITLE']		= 'Original Titel';
+	$i18n['MEDIA_PRINT_ITEM_PUBLISHER']			= 'Veröffentlicher';
+	$i18n['MEDIA_PRINT_ITEM_QUANTITY']			= 'Anzahl';
+	$i18n['MEDIA_PRINT_ITEM_RELEASEYEAR']		= 'Veröffentlichungsjahr';
+	$i18n['MEDIA_PRINT_ITEM_TITLE']				= 'Titel';
+	$i18n['MEDIA_PRINT_TITLE']					= 'Print';
+
+/* video */
+	$i18n['MEDIA_VIDEO_IMAGEDELETE']			= 'Bild löschen';
+	$i18n['MEDIA_VIDEO_ITEM_AGERESTRICTION']	= 'Altersbeschränkung';
+	$i18n['MEDIA_VIDEO_ITEM_CATEGORY']			= 'Kategorie';
+	$i18n['MEDIA_VIDEO_ITEM_CODEC']				= 'Codec';
+	$i18n['MEDIA_VIDEO_ITEM_COMMENT']			= 'Kommentar';
+	$i18n['MEDIA_VIDEO_ITEM_FORMAT']			= 'Format';
+	$i18n['MEDIA_VIDEO_ITEM_IDENTIFICATION']	= 'Identifikation';
+	$i18n['MEDIA_VIDEO_ITEM_IMAGE']				= 'Bild';
+	$i18n['MEDIA_VIDEO_ITEM_IMAGEURL']			= 'Bildadresse';
+	$i18n['MEDIA_VIDEO_ITEM_LOCATION']			= 'Standort';
+	$i18n['MEDIA_VIDEO_ITEM_MEDIANAME']			= 'Medienname';
+	$i18n['MEDIA_VIDEO_ITEM_MEDIASIZE']			= 'Größe';
+	$i18n['MEDIA_VIDEO_ITEM_ORIGINALTITLE']		= 'Original Titel';
+	$i18n['MEDIA_VIDEO_ITEM_PUBLISHER']			= 'Veröffentlicher';
+	$i18n['MEDIA_VIDEO_ITEM_QUANTITY']			= 'Anzahl';
+	$i18n['MEDIA_VIDEO_ITEM_RELEASEYEAR']		= 'Veröffentlichungsjahr';
+	$i18n['MEDIA_VIDEO_ITEM_TITLE']				= 'Titel';
+	$i18n['MEDIA_VIDEO_TITLE']					= 'Video';
+
+/* */
+	$i18n['QUESTION_ITEMDELETE']				= 'Soll der Eintrag wirklich gelöscht werden?';
+	$i18n['MESSAGE_DELETION_SUCCESS']			= 'Eintrag wurde erfolgreich gelöscht.';
+	$i18n['MESSAGE_SAVE_SUCCESS']				= 'Eintrag wurde erfolgreich gespeichert.';
+
+
 	
 
 /******************************************************************************
@@ -151,7 +248,7 @@
 	$i18n['Category_Techno']						= 'Techno';
 	$i18n['Category_Industrial']					= 'Industrial';
 	$i18n['Category_Alternative']					= 'Alternative';
-//	$i18n['Category_Ska']							= 'Ska';
+	$i18n['Category_Ska']							= 'Ska';
 	$i18n['Category_Death-Metal']					= 'Death Metal';
 	$i18n['Category_Pranks']						= 'Pranks';
 	$i18n['Category_Soundtrack']					= 'Soundtrack';
@@ -191,7 +288,7 @@
 	$i18n['Category_Cult']							= 'Kult';
 	$i18n['Category_Gangsta']						= 'Gangsta';
 	$i18n['Category_Top-40']						= 'Top 40';
-//	$i18n['Category_Christian-Rap']					= 'Christian Rap';
+	$i18n['Category_Christian-Rap']					= 'Christlicher Rap';
 	$i18n['Category_Pop/Funk']						= 'Pop/Funk';
 	$i18n['Category_Jungle']						= 'Jungle';
 	$i18n['Category_Native-American']				= 'Native American';
@@ -239,7 +336,7 @@
 	$i18n['Category_Symphony']						= 'Symphonie';
 	$i18n['Category_Booty-Bass']					= 'Booty Bass';
 	$i18n['Category_Primus']						= 'Priums';
-//	$i18n['Category_Porn-Groove']					= 'Porn Groove';
+	$i18n['Category_Porn-Groove']					= 'Porn Groove';
 	$i18n['Category_Satire']						= 'Satire';
 	$i18n['Category_Slow-Jam']						= 'Slow Jam';
 	$i18n['Category_Club']							= 'Club';
@@ -263,15 +360,15 @@
 	$i18n['Category_Terror']						= 'Terror';
 	$i18n['Category_Indie']							= 'Indie';
 	$i18n['Category_BritPop']						= 'BritPop';
-//	$i18n['Category_Negerpunk']						= 'Negerpunk';
+	$i18n['Category_Negerpunk']						= 'Negerpunk';
 	$i18n['Category_Polsk-Punk']					= 'Polsk Punk';
 	$i18n['Category_Beat']							= 'Beat';
-//	$i18n['Category_Christian-Gangsta Rap']			= 'Christin Gangsta Rap';
+	$i18n['Category_Christian-Gangsta Rap']			= 'Christlicher Gangster Rap';
 	$i18n['Category_Heavy-Metal']					= 'Heavy Metal';
 	$i18n['Category_Black-Metal']					= 'Black Metal';
 	$i18n['Category_Crossover']						= 'Crossover';
-//	$i18n['Category_Contemporary-Christian']		= 'Contemporary Christian';
-//	$i18n['Category_Christian-Rock']				= 'Christian Rock';
+	$i18n['Category_Contemporary-Christian']		= 'Christlich Contemporary';
+	$i18n['Category_Christian-Rock']				= 'Christlicher Rock';
 	$i18n['Category_Merengue']						= 'Merengue';
 	$i18n['Category_Salsa']							= 'Salsa';
 	$i18n['Category_Trash-Metal']					= 'Trash Metal';

@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.en.php,v 1.6 2005/04/20 21:45:46 mblaschke Exp $
+ * $Id: i18n.en.php,v 1.7 2005/04/26 14:10:05 bruf Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.en.php
@@ -33,23 +33,22 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.6 $
+ * @version     $Revision: 1.7 $
  */
 // $i18n['STRING-ID'] = "";
 
 /******************************************************************************
 *** HTML-Translations
 ******************************************************************************/
-	$i18n['MEDIA_VIDEO_TITLE'] = 'VIDEO';
+
 /* default i18ns */
-	$i18n['OK'] = 'Accept';
-	$i18n['CANCEL'] = 'Cancel';
-	$i18n['DELETE'] = 'Delete';
-	$i18n['DELETE'] = 'Delete';
-	$i18n['INPUT_FIELD'] = 'Inputfield';
+	$i18n['OK']				= 'Accept';
+	$i18n['CANCEL']			= 'Cancel';
+	$i18n['DELETE']			= 'Delete';
+	$i18n['INPUT_FIELD']	= 'Inputfield';
 	
 /* messages */
-	$i18n['MESSAGE_SUCCESS_SAVE']	= 'Element successful saved!';
+	$i18n['MESSAGE_SUCCESS_SAVE']	= 'Item successfully saved.';
 	
 /* errors */
 	$i18n['ERROR_INPUTSIZE']	= 'Inputsize to long.';
@@ -58,25 +57,26 @@
 	$i18n['ERROR_LISTLINK']		= '[Errorlist]';
 	
 /* formular */
-	$i18n['FORM_RESET'] = 'Reset';
-	$i18n['FORM_SUBMIT'] = 'Submit';
+	$i18n['FORM_RESET']					= 'Reset';
+	$i18n['FORM_SUBMIT']				= 'Submit';
+	$i18n['FORMULAR_OPTION_ITEM_EMPTY']	= ' ';
 	
 /* media data */
-	$i18n['MEDIA_TITLE'] = 'Mediantitel';
-	$i18n['MEDIA_ARTIST'] = 'Artist';
-	$i18n['MEDIA_Category'] = 'Category';
+	$i18n['MEDIA_TITLE']	= 'Mediatitel';
+	$i18n['MEDIA_ARTIST']	= 'Artist';
+	$i18n['MEDIA_Category']	= 'Category';
 	
 /* projectdata */
-	$i18n['PROJECT_SUBTITLE'] = 'The Media Database';
-	$i18n['PROJECT_LICENSED_UNDER'] = 'Licensed under';
-	$i18n['PROJECT_DESCRIPTION'] = 'Dieses Projekt dient zur Erfassung von auditiven, visuellen und Printmedien. Initiert wurde dieses Projekt von Boris Ruf und Markus Blaschke im Rahmen eines Technikerprojekts an der Werner-Siemens-Schule in Stuttgart.';
+	$i18n['PROJECT_SUBTITLE']		= 'The Media Database';
+	$i18n['PROJECT_LICENSED_UNDER']	= 'Licensed under';
+	$i18n['PROJECT_DESCRIPTION']	= 'Dieses Projekt dient zur Erfassung von auditiven, visuellen und Printmedien. Initiert wurde dieses Projekt von Boris Ruf und Markus Blaschke im Rahmen eines Technikerprojekts an der Werner-Siemens-Schule in Stuttgart.';
 	
 /* Menu items */
-	$i18n['MENU_TITLE'] = 'Navigation';
-	$i18n['MENU_HOME'] = 'Home';
-	$i18n['MENU_SEARCH'] = 'Search';
-	$i18n['MENU_LIST'] = 'List';
-	$i18n['MENU_ABOUT'] = 'About';
+	$i18n['MENU_TITLE']		= 'Navigation';
+	$i18n['MENU_HOME']		= 'Home';
+	$i18n['MENU_SEARCH']	= 'Search';
+	$i18n['MENU_LIST']		= 'List';
+	$i18n['MENU_ABOUT']		= 'About';
 
 
 /* Itemtypes */
@@ -87,38 +87,127 @@
 /* Site: HOME */
 	$i18n['HOME_WELCOME'] = 'Welcome to phpMediaDB';
 	
+/* */
+	$i18n['MEDIA_ITEM_CREATIONDATE']			= 'Created on';
+	$i18n['MEDIA_ITEM_MODIFICATIONDATE']		= 'Modified on';
+	
+/**/
+	$i18n['LIST_COLUMN_TITLE_MEDIATITLE']		= 'Title';
+	$i18n['LIST_COLUMN_TITLE_RELEASEDATE']		= 'Release Year';
+	$i18n['LIST_COLUMN_AUDIO_MEDIATITLE']		= 'Title';
+	$i18n['LIST_COLUMN_AUDIO_RELEASEDATE']		= 'Release Year';
+	$i18n['LIST_COLUMN_PRINT_MEDIATITLE']		= 'Title';
+	$i18n['LIST_COLUMN_PRINT_RELEASEDATE']		= 'Release Year';
+	$i18n['LIST_COLUMN_VIDEO_MEDIATITLE']		= 'Title';
+	$i18n['LIST_COLUMN_VIDEO_RELEASEDATE']		= 'Release Year';
+	
 /*----------------------------------------------------------*/	
-	$i18n['ACTION_DELETE'] = 'Delete';
-	$i18n['ACTION_MODIFY'] = 'Modify';
-	$i18n['ERROR_TITLE'] = 'Errortitle';
-	$i18n['ITEM_AUDIO'] = 'Audio';
-	$i18n['ITEM_PRINT'] = 'Print';
-	$i18n['ITEM_VIDEO'] = 'Video';
-	$i18n['LIST_COLUMN_TITLE_MEDIATITLE'] = '';
-	$i18n['LIST_COLUMN_TITLE_RELEASEDATE'] = '';
-	$i18n['MEDIA_AGERESTRICTION'] = 'Age Restriction';
-	$i18n['MEDIA_CATEGORY'] = 'Category';
-	$i18n['MEDIA_CODEC'] = 'Codec';
-	$i18n['MEDIA_COMMENT'] = 'Comment';
-	$i18n['MEDIA_CREATIONDATE'] = 'Creation Date';
-	$i18n['MEDIA_DATA_AUDIO'] = 'Audiodata';
-	$i18n['MEDIA_DATA_PRINT'] = 'Printdata';
-	$i18n['MEDIA_DATA_VIDEO'] = 'Videodata';
-	$i18n['MEDIA_FORMAT'] = 'Format';
-	$i18n['MEDIA_IDENTIFICATION'] = 'Identifiactionnumber';
-	$i18n['MEDIA_IMAGE'] = 'Bild';
-	$i18n['MEDIA_MEDIANAME'] = 'Medianame';
-	$i18n['MEDIA_MEDIASIZE'] = 'Mediasize';
-	$i18n['MEDIA_MODIFICATIONDATE'] = 'Modification Date';
-	$i18n['MEDIA_ORIGINALTITLE'] = 'Original Title';
-	$i18n['MEDIA_PUBLISHER'] = 'Publisher';
-	$i18n['MEDIA_QUANTITY'] = 'Quantity';
-	$i18n['MEDIA_RELEASEYEAR'] = 'Release Year';
-	$i18n['MEDIA_TITLE'] = 'Title';
-	$i18n['MENU_ADDITEM'] = 'Add Item';
-	$i18n['MENU_ADMINISTRATION_TITLE'] = 'Administration Mode';
-	$i18n['MESSAGE'] = 'Message';
-	$i18n['NOT_SET'] = 'Not set';
+	$i18n['ACTION_DELETE']					= 'Delete';
+	$i18n['ACTION_MODIFY']					= 'Modify';
+
+	//$i18n['SMARTY_END'] = '';
+	//$i18n['SMARTY_START'] = '';
+	 
+	$i18n['BUTTON_ABORT']						= 'Cancel';
+	$i18n['BUTTON_ITEMDELETE']					= 'Delete';
+	
+/* audio */
+	$i18n['MEDIA_AUDIO_IMAGEDELETE']			= 'Delete Image';
+	$i18n['MEDIA_AUDIO_ITEM_AGERESTRICTION']	= 'Age Restriction';
+	$i18n['MEDIA_AUDIO_ITEM_CATEGORY']			= 'Category';
+	$i18n['MEDIA_AUDIO_ITEM_CODEC']				= 'Codec';
+	$i18n['MEDIA_AUDIO_ITEM_COMMENT']			= 'Comment';
+	$i18n['MEDIA_AUDIO_ITEM_FORMAT']			= 'Format';
+	$i18n['MEDIA_AUDIO_ITEM_IDENTIFICATION']	= 'Identification';
+	$i18n['MEDIA_AUDIO_ITEM_IMAGE']				= 'Image';
+	$i18n['MEDIA_AUDIO_ITEM_IMAGEURL']			= 'Imageaddress';
+	$i18n['MEDIA_AUDIO_ITEM_LOCATION']			= 'Location';
+	$i18n['MEDIA_AUDIO_ITEM_MEDIANAME']			= 'Medianame';
+	$i18n['MEDIA_AUDIO_ITEM_MEDIASIZE']			= 'Size';
+	$i18n['MEDIA_AUDIO_ITEM_ORIGINALTITLE']		= 'Original Title';
+	$i18n['MEDIA_AUDIO_ITEM_PUBLISHER']			= 'Publisher';
+	$i18n['MEDIA_AUDIO_ITEM_QUANTITY']			= 'Quantity';
+	$i18n['MEDIA_AUDIO_ITEM_RELEASEYEAR']		= 'Release Year';
+	$i18n['MEDIA_AUDIO_ITEM_TITLE']				= 'Title';
+	$i18n['MEDIA_AUDIO_TITLE']					= 'Audio';
+	
+/* print */
+	$i18n['MEDIA_PRINT_IMAGEDELETE']			= 'Delete Image';
+	$i18n['MEDIA_PRINT_ITEM_AGERESTRICTION']	= 'Age Restriction';
+	$i18n['MEDIA_PRINT_ITEM_CATEGORY']			= 'Category';
+	$i18n['MEDIA_PRINT_ITEM_CODEC']				= 'Codec';
+	$i18n['MEDIA_PRINT_ITEM_COMMENT']			= 'Comment';
+	$i18n['MEDIA_PRINT_ITEM_FORMAT']			= 'Format';
+	$i18n['MEDIA_PRINT_ITEM_IDENTIFICATION']	= 'Identification';
+	$i18n['MEDIA_PRINT_ITEM_IMAGE']				= 'Image';
+	$i18n['MEDIA_PRINT_ITEM_IMAGEURL']			= 'Imageaddress';
+	$i18n['MEDIA_PRINT_ITEM_LOCATION']			= 'Location';
+	$i18n['MEDIA_PRINT_ITEM_MEDIANAME']			= 'Medianname';
+	$i18n['MEDIA_PRINT_ITEM_MEDIASIZE']			= 'Size';
+	$i18n['MEDIA_PRINT_ITEM_ORIGINALTITLE']		= 'Original Title';
+	$i18n['MEDIA_PRINT_ITEM_PUBLISHER']			= 'Publisher';
+	$i18n['MEDIA_PRINT_ITEM_QUANTITY']			= 'Quantity';
+	$i18n['MEDIA_PRINT_ITEM_RELEASEYEAR']		= 'Release Year';
+	$i18n['MEDIA_PRINT_ITEM_TITLE']				= 'Title';
+	$i18n['MEDIA_PRINT_TITLE']					= 'Print';
+
+/* video */
+	$i18n['MEDIA_VIDEO_IMAGEDELETE']			= 'Delete Image';
+	$i18n['MEDIA_VIDEO_ITEM_AGERESTRICTION']	= 'Age Restriction';
+	$i18n['MEDIA_VIDEO_ITEM_CATEGORY']			= 'Category';
+	$i18n['MEDIA_VIDEO_ITEM_CODEC']				= 'Codec';
+	$i18n['MEDIA_VIDEO_ITEM_COMMENT']			= 'Comment';
+	$i18n['MEDIA_VIDEO_ITEM_FORMAT']			= 'Format';
+	$i18n['MEDIA_VIDEO_ITEM_IDENTIFICATION']	= 'Identification';
+	$i18n['MEDIA_VIDEO_ITEM_IMAGE']				= 'Image';
+	$i18n['MEDIA_VIDEO_ITEM_IMAGEURL']			= 'Imageaddress';
+	$i18n['MEDIA_VIDEO_ITEM_LOCATION']			= 'Location';
+	$i18n['MEDIA_VIDEO_ITEM_MEDIANAME']			= 'Medianname';
+	$i18n['MEDIA_VIDEO_ITEM_MEDIASIZE']			= 'Size';
+	$i18n['MEDIA_VIDEO_ITEM_ORIGINALTITLE']		= 'Original Title';
+	$i18n['MEDIA_VIDEO_ITEM_PUBLISHER']			= 'Publisher';
+	$i18n['MEDIA_VIDEO_ITEM_QUANTITY']			= 'Quantity';
+	$i18n['MEDIA_VIDEO_ITEM_RELEASEYEAR']		= 'Release Year';
+	$i18n['MEDIA_VIDEO_ITEM_TITLE']				= 'Title';
+	$i18n['MEDIA_VIDEO_TITLE']					= 'Video';
+
+/* */
+	$i18n['QUESTION_ITEMDELETE']				= 'Do you want to delete this item?';
+	$i18n['MESSAGE_DELETION_SUCCESS']			= 'Item successfully deleted.';
+	$i18n['MESSAGE_SAVE_SUCCESS']				= 'Item successfully saved.';
+	
+/*----------------------------------------------------------*/	
+	$i18n['ACTION_DELETE']					= 'Delete';
+	$i18n['ACTION_MODIFY']					= 'Modify';
+	$i18n['ERROR_TITLE']					= 'Errortitle';
+	$i18n['ITEM_AUDIO']						= 'Audio';
+	$i18n['ITEM_PRINT']						= 'Print';
+	$i18n['ITEM_VIDEO'] 					= 'Video';
+	$i18n['LIST_COLUMN_TITLE_MEDIATITLE']	= 'Mediatitle';
+	$i18n['LIST_COLUMN_TITLE_RELEASEDATE']	= 'Release Year';
+	$i18n['MEDIA_AGERESTRICTION']			= 'Age Restriction';
+	$i18n['MEDIA_CATEGORY']					= 'Category';
+	$i18n['MEDIA_CODEC']					= 'Codec';
+	$i18n['MEDIA_COMMENT']					= 'Comment';
+	$i18n['MEDIA_CREATIONDATE']				= 'Creation Date';
+	$i18n['MEDIA_DATA_AUDIO']				= 'Audiodata';
+	$i18n['MEDIA_DATA_PRINT']				= 'Printdata';
+	$i18n['MEDIA_DATA_VIDEO']				= 'Videodata';
+	$i18n['MEDIA_FORMAT']					= 'Format';
+	$i18n['MEDIA_IDENTIFICATION']			= 'Identification';
+	$i18n['MEDIA_IMAGE']					= 'Image';
+	$i18n['MEDIA_MEDIANAME']				= 'Medianame';
+	$i18n['MEDIA_MEDIASIZE']				= 'Mediasize';
+	$i18n['MEDIA_MODIFICATIONDATE']			= 'Modification Date';
+	$i18n['MEDIA_ORIGINALTITLE']			= 'Original Title';
+	$i18n['MEDIA_PUBLISHER']				= 'Publisher';
+	$i18n['MEDIA_QUANTITY']					= 'Quantity';
+	$i18n['MEDIA_RELEASEYEAR']				= 'Release Year';
+	$i18n['MEDIA_TITLE']					= 'Title';
+	$i18n['MENU_ADDITEM']					= 'Add Item';
+	$i18n['MENU_ADMINISTRATION_TITLE']		= 'Administration';
+	$i18n['MESSAGE']						= 'Message';
+	$i18n['NOT_SET']						= 'Not set';
 	//$i18n['SMARTY_END'] = '';
 	//$i18n['SMARTY_START'] = '';
 	
@@ -130,7 +219,7 @@
 /* Categories */
 
 	$i18n['Category_Blues']							= 'Blues';
-	$i18n['Category_Classic Rock']					= 'Classic Rock';
+	$i18n['Category_Classic-Rock']					= 'Classic Rock';
 	$i18n['Category_Country']						= 'Country';
 	$i18n['Category_Dance']							= 'Dance';
 	$i18n['Category_Disco']							= 'Disco';
@@ -139,7 +228,7 @@
 	$i18n['Category_Hip-Hop']						= 'Hip-Hop';
 	$i18n['Category_Jazz']							= 'Jazz';
 	$i18n['Category_Metal']							= 'Metal';
-	$i18n['Category_New Age']						= 'New Age';
+	$i18n['Category_New-Age']						= 'New Age';
 	$i18n['Category_Oldies']						= 'Oldies';
 	$i18n['Category_Other']							= 'Other';
 	$i18n['Category_Pop']							= 'Pop';
@@ -150,8 +239,8 @@
 	$i18n['Category_Techno']						= 'Techno';
 	$i18n['Category_Industrial']					= 'Industrial';
 	$i18n['Category_Alternative']					= 'Alternative';
-//	$i18n['Category_Ska']							= 'Ska';
-	$i18n['Category_Death Metal']					= 'Death Metal';
+	$i18n['Category_Ska']							= 'Ska';
+	$i18n['Category_Death-Metal']					= 'Death Metal';
 	$i18n['Category_Pranks']						= 'Pranks';
 	$i18n['Category_Soundtrack']					= 'Soundtrack';
 	$i18n['Category_Euro-Techno']					= 'Euro-Techno';
@@ -166,7 +255,7 @@
 	$i18n['Category_Acid']							= 'Acid';
 	$i18n['Category_House']							= 'House';
 	$i18n['Category_Game']							= 'Game';
-	$i18n['Category_Sound Clip']					= 'Sound Clip';
+	$i18n['Category_Sound-Clip']					= 'Sound Clip';
 	$i18n['Category_Gospel']						= 'Gospel';
 	$i18n['Category_Noise']							= 'Noise';
 	$i18n['Category_AlternRock']					= 'AlternRock';
@@ -175,8 +264,8 @@
 	$i18n['Category_Punk']							= 'Punk';
 	$i18n['Category_Space']							= 'Space';
 	$i18n['Category_Meditative']					= 'Meditativ';
-	$i18n['Category_Instrumental Pop']				= 'Instrumental Pop';
-	$i18n['Category_Instrumental Rock']				= 'Instrumental Rock';
+	$i18n['Category_Instrumental-Pop']				= 'Instrumental Pop';
+	$i18n['Category_Instrumental-Rock']				= 'Instrumental Rock';
 	$i18n['Category_Ethnic']						= 'Ethnic';
 	$i18n['Category_Gothic']						= 'Gothic';
 	$i18n['Category_Darkwave']						= 'Darkwave';
@@ -185,15 +274,15 @@
 	$i18n['Category_Pop-Folk']						= 'Pop-Folk';
 	$i18n['Category_Eurodance']						= 'Eurodance';
 	$i18n['Category_Dream']							= 'Dream';
-	$i18n['Category_Southern Rock']					= 'Southern Rock';
+	$i18n['Category_Southern-Rock']					= 'Southern Rock';
 	$i18n['Category_Comedy']						= 'Comedy';
 	$i18n['Category_Cult']							= 'Kult';
 	$i18n['Category_Gangsta']						= 'Gangsta';
 	$i18n['Category_Top 40']						= 'Top 40';
-//	$i18n['Category_Christian Rap']					= 'Christian Rap';
+	$i18n['Category_Christian-Rap']					= 'Christian Rap';
 	$i18n['Category_Pop/Funk']						= 'Pop/Funk';
 	$i18n['Category_Jungle']						= 'Jungle';
-	$i18n['Category_Native American']				= 'Native American';
+	$i18n['Category_Native-American']				= 'Native American';
 	$i18n['Category_Cabaret']						= 'Cabaret';
 	$i18n['Category_New Wave']						= 'New Wave';
 	$i18n['Category_Psychadelic']					= 'Psychadelic';
@@ -202,78 +291,78 @@
 	$i18n['Category_Trailer']						= 'Trailer';
 	$i18n['Category_Lo-Fi']							= 'Lo-Fi';
 	$i18n['Category_Tribal']						= 'Tribal';
-	$i18n['Category_Acid Punk']						= 'Acid Punk';
-	$i18n['Category_Acid Jazz']						= 'Acid Jazz';
+	$i18n['Category_Acid-Punk']						= 'Acid Punk';
+	$i18n['Category_Acid-Jazz']						= 'Acid Jazz';
 	$i18n['Category_Polka']							= 'Polka';
 	$i18n['Category_Retro']							= 'Retro';
 	$i18n['Category_Musical']						= 'Musical';
-	$i18n['Category_Rock & Roll']					= 'Rock & Roll';
-	$i18n['Category_Hard Rock']						= 'Hard Rock';
+	$i18n['Category_Rock&Roll']					= 'Rock & Roll';
+	$i18n['Category_Hard-Rock']						= 'Hard Rock';
 	$i18n['Category_Folk']							= 'Folk';
 	$i18n['Category_Folk-Rock']						= 'Folk-Rock';
-	$i18n['Category_National Folk']					= 'National Folk';
+	$i18n['Category_National-Folk']					= 'National Folk';
 	$i18n['Category_Swing']							= 'Swing';
-	$i18n['Category_Fast Fusion']					= 'Fast Fusion';
+	$i18n['Category_Fast-Fusion']					= 'Fast Fusion';
 	$i18n['Category_Bebob']							= 'Bebob';
 	$i18n['Category_Latin']							= 'Latin';
 	$i18n['Category_Revival']						= 'Revival';
 	$i18n['Category_Celtic']						= 'Celtic';
 	$i18n['Category_Bluegrass']						= 'Bluegrass';
 	$i18n['Category_Avantgarde']					= 'Avantgarde';
-	$i18n['Category_Gothic Rock']					= 'Gothic Rock';
-	$i18n['Category_Progressive Rock']				= 'Progressive Rock';
-	$i18n['Category_Psychedelic Rock']				= 'Psychedelic Rock';
-	$i18n['Category_Symphonic Rock']				= 'Symphonic Rock';
-	$i18n['Category_Slow Rock']						= 'Slow Rock';
-	$i18n['Category_Big Band']						= 'Big Band';
+	$i18n['Category_Gothic-Rock']					= 'Gothic Rock';
+	$i18n['Category_Progressive-Rock']				= 'Progressive Rock';
+	$i18n['Category_Psychedelic-Rock']				= 'Psychedelic Rock';
+	$i18n['Category_Symphonic-Rock']				= 'Symphonic Rock';
+	$i18n['Category_Slow-Rock']						= 'Slow Rock';
+	$i18n['Category_Big-Band']						= 'Big Band';
 	$i18n['Category_Chorus']						= 'Chorus';
-	$i18n['Category_Easy Listening']				= 'Easy Listening';
+	$i18n['Category_Easy-Listening']				= 'Easy Listening';
 	$i18n['Category_Acoustic']						= 'Acoustic';
 	$i18n['Category_Humour']						= 'Humour';
 	$i18n['Category_Speech']						= 'Speech';
 	$i18n['Category_Chanson']						= 'Chanson';
 	$i18n['Category_Opera']							= 'Opera';
-	$i18n['Category_Chamber Music']					= 'Chamber Music';
+	$i18n['Category_Chamber-Music']					= 'Chamber Music';
 	$i18n['Category_Sonata']						= 'Sonate';
 	$i18n['Category_Symphony']						= 'Symphony';
-	$i18n['Category_Booty Bass']					= 'Booty Bass';
+	$i18n['Category_Booty-Bass']					= 'Booty Bass';
 	$i18n['Category_Primus']						= 'Priums';
-//	$i18n['Category_Porn Groove']					= 'Porn Groove';
+	$i18n['Category_Porn-Groove']					= 'Porn Groove';
 	$i18n['Category_Satire']						= 'Satire';
-	$i18n['Category_Slow Jam']						= 'Slow Jam';
+	$i18n['Category_Slow-Jam']						= 'Slow Jam';
 	$i18n['Category_Club']							= 'Club';
 	$i18n['Category_Tango']							= 'Tango';
 	$i18n['Category_Samba']							= 'Samba';
 	$i18n['Category_Folklore']						= 'Folklore';
 	$i18n['Category_Ballad']						= 'Ballade';
-	$i18n['Category_Power Ballad']					= 'Power Ballade';
+	$i18n['Category_Power-Ballad']					= 'Power Ballade';
 	$i18n['Category_Rhythmic Soul']					= 'Rhythmic Soul';
 	$i18n['Category_Freestyle']						= 'Freestyle';
 	$i18n['Category_Duet']							= 'Duet';
-	$i18n['Category_Punk Rock']						= 'Punk Rock';
-	$i18n['Category_Drum Solo']						= 'Drum Solo';
+	$i18n['Category_Punk-Rock']						= 'Punk Rock';
+	$i18n['Category_Drum-Solo']						= 'Drum Solo';
 	$i18n['Category_Acapella']						= 'Acapella';
 	$i18n['Category_Euro-House']					= 'Euro-House';
-	$i18n['Category_Dance Hall']					= 'Dance Hall';
-//	$i18n['Category_Goa']							= 'Goa';
-	$i18n['Category_Drum & Bass']					= 'Drum & Bass';
+	$i18n['Category_Dance-Hall']					= 'Dance Hall';
+	$i18n['Category_Goa']							= 'Goa';
+	$i18n['Category_Drum&Bass']					= 'Drum & Bass';
 	$i18n['Category_Club-House']					= 'Club-House';
 	$i18n['Category_Hardcore']						= 'Hardcore';
 	$i18n['Category_Terror']						= 'Terror';
 	$i18n['Category_Indie']							= 'Indie';
 	$i18n['Category_BritPop']						= 'BritPop';
-//	$i18n['Category_Negerpunk']						= 'Negerpunk';
-	$i18n['Category_Polsk Punk']					= 'Polsk Punk';
+	$i18n['Category_Negerpunk']						= 'Negerpunk';
+	$i18n['Category_Polsk-Punk']					= 'Polsk Punk';
 	$i18n['Category_Beat']							= 'Beat';
-//	$i18n['Category_Christian Gangsta Rap']			= 'Christin Gangsta Rap';
-	$i18n['Category_Heavy Metal']					= 'Heavy Metal';
-	$i18n['Category_Black Metal']					= 'Black Metal';
+	$i18n['Category_Christian-Gangsta-Rap']			= 'Christian Gangsta Rap';
+	$i18n['Category_Heavy-Metal']					= 'Heavy Metal';
+	$i18n['Category_Black-Metal']					= 'Black Metal';
 	$i18n['Category_Crossover']						= 'Crossover';
-//	$i18n['Category_Contemporary Christian']		= 'Contemporary Christian';
-//	$i18n['Category_Christian Rock']				= 'Christian Rock';
+	$i18n['Category_Contemporary-Christian']		= 'Contemporary Christian';
+	$i18n['Category_Christian-Rock']				= 'Christian Rock';
 	$i18n['Category_Merengue']						= 'Merengue';
 	$i18n['Category_Salsa']							= 'Salsa';
-	$i18n['Category_Trash Metal']					= 'Trash Metal';
+	$i18n['Category_Trash-Metal']					= 'Trash Metal';
 	$i18n['Category_Anime']							= 'Anime';
 	$i18n['Category_Jpop']							= 'Jpop';
 	$i18n['Category_Synthpop']						= 'Synthpop';
