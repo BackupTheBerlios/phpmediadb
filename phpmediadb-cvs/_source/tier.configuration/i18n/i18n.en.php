@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.en.php,v 1.8 2005/04/26 20:36:26 mblaschke Exp $
+ * $Id: i18n.en.php,v 1.9 2005/04/27 19:05:25 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.en.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.8 $
+ * @version     $Revision: 1.9 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -59,10 +59,11 @@
 /* formular */
 	$i18n['FORM_RESET']					= 'Reset';
 	$i18n['FORM_SUBMIT']				= 'Submit';
-	$i18n['FORMULAR_OPTION_ITEM_EMPTY']	= ' ';
+	$i18n['FORMULAR_OPTION_ITEM_EMPTY']	= 'Choose please / No choice ';
+	$i18n['HYPERLINK_BACK']				= '<< Back';
 	
 /* media data */
-	$i18n['MEDIA_TITLE']	= 'Mediatitel';
+	$i18n['MEDIA_TITLE']	= 'Mediatitle';
 	$i18n['MEDIA_ARTIST']	= 'Artist';
 	$i18n['MEDIA_Category']	= 'Category';
 	
@@ -105,8 +106,6 @@
 	$i18n['ACTION_DELETE']					= 'Delete';
 	$i18n['ACTION_MODIFY']					= 'Modify';
 
-	//$i18n['SMARTY_END'] = '';
-	//$i18n['SMARTY_START'] = '';
 	 
 	$i18n['BUTTON_ABORT']						= 'Cancel';
 	$i18n['BUTTON_ITEMDELETE']					= 'Delete';
@@ -123,7 +122,7 @@
 	$i18n['MEDIA_AUDIO_ITEM_IMAGEURL']			= 'Imageaddress';
 	$i18n['MEDIA_AUDIO_ITEM_LOCATION']			= 'Location';
 	$i18n['MEDIA_AUDIO_ITEM_MEDIANAME']			= 'Medianame';
-	$i18n['MEDIA_AUDIO_ITEM_MEDIASIZE']			= 'Size';
+	$i18n['MEDIA_AUDIO_ITEM_MEDIASIZE']			= 'Length (Min)';
 	$i18n['MEDIA_AUDIO_ITEM_ORIGINALTITLE']		= 'Original Title';
 	$i18n['MEDIA_AUDIO_ITEM_PUBLISHER']			= 'Publisher';
 	$i18n['MEDIA_AUDIO_ITEM_QUANTITY']			= 'Quantity';
@@ -143,7 +142,7 @@
 	$i18n['MEDIA_PRINT_ITEM_IMAGEURL']			= 'Imageaddress';
 	$i18n['MEDIA_PRINT_ITEM_LOCATION']			= 'Location';
 	$i18n['MEDIA_PRINT_ITEM_MEDIANAME']			= 'Medianname';
-	$i18n['MEDIA_PRINT_ITEM_MEDIASIZE']			= 'Size';
+	$i18n['MEDIA_PRINT_ITEM_MEDIASIZE']			= 'Pages';
 	$i18n['MEDIA_PRINT_ITEM_ORIGINALTITLE']		= 'Original Title';
 	$i18n['MEDIA_PRINT_ITEM_PUBLISHER']			= 'Publisher';
 	$i18n['MEDIA_PRINT_ITEM_QUANTITY']			= 'Quantity';
@@ -163,7 +162,7 @@
 	$i18n['MEDIA_VIDEO_ITEM_IMAGEURL']			= 'Imageaddress';
 	$i18n['MEDIA_VIDEO_ITEM_LOCATION']			= 'Location';
 	$i18n['MEDIA_VIDEO_ITEM_MEDIANAME']			= 'Medianname';
-	$i18n['MEDIA_VIDEO_ITEM_MEDIASIZE']			= 'Size';
+	$i18n['MEDIA_VIDEO_ITEM_MEDIASIZE']			= 'Length';
 	$i18n['MEDIA_VIDEO_ITEM_ORIGINALTITLE']		= 'Original Title';
 	$i18n['MEDIA_VIDEO_ITEM_PUBLISHER']			= 'Publisher';
 	$i18n['MEDIA_VIDEO_ITEM_QUANTITY']			= 'Quantity';
@@ -204,12 +203,10 @@
 	$i18n['MEDIA_QUANTITY']					= 'Quantity';
 	$i18n['MEDIA_RELEASEYEAR']				= 'Release Year';
 	$i18n['MEDIA_TITLE']					= 'Title';
-	$i18n['MENU_ADDITEM']					= 'Add Item';
+	$i18n['MENU_ADDITEM']					= 'Add Media';
 	$i18n['MENU_ADMINISTRATION_TITLE']		= 'Administration';
 	$i18n['MESSAGE']						= 'Message';
 	$i18n['NOT_SET']						= 'Not set';
-	//$i18n['SMARTY_END'] = '';
-	//$i18n['SMARTY_START'] = '';
 	
 
 /******************************************************************************
@@ -388,11 +385,11 @@
 	$i18n['Category_War']			= 'War';
 	$i18n['Category_Western']		= 'Western';
 	
-	$i18n['AgeRestriction_Free']		= 'Keine Beschränkung';
-	$i18n['AgeRestriction_6Years']		= 'Ab 6 Jahre';
-	$i18n['AgeRestriction_12Years']		= 'Ab 12 Jahre';
-	$i18n['AgeRestriction_16Years']		= 'Ab 16 Jahre';
-	$i18n['AgeRestriction_18Years']		= 'Ab 18 Jahre';
+	$i18n['AgeRestriction_Free']		= 'No Restriction';
+	$i18n['AgeRestriction_6Years']		= '6 Years';
+	$i18n['AgeRestriction_12Years']		= '12 Years';
+	$i18n['AgeRestriction_16Years']		= '16 Years';
+	$i18n['AgeRestriction_18Years']		= '18 Years';
 	
 	$i18n['Codec_MP3']			= 'MP3';
 	$i18n['Codec_Vorbis']		= 'Ogg Vorbis';
@@ -418,7 +415,7 @@
 	$i18n['Format_AudioCD']		= 'AudioCD';
 	$i18n['Format_AudioDVD']	= 'AudioDVD';
 	$i18n['Format_MiniDisc']	= 'MiniDisc';
-	$i18n['Format_Cassette']	= 'Kassette';
+	$i18n['Format_Cassette']	= 'Cassette';
 	$i18n['Format_DV']			= 'DV';
 	$i18n['Format_VHS']			= 'VHS';
 	$i18n['Format_SVHS']		= 'SVHS';

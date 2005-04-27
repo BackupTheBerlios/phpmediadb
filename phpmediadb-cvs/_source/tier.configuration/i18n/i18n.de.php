@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.de.php,v 1.11 2005/04/26 20:36:26 mblaschke Exp $
+ * $Id: i18n.de.php,v 1.12 2005/04/27 19:05:25 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.de.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.11 $
+ * @version     $Revision: 1.12 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -68,14 +68,15 @@
 	$i18n['HTTP_ERROR_500_TITLE']				= '';
 	$i18n['HTTP_ERROR_UNKNOWN_BODY']			= '';
 	$i18n['HTTP_ERROR_UNKNOWN_TITLE']			= '';
-	$i18n['MESSAGE_ITEMID_NOTNUMERICAL']		= '';
-	$i18n['MESSAGE_ITEM_LOADERROR']				= '';
-	$i18n['MESSAGE_ITEM_NOTEXISTENT']			= '';
+	$i18n['MESSAGE_ITEMID_NOTNUMERICAL']		= 'Die gewählte Item-Nummer ist nicht nummerisch!';
+	$i18n['MESSAGE_ITEM_LOADERROR']				= 'Das Medium konnte nicht geladen werden.';
+	$i18n['MESSAGE_ITEM_NOTEXISTENT']			= 'Das Medium existiert nicht.';
 	
 /* formular */
 	$i18n['FORM_RESET']					= 'Zurücksetzen';
 	$i18n['FORM_SUBMIT']				= 'Absenden';
-	$i18n['FORMULAR_OPTION_ITEM_EMPTY']	= ' ';
+	$i18n['FORMULAR_OPTION_ITEM_EMPTY']	= 'Bitte wählen / Keine Auswahl';
+	$i18n['HYPERLINK_BACK']				= '<< Zurück';
 	
 /* media data */
 	$i18n['MEDIA_TITLE']	= 'Medientitel';
@@ -147,8 +148,6 @@
 
 	$i18n['MESSAGE']						= 'Nachricht';
 	$i18n['NOT_SET']						= 'Nicht gesetzt';
-	//$i18n['SMARTY_END'] = '';
-	//$i18n['SMARTY_START'] = '';
 	 
 	$i18n['BUTTON_ABORT']						= 'Abbrechen';
 	$i18n['BUTTON_ITEMDELETE']					= 'Löschen';
@@ -165,7 +164,7 @@
 	$i18n['MEDIA_AUDIO_ITEM_IMAGEURL']			= 'Bildadresse';
 	$i18n['MEDIA_AUDIO_ITEM_LOCATION']			= 'Standort';
 	$i18n['MEDIA_AUDIO_ITEM_MEDIANAME']			= 'Medienname';
-	$i18n['MEDIA_AUDIO_ITEM_MEDIASIZE']			= 'Größe';
+	$i18n['MEDIA_AUDIO_ITEM_MEDIASIZE']			= 'Länge (Min)';
 	$i18n['MEDIA_AUDIO_ITEM_ORIGINALTITLE']		= 'Original Titel';
 	$i18n['MEDIA_AUDIO_ITEM_PUBLISHER']			= 'Veröffentlicher';
 	$i18n['MEDIA_AUDIO_ITEM_QUANTITY']			= 'Anzahl';
@@ -185,7 +184,7 @@
 	$i18n['MEDIA_PRINT_ITEM_IMAGEURL']			= 'Bildadresse';
 	$i18n['MEDIA_PRINT_ITEM_LOCATION']			= 'Standort';
 	$i18n['MEDIA_PRINT_ITEM_MEDIANAME']			= 'Medienname';
-	$i18n['MEDIA_PRINT_ITEM_MEDIASIZE']			= 'Größe';
+	$i18n['MEDIA_PRINT_ITEM_MEDIASIZE']			= 'Seitenanzahl';
 	$i18n['MEDIA_PRINT_ITEM_ORIGINALTITLE']		= 'Original Titel';
 	$i18n['MEDIA_PRINT_ITEM_PUBLISHER']			= 'Veröffentlicher';
 	$i18n['MEDIA_PRINT_ITEM_QUANTITY']			= 'Anzahl';
@@ -205,7 +204,7 @@
 	$i18n['MEDIA_VIDEO_ITEM_IMAGEURL']			= 'Bildadresse';
 	$i18n['MEDIA_VIDEO_ITEM_LOCATION']			= 'Standort';
 	$i18n['MEDIA_VIDEO_ITEM_MEDIANAME']			= 'Medienname';
-	$i18n['MEDIA_VIDEO_ITEM_MEDIASIZE']			= 'Größe';
+	$i18n['MEDIA_VIDEO_ITEM_MEDIASIZE']			= 'Länge (Min)';
 	$i18n['MEDIA_VIDEO_ITEM_ORIGINALTITLE']		= 'Original Titel';
 	$i18n['MEDIA_VIDEO_ITEM_PUBLISHER']			= 'Veröffentlicher';
 	$i18n['MEDIA_VIDEO_ITEM_QUANTITY']			= 'Anzahl';
@@ -394,7 +393,7 @@
 	$i18n['Category_Sci-Fi']		= 'Sciene-Fiction';
 	$i18n['Category_Short']			= 'Short Movie';
 	$i18n['Category_Thriller']		= 'Thriller';
-	$i18n['Category_War']			= 'Kri';
+	$i18n['Category_War']			= 'Krieg';
 	$i18n['Category_Western']		= 'Western';
 	
 	$i18n['AgeRestriction_Free']		= 'Keine Beschränkung';
