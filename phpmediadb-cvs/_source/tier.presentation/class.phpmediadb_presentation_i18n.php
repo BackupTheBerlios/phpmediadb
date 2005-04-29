@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_presentation_i18n.php,v 1.14 2005/04/25 19:55:28 mblaschke Exp $
+ * $Id: class.phpmediadb_presentation_i18n.php,v 1.15 2005/04/29 14:11:43 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_presentation_i18n.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	presentation
- * @version     $Revision: 1.14 $
+ * @version     $Revision: 1.15 $
  */
 
 /**
@@ -245,7 +245,7 @@ class phpmediadb_presentation_i18n
   	
   		if( key_exists( $this->availableLanguagesContainer, $langCode ) && !$this->PRESENTATION->configuration['i18n']['forcedLanguage'] )
   		{
-  			$this->loadLanagueFile( $langCode );
+  			$this->loadLanguageFile( $langCode );
   		
   			/* save i18n-vars to contentvars */
   			$this->PRESENTATION->CONTENTVARS->addNode( 'I18N', $this->getLanguageArray() );
@@ -377,7 +377,7 @@ class phpmediadb_presentation_i18n
 		$this->langCode = $this->getBrowserLanguage();
 		
 		/* load language file */
-		$this->loadLanagueFile( $this->langCode );
+		$this->loadLanguageFile( $this->langCode );
 		
 		/* save i18n-vars to contentvars */
 		$this->PRESENTATION->CONTENTVARS->addNode( 'I18N', $this->getLanguageArray() );
@@ -391,7 +391,7 @@ class phpmediadb_presentation_i18n
 	 * @param String $langCode Langcode which should be loaded
 	 * @return void
 	 */
-	protected function loadLanagueFile( $langCode )
+	protected function loadLanguageFile( $langCode )
 	{
 		/* security check - langcode*/
 		if( eregi( '^[a-z]+$', $langCode ) )
