@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.en.php,v 1.9 2005/04/27 19:05:25 mblaschke Exp $
+ * $Id: i18n.en.php,v 1.10 2005/04/30 18:22:15 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.en.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.9 $
+ * @version     $Revision: 1.10 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -42,18 +42,20 @@
 ******************************************************************************/
 
 /* default i18ns */
-	$i18n['OK']				= 'Accept';
-	$i18n['CANCEL']			= 'Cancel';
-	$i18n['DELETE']			= 'Delete';
-	$i18n['INPUT_FIELD']	= 'Inputfield';
+	$i18n['OK']					= 'Accept';
+	$i18n['CANCEL']				= 'Cancel';
+	$i18n['DELETE']				= 'Delete';
+	$i18n['INPUT_FIELD']		= 'Inputfield';
+	$i18n['NOT_IMPLEMENTED']	= 'This function is not implemented in this version.';
+	
 	
 /* messages */
-	$i18n['MESSAGE_SUCCESS_SAVE']	= 'Item successfully saved.';
+	$i18n['MESSAGE_SUCCESS_SAVE']	= 'Media successfully saved.';
 	
 /* errors */
 	$i18n['ERROR_INPUTSIZE']	= 'Inputsize to long.';
 	$i18n['ERROR_INPUTREGEX']	= 'Input incorrect';
-	$i18n['ERROR_OCCURRED']		= 'An inputerror occurred auftreten.';
+	$i18n['ERROR_OCCURRED']		= 'An inputerror occurred.';
 	$i18n['ERROR_LISTLINK']		= '[Errorlist]';
 	
 /* formular */
@@ -171,7 +173,7 @@
 	$i18n['MEDIA_VIDEO_TITLE']					= 'Video';
 
 /* */
-	$i18n['QUESTION_ITEMDELETE']				= 'Do you want to delete this item?';
+	$i18n['QUESTION_ITEMDELETE']				= 'Do you want to delete this media?';
 	$i18n['MESSAGE_DELETION_SUCCESS']			= 'Item successfully deleted.';
 	$i18n['MESSAGE_SAVE_SUCCESS']				= 'Item successfully saved.';
 	
@@ -293,7 +295,7 @@
 	$i18n['Category_Polka']							= 'Polka';
 	$i18n['Category_Retro']							= 'Retro';
 	$i18n['Category_Musical']						= 'Musical';
-	$i18n['Category_Rock&Roll']					= 'Rock & Roll';
+	$i18n['Category_Rock&Roll']						= 'Rock & Roll';
 	$i18n['Category_Hard-Rock']						= 'Hard Rock';
 	$i18n['Category_Folk']							= 'Folk';
 	$i18n['Category_Folk-Rock']						= 'Folk-Rock';
@@ -342,7 +344,7 @@
 	$i18n['Category_Euro-House']					= 'Euro-House';
 	$i18n['Category_Dance-Hall']					= 'Dance Hall';
 	$i18n['Category_Goa']							= 'Goa';
-	$i18n['Category_Drum&Bass']					= 'Drum & Bass';
+	$i18n['Category_Drum&Bass']						= 'Drum & Bass';
 	$i18n['Category_Club-House']					= 'Club-House';
 	$i18n['Category_Hardcore']						= 'Hardcore';
 	$i18n['Category_Terror']						= 'Terror';

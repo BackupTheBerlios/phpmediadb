@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.de.php,v 1.12 2005/04/27 19:05:25 mblaschke Exp $
+ * $Id: i18n.de.php,v 1.13 2005/04/30 18:22:15 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.de.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.12 $
+ * @version     $Revision: 1.13 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -44,17 +44,18 @@
 	$i18n['MEDIA_VIDEO_TITLE'] = 'audio-visuelles Medium';
 	
 /* default i18ns */
-	$i18n['OK']				= 'Akzeptieren';
-	$i18n['CANCEL']			= 'Abbrechen';
-	$i18n['DELETE']			= 'Löschen';
-	$i18n['INPUT_FIELD']	= 'Eingabefeld';
+	$i18n['OK']					= 'Akzeptieren';
+	$i18n['CANCEL']				= 'Abbrechen';
+	$i18n['DELETE']				= 'Löschen';
+	$i18n['INPUT_FIELD']		= 'Eingabefeld';
+	$i18n['NOT_IMPLEMENTED']	= 'Diese Funktion ist in dieser Version noch nicht implementiert worden.';
 	
 /* messages */
 	$i18n['MESSAGE_SUCCESS_SAVE']	= 'Element erfolgreich gespeichert!';
 	
 /* errors */
 	$i18n['ERROR_TITLE']						= 'Fehlertitel';
-	$i18n['ERROR_INPUTSIZE']					= 'Eingabe zu groß.';
+	$i18n['ERROR_INPUTSIZE']					= 'Eingabe zu lang.';
 	$i18n['ERROR_INPUTREGEX']					= 'Eingabe nicht korrekt.';
 	$i18n['ERROR_OCCURRED']						= 'Es sind Eingabefehler auftreten.';
 	$i18n['ERROR_LISTLINK']						= '[Fehlerliste]';
@@ -68,7 +69,7 @@
 	$i18n['HTTP_ERROR_500_TITLE']				= '';
 	$i18n['HTTP_ERROR_UNKNOWN_BODY']			= '';
 	$i18n['HTTP_ERROR_UNKNOWN_TITLE']			= '';
-	$i18n['MESSAGE_ITEMID_NOTNUMERICAL']		= 'Die gewählte Item-Nummer ist nicht nummerisch!';
+	$i18n['MESSAGE_ITEMID_NOTNUMERICAL']		= 'Die gewählte Medien-Nummer ist nicht nummerisch!';
 	$i18n['MESSAGE_ITEM_LOADERROR']				= 'Das Medium konnte nicht geladen werden.';
 	$i18n['MESSAGE_ITEM_NOTEXISTENT']			= 'Das Medium existiert nicht.';
 	
@@ -94,7 +95,7 @@
 	$i18n['MENU_SEARCH']				= 'Suche';
 	$i18n['MENU_LIST']					= 'Liste';
 	$i18n['MENU_ABOUT']					= 'Über uns';
-	$i18n['MENU_ADDITEM']				= 'Item hinzufügen';
+	$i18n['MENU_ADDITEM']				= 'Medium hinzufügen';
 	$i18n['MENU_ADMINISTRATION_TITLE']	= 'Administration';
 
 
