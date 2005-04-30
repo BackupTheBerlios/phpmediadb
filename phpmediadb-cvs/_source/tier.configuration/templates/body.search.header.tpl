@@ -1,5 +1,5 @@
 <form action="search.php">
 <div id="phpmediadb-body-search-header">
- SUCHFELD
+ {$I18N.NOT_IMPLEMENTED|default:"%NOT_IMPLEMENTED%"}
 </div>
 </form>
