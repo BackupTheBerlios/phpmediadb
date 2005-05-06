@@ -1,5 +1,5 @@
 -- phpMediaDB :: Licensed under GNU-GPL :: http://phpmediadb.berlios.de/
--- $Id: insert-data.sql,v 1.7 2005/04/13 11:43:17 bruf Exp $
+-- $Id: insert-data.sql,v 1.8 2005/05/06 10:49:10 mblaschke Exp $
 
 --
 -- Daten für Tabelle `categories`
@@ -174,7 +174,35 @@ INSERT INTO `Categories` (`CategoryID`, `ItemTypeID`, `CategoryName`) VALUES
 (165, 2, 'Category_Short'),
 (166, 2, 'Category_Thriller'),
 (167, 2, 'Category_War'),
-(168, 2, 'Category_Western');
+(168, 2, 'Category_Western'),
+(169, 3, 'Category_Antiquarian'),
+(170, 3, 'Category_Fiction'),
+(171, 3, 'Category_Biography'),
+(172, 3, 'Category_Business'),
+(173, 3, 'Category_Computer'),
+(174, 3, 'Category_Erotic'),
+(175, 3, 'Category_Technical'),
+(176, 3, 'Category_Movie'),
+(177, 3, 'Category_Comic'),
+(178, 3, 'Category_Children'),
+(179, 3, 'Category_Young'),
+(180, 3, 'Category_Cooking'),
+(181, 3, 'Category_Crime'),
+(182, 3, 'Category_Thriller'),
+(183, 3, 'Category_Learning'),
+(184, 3, 'Category_Music'),
+(185, 3, 'Category_Sciences'),
+(186, 3, 'Category_Politics'),
+(187, 3, 'Category_History'),
+(188, 3, 'Category_Advisory'),
+(189, 3, 'Category_Traveling'),
+(190, 3, 'Category_Sport'),
+(191, 3, 'Category_Religion'),
+(192, 3, 'Category_Esoterism'),
+(193, 3, 'Category_Science-Fiction'),
+(194, 3, 'Category_Fantasy'),
+(195, 3, 'Category_Horror'),
+(196, 3, 'Category_EBook');
 
 --
 -- Daten für Tabelle `itemtypes`
