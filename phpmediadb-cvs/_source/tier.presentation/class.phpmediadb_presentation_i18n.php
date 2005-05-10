@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: class.phpmediadb_presentation_i18n.php,v 1.15 2005/04/29 14:11:43 mblaschke Exp $
+ * $Id: class.phpmediadb_presentation_i18n.php,v 1.16 2005/05/10 14:19:14 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        class.phpmediadb_presentation_i18n.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	presentation
- * @version     $Revision: 1.15 $
+ * @version     $Revision: 1.16 $
  */
 
 /**
@@ -132,6 +132,13 @@ class phpmediadb_presentation_i18n
 	}
 
 //-----------------------------------------------------------------------------
+	/**
+	 * Translates an array or a string
+	 *
+	 * @access public
+	 * @param mixed $langRequest language-i18n-stringcode or array of strings
+	 * @return mixed Internationalized string or array
+	 */
 	public function translate( $langRequest )
 	{
 		/* init */
@@ -162,7 +169,7 @@ class phpmediadb_presentation_i18n
 	 * Returns the i18n string specified by the langID
 	 *
 	 * @access protected
-	 * @param String Internal language-i18n-stringcode
+	 * @param String $langId language-i18n-stringcode
 	 * @return mixed Internationalized string
 	 */
 	protected function translate_string( $langId )
