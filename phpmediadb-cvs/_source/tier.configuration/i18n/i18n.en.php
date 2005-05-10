@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.en.php,v 1.10 2005/04/30 18:22:15 mblaschke Exp $
+ * $Id: i18n.en.php,v 1.11 2005/05/10 14:37:27 bruf Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.en.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.10 $
+ * @version     $Revision: 1.11 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -386,6 +386,35 @@
 	$i18n['Category_Thriller']		= 'Thriller';
 	$i18n['Category_War']			= 'War';
 	$i18n['Category_Western']		= 'Western';
+	
+	$i18n['Category_Antiquarian']		= 'Antiquarian';
+	$i18n['Category_Fiction']			= 'Fiction';
+	$i18n['Category_Biography']			= 'Biography';
+	$i18n['Category_Business']			= 'Business';
+	$i18n['Category_Computer']			= 'Computer';
+	$i18n['Category_Erotic']			= 'Erotic';
+	$i18n['Category_Technical']			= 'Technical';
+	$i18n['Category_Movie']				= 'Movie';
+	$i18n['Category_Comic']				= 'Comic';
+	$i18n['Category_Children']			= 'Children';
+	$i18n['Category_Young']				= 'Young';
+	$i18n['Category_Cooking']			= 'Cooking';
+	$i18n['Category_Crime']				= 'Crime';
+	$i18n['Category_Thriller']			= 'Thriller';
+	$i18n['Category_Learning']			= 'Learning';
+	$i18n['Category_Music']				= 'Music';
+	$i18n['Category_Sciences']			= 'Sciences';
+	$i18n['Category_Politics']			= 'Politics';
+	$i18n['Category_History']			= 'History';
+	$i18n['Category_Advisory']			= 'Advisory';
+	$i18n['Category_Traveling']			= 'Traveling';
+	$i18n['Category_Sport']				= 'Sport';
+	$i18n['Category_Religion']			= 'Religion';
+	$i18n['Category_Esoterism']			= 'Esoterism';
+	$i18n['Category_Science-Fiction']	= 'Science-Fiction';
+	$i18n['Category_Fantasy']			= 'Fantasy';
+	$i18n['Category_Horror']			= 'Horror';
+	$i18n['Category_EBook']				= 'EBook';
 	
 	$i18n['AgeRestriction_Free']		= 'No Restriction';
 	$i18n['AgeRestriction_6Years']		= '6 Years';

@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.de.php,v 1.13 2005/04/30 18:22:15 mblaschke Exp $
+ * $Id: i18n.de.php,v 1.14 2005/05/10 14:36:50 bruf Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.de.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.13 $
+ * @version     $Revision: 1.14 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -395,7 +395,36 @@
 	$i18n['Category_Short']			= 'Short Movie';
 	$i18n['Category_Thriller']		= 'Thriller';
 	$i18n['Category_War']			= 'Krieg';
-	$i18n['Category_Western']		= 'Western';
+	$i18n['Category_Western']		= 'Western';	
+	
+	$i18n['Category_Antiquarian']		= 'Antiquarisch';
+	$i18n['Category_Fiction']			= 'Gedichte';
+	$i18n['Category_Biography']			= 'Biography';
+	$i18n['Category_Business']			= 'Geschäft';
+	$i18n['Category_Computer']			= 'Computer';
+	$i18n['Category_Erotic']			= 'Erotik';
+	$i18n['Category_Technical']			= 'Technisch';
+	$i18n['Category_Movie']				= 'Filme';
+	$i18n['Category_Comic']				= 'Comic';
+	$i18n['Category_Children']			= 'Kinderbuch';
+	$i18n['Category_Young']				= 'Jugendbuch';
+	$i18n['Category_Cooking']			= 'Kochbuch';
+	$i18n['Category_Crime']				= 'Krimi';
+	$i18n['Category_Thriller']			= 'Thriller';
+	$i18n['Category_Learning']			= 'Lernbuch';
+	$i18n['Category_Music']				= 'Musik';
+	$i18n['Category_Sciences']			= 'Wissenschaft';
+	$i18n['Category_Politics']			= 'Politik';
+	$i18n['Category_History']			= 'Geschichte';
+	$i18n['Category_Advisory']			= 'Beratung';
+	$i18n['Category_Traveling']			= 'Reise';
+	$i18n['Category_Sport']				= 'Sport';
+	$i18n['Category_Religion']			= 'Religion';
+	$i18n['Category_Esoterism']			= 'Esoterik';
+	$i18n['Category_Science-Fiction']	= 'Science-Fiction';
+	$i18n['Category_Fantasy']			= 'Fantasy';
+	$i18n['Category_Horror']			= 'Horror';
+	$i18n['Category_EBook']				= 'Elektronisches Buch';
 	
 	$i18n['AgeRestriction_Free']		= 'Keine Beschränkung';
 	$i18n['AgeRestriction_6Years']		= 'Ab 6 Jahre';
