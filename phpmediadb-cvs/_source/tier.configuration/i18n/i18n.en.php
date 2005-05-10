@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.en.php,v 1.11 2005/05/10 14:37:27 bruf Exp $
+ * $Id: i18n.en.php,v 1.12 2005/05/10 18:09:30 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.en.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.11 $
+ * @version     $Revision: 1.12 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -57,6 +57,16 @@
 	$i18n['ERROR_INPUTREGEX']	= 'Input incorrect';
 	$i18n['ERROR_OCCURRED']		= 'An inputerror occurred.';
 	$i18n['ERROR_LISTLINK']		= '[Errorlist]';
+	$i18n['HTTP_ERROR_401_TITLE']				= 'HTTP 401 - Authentication required!';
+	$i18n['HTTP_ERROR_401_BODY']				= 'This server could not verify that you are authorized. You either supplied the wrong credentials (e.g., bad password), or your browser doesn\'t understand how to supply the credentials required.';
+	$i18n['HTTP_ERROR_403_TITLE']				= 'HTTP 403 - Access forbidden!';
+	$i18n['HTTP_ERROR_403_BODY']				= 'You don\'t have permission to access the requested object. It is either read-protected or not readable by the server.';
+	$i18n['HTTP_ERROR_404_TITLE']				= 'HTTP 404 - Object not found!';
+	$i18n['HTTP_ERROR_404_BODY']				= 'The requested URL was not found on this server.';
+	$i18n['HTTP_ERROR_500_TITLE']				= 'HTTP 500 - Server error!';
+	$i18n['HTTP_ERROR_500_BODY']				= 'The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there was an error in a CGI script.';
+	$i18n['HTTP_ERROR_UNKNOWN_TITLE']			= 'Unknown Error';
+	$i18n['HTTP_ERROR_UNKNOWN_BODY']			= 'Sorry, an unknown error occured. Try again later.';
 	
 /* formular */
 	$i18n['FORM_RESET']					= 'Reset';

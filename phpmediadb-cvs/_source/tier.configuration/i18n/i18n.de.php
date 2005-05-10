@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.de.php,v 1.14 2005/05/10 14:36:50 bruf Exp $
+ * $Id: i18n.de.php,v 1.15 2005/05/10 18:09:30 mblaschke Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.de.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.14 $
+ * @version     $Revision: 1.15 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -59,16 +59,17 @@
 	$i18n['ERROR_INPUTREGEX']					= 'Eingabe nicht korrekt.';
 	$i18n['ERROR_OCCURRED']						= 'Es sind Eingabefehler auftreten.';
 	$i18n['ERROR_LISTLINK']						= '[Fehlerliste]';
-	$i18n['HTTP_ERROR_401_BODY']				= '';
-	$i18n['HTTP_ERROR_401_TITLE']				= '';
-	$i18n['HTTP_ERROR_403_BODY']				= '';
-	$i18n['HTTP_ERROR_403_TITLE']				= '';
-	$i18n['HTTP_ERROR_404_BODY']				= '';
-	$i18n['HTTP_ERROR_404_TITLE']				= '';
-	$i18n['HTTP_ERROR_500_BODY']				= '';
-	$i18n['HTTP_ERROR_500_TITLE']				= '';
-	$i18n['HTTP_ERROR_UNKNOWN_BODY']			= '';
-	$i18n['HTTP_ERROR_UNKNOWN_TITLE']			= '';
+	$i18n['HTTP_ERROR_401_TITLE']				= 'HTTP 401 - Authentisierung fehlgeschlagen!';
+	$i18n['HTTP_ERROR_401_BODY']				= 'Der Server konnte nicht verifizieren, ob Sie autorisiert sind. Entweder wurden falsche Referenzen (z.B. ein falsches Passwort) angegeben oder ihr Browser versteht nicht, wie die geforderten Referenzen zu übermitteln sind.';
+	$i18n['HTTP_ERROR_403_TITLE']				= 'HTTP 403 - Zugriff verweigert!';
+	$i18n['HTTP_ERROR_403_BODY']				= 'Der Zugriff auf das angeforderte Objekt ist nicht möglich. Entweder kann es vom Server nicht gelesen werden oder es ist zugriffsgeschützt.';
+	$i18n['HTTP_ERROR_404_TITLE']				= 'HTTP 404 - Objekt nicht gefunden!';
+	$i18n['HTTP_ERROR_404_BODY']				= 'Der angeforderte URL konnte auf dem Server nicht gefunden werden.';
+	$i18n['HTTP_ERROR_500_TITLE']				= 'HTTP 500 - Serverfehler!';
+	$i18n['HTTP_ERROR_500_BODY']				= 'Die Anfrage kann nicht beantwortet werden, da im Server ein interner Fehler aufgetreten ist. Der Server ist entweder überlastet oder ein Fehler in einem CGI-Skript ist aufgetreten.';
+	$i18n['HTTP_ERROR_UNKNOWN_TITLE']			= 'Unbekannter Fehler!';
+	$i18n['HTTP_ERROR_UNKNOWN_BODY']			= 'Es ist ein unbekannter Fehler aufgetreten.';
+
 	$i18n['MESSAGE_ITEMID_NOTNUMERICAL']		= 'Die gewählte Medien-Nummer ist nicht nummerisch!';
 	$i18n['MESSAGE_ITEM_LOADERROR']				= 'Das Medium konnte nicht geladen werden.';
 	$i18n['MESSAGE_ITEM_NOTEXISTENT']			= 'Das Medium existiert nicht.';
