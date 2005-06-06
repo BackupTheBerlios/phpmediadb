@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: i18n.de.php,v 1.15 2005/05/10 18:09:30 mblaschke Exp $
+ * $Id: i18n.de.php,v 1.16 2005/06/06 09:25:23 bruf Exp $
  *
  * Project:     phpMediaDB :: OpenSource Mediadatabase
  * File:        i18n.de.php
@@ -33,7 +33,7 @@
  * @author      Boris Ruf <bruf@users.berlios.de>
  * @package		phpmediadb
  * @subpackage	configuration
- * @version     $Revision: 1.15 $
+ * @version     $Revision: 1.16 $
  */
 // $i18n['STRING-ID'] = "";
 
@@ -380,22 +380,22 @@
 	$i18n['Category_Action']		= 'Action';
 	$i18n['Category_Adventure']		= 'Adventure';
 	$i18n['Category_Animation']		= 'Animation';
-	$i18n['Category_Comedy']		= 'Comedy';
-	$i18n['Category_Crime']			= 'Crime';
-	$i18n['Category_Documentary']	= 'Documentary';
+	$i18n['Category_Comedy']		= 'Komödie';
+	$i18n['Category_Crime']			= 'Krimi';
+	$i18n['Category_Documentary']	= 'Dokumentation';
 	$i18n['Category_Drama']			= 'Drama';
-	$i18n['Category_Family']		= 'Family';
-	$i18n['Category_Fantasy']		= 'Fantasy';
-	$i18n['Category_Film-Noir']		= 'Film-Noir';
+	$i18n['Category_Family']		= 'Familie';
+	$i18n['Category_Fantasy']		= 'Fantasie';
+	$i18n['Category_Film-Noir']		= 'Schwarz-Weiß Film';
 	$i18n['Category_Horror']		= 'Horror';
-	$i18n['Category_Music']			= 'Music';
+	$i18n['Category_Music']			= 'Musik';
 	$i18n['Category_Musical']		= 'Musical';
 	$i18n['Category_Mystery']		= 'Mystery';
-	$i18n['Category_Romance']		= 'Romance';
+	$i18n['Category_Romance']		= 'Romanze';
 	$i18n['Category_Sci-Fi']		= 'Sciene-Fiction';
-	$i18n['Category_Short']			= 'Short Movie';
+	$i18n['Category_Short']			= 'Kurzfilm';
 	$i18n['Category_Thriller']		= 'Thriller';
-	$i18n['Category_War']			= 'Krieg';
+	$i18n['Category_War']			= 'Kriegsfilm';
 	$i18n['Category_Western']		= 'Western';	
 	
 	$i18n['Category_Antiquarian']		= 'Antiquarisch';
